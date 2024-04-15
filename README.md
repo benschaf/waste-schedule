@@ -142,9 +142,15 @@ Considering the problem statements, I brainstormed potential solutions that coul
         - **p3** Gamify waste reduction within the family. Set monthly challenges (e.g., reduce plastic waste, compost more) and track progress.
         - **p3** Award virtual badges or points for achieving goals.
 
-
-
 ### Prototype
+
+#### Wireframes
+Wireframes were created using [draw.io](draw.io) to visualize the app's layout and features.
+
+View an [interactive preview](https://drive.google.com/file/d/1KmW3ppV6V6eGe11EsY1J0-Z69dtKagAU/view?usp=sharing) of the wireframes. (click on the "Open with" button and select "draw.io")
+
+[!IMPORTANT]
+include screenshots when done
 
 ### Test
 
