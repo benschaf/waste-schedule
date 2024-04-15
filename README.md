@@ -8,6 +8,10 @@
 
 Welcome to the Waste Management App, your go-to solution in the quest for efficient and eco-friendly waste handling! 🚀
 
+![screenshot](documentation/mockup.png)
+
+source: [amiresponsive](https://ui.dev/amiresponsive?url=#)
+
 Our app is not just about managing waste, it's about creating a sustainable future, one notification at a time. Here's what we offer:
 
 1. 📅 **Waste Collection Reminders:**
