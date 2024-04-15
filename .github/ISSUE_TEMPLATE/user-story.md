@@ -1,8 +1,8 @@
 ---
 name: User Story
 about: Generate a new user story issue
-title: USER STORY - do thing
-labels: enhancement user-story
+title: 'USER STORY: title'
+labels: enhancement, user-story
 assignees: benschaf
 
 ---
