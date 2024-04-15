@@ -239,6 +239,9 @@ Example:
 In this section, list all of your user stories for the project.
 
 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
+View the [user story map](https://github.com/users/benschaf/projects/9/views/2) created for this project using Github Projects
+
+![screenshot](documentation/user-story-map.png)
 
 ### New Site Users
 
@@ -263,122 +266,6 @@ In this section, list all of your user stories for the project.
 - As a site administrator, I should be able to ____________, so that I can ____________.
 - As a site administrator, I should be able to ____________, so that I can ____________.
 - As a site administrator, I should be able to ____________, so that I can ____________.
-
-
-### Original user Stories (Draft)
-
-1. ! **Intuitive Landing Page**:
-
-    - **User Story**: As a user, I want an intuitive landing page that explains the app’s purpose and features clearly, so that I can quickly understand how to use it.
-    - **Acceptance Criteria**:
-        - The landing page should have a visually appealing design with minimal text.
-        - It must include a brief description of the app’s functionality (e.g., waste collection reminders, community-driven schedules, information on Werkstoffhöfe).
-        - Navigation elements (buttons, links) should be straightforward and lead to relevant sections (e.g., browse schedules, upload a schedule, Dashboard).
-2. ! **Upload Waste Collection Schedule**:
-
-    - **User Story**: As a user, I want to upload my community’s waste collection schedule, so that others can benefit from accurate information.
-    - **Acceptance Criteria**:
-        - Users can upload a waste collection schedule by inputting it into a form. (it would be best if repeating dates were an option in the form.)
-        - The uploaded schedule should be associated with the user’s location or community.
-        - The user can also upload a photo or pdf of the schedule issued by their city council so it can be verified by the community or mods.
-3. ! **Browse and Subscribe**:
-
-    - **User Story**: As a user, I want to be able to browse waste collection schedules for my area without logging in, so that I can explore available options easily.
-    - **Acceptance Criteria**:
-        - Users can search for waste collection schedules based on their location (city, postal code, or address).
-        - The browsing experience is efficient and responsive.
-        - Users can view details of each schedule before subscribing.
-
---- login user story? ---
-
-4. ! **Rate and Improve**:
-    - **User Story**: As a user, I want to rate and provide feedback on uploaded schedules to help the community, so that we collectively improve waste management.
-    - **Acceptance Criteria**:
-        - Users can rate uploaded schedules using thumbs up/down.
-        - Feedback comments can be added to explain the rating.
-        - Forking an existing schedule creates a new version that can be evaluated by other users.
-5. ! **Waste Collection Reminders**:
-    - **User Story**: As a user, I want to receive reminders for waste collection events (e.g., Grüne Tonne, Gelbe Tonne) a day in advance, so that I can prepare my bins accordingly.
-    - **Acceptance Criteria**:
-        - Users receive notifications (e.g., push notifications, emails) a day before waste collection events.
-	          - **Possible Reminders**: App (Push notifications!), Mail, online Calendar, ical downloadable, Printable PDF calendar, Webapp (with desktop notifications), Wearable, Smart Speaker ...
-        - Reminders include the type of event (e.g., Grüne Tonne, Gelbe Tonne).
-        - Users can customize their notification preferences (time of day, snooze).
-6. ! **View Subscribed Schedules in a Calendar**:
-    - **User Story**: As a user, I want to see my subscribed schedules in a calendar view, so that I can visualize upcoming waste collection events effectively.
-    - **Acceptance Criteria**:
-        - Users can switch between weekly, monthly and journal views.
-        - The calendar displays waste collection events clearly, including dates and bin types.
-        - Users can click on an event to view additional details.
-7. **Werkstoffhöfe Information**:
-    - **User Story**: As a user, I want to know opening hours and locations of Werkstoffhöfe (waste disposal centers) in my area, so that I can plan my visits efficiently.
-    - **Acceptance Criteria**:
-        - Users can access accurate and up-to-date information on Werkstoffhöfe.
-        - Locations can be opened in the user’s GPS app for navigation.
-8. **Localized and Nationwide Information**:
-    - **User Story**: As a user, I want localized waste collection information specific to my city or region, as well as nationwide guidelines, so that I can stay informed even when traveling.
-    - **Acceptance Criteria**:
-        - Users can navigate to city-specific information relevant to their location.
-        - Nationwide information includes general waste management guidelines.
-9. **Access to Local Contact Information**:
-    - **User Story**: As a user, I want easy access to local contact details for city councils and waste facilities, so that I can seek assistance or report issues.
-    - **Acceptance Criteria**:
-        - Users can find phone numbers, addresses, and emails for relevant authorities.
-        - The contact information is organized by relevance (e.g., city-specific, general).
-10. **Add Personal Events and Statistics**:
-    - **User Story**: As a user, I want to add personal waste-related events to my schedule (e.g., Sperrmüll pickup, Elektroschrott drop-off), so that I can manage my waste effectively.
-    - **Acceptance Criteria**:
-        - Users can add custom events with descriptions and dates.
-        - Statistics show individual waste reduction progress (e.g., total waste diverted, recycling rates).
-11. **Sync with Family Members**:
-    - **User Story**: As a user, I want to sync waste notifications with my family members for coordinated waste management, so that we can work together efficiently.
-    - **Acceptance Criteria**:
-        - Users can link their accounts with family members (e.g., through invitations or shared access).
-        - Synced notifications include the same reminders for all family members (e.g., same waste collection events).
-        - Family members can view the shared waste calendar and receive consistent notifications.
-12. **Add Personal Waste-Related Events to Schedule**:
-    - **User Story**: As a user, I want to add personal waste-related events to my schedule (e.g., Sperrmüll pickup, Elektroschrott drop-off), so that I can manage my waste effectively.
-    - **Acceptance Criteria**:
-        - Users can create custom events (e.g., bulk waste pickup, hazardous waste collection) with descriptions and dates.
-        - The added events should appear alongside regular waste collection events in the user’s calendar.
-        - Users can edit or delete personal events as needed.
-13. **See Interesting Waste Statistics**:
-    - **User Story**: As a user, I want to see interesting waste statistics (e.g., recycling rates, waste reduction progress), so that I can track our community’s impact.
-    - **Acceptance Criteria**:
-        - The app provides visual representations (charts, graphs) of relevant waste data.
-        - Statistics include metrics such as total waste diverted, recycling percentages, and trends over time.
-        - Users can filter statistics by location (e.g., city, region).
-14. **Sync Waste Notifications with Family Members**:
-    - **User Story**: As a user, I want to sync waste notifications with my family members for coordinated waste management, so that we can work together efficiently.
-    - **Acceptance Criteria**:
-        - Users can invite family members to link their accounts within the app.
-        - Synced notifications include the same reminders for all linked family members (e.g., same waste collection events).
-        - Family members can view the shared waste calendar and receive consistent notifications.
-15. **Option for User Donations**:
-    - **User Story**: As a developer, I want users to have the option to donate to cover development costs, so that we can sustainably maintain and improve the app.
-    - **Acceptance Criteria**:
-        - The app includes a clear donation feature accessible from the user’s profile or settings.
-        - Users can choose to make one-time or recurring donations.
-        - Donation transactions are secure and transparent.
-
-### Verification and Quality Control:
-
-16. ! **Verify Accuracy of Uploaded Schedules**:
-
-    - **User Story**: As a user, I want to verify the accuracy of uploaded schedules by comparing them with official waste calendars or images, so that I can trust the data.
-    - **Acceptance Criteria**:
-        - Users can view uploaded schedules side by side with official waste calendars or images (e.g., PDFs).
-        - Verified schedules receive a badge or indicator (or amount of likes).
-17. **Report Spam or False Information**:
-
-    - **User Story**: As a user, I want to report spam or false information in uploaded schedules, so that we maintain data quality and reliability.
-    - **Acceptance Criteria**:
-        - Users can flag schedules as spam or inaccurate.
-        - Reported schedules undergo review by moderators.
-        - Moderators can take corrective actions (e.g., remove, warn, or verify schedules).
-18. A really good additional feature would be to be able to coorporate with the neighbourhood when it comes to Sperrmüll and Grünmüll
-
-
 
 ## Wireframes
 
