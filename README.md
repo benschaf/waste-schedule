@@ -101,9 +101,48 @@ Considering all the user personas, I defined core problem statements for each of
     - **Statement**: “I am Family-Focused Felix trying to coordinate family waste routines, but the complexity due to managing a household makes me feel overwhelmed yet responsible.”
     - **Statement**: “I am Family-Focused Felix trying to involve kids in waste reduction, but the lack of guidance due to parenting challenges makes me feel determined and hopeful.”
 
+[!IMPORTANT]
+Overwork the problem statement
+
 **Overarching Problem Statement**: In a world grappling with stress and environmental challenges, our project aims to develop an integrated waste management solution that addresses the diverse needs of individuals — ranging from busy professionals and eco-conscious citizens to seniors and families. By providing a platform for community engagement, we strive to minimize the stress and confusion that accompany waste management, fostering a sense of responsibility and empowerment among communities. Our mission is to empower everyone, regardless of age or lifestyle, to actively participate in waste reduction, fostering a cleaner and greener planet.
 
 ### Ideate
+Considering the problem statements, I brainstormed potential solutions that could address the needs of each user persona. Here are some ideas already with an added priority value (p1: high priority, p2: medium priority, p3: low priority):
+
+1. **Eco-Conscious Emma**:
+    - **Solution 1: Waste Collection Reminders**:
+        - **p1** Implement a calendar view that highlights upcoming collection days and allows Emma to set preferences (e.g., reminders a day in advance).
+        - **p1** Create a community platform within the app where users like Emma can voluntarily share their waste collection schedules.
+        - **p1** Neighbors receive real-time reminders based on shared schedules, fostering a sense of community responsibility.
+    - **Solution 2: Educational Resources**:
+        - **p2** Include an educational section within the app. Provide clear guidelines on waste sorting, recycling, and composting. Use visual cues (infographics, images) to simplify the information.
+        - **p3** Collaborate with local environmental organizations to curate content and host webinars on sustainable living.
+
+2. **Busy Bernd**:
+    - **Solution 1: Automated Notifications**:
+        - **p1** Upon login, prompt Bernd to input his address and preferred notification settings. Send automated reminders via email or SMS a day before waste collection days.
+        - **p1** Allow customization (e.g., specific time of day for reminders) to accommodate Bernd’s schedule.
+    - **Solution 2: Nearby Services Locator**:
+        - **p3** Integrate a map feature that displays nearby recycling centers, drop-off points, and hazardous waste disposal locations.
+        - **p3** Include operating hours, contact information, and directions.
+
+3. **Senior Sigrid**:
+    - **Solution 1: Visual Guides**:
+        - **p3** Develop an intuitive waste sorting guide with visual icons. Sigrid can easily identify which bin to use based on item categories (e.g., paper, plastic, glass).
+        - **p3** Include voice instructions for accessibility.
+    - **Solution 2: Assistance Network**:
+        - **p3** Create a community feature where neighbors can offer assistance. Sigrid can request help with heavy bins or ask for clarification on waste separation.
+        - **p2** Encourage local volunteers to participate.
+
+4. **Family-Focused Felix**:
+    - **Solution 1: Family Calendar Integration**:
+        - **p2** Allow Felix to invite family members to join the app. Sync the app with their calendars to display waste collection days.
+        - **p2** Enable notifications for all family members, ensuring everyone is aware.
+    - **Solution 2: Waste Reduction Challenges**:
+        - **p3** Gamify waste reduction within the family. Set monthly challenges (e.g., reduce plastic waste, compost more) and track progress.
+        - **p3** Award virtual badges or points for achieving goals.
+
+
 
 ### Prototype
 
