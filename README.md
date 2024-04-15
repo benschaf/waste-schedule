@@ -1,6 +1,11 @@
 # 🌍 Eco-Conscious Waste Management App: Your Partner in Green Living! 🌿
 [Experience our live website here!](#)
 
+[![GitHub commit activity](https://img.shields.io/github/commit-activity/t/benschaf/waste-schedule)](https://github.com/benschaf/waste-schedule/commits/main)
+[![GitHub last commit](https://img.shields.io/github/last-commit/benschaf/waste-schedule)](https://github.com/benschaf/waste-schedule/commits/main)
+[![GitHub repo size](https://img.shields.io/github/repo-size/benschaf/waste-schedule)](https://github.com/benschaf/waste-schedule)
+[![GitHub issues](https://img.shields.io/github/issues/benschaf/waste-schedule)](https://github.com/benschaf/waste-schedule/issues)
+
 Welcome to the Waste Management App, your go-to solution in the quest for efficient and eco-friendly waste handling! 🚀
 
 Our app is not just about managing waste, it's about creating a sustainable future, one notification at a time. Here's what we offer:
