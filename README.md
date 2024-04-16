@@ -165,6 +165,9 @@ In this section, you will briefly explain your design processes.
 
 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
 
+### Design
+Link to [Figma design language system](https://www.figma.com/file/GZDmOY3zdf4Wb1uBv6uAAq/Airbnb-UI-Kit-(Community)?type=design&node-id=239%3A3762&mode=design&t=Lo4zPL7ic94pf63j-1)
+
 ### Colour Scheme
 
 🛑🛑🛑🛑🛑🛑🛑🛑🛑START OF NOTES (to be deleted)
