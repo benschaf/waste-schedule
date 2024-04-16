@@ -150,7 +150,7 @@ Wireframes were created using [draw.io](draw.io) to visualize the app's layout a
 View an [interactive preview](https://drive.google.com/file/d/1KmW3ppV6V6eGe11EsY1J0-Z69dtKagAU/view?usp=sharing) of the wireframes. (click on the "Open with" button and select "draw.io")
 
 [!IMPORTANT]
-include screenshots when done
+include screenshots when done and delete the interactive Preview - it sucks...
 
 ### Test
 
