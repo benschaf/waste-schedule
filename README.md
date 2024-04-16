@@ -1,5 +1,5 @@
 # 🌍 Eco-Conscious Waste Management App: Your Partner in Green Living! 🌿
-[Experience our live website here!](#)
+[Experience our live website here!](https://tonne-waste-reminders-a6836f2888b0.herokuapp.com/)
 
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/t/benschaf/waste-schedule)](https://github.com/benschaf/waste-schedule/commits/main)
 [![GitHub last commit](https://img.shields.io/github/last-commit/benschaf/waste-schedule)](https://github.com/benschaf/waste-schedule/commits/main)
