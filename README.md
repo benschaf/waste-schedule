@@ -170,6 +170,8 @@ Link to [Figma design language system](https://www.figma.com/file/GZDmOY3zdf4Wb1
 
 ### Colour Scheme
 
+link to coolors: https://coolors.co/25a55f-2a2a2a-1c7b47-e6e6e6-57d992
+
 🛑🛑🛑🛑🛑🛑🛑🛑🛑START OF NOTES (to be deleted)
 
 Explain your colours and the colour scheme.
