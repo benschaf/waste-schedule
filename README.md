@@ -167,6 +167,8 @@ In this section, you will briefly explain your design processes.
 
 ### Colour Scheme
 
+link to coolors: https://coolors.co/25a55f-2a2a2a-1c7b47-e6e6e6-57d992
+
 🛑🛑🛑🛑🛑🛑🛑🛑🛑START OF NOTES (to be deleted)
 
 Explain your colours and the colour scheme.
