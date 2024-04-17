@@ -1,6 +1,13 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.views.generic import ListView
+from .models import Schedule
 
 # Create your views here.
-def test(request):
-    return HttpResponse('Hello, World!')
+class ScheduleList(ListView):
+    """
+    A view that displays a list of schedules.
+    """
+    model = Schedule
+    template_name = 'wasteschedules/schedule_list.html'
+    paginate_by = 10
+    queryset = Schedule.objects.all()

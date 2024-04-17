@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Waste Schedules in "Search Location"</h1>
+    {% for schedule in schedule_list %}
+    <h2>{{ schedule }}</h2>
+    <p><small>by {{ schedule.author }}</small></p>
+    <p>{{ schedule.description }}</p>
+    {% endfor %}
+</h1>
+
+{% endblock %}
