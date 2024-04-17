@@ -1,13 +1,19 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from .models import Schedule
 
 # Create your views here.
+# ->Credit for class based views: https://docs.djangoproject.com/en/5.0/ref/class-based-views/
 class ScheduleList(ListView):
     """
     A view that displays a list of schedules.
     """
-    model = Schedule
     template_name = 'wasteschedules/schedule_list.html'
-    paginate_by = 10
     queryset = Schedule.objects.all()
+
+class ScheduleDetail(DetailView):
+    """
+    A view that displays a single schedule.
+    """
+    template_name = 'wasteschedules/schedule_detail.html'
+    model = Schedule
