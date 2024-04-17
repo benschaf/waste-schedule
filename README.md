@@ -507,6 +507,8 @@ class Product(models.Model):
         return self.name
 ```
 
+Link to the [ERD](https://dbdiagram.io/e/66178e7003593b6b61bbb163/6618fa1203593b6b61d512e4)
+
 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 START OF NOTES (to be deleted)
 
 A couple recommendations for building free ERDs:
