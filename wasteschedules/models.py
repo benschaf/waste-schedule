@@ -27,7 +27,7 @@ class Schedule(models.Model):
         ordering = ["-created_on"]
 
     def __str__(self):
-        return self.name
+        return self.title
 
 
 def validate_postal_code(value):
@@ -60,4 +60,4 @@ class Location(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.name
+        return self.postal_code
