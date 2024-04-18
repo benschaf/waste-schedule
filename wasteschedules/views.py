@@ -15,18 +15,14 @@ class ScheduleList(ListView):
     Methods:
         get_context_data: Adds additional context data to the view.
     """
+    model = Schedule
     template_name = 'wasteschedules/schedule_list.html'
-    queryset = Schedule.objects.all()
 
     def get_context_data(self, **kwargs):
         """
         Adds additional context data to the view.
 
         Additional context data:
-            comments (QuerySet): The comments associated with the schedule.
-            like_count (int): The number of likes associated with the schedule.
-            is_liked (bool): Whether the schedule is liked by the logged in user.
-            is_subscribed (bool): Whether the schedule is subscribed to by the logged in user.
 
         Returns:
             dict: The context data.
@@ -34,10 +30,12 @@ class ScheduleList(ListView):
         """
         context = super().get_context_data(**kwargs)
         # Maybe use comments to show one single comment at the top like for example under a youtube video
-        context["comments"] = Comment.objects.filter(schedule_id=self.object.id)
-        context["like_count"] = Like.objects.filter(schedule_id=self.object.id).count()
-        context["is_liked"] = Like.objects.filter(schedule_id=self.object.id, liked_by=self.request.user.id).exists()
-        context["is_subscribed"] = Subscription.objects.filter(schedule_id=self.object.id, subscribed_by=self.request.user.id).exists()
+        # -> Credit for adding an annotation to each object in a list: https://docs.djangoproject.com/en/5.0/topics/db/aggregation/
+        context["schedule_list"] = context["schedule_list"].annotate(Count('like'))
+        # -> Credit for passing only the id field value to the template: https://docs.djangoproject.com/en/5.0/ref/models/querysets/#values-list
+        context["user_likes"] = Like.objects.filter(liked_by=self.request.user.id).values_list('schedule_id', flat=True)
+        context["user_subscriptions"] = Subscription.objects.filter(subscribed_by=self.request.user.id).values_list('schedule_id', flat=True)
+        return context
 
 
 class ScheduleDetail(DetailView):
