@@ -7,6 +7,24 @@
 <div>
     <p>by {{ schedule.author }}</p>
     <p>{{ schedule.description }}</p>
+    <p>
+        Likes: {{ like_count }} -
+        {% if is_liked %}
+        You liked this Schedule!
+        {% else %}
+        Want to like this schedule?
+        {% endif %}
+    </p>
+    <div>
+        <h2>Comments</h2>
+        {% for comment in comments %}
+
+        <p>{{ comment.commented_by }}</p>
+        <p>{{ comment.body }}</p>
+
+        {% endfor %}
+    </div>
+
 </div>
 
 {% endblock %}
