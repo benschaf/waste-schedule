@@ -105,7 +105,7 @@ class ScheduleLike(View):
         else:
             Like.objects.filter(schedule_id=schedule.id,
                                 liked_by=request.user.id).delete()
-        return redirect('schedule_list')
+        return redirect(request.META.get('HTTP_REFERER', 'wasteschedules/'))
 
 
 class ScheduleSubscribe(View):
@@ -117,4 +117,4 @@ class ScheduleSubscribe(View):
         else:
             Subscription.objects.filter(
                 schedule_id=schedule.id, subscribed_by=request.user.id).delete()
-        return redirect('schedule_list')
+        return redirect(request.META.get('HTTP_REFERER', 'wasteschedules/'))
