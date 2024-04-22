@@ -1,9 +1,15 @@
 from django.db.models import Count
+from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404, redirect
+from django.urls import reverse
+from django.views import View
 from django.views.generic import ListView, DetailView
 from .models import Schedule, Location, Comment, Like, Subscription
 
 # Create your views here.
 # -> Credit for class based views: https://docs.djangoproject.com/en/5.0/ref/class-based-views/
+
+
 class ScheduleList(ListView):
     """
     A view that displays a list of schedules.
@@ -31,10 +37,13 @@ class ScheduleList(ListView):
         context = super().get_context_data(**kwargs)
         # Maybe use comments to show one single comment at the top like for example under a youtube video
         # -> Credit for adding an annotation to each object in a list: https://docs.djangoproject.com/en/5.0/topics/db/aggregation/
-        context["schedule_list"] = context["schedule_list"].annotate(Count('like'))
+        context["schedule_list"] = context["schedule_list"].annotate(
+            Count('like'))
         # -> Credit for passing only the id field value to the template: https://docs.djangoproject.com/en/5.0/ref/models/querysets/#values-list
-        context["user_likes"] = Like.objects.filter(liked_by=self.request.user.id).values_list('schedule_id', flat=True)
-        context["user_subscriptions"] = Subscription.objects.filter(subscribed_by=self.request.user.id).values_list('schedule_id', flat=True)
+        context["user_likes"] = Like.objects.filter(
+            liked_by=self.request.user.id).values_list('schedule_id', flat=True)
+        context["user_subscriptions"] = Subscription.objects.filter(
+            subscribed_by=self.request.user.id).values_list('schedule_id', flat=True)
         return context
 
 
@@ -71,10 +80,41 @@ class ScheduleDetail(DetailView):
         # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
         # Add in additional Query Sets
-        context["comments"] = Comment.objects.filter(schedule_id=self.object.id)
-        context["like_count"] = Like.objects.filter(schedule_id=self.object.id).count()
+        context["comments"] = Comment.objects.filter(
+            schedule_id=self.object.id)
+        context["like_count"] = Like.objects.filter(
+            schedule_id=self.object.id).count()
         # -> Credit for checking wether a queryset contains any items: https://docs.djangoproject.com/en/5.0/ref/models/querysets/#django.db.models.query.QuerySet.exists
         # -> Credit for authenticating the logged in user: https://docs.djangoproject.com/en/5.0/topics/auth/default/#authentication-in-web-requests
-        context["is_liked"] = Like.objects.filter(schedule_id=self.object.id, liked_by=self.request.user.id).exists()
-        context["is_subscribed"] = Subscription.objects.filter(schedule_id=self.object.id, subscribed_by=self.request.user.id).exists()
+        context["is_liked"] = Like.objects.filter(
+            schedule_id=self.object.id, liked_by=self.request.user.id).exists()
+        context["is_subscribed"] = Subscription.objects.filter(
+            schedule_id=self.object.id, subscribed_by=self.request.user.id).exists()
         return context
+
+
+class ScheduleLike(View):
+    def post(self, request, slug):
+        schedule = get_object_or_404(Schedule, slug=slug)
+        # -> Credit for creating an object: https://docs.djangoproject.com/en/5.0/topics/db/queries/#creating-objects
+        # -> Credit for deleting an object: https://docs.djangoproject.com/en/5.0/topics/db/queries/#deleting-objects
+        # -> Credit for checking if an object exists: https://docs.djangoproject.com/en/5.0/ref/models/querysets/#exists
+        if not Like.objects.filter(schedule_id=schedule.id, liked_by=request.user.id).exists():
+            l = Like(schedule_id=schedule, liked_by=request.user)
+            l.save()
+        else:
+            Like.objects.filter(schedule_id=schedule.id,
+                                liked_by=request.user.id).delete()
+        return redirect('schedule_list')
+
+
+class ScheduleSubscribe(View):
+    def post(self, request, slug):
+        schedule = get_object_or_404(Schedule, slug=slug)
+        if not Subscription.objects.filter(schedule_id=schedule.id, subscribed_by=request.user.id).exists():
+            s = Subscription(schedule_id=schedule, subscribed_by=request.user)
+            s.save()
+        else:
+            Subscription.objects.filter(
+                schedule_id=schedule.id, subscribed_by=request.user.id).delete()
+        return redirect('schedule_list')
