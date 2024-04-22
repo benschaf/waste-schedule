@@ -1,3 +1,15 @@
+h1, h2, h3, h4, h5, h6, .font-heading {
+    font-family: "Josefin Sans", sans-serif;
+}
+
 body {
-    background-color: lightslategrey;
+    font-family: "Lato", sans-serif;
+    /* stick footer to bottom */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
 }
