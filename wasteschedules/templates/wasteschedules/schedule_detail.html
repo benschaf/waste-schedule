@@ -1,30 +1,30 @@
-
 {% extends 'base.html' %}
 
 {% block content %}
 
-<h1>{{ schedule }}</h1>
-<div>
+<div class="container">
+    <h1>{{ schedule }}</h1>
     <p>by {{ schedule.author }}</p>
     <p>{{ schedule.description }}</p>
     <p>
-        Likes: {{ like_count }} -
         {% if is_liked %}
-        You liked this Schedule!
+        <i class="fas fa-thumbs-up"></i>
         {% else %}
-        Want to like this schedule?
+        <i class="far fa-thumbs-up"></i>
         {% endif %}
+        {{ like_count }}
     </p>
-    <div>
-        <h2>Comments</h2>
-        {% for comment in comments %}
-
-        <p>{{ comment.commented_by }}</p>
-        <p>{{ comment.body }}</p>
-
-        {% endfor %}
-    </div>
-
+    {% if is_subscribed %}
+    <a class="btn btn-primary disabled" role="button" aria-disabled="true">Subscribed</a>
+    {% else %}
+    <a href="{% url 'schedule_detail' schedule.slug %}" class="btn btn-primary">Subscribe</a>
+    {% endif %}
+    <hr>
+    <h2>Comments</h2>
+    {% for comment in comments %}
+    <p class="mb-0"><strong>{{ comment.commented_by }}</strong></p>
+    <p>{{ comment.body }}</p>
+    {% endfor %}
 </div>
 
 {% endblock %}

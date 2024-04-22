@@ -2,30 +2,39 @@
 
 {% block content %}
 
-<h1>Waste Schedules in "Search Location"</h1>
-{% for schedule in schedule_list %}
-<a href="{% url 'schedule_detail' schedule.slug %}">
-    <div>
-        <h2>{{ schedule }}</h2>
-        <p>by {{ schedule.author }}</p>
-        <p>{{ schedule.description }}</p>
-        <p>
-            Likes: {{ schedule.like__count }}
-            {% if schedule.id in user_likes %}
-            You liked this schedule.
-            {% else %}
-            You haven't liked this schedule.
-            {% endif %}
-        </p>
-        {% if schedule.id in user_subscriptions %}
-        <p>You are subscribed to this schedule.</p>
-        {% else %}
-        <p>You are not subscribed to this schedule.</p>
-        {% endif %}
+<div class="container">
+    <h1>Waste Schedules in "Search Location"</h1>
+    <div class="row gy-4">
+        {% for schedule in schedule_list %}
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <h2>{{ schedule }}
+                        <a href="{% url 'schedule_detail' schedule.slug %}" class="btn btn-secondary"><i
+                                class="fa fa-info"></i></a>
+                    </h2>
+                    <p>by {{ schedule.author }}</p>
+                    <p>{{ schedule.description }}</p>
+                    <p>
+                        {% if schedule.id in user_likes %}
+                        <i class="fas fa-thumbs-up"></i>
+                        {% else %}
+                        <i class="far fa-thumbs-up"></i>
+                        {% endif %}
+                        {{ schedule.like__count }}
+                    </p>
+                    {% if schedule.id in user_subscriptions %}
+                    <a class="btn btn-primary disabled" role="button" aria-disabled="true">Subscribed</a>
+                    {% else %}
+                    <a href="#" class="btn btn-primary">Subscribe</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>No Schedules found</p>
+        {% endfor %}
     </div>
-</a>
-{% empty %}
-<p>No Schedules found</p>
-{% endfor %}
+</div>
 
 {% endblock %}
