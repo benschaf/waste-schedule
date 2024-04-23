@@ -12,22 +12,18 @@
                     <h2>{{ schedule }}</h2>
                     <p>by {{ schedule.author }}</p>
                     <p>{{ schedule.description }}</p>
-                    <p>
+                    {% if user.is_authenticated %}
                     <form action="{% url 'schedule_like' schedule.slug %}" method="POST" class="d-inline">
                         {% csrf_token %}
-                        <button type="submit" name="schedule_id" value="{{ schedule.slug }}" class="btn btn-link"><i
-                                class="
-                            {% if schedule.id in user_likes %}
-                            fas
-                            {% else %}
-                            far
-                            {% endif %}
-                            fa-thumbs-up"></i></button>
+                        <button type="submit" name="schedule_id" value="{{ schedule.slug }}" class="btn btn-link">
+                            <i class="{% if schedule.id in user_likes %}fas{% else %}far{% endif %} fa-heart"></i>
+                        </button>
                     </form>
+                    {% else %}
+                    <button class="btn btn-link"><i class="fas fa-heart"></i></button>
+                    {% endif %}
                     <div class="d-inline">{{ schedule.like__count }}</div>
-                    </p>
-
-                    <p>
+                    {% if user.is_authenticated %}
                     <form action="{% url 'schedule_subscribe' schedule.slug %}" method="POST" class="d-inline">
                         {% if schedule.id in user_subscriptions %}
                         <button type="submit" name="schedule_id" value="{{ schedule.slug }}"
@@ -36,11 +32,13 @@
                         {% csrf_token %}
                         <button type="submit" name="schedule_id" value="{{ schedule.slug }}"
                             class="btn btn-primary">Subscribe</button>
+                        {% endif %}
                     </form>
+                    {% else %}
+                    <button class="btn btn-primary">Subscribe</button>
                     {% endif %}
                     <a href="{% url 'schedule_detail' schedule.slug %}" class="btn btn-light"><i
                             class="fa fa-info"></i></a>
-                    </p>
                 </div>
             </div>
         </div>
