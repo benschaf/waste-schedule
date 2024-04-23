@@ -25,11 +25,11 @@
                     <div class="d-inline">{{ schedule.like__count }}</div>
                     {% if user.is_authenticated %}
                     <form action="{% url 'schedule_subscribe' schedule.slug %}" method="POST" class="d-inline">
+                        {% csrf_token %}
                         {% if schedule.id in user_subscriptions %}
                         <button type="submit" name="schedule_id" value="{{ schedule.slug }}"
                             class="btn btn-secondary">Subscribed</button>
                         {% else %}
-                        {% csrf_token %}
                         <button type="submit" name="schedule_id" value="{{ schedule.slug }}"
                             class="btn btn-primary">Subscribe</button>
                         {% endif %}
