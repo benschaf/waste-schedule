@@ -1,4 +1,6 @@
 from django.db.models import Count
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views import View
@@ -93,9 +95,11 @@ class ScheduleDetail(DetailView):
         return context
 
 
-class ScheduleComment(CreateView):
+# -> Credit for using the LoginRequiredMixin: https://docs.djangoproject.com/en/5.0/topics/auth/default/#the-loginrequiredmixin-mixin
+class ScheduleComment(LoginRequiredMixin, CreateView):
     model = Comment
     fields = ['body']
+    login_url = '/accounts/login/'
 
     def form_valid(self, form):
         form.instance.commented_by = self.request.user
@@ -109,15 +113,31 @@ class ScheduleCommentUpdate(UpdateView):
     fields = ['body']
     # this is asking to get a template - but i should handle this with javascript i think
 
+    # -> Credit for checking if a user is the owner of an object: https://docs.djangoproject.com/en/5.0/ref/class-based-views/mixins-single-object/#django.views.generic.detail.SingleObjectMixin.get_object
+    def get_object(self):
+        obj = super().get_object(queryset=None)
+        if not obj.commented_by == self.request.user:
+            raise Http404("You're not the owner of this comment.")
+        return obj
+
 
 class ScheduleCommentDelete(DeleteView):
     model = Comment
+
+# i am not sure if this works correctly
+    def get_object(self):
+        obj = super().get_object(queryset=None)
+        if not obj.commented_by == self.request.user:
+            raise Http404("You're not the owner of this comment.")
+        return obj
 
     def get_success_url(self):
         return self.request.META.get('HTTP_REFERER', reverse_lazy('wasteschedules/'))
 
 
-class ScheduleLike(View):
+class ScheduleLike(LoginRequiredMixin, View):
+    login_url = '/accounts/login/'
+
     def post(self, request, slug):
         schedule = get_object_or_404(Schedule, slug=slug)
         # -> Credit for creating an object: https://docs.djangoproject.com/en/5.0/topics/db/queries/#creating-objects
