@@ -78,9 +78,7 @@ class ScheduleDetail(DetailView):
             dict: The context data.
 
         """
-        # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
-        # Add in additional Query Sets
         context["comments"] = Comment.objects.filter(
             schedule_id=self.object.id)
         context["like_count"] = Like.objects.filter(
