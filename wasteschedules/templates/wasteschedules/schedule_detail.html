@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load crispy_forms_tags %}
 {% block content %}
 
 <div class="container">
@@ -33,9 +33,36 @@
     </p>
     <hr>
     <h2>Comments</h2>
+    <!-- Creating New Comments -->
+    <!-- -> Credit for crispy forms: https://github.com/Code-Institute-Solutions/blog/tree/main/12_views_part_3/01_posting_to_database -->
+    <div class="col-md-4 card mb-4 mt-3">
+        <div class="card-body">
+            {% if user.is_authenticated %}
+            <h3>Leave a comment:</h3>
+            <p>Posting as: {{ user.username }}</p>
+            <form action="{% url 'schedule_comment' schedule.slug %}" method="POST" style="margin-top: 1.3em;">
+                {{ comment_form | crispy }}
+                {% csrf_token %}
+                <button id="submitButton" type="submit" class="btn btn-signup">Submit</button>
+            </form>
+            {% else %}
+            <p>Log in to leave a comment</p>
+            {% endif %}
+        </div>
+    </div>
     {% for comment in comments %}
     <p class="mb-0"><strong>{{ comment.commented_by }}</strong></p>
     <p>{{ comment.body }}</p>
+    <p>
+    <form method="post" action="{% url 'schedule_comment_delete' comment.id %}">
+        {% csrf_token %}
+        <input type="submit" value="Delete">
+    </form>
+    <form method="post" action="{% url 'schedule_comment_update' comment.id %}">
+        {% csrf_token %}
+        <input type="submit" value="Update">
+    </form>
+    </p>
     {% endfor %}
 </div>
 

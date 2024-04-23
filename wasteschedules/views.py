@@ -1,10 +1,11 @@
 from django.db.models import Count
-from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect
-from django.urls import reverse
+from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, DetailView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from .models import Schedule, Location, Comment, Like, Subscription
+from .forms import CommentForm
 
 # Create your views here.
 # -> Credit for class based views: https://docs.djangoproject.com/en/5.0/ref/class-based-views/
@@ -90,7 +91,32 @@ class ScheduleDetail(DetailView):
             schedule_id=self.object.id, liked_by=self.request.user.id).exists()
         context["is_subscribed"] = Subscription.objects.filter(
             schedule_id=self.object.id, subscribed_by=self.request.user.id).exists()
+        context["comment_form"] = CommentForm()
         return context
+
+
+class ScheduleComment(CreateView):
+    model = Comment
+    fields = ['body']
+
+    def form_valid(self, form):
+        form.instance.commented_by = self.request.user
+        slug = self.kwargs.get('slug')
+        form.instance.schedule_id = get_object_or_404(Schedule, slug=slug)
+        return super().form_valid(form)
+
+
+class ScheduleCommentUpdate(UpdateView):
+    model = Comment
+    fields = ['body']
+    # this is asking to get a template - but i should handle this with javascript i think
+
+
+class ScheduleCommentDelete(DeleteView):
+    model = Comment
+
+    def get_success_url(self):
+        return self.request.META.get('HTTP_REFERER', reverse_lazy('wasteschedules/'))
 
 
 class ScheduleLike(View):

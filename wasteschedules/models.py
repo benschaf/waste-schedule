@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.forms import ValidationError
+from django.urls import reverse
 
 # Create your models here.
 
@@ -82,6 +83,9 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"Comment {self.body} by {self.commented_by}"
+
+    def get_absolute_url(self):
+        return reverse('schedule_detail', kwargs={'slug': self.schedule_id.slug})
 
 
 class Like(models.Model):
