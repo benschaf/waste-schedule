@@ -6,13 +6,19 @@
     <h1>{{ schedule }}</h1>
     <p>by {{ schedule.author }}</p>
     <p>{{ schedule.description }}</p>
+    {% if user.is_authenticated %}
     <form action="{% url 'schedule_like' schedule.slug %}" method="POST" class="d-inline">
         {% csrf_token %}
         <button type="submit" name="schedule_id" value="{{ schedule.slug }}" class="btn btn-link">
-            <i class="{% if is_liked %}fas{% else %}far{% endif %}fa-thumbs-up"></i>
+            <i class="{% if is_liked %}fas{% else %}far{% endif %} fa-heart"></i>
         </button>
     </form>
+    {% else %}
+    <!-- add a "login to leave a like" message -->
+    <i class="far fa-heart"></i>
+    {% endif %}
     <div class="d-inline">{{ like_count }}</div>
+    {% if user.is_authenticated %}
     <form action="{% url 'schedule_subscribe' schedule.slug %}" method="POST" class="d-inline">
         {% csrf_token %}
         {% if is_subscribed %}
@@ -22,6 +28,11 @@
         <button type="submit" name="schedule_id" value="{{ schedule.slug }}" class="btn btn-primary">Subscribe</button>
         {% endif %}
     </form>
+    {% else %}
+    <!-- add a "login to subscribe" message -->
+    <button class="btn btn-primary">Subscribe</button>
+    {% endif %}
+
     <hr>
     <h2>Comments</h2>
     <!-- Creating New Comments -->
@@ -37,13 +48,14 @@
                 <button id="submitButton" type="submit" class="btn btn-signup">Submit</button>
             </form>
             {% else %}
-            <p>Log in to leave a comment</p>
+            <p><a href="{% url 'account_login' %}">Log in</a> to leave a comment</p>
             {% endif %}
         </div>
     </div>
     {% for comment in comments %}
     <p class="mb-0"><strong>{{ comment.commented_by }}</strong></p>
     <p>{{ comment.body }}</p>
+    {% if comment.commented_by == user %}
     <form method="post" action="{% url 'schedule_comment_delete' comment.id %}">
         {% csrf_token %}
         <input type="submit" value="Delete">
@@ -52,6 +64,7 @@
         {% csrf_token %}
         <input type="submit" value="Update">
     </form>
+    {% endif %}
     {% endfor %}
 </div>
 
