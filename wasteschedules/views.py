@@ -1,8 +1,8 @@
 from django.db.models import Count
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 from django.views import View
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
@@ -108,17 +108,21 @@ class ScheduleComment(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class ScheduleCommentUpdate(UpdateView):
-    model = Comment
-    fields = ['body']
-    # this is asking to get a template - but i should handle this with javascript i think
+# -> Credit for edit view: https://github.com/Code-Institute-Solutions/blog/tree/main/12_views_part_3/05_edit_delete
+def schedule_comment_edit(request, pk, slug):
+    """
+    view to edit comments
+    """
+    if request.method == "POST":
 
-    # -> Credit for checking if a user is the owner of an object: https://docs.djangoproject.com/en/5.0/ref/class-based-views/mixins-single-object/#django.views.generic.detail.SingleObjectMixin.get_object
-    def get_object(self):
-        obj = super().get_object(queryset=None)
-        if not obj.commented_by == self.request.user:
-            raise Http404("You're not the owner of this comment.")
-        return obj
+        comment = get_object_or_404(Comment, pk=pk)
+        comment_form = CommentForm(data=request.POST, instance=comment)
+
+        if comment_form.is_valid() and comment.commented_by == request.user:
+            comment = comment_form.save(commit=False)
+            comment.save()
+
+    return HttpResponseRedirect(reverse('schedule_detail', kwargs={'slug': slug}))
 
 
 class ScheduleCommentDelete(DeleteView):

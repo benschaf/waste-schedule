@@ -3,6 +3,7 @@
 {% block content %}
 
 <div class="container">
+    <a href="{% url 'schedule_list' %}">Back to Waste Schedule List</a>
     <h1>{{ schedule }}</h1>
     <p>by {{ schedule.author }}</p>
     <p>{{ schedule.description }}</p>
@@ -61,16 +62,63 @@
     </div>
     {% for comment in comments %}
     <p class="mb-0"><strong>{{ comment.commented_by }}</strong></p>
-    <p>{{ comment.body }}</p>
+    <p id="comment-body-{{ comment.id }}">{{ comment.body }}</p>
     {% if comment.commented_by == user %}
-    <form method="post" action="{% url 'schedule_comment_delete' comment.id %}">
-        {% csrf_token %}
-        <input type="submit" value="Delete">
-    </form>
-    <form method="post" action="{% url 'schedule_comment_update' comment.id %}">
-        {% csrf_token %}
-        <input type="submit" value="Update">
-    </form>
+
+    <!-- -> Credit for modals: https://getbootstrap.com/docs/5.2/components/modal/ -->
+    <!-- Button trigger modal -->
+    <div class="d-inline">
+        <a type="button" class="btn btn-link text-muted p-0" id="update-button{{ comment.id }}">
+            Update
+        </a>
+
+        <script>
+            let updateButton = document.getElementById('update-button{{ comment.id }}');
+            let commentBody = document.getElementById('comment-body-{{ comment.id }}');
+            let currentText = commentBody.innerText;
+
+            updateButton.addEventListener('click', function (e) {
+                commentBody.innerHTML = `
+                    <form method="POST" action="{% url "schedule_comment_update" comment.id schedule.slug %}">
+                        {% csrf_token %}
+                        <input type="textarea" class="form-control" name="body" value="${currentText}">
+                        <input type="submit" value="Update" class="btn btn-link">
+                    </form>`;
+            });
+        </script>
+
+
+
+
+        &centerdot;
+        <a type="button" class="btn btn-link text-muted p-0" data-bs-toggle="modal"
+            data-bs-target="#delete-modal-{{ comment.id }}">
+            Delete
+        </a>
+    </div>
+
+    <!-- Modal to confirm deletion -->
+    <div class="modal fade" id="delete-modal-{{ comment.id }}" tabindex="-1"
+        aria-labelledby="#modal-label-{{ comment.id }}" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="#modal-label-{{ comment.id }}">Are you sure?</h1>
+                </div>
+                <div class="modal-body">
+                    This will permanently delete your comment.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Don't delete</button>
+                    <form method="post" action="{% url 'schedule_comment_delete' comment.id %}">
+                        {% csrf_token %}
+                        <input type="submit" value="Delete Comment" class="btn btn-danger">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     {% endif %}
     {% endfor %}
 </div>
