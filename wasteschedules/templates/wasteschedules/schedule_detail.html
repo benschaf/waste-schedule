@@ -14,8 +14,11 @@
         </button>
     </form>
     {% else %}
-    <!-- add a "login to leave a like" message -->
-    <i class="fas fa-heart"></i>
+    <a tabindex="0" class="btn btn-secondary" role="button" data-bs-toggle="popover" data-bs-trigger="focus"
+        data-bs-toggle="popover" data-bs-custom-class="custom-popover"
+        data-bs-content="You need to be logged in to like a Schedule.">
+        <i class="fas fa-heart"></i>
+    </a>
     {% endif %}
     <div class="d-inline">{{ like_count }}</div>
     {% if user.is_authenticated %}
@@ -29,11 +32,15 @@
         {% endif %}
     </form>
     {% else %}
-    <!-- add a "login to subscribe" message -->
-    <button class="btn btn-primary">Subscribe</button>
+    <a tabindex="0" class="btn btn-primary" role="button" data-bs-toggle="popover" data-bs-trigger="focus"
+        data-bs-toggle="popover" data-bs-custom-class="custom-popover"
+        data-bs-content="You need to be logged in to Subscribe to a Schedule.">
+        Subscribe
+    </a>
     {% endif %}
 
     <hr>
+
     <h2>Comments</h2>
     <!-- Creating New Comments -->
     <!-- -> Credit for crispy forms: https://github.com/Code-Institute-Solutions/blog/tree/main/12_views_part_3/01_posting_to_database -->

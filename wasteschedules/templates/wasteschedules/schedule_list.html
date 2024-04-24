@@ -20,7 +20,10 @@
                         </button>
                     </form>
                     {% else %}
-                    <button class="btn btn-link"><i class="fas fa-heart"></i></button>
+                    <!-- -> Credit for popovers: https://getbootstrap.com/docs/5.2/components/popovers/#overview -->
+                    <a tabindex="0" class="btn btn-secondary" role="button" data-bs-toggle="popover"
+                        data-bs-trigger="focus" data-bs-toggle="popover" data-bs-custom-class="custom-popover"
+                        data-bs-content="You need to be logged in to like a Schedule."><i class="fas fa-heart"></i></a>
                     {% endif %}
                     <div class="d-inline">{{ schedule.like__count }}</div>
                     {% if user.is_authenticated %}
@@ -35,7 +38,9 @@
                         {% endif %}
                     </form>
                     {% else %}
-                    <button class="btn btn-primary">Subscribe</button>
+                    <a tabindex="0" class="btn btn-primary" role="button" data-bs-toggle="popover"
+                        data-bs-trigger="focus" data-bs-toggle="popover" data-bs-custom-class="custom-popover"
+                        data-bs-content="You need to be logged in to Subscribe to a Schedule.">Subscribe</a>
                     {% endif %}
                     <a href="{% url 'schedule_detail' schedule.slug %}" class="btn btn-light"><i
                             class="fa fa-info"></i></a>
