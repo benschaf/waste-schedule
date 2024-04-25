@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container">
+    <a href="{% url 'schedule_list' %}">Back to Waste Schedule List</a>
+    <h1>Add an exception</h1>
+    <p>
+        Create, add bins, <strong>add exceptions</strong>, save
+    </p>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" name="add-another" class="btn btn-primary">Save and add another exception</button>
+        <button type="submit" name="continue" class="btn btn-primary">Save your Schedule</button>
+    </form>
+</div>
+{% endblock %}

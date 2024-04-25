@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container">
+    <a href="{% url 'schedule_list' %}">Back to Waste Schedule List</a>
+    <h1>Create a new schedule</h1>
+    <p>
+        Create, <strong>add bins</strong>, add exceptions, save
+    </p>
+    <h2>Bins in this schedule</h2>
+    {% if events %}
+    {% for bin in events %}
+    <p>{{ bin.kind }}</p>
+    <p>{{ bin.date }}</p>
+    {% endfor %}
+    {% else %}
+    <p>No bins in this schedule yet.</p>
+    {% endif %}
+    <form method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <!-- -> Credit for multiple submit buttons for adapting logic in backend: https://stackoverflow.com/questions/547821/two-submit-buttons-in-one-form -->
+        <button type="submit" name="add-another" class="btn btn-primary">Save and add another bin</button>
+        <button type="submit" name="continue" class="btn btn-primary">Save and continue</button>
+    </form>
+</div>
+{% endblock %}
