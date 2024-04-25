@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("accounts/", include("allauth.urls")),
     path('wasteschedules/', include('wasteschedules.urls')),
+    path('schedule-builder/', include('schedulebuilder.urls')),
 ]
