@@ -1,5 +1,8 @@
+import json
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse, reverse_lazy
+from django.views import View
 from schedulebuilder.forms import *
 from django.views.generic.edit import CreateView
 from django.contrib.auth.decorators import login_required
@@ -72,3 +75,22 @@ class AddException(CreateView, LoginRequiredMixin):
 
 class CalendarView(TemplateView):
     template_name = 'schedulebuilder/calendar.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        #change the hardcoded schedule id
+        # context["schedule_id"] = get_object_or_404(Schedule, id=10)
+        return context
+
+
+
+class UpdateOrCreateEvents(View, LoginRequiredMixin):
+    def post(self, request):
+        try:
+            data = json.loads(request.body)
+            # the data is good now i first need to figure out which schedule to add the events to
+            # for this i need to figure out how to structure the new form that uses the calendar
+            # oh and also i need to find out how to add exceptions to the rrule data
+            return JsonResponse({'message': 'Success'}, status=200)
+        except json.JSONDecodeError:
+            return JsonResponse({'message': 'Invalid JSON'}, status=400)

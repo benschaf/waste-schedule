@@ -4,36 +4,85 @@
 <div class="container">
     <div id='calendar'></div>
 </div>
+<form method="post">
+    {% csrf_token %}
+    <!-- Your form fields here... -->
+</form>
 
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+<!-- rrule lib -->
+<script src='https://cdn.jsdelivr.net/npm/rrule@2.6.4/dist/es5/rrule.min.js'></script>
+
+<!-- fullcalendar bundle -->
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
+
+<!-- the rrule-to-fullcalendar connector. must go AFTER the rrule lib -->
+<script src='https://cdn.jsdelivr.net/npm/@fullcalendar/rrule@6.1.11/index.global.min.js'></script>
+
 <script>
 
-    document.addEventListener('DOMContentLoaded', function () {
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
+    function renderCalendar() {
+        const calendarEl = document.getElementById('calendar');
+        const calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
             editable: true,
             events: [
                 {
-                    title: 'Meeting',
-                    start: '2024-04-12',
-                    extendedProps: {
-                        status: 'done'
-                    }
-                },
-                {
                     title: 'Birthday Party',
                     start: '2024-04-13',
-                    startRecur: '2024-04-13',
-                    endRecur: '2024-04-30',
-                    daysOfWeek: [4],
                     groupId: '999',
-                    backgroundColor: 'green',
-                    borderColor: 'green'
+                    rrule: {
+                        freq: 'weekly',
+                        interval: 1,
+                        dtstart: '2024-04-13', // will also accept '20120201T103000'
+                        until: '2024-05-13' // will also accept '20120201'
+                    },
+                    exdate: ['2024-04-27'],
                 }
             ]
         });
         calendar.render();
+        return calendar;
+    }
+    function postCalendarEvents(calendar) {
+        // Should I use Ajax here instead?
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+        const json_body = JSON.stringify(get_calender_event_objects(calendar));
+        console.log(json_body);
+
+        fetch("{% url 'update_or_create' %}", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                // Include CSRF token in the header
+                'X-CSRFToken': csrftoken
+            },
+            body: json_body,
+        });
+    }
+
+    function toPlainObjectWithRRule(event) {
+        let event_object = event.toPlainObject();
+        const event_rrule_object = {
+            freq: event._def.recurringDef.typeData.rruleSet._rrule[0].options.freq,
+            interval: event._def.recurringDef.typeData.rruleSet._rrule[0].options.interval,
+            dstart: event._def.recurringDef.typeData.rruleSet._rrule[0].options.dtstart,
+            until: event._def.recurringDef.typeData.rruleSet._rrule[0].options.until,
+        };
+        event_object.rrule = event_rrule_object;
+        return event_object;
+    }
+
+    function get_calender_event_objects(calendar) {
+        let events = [];
+        for (let event of calendar.getEvents()) {
+            events.push(toPlainObjectWithRRule(event));
+        }
+        return events;
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        calendar = renderCalendar();
+        postCalendarEvents(calendar);
     });
 
 </script>
