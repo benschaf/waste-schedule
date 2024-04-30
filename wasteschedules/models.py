@@ -19,7 +19,7 @@ class Schedule(models.Model):
         updated_at (DateTimeField): The date and time when the schedule was last updated.
     """
 
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='schedules')
