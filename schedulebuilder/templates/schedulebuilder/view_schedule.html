@@ -30,33 +30,10 @@
         let json_events = JSON.parse(document.getElementById('event-data').textContent);
         json_events = JSON.parse(json_events);
 
-        console.log(json_events);
-
         const calendarEl = document.getElementById('calendar');
         calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
             defaultAllDay: true,
-            dateClick: function (info) {
-                createEvent(info.dateStr);
-            },
-            eventMouseEnter: function (info) {
-                info.el.style.backgroundColor = 'lightblue';
-                info.el.style.border = 'none';
-                info.el.style.color = 'white';
-                info.el.innerHTML += '<i class="fas fa-trash-alt"></i>';
-            },
-            eventMouseLeave: function (info) {
-                info.el.style.backgroundColor = '';
-                info.el.innerHTML = `${info.event.title}<br>`;
-                info.el.style.color = 'white';
-            },
-            eventClick: function (info) {
-                deleteEventModal = new bootstrap.Modal(document.getElementById('deleteEventModal'));
-                document.getElementById('delete-event-modal-title').textContent = `Delete event: ${info.event.title} from ${info.event.start}`;
-
-                let submitButton = document.getElementById('delete-event');
-                submitButton.addEventListener('click', (event) => handleModalSubmit(event, info, submitButton));
-            },
             events: json_events,
         });
 
