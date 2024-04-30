@@ -24,10 +24,10 @@
                     <p>
                         Pick a bin type:
                         <select name="bin-type" id="bin-type">
-                            <option value="restmuell">Restmüll</option>
-                            <option value="biomuell">Biomüll</option>
-                            <option value="papiermuell">Papiermüll</option>
-                            <option value="gelbe-tonne">Gelbe Tonne</option>
+                            <option value="Restmüll">Restmüll</option>
+                            <option value="Biomüll">Biomüll</option>
+                            <option value="Papiermüll">Papiermüll</option>
+                            <option value="Gelbe Tonne">Gelbe Tonne</option>
                         </select>
                     </p>
                     <p>
@@ -81,6 +81,9 @@
     </form>
     <div class="btn btn-primary" id="submit-button">Save</div>
 </div>
+
+<!-- Json string of events in this schedule -->
+{{ event_data|json_script:"event-data" }}
 
 <!-- rrule lib -->
 <script src='https://cdn.jsdelivr.net/npm/rrule@2.6.4/dist/es5/rrule.min.js'></script>
@@ -148,6 +151,8 @@
 
 
     function renderCalendar() {
+        let json_events = JSON.parse(document.getElementById('event-data').textContent);
+        json_events = JSON.parse(json_events);
         const calendarEl = document.getElementById('calendar');
         calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
@@ -175,27 +180,7 @@
 
                 deleteEventModal.show();
             },
-            events: [
-                {
-                    id: 0,
-                    title: 'restmuell',
-                    start: '2024-04-13',
-                    groupId: '999',
-                    rrule: {
-                        freq: 'weekly',
-                        interval: 1,
-                        dtstart: '2024-04-13', // will also accept '20120201T103000'
-                        until: '2024-05-13' // will also accept '20120201'
-                    },
-                    exdate: ['2024-04-27'],
-                },
-                {
-                    id: 1,
-                    title: 'biomuell',
-                    start: '2024-04-14',
-                    groupId: '1',
-                }
-            ]
+            events: json_events,
         });
         calendar.render();
     }
@@ -214,9 +199,9 @@
                 'X-CSRFToken': csrftoken
             },
             body: json_body,
-        }).then(response => {
-            if (response.redirected) {
-                window.location.href = response.url;
+        }).then(response => response.json()).then(data => {
+            if (data.redirect_url) {
+                window.location.href = data.redirect_url;
             }
         }).catch(error => {
             console.error('Error:', error);
@@ -241,6 +226,7 @@
     function get_calender_event_objects() {
         let events = [];
         for (let event of calendar.getEvents()) {
+            console.log(event.toPlainObject());
             events.push(toPlainObjectWithRRule(event));
         }
         return events;

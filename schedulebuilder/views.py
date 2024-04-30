@@ -42,16 +42,20 @@ class EditCalendarView(LoginRequiredMixin, TemplateView):
     def get_context_data(self, schedule_id, **kwargs):
         context = super().get_context_data(**kwargs)
         context["schedule"] = get_object_or_404(Schedule, id=schedule_id)
+
+        events = Event.objects.filter(schedule_id=schedule_id)
+        context["event_data"] = json.dumps(_event_to_json(events))
+
         return context
 
     def _convert_kind_to_int(self, kind):
-        if kind == 'restmuell':
+        if kind == 'Restmüll':
             return 0
-        elif kind == 'biomuell':
+        elif kind == 'Biomüll':
             return 1
-        elif kind == 'papiermuell':
+        elif kind == 'Papiermüll':
             return 2
-        elif kind == 'gelbe-tonne':
+        elif kind == 'Gelbe Tonne':
             return 4
         else:
             return None
@@ -78,9 +82,26 @@ class EditCalendarView(LoginRequiredMixin, TemplateView):
                     }
                 )
             # oh and also i need to find out how to add exceptions to the rrule data
-            return redirect('display_schedule', schedule_id=schedule_id)
+            return JsonResponse({'redirect_url': reverse('display_schedule', kwargs={'schedule_id': schedule_id})})
         except json.JSONDecodeError:
             return JsonResponse({'message': 'Invalid JSON'}, status=400)
+
+
+def _event_to_json(events):
+    event_list = []
+    for event in events:
+        event_list.append({
+            'id': event.js_event_id,
+            # -> Credit for get_kind_display(): https://docs.djangoproject.com/en/3.2/ref/models/instances/#django.db.models.Model.get_FOO_display
+            'title': event.get_kind_display(),
+            'start': event.date.isoformat(),
+            'rrule': {
+                'freq': event.recurring_type,
+                'dtstart': event.rrule_start.isoformat(),
+                'until': event.until.isoformat(),
+            } if event.recurring_type else None
+        })
+    return event_list
 
 
 class DisplayCalendarView(LoginRequiredMixin, TemplateView):
@@ -88,28 +109,11 @@ class DisplayCalendarView(LoginRequiredMixin, TemplateView):
     redirect_field_name = None
     template_name = 'schedulebuilder/view_schedule.html'
 
-    def _event_to_json(self, events):
-        event_list = []
-        for event in events:
-            event_list.append({
-                'id': event.js_event_id,
-                # -> Credit for get_kind_display(): https://docs.djangoproject.com/en/3.2/ref/models/instances/#django.db.models.Model.get_FOO_display
-                'title': event.get_kind_display(),
-                'start': event.date.isoformat(),
-                'rrule': {
-                    'freq': event.recurring_type,
-                    'dtstart': event.rrule_start.isoformat(),
-                    'until': event.until.isoformat(),
-                } if event.recurring_type else None
-            })
-        return event_list
-
     def get_context_data(self, schedule_id, **kwargs):
         context = super().get_context_data(**kwargs)
         context["schedule"] = get_object_or_404(Schedule, id=schedule_id)
 
         events = Event.objects.filter(schedule_id=schedule_id)
-        context["event_data"] = json.dumps(self._event_to_json(events))
-        print(context["event_data"])
+        context["event_data"] = json.dumps(_event_to_json(events))
 
         return context
