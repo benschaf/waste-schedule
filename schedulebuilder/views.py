@@ -34,7 +34,7 @@ class CreateSchedule(LoginRequiredMixin, CreateView):
 
 
 # maybe integrate this with the update or create events view - so the form can be displayed and post data using the same view
-class CalendarView(LoginRequiredMixin, TemplateView):
+class EditCalendarView(LoginRequiredMixin, TemplateView):
     login_url = reverse_lazy('account_login')
     redirect_field_name = None
     template_name = 'schedulebuilder/calendar.html'
@@ -58,7 +58,6 @@ class CalendarView(LoginRequiredMixin, TemplateView):
 
     def post(self, request, schedule_id):
         schedule = get_object_or_404(Schedule, id=schedule_id)
-        print(request.body)
 
         try:
             data = json.loads(request.body)
@@ -66,10 +65,9 @@ class CalendarView(LoginRequiredMixin, TemplateView):
             # -> Credit for dict.get(): https://www.w3schools.com/python/ref_dictionary_get.asp
             for event_data in data:
                 kind = self._convert_kind_to_int(event_data['title'])
-                print(event_data)
                 event, created = Event.objects.update_or_create(
                     js_event_id=event_data['id'],
-                    schedule_id = schedule,
+                    schedule_id=schedule,
                     defaults={
                         'kind': kind,
                         'date': event_data['start'],
@@ -80,6 +78,38 @@ class CalendarView(LoginRequiredMixin, TemplateView):
                     }
                 )
             # oh and also i need to find out how to add exceptions to the rrule data
-            return JsonResponse({'message': 'Success'}, status=200)
+            return redirect('display_schedule', schedule_id=schedule_id)
         except json.JSONDecodeError:
             return JsonResponse({'message': 'Invalid JSON'}, status=400)
+
+
+class DisplayCalendarView(LoginRequiredMixin, TemplateView):
+    login_url = reverse_lazy('account_login')
+    redirect_field_name = None
+    template_name = 'schedulebuilder/view_schedule.html'
+
+    def _event_to_json(self, events):
+        event_list = []
+        for event in events:
+            event_list.append({
+                'id': event.js_event_id,
+                # -> Credit for get_kind_display(): https://docs.djangoproject.com/en/3.2/ref/models/instances/#django.db.models.Model.get_FOO_display
+                'title': event.get_kind_display(),
+                'start': event.date.isoformat(),
+                'rrule': {
+                    'freq': event.recurring_type,
+                    'dtstart': event.rrule_start.isoformat(),
+                    'until': event.until.isoformat(),
+                } if event.recurring_type else None
+            })
+        return event_list
+
+    def get_context_data(self, schedule_id, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["schedule"] = get_object_or_404(Schedule, id=schedule_id)
+
+        events = Event.objects.filter(schedule_id=schedule_id)
+        context["event_data"] = json.dumps(self._event_to_json(events))
+        print(context["event_data"])
+
+        return context
