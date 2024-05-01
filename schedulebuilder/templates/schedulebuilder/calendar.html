@@ -213,7 +213,7 @@
      * @function renderCalendar
      */
     function renderCalendar() {
-        getJsonEvents();
+        json_events = getJsonEvents();
 
         const calendarEl = document.getElementById('calendar');
         calendar = new FullCalendar.Calendar(calendarEl, {
