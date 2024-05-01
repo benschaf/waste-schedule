@@ -7,13 +7,25 @@
         <div class="col">
             <h2>simplify waste management</h2>
             <h3>check your location to start:</h3>
-            <form action="" method="get">
+            <form id="postcodeForm">
                 <div class="input-group mb-3 mt-5">
-                    <input type="text" class="form-control" placeholder="Enter your postcode"
-                        aria-label="Enter your postcode" aria-describedby="button-addon2">
+                    <!-- -> Credit for manual input validation using regex pattern: https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation -->
+                    <!-- -> Credit for the regex Pattern: ChatGPT -->
+                    <input type="text" id="postcodeInput" class="form-control" placeholder="Enter your postcode"
+                        aria-label="Enter your postcode" aria-describedby="button-addon2" pattern="^\d{5}$" required>
                     <button class="btn btn-primary" type="submit" id="button-addon2">Search</button>
                 </div>
             </form>
+
+            <script>
+            // -> Credit for redirecting to a url in javascript: https://stackoverflow.com/questions/503093/how-can-i-make-a-redirect-page-in-jquery-javascript
+            document.getElementById('postcodeForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                var postcode = document.getElementById('postcodeInput').value;
+                var url = 'wasteschedules/location/' + postcode + '/';
+                window.location.href = url;
+            });
+            </script>
         </div>
         <div class="col">
             <img src="{% static 'images/landing-hero.webp' %}" alt="Main image showing multiple waste bins."
