@@ -1,3 +1,4 @@
+import json
 from django.db.models import Count
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models.query import QuerySet
@@ -7,6 +8,9 @@ from django.urls import reverse, reverse_lazy
 from django.views import View
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
+
+from schedulebuilder.views import _event_to_json
+from schedulebuilder.models import Event
 from .models import Schedule, Location, Comment, Like, Subscription
 from .forms import CommentForm
 
@@ -34,7 +38,6 @@ class ScheduleList(ListView):
         postcode = self.kwargs['postcode']
         queryset = queryset.filter(locations=postcode)
         return queryset
-
 
     def get_context_data(self, **kwargs):
         """
@@ -91,6 +94,7 @@ class ScheduleDetail(DetailView):
 
         """
         context = super().get_context_data(**kwargs)
+
         context["comments"] = Comment.objects.filter(
             schedule_id=self.object.id)
         context["like_count"] = Like.objects.filter(
@@ -103,6 +107,9 @@ class ScheduleDetail(DetailView):
             schedule_id=self.object.id, subscribed_by=self.request.user.id).exists()
         context["comment_form"] = CommentForm()
         context["location"] = self.kwargs['postcode']
+
+        events = Event.objects.filter(schedule_id=self.object.id)
+        context["event_data"] = json.dumps(_event_to_json(events))
         return context
 
 

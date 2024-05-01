@@ -1,0 +1,29 @@
+{% block content %}
+<!-- -> Credit for sending JSON data to JavaScript: https://docs.djangoproject.com/en/5.0/ref/templates/builtins/#std-templatefilter-json_script -->
+{{ event_data|json_script:"event-data" }}
+
+<!-- rrule lib -->
+<script src='https://cdn.jsdelivr.net/npm/rrule@2.6.4/dist/es5/rrule.min.js'></script>
+
+<!-- fullcalendar bundle -->
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
+
+<!-- the rrule-to-fullcalendar connector. must go AFTER the rrule lib -->
+<script src='https://cdn.jsdelivr.net/npm/@fullcalendar/rrule@6.1.11/index.global.min.js'></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let json_events = JSON.parse(document.getElementById('event-data').textContent);
+        json_events = JSON.parse(json_events);
+
+        const calendarEl = document.getElementById('calendar');
+        calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            defaultAllDay: true,
+            events: json_events,
+        });
+
+        calendar.render();
+    });
+</script>
+{% endblock %}

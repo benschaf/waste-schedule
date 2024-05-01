@@ -8,6 +8,9 @@
     <h1>{{ schedule }}</h1>
     <p>by {{ schedule.author }}</p>
     <p>{{ schedule.description }}</p>
+
+    <div id="calendar"></div>
+
     {% if user.is_authenticated %}
     <form action="{% url 'schedule_like' schedule.slug %}" method="POST" class="d-inline">
         {% csrf_token %}
@@ -109,8 +112,11 @@
     {% endif %}
     {% endfor %}
 
-    <!-- would it have been better to just keep the script inline??? -->
-    <script src="{% static 'js/comments.js' %}"></script>
 </div>
+
+{% include 'only_schedule.html' %}
+
+<!-- would it have been better to just keep the script inline??? -->
+<script src="{% static 'js/comments.js' %}"></script>
 
 {% endblock %}
