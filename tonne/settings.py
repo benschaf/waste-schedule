@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'wasteschedules',
     'schedulebuilder',
+    'core',
 ]
 
 SITE_ID = 1
