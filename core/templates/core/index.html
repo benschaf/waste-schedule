@@ -1,18 +1,123 @@
-
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 
 <div class="container">
-    <main>
-        <div class="row">
-            <div class="col">
-                <h2>Never miss a Collection Day again.</h2>
-            </div>
-            <div class="col">
-                <img src="" alt="">
-            </div>
+    <div class="row align-items-center text-center">
+        <div class="col">
+            <h2>simplify waste management</h2>
+            <h3>check your location to start:</h3>
+            <form action="" method="get">
+                <div class="input-group mb-3 mt-5">
+                    <input type="text" class="form-control" placeholder="Enter your postcode"
+                        aria-label="Enter your postcode" aria-describedby="button-addon2">
+                    <button class="btn btn-primary" type="submit" id="button-addon2">Search</button>
+                </div>
+            </form>
         </div>
-    </main>
+        <div class="col">
+            <img src="{% static 'images/landing-hero.webp' %}" alt="Main image showing multiple waste bins."
+                class="img-fluid">
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt-5 mb-5">
+    <div class="row bg-info">
+        <div class="col">
+            <p class="lead text-center pt-2 pb-2">Never miss a Collection Day again.</p>
+        </div>
+    </div>
 </div>
 
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4">
+        <div class="col">
+            <div class="card h-100">
+                <img src="{% static 'images/landing-clock.webp' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Costumizable Reminders</h5>
+                    <p class="card-text">
+                        Never forget a waste collection day again with our customizable reminders. Set
+                        up reminders for specific collection days and receive notifications to ensure you never miss a
+                        pickup.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <img src="{% static 'images/landing-community.webp' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Community Driven Content</h5>
+                    <p class="card-text">
+                        Get access to a wealth of waste management information contributed by our
+                        community. Discover tips, tricks, and best practices for efficient waste management and
+                        contribute your own knowledge to help others.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <img src="{% static 'images/landing-verified-3.webp' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Verified Schedules</h5>
+                    <p class="card-text">
+                        Leveraging our community-driven approach every user has the ability to like schedules and
+                        comment on them. If you find something wrong with a schedule, simply report it to the community
+                        and help keep information up to date.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <img src="{% static 'images/landing-big-logo.webp' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Local Waste Facilities information</h5>
+                    <p class="card-text">
+                        Find information on local waste facilities near you. Discover recycling
+                        centers, disposal sites, and other waste management resources in your area. Make informed
+                        decisions on how to properly dispose of different types of waste.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid p-0 mt-5 mb-5 vh-50">
+    <img src="{% static 'images/landing-separator.webp' %}" alt="Image used as a visual depicting 4 recycling bins."
+        class="img-fluid">
+</div>
+
+<div class="container">
+    <h3>How it works</h3>
+    <div class="row">
+        <div class="col">
+            <h4>1. Find Your Schedule</h4>
+            <p>Enter your postcode to find your waste collection schedule. Get access to verified collection days and
+                times for your area.</p>
+        </div>
+        <div class="col"></div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h4>2. Get Reminders</h4>
+            <p>Set up customizable reminders for your waste collection days. Receive notifications to ensure you never
+                miss a pickup.</p>
+        </div>
+        <div class="col"></div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h4>No Schedule for your Location?</h4>
+            <p>
+                Dont worry! Become part of your neighborhood community and simply create your own schedule.
+                Everyone in your area will thank you for it.
+            </p>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
 {% endblock %}
