@@ -1,5 +1,6 @@
 from django.db.models import Count
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models.query import QuerySet
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
@@ -27,6 +28,14 @@ class ScheduleList(ListView):
     model = Schedule
     template_name = 'wasteschedules/schedule_list.html'
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        # -> Credit for getting positional arguments within the get queryset function: https://docs.djangoproject.com/en/5.0/topics/class-based-views/generic-display/#dynamic-filtering
+        postcode = self.kwargs['postcode']
+        queryset = queryset.filter(locations=postcode)
+        return queryset
+
+
     def get_context_data(self, **kwargs):
         """
         Adds additional context data to the view.
@@ -47,6 +56,7 @@ class ScheduleList(ListView):
             liked_by=self.request.user.id).values_list('schedule_id', flat=True)
         context["user_subscriptions"] = Subscription.objects.filter(
             subscribed_by=self.request.user.id).values_list('schedule_id', flat=True)
+        context["postcode"] = self.kwargs['postcode']
         return context
 
 
@@ -92,6 +102,7 @@ class ScheduleDetail(DetailView):
         context["is_subscribed"] = Subscription.objects.filter(
             schedule_id=self.object.id, subscribed_by=self.request.user.id).exists()
         context["comment_form"] = CommentForm()
+        context["location"] = self.kwargs['postcode']
         return context
 
 

@@ -4,7 +4,7 @@
 {% block content %}
 
 <div class="container">
-    <a href="{% url 'schedule_list' %}">Back to Waste Schedule List</a>
+    <a href="{% url 'schedule_list' location %}">Back to Waste Schedule List</a>
     <h1>{{ schedule }}</h1>
     <p>by {{ schedule.author }}</p>
     <p>{{ schedule.description }}</p>

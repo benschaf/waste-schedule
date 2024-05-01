@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="container">
-    <h1>Waste Schedules in "Search Location"</h1>
+    <h1>Waste Schedules for: {{ postcode }}</h1>
     <div class="row gy-4">
         {% for schedule in schedule_list %}
         <div class="col-12 col-md-6 col-lg-4">
@@ -42,7 +42,7 @@
                         data-bs-trigger="focus" data-bs-toggle="popover" data-bs-custom-class="custom-popover"
                         data-bs-content="You need to be logged in to Subscribe to a Schedule.">Subscribe</a>
                     {% endif %}
-                    <a href="{% url 'schedule_detail' schedule.slug %}" class="btn btn-light"><i
+                    <a href="{% url 'schedule_detail' postcode schedule.slug %}" class="btn btn-light"><i
                             class="fa fa-info"></i></a>
                 </div>
             </div>
