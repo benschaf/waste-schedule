@@ -1,0 +1,470 @@
+[
+    {
+        "model": "auth.user",
+        "pk": 1,
+        "fields": {
+            "username": "resident1",
+            "password": "password1"
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 2,
+        "fields": {
+            "username": "resident2",
+            "password": "password2"
+        }
+    },
+    {
+        "model": "wasteschedules.location",
+        "pk": "12345",
+        "fields": {
+            "created_at": "2022-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "wasteschedules.location",
+        "pk": "67890",
+        "fields": {
+            "created_at": "2022-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "wasteschedules.schedule",
+        "pk": 1,
+        "fields": {
+            "title": "Green Waste Collection",
+            "slug": "green-waste-collection",
+            "author": 1,
+            "description": "Collection schedule for green waste",
+            "locations": ["12345"],
+            "created_on": "2022-01-01T00:00:00Z",
+            "updated_on": "2022-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "wasteschedules.schedule",
+        "pk": 2,
+        "fields": {
+            "title": "Recycling Collection",
+            "slug": "recycling-collection",
+            "author": 2,
+            "description": "Collection schedule for recycling",
+            "locations": ["67890"],
+            "created_on": "2022-01-01T00:00:00Z",
+            "updated_on": "2022-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "wasteschedules.comment",
+        "pk": 1,
+        "fields": {
+            "commented_by": 1,
+            "schedule_id": 1,
+            "body": "Don't forget to separate your waste!",
+            "created_on": "2022-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "wasteschedules.comment",
+        "pk": 2,
+        "fields": {
+            "commented_by": 2,
+            "schedule_id": 2,
+            "body": "Remember to rinse your recyclables!",
+            "created_on": "2022-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "wasteschedules.like",
+        "pk": 1,
+        "fields": {
+            "liked_by": 1,
+            "schedule_id": 2,
+            "created_on": "2022-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "wasteschedules.like",
+        "pk": 2,
+        "fields": {
+            "liked_by": 2,
+            "schedule_id": 1,
+            "created_on": "2022-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "wasteschedules.subscription",
+        "pk": 1,
+        "fields": {
+            "subscribed_by": 1,
+            "schedule_id": 1,
+            "subscribed_on": "2022-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "wasteschedules.subscription",
+        "pk": 2,
+        "fields": {
+            "subscribed_by": 2,
+            "schedule_id": 2,
+            "subscribed_on": "2022-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "schedulebuilder.event",
+        "pk": 1,
+        "fields": {
+            "schedule_id": 1,
+            "js_event_id": "green1",
+            "kind": 0,
+            "date": "2022-01-07",
+            "recurring_type": 1,
+            "separation_count": 7,
+            "rrule_start": "2022-01-07",
+            "until": "2022-12-31",
+            "created_on": "2022-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "schedulebuilder.event",
+        "pk": 2,
+        "fields": {
+            "schedule_id": 2,
+            "js_event_id": "recycle1",
+            "kind": 0,
+            "date": "2022-01-14",
+            "recurring_type": 1,
+            "separation_count": 14,
+            "rrule_start": "2022-01-14",
+            "until": "2022-12-31",
+            "created_on": "2022-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "schedulebuilder.exception",
+        "pk": 1,
+        "fields": {
+            "event_id": 1,
+            "old_date": "2022-01-07",
+            "new_date": "2022-01-08",
+            "is_cancelled": false,
+            "created_on": "2022-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "schedulebuilder.exception",
+        "pk": 2,
+        "fields": {
+            "event_id": 2,
+            "old_date": "2022-01-14",
+            "new_date": "2022-01-15",
+            "is_cancelled": false,
+            "created_on": "2022-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "wasteschedules.schedule",
+        "pk": 3,
+        "fields": {
+            "title": "General Waste Collection",
+            "slug": "general-waste-collection",
+            "author": 1,
+            "description": "Collection schedule for general waste",
+            "locations": ["12345", "67890"],
+            "created_on": "2022-01-01T00:00:00Z",
+            "updated_on": "2022-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "wasteschedules.comment",
+        "pk": 3,
+        "fields": {
+            "commented_by": 2,
+            "schedule_id": 3,
+            "body": "Let's keep our city clean!",
+            "created_on": "2022-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "wasteschedules.like",
+        "pk": 3,
+        "fields": {
+            "liked_by": 1,
+            "schedule_id": 3,
+            "created_on": "2022-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "wasteschedules.subscription",
+        "pk": 3,
+        "fields": {
+            "subscribed_by": 2,
+            "schedule_id": 3,
+            "subscribed_on": "2022-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "schedulebuilder.event",
+        "pk": 3,
+        "fields": {
+            "schedule_id": 3,
+            "js_event_id": "general1",
+            "kind": 0,
+            "date": "2022-01-15",
+            "recurring_type": 1,
+            "separation_count": 7,
+            "rrule_start": "2022-01-15",
+            "until": "2022-12-31",
+            "created_on": "2022-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "schedulebuilder.exception",
+        "pk": 3,
+        "fields": {
+            "event_id": 3,
+            "old_date": "2022-01-15",
+            "new_date": "2022-01-16",
+            "is_cancelled": false,
+            "created_on": "2022-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "wasteschedules.comment",
+        "pk": 4,
+        "fields": {
+            "commented_by": 1,
+            "schedule_id": 2,
+            "body": "Recycling is key to a sustainable future!",
+            "created_on": "2022-01-02T00:00:00Z"
+        }
+    },
+    {
+        "model": "wasteschedules.comment",
+        "pk": 5,
+        "fields": {
+            "commented_by": 2,
+            "schedule_id": 1,
+            "body": "Green waste can be composted for gardening!",
+            "created_on": "2022-01-02T00:00:00Z"
+        }
+    },
+    {
+        "model": "wasteschedules.comment",
+        "pk": 6,
+        "fields": {
+            "commented_by": 1,
+            "schedule_id": 3,
+            "body": "General waste should be minimized as much as possible.",
+            "created_on": "2022-01-02T00:00:00Z"
+        }
+    },
+    {
+        "model": "wasteschedules.like",
+        "pk": 4,
+        "fields": {
+            "liked_by": 2,
+            "schedule_id": 1,
+            "created_on": "2022-01-02T00:00:00Z"
+        }
+    },
+    {
+        "model": "wasteschedules.like",
+        "pk": 5,
+        "fields": {
+            "liked_by": 1,
+            "schedule_id": 2,
+            "created_on": "2022-01-02T00:00:00Z"
+        }
+    },
+    {
+        "model": "wasteschedules.like",
+        "pk": 6,
+        "fields": {
+            "liked_by": 2,
+            "schedule_id": 3,
+            "created_on": "2022-01-02T00:00:00Z"
+        }
+    },
+    {
+        "model": "wasteschedules.comment",
+        "pk": 7,
+        "fields": {
+            "commented_by": 2,
+            "schedule_id": 1,
+            "body": "This schedule is very helpful!",
+            "created_on": "2022-01-03T00:00:00Z"
+        }
+    },
+    {
+        "model": "wasteschedules.comment",
+        "pk": 8,
+        "fields": {
+            "commented_by": 1,
+            "schedule_id": 2,
+            "body": "I appreciate the regular updates.",
+            "created_on": "2022-01-03T00:00:00Z"
+        }
+    },
+    {
+        "model": "wasteschedules.comment",
+        "pk": 9,
+        "fields": {
+            "commented_by": 2,
+            "schedule_id": 3,
+            "body": "Let's all do our part to reduce waste.",
+            "created_on": "2022-01-03T00:00:00Z"
+        }
+    },
+    {
+        "model": "wasteschedules.like",
+        "pk": 7,
+        "fields": {
+            "liked_by": 1,
+            "schedule_id": 1,
+            "created_on": "2022-01-03T00:00:00Z"
+        }
+    },
+    {
+        "model": "wasteschedules.like",
+        "pk": 8,
+        "fields": {
+            "liked_by": 2,
+            "schedule_id": 2,
+            "created_on": "2022-01-03T00:00:00Z"
+        }
+    },
+    {
+        "model": "wasteschedules.like",
+        "pk": 9,
+        "fields": {
+            "liked_by": 1,
+            "schedule_id": 3,
+            "created_on": "2022-01-03T00:00:00Z"
+        }
+    },
+    {
+        "model": "wasteschedules.comment",
+        "pk": 10,
+        "fields": {
+            "commented_by": 1,
+            "schedule_id": 1,
+            "body": "Great initiative!",
+            "created_on": "2022-01-04T00:00:00Z"
+        }
+    },
+    {
+        "model": "wasteschedules.comment",
+        "pk": 11,
+        "fields": {
+            "commented_by": 2,
+            "schedule_id": 2,
+            "body": "This is a great way to stay organized.",
+            "created_on": "2022-01-04T00:00:00Z"
+        }
+    },
+    {
+        "model": "wasteschedules.comment",
+        "pk": 12,
+        "fields": {
+            "commented_by": 1,
+            "schedule_id": 3,
+            "body": "I'm glad to see so many people participating.",
+            "created_on": "2022-01-04T00:00:00Z"
+        }
+    },
+    {
+        "model": "wasteschedules.like",
+        "pk": 10,
+        "fields": {
+            "liked_by": 2,
+            "schedule_id": 1,
+            "created_on": "2022-01-04T00:00:00Z"
+        }
+    },
+    {
+        "model": "wasteschedules.like",
+        "pk": 11,
+        "fields": {
+            "liked_by": 1,
+            "schedule_id": 2,
+            "created_on": "2022-01-04T00:00:00Z"
+        }
+    },
+    {
+        "model": "wasteschedules.like",
+        "pk": 12,
+        "fields": {
+            "liked_by": 2,
+            "schedule_id": 3,
+            "created_on": "2022-01-04T00:00:00Z"
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 3,
+        "fields": {
+            "username": "user3",
+            "password": "pbkdf2_sha256$150000$VHJ4c5v7Yl4g$Eqvasc4l1R9vFjyB6BbQScnTJEZ6I8EOTRbbK3DxzZM=",
+            "last_login": "2022-01-01T00:00:00Z",
+            "is_superuser": false,
+            "email": "user3@example.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2022-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 4,
+        "fields": {
+            "username": "user4",
+            "password": "pbkdf2_sha256$150000$VHJ4c5v7Yl4g$Eqvasc4l1R9vFjyB6BbQScnTJEZ6I8EOTRbbK3DxzZM=",
+            "last_login": "2022-01-01T00:00:00Z",
+            "is_superuser": false,
+            "email": "user4@example.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2022-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "wasteschedules.comment",
+        "pk": 13,
+        "fields": {
+            "commented_by": 3,
+            "schedule_id": 1,
+            "body": "This is a great initiative!",
+            "created_on": "2022-01-05T00:00:00Z"
+        }
+    },
+    {
+        "model": "wasteschedules.comment",
+        "pk": 14,
+        "fields": {
+            "commented_by": 4,
+            "schedule_id": 2,
+            "body": "I appreciate the regular updates.",
+            "created_on": "2022-01-05T00:00:00Z"
+        }
+    },
+    {
+        "model": "wasteschedules.like",
+        "pk": 13,
+        "fields": {
+            "liked_by": 3,
+            "schedule_id": 1,
+            "created_on": "2022-01-05T00:00:00Z"
+        }
+    },
+    {
+        "model": "wasteschedules.like",
+        "pk": 14,
+        "fields": {
+            "liked_by": 4,
+            "schedule_id": 2,
+            "created_on": "2022-01-05T00:00:00Z"
+        }
+    }
+]
