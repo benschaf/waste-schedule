@@ -316,7 +316,8 @@
                     groupId: bin_type,
                 });
             } else {
-                let endRecurrence = new Date(eventDate).setFullYear(eventDate.getFullYear() + 1);
+                // -> Credit for adding a year to a date: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setFullYear
+                let endRecurrence = new Date(new Date(eventDate).setFullYear(eventDate.getFullYear() + 1));
                 calendar.addEvent({
                     id: current_id,
                     title: bin_type,
