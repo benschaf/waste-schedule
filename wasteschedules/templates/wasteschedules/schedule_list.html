@@ -58,6 +58,12 @@
         <p>No Schedules found</p>
         {% endfor %}
     </div>
+    <div class="row mt-5">
+        <div class="column">
+            <h5>Havent found your Schedule?</h5>
+            <p>Just <a href="{% url 'create_schedule' %}">Make your own</a></p>
+        </div>
+    </div>
 </div>
 
 {% endblock %}
