@@ -140,7 +140,8 @@ def schedule_comment_edit(request, pk, slug):
             comment = comment_form.save(commit=False)
             comment.save()
 
-    return HttpResponseRedirect(reverse('schedule_detail', kwargs={'slug': slug}))
+    postcode = comment.schedule_id.locations.all()[0]
+    return HttpResponseRedirect(reverse('schedule_detail', kwargs={'postcode' : postcode, 'slug': slug}))
 
 
 class ScheduleCommentDelete(DeleteView):
