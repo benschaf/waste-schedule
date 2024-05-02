@@ -11,21 +11,12 @@
                 <div class="input-group mb-3 mt-5">
                     <!-- -> Credit for manual input validation using regex pattern: https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation -->
                     <!-- -> Credit for the regex Pattern: ChatGPT -->
-                    <input type="text" id="postcodeInput" class="form-control" placeholder="Enter your postcode (try 96271 or 78337)"
-                        aria-label="Enter your postcode" aria-describedby="button-addon2" pattern="^\d{5}$" required>
+                    <input type="text" id="postcodeInput" class="form-control" placeholder="Enter your postcode"
+                        aria-label="Enter your postcode" aria-describedby="button-addon2" pattern="^\d{5}$"
+                        title="Please enter a 5 digit postcode (only German postcodes are supported)" required>
                     <button class="btn btn-primary" type="submit" id="button-addon2">Search</button>
                 </div>
             </form>
-
-            <script>
-            // -> Credit for redirecting to a url in javascript: https://stackoverflow.com/questions/503093/how-can-i-make-a-redirect-page-in-jquery-javascript
-            document.getElementById('postcodeForm').addEventListener('submit', function(event) {
-                event.preventDefault();
-                var postcode = document.getElementById('postcodeInput').value;
-                var url = 'wasteschedules/location/' + postcode + '/';
-                window.location.href = url;
-            });
-            </script>
         </div>
         <div class="col">
             <img src="{% static 'images/landing-hero.webp' %}" alt="Main image showing multiple waste bins."
@@ -60,7 +51,8 @@
                 <div class="card-body">
                     <h5 class="card-title">Join Our Waste Management Community</h5>
                     <p class="card-text">
-                        Access a wealth of waste management information contributed by our community. Share your knowledge and learn from others.
+                        Access a wealth of waste management information contributed by our community. Share your
+                        knowledge and learn from others.
                     </p>
                 </div>
             </div>
@@ -71,7 +63,8 @@
                 <div class="card-body">
                     <h5 class="card-title">Community Verified and Up-to-Date Schedules</h5>
                     <p class="card-text">
-                        Like and comment on schedules to help keep information accurate. Be part of a community-driven approach to waste management.
+                        Like and comment on schedules to help keep information accurate. Be part of a community-driven
+                        approach to waste management.
                     </p>
                 </div>
             </div>
@@ -82,7 +75,8 @@
                 <div class="card-body">
                     <h5 class="card-title">Discover Local Waste Facilities</h5>
                     <p class="card-text">
-                        Find recycling centers, disposal sites, and other waste management resources near you. Make informed decisions on waste disposal.
+                        Find recycling centers, disposal sites, and other waste management resources near you. Make
+                        informed decisions on waste disposal.
                     </p>
                 </div>
             </div>
@@ -124,4 +118,7 @@
         <div class="col"></div>
     </div>
 </div>
+
+<!-- Script for the Location search field -->
+<script src="{% static 'js/index.js' %}"></script>
 {% endblock %}
