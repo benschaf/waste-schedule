@@ -1,5 +1,6 @@
 import json
-from django.http import JsonResponse
+from django.http import HttpRequest, HttpResponseForbidden, JsonResponse
+from django.http.response import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse, reverse_lazy
 from django.views import View
@@ -39,6 +40,12 @@ class EditCalendarView(LoginRequiredMixin, TemplateView):
     redirect_field_name = None
     template_name = 'schedulebuilder/calendar.html'
 
+    def dispatch(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
+        schedule = get_object_or_404(Schedule, id=kwargs['schedule_id'])
+        if schedule.author != request.user:
+                return HttpResponseForbidden()
+        return super().dispatch(request, *args, **kwargs)
+
     def get_context_data(self, schedule_id, **kwargs):
         context = super().get_context_data(**kwargs)
         context["schedule"] = get_object_or_404(Schedule, id=schedule_id)
@@ -62,7 +69,6 @@ class EditCalendarView(LoginRequiredMixin, TemplateView):
 
     def post(self, request, schedule_id):
         schedule = get_object_or_404(Schedule, id=schedule_id)
-
         try:
             data = json.loads(request.body)
             # -> Credit for update_or_create: https://docs.djangoproject.com/en/5.0/ref/models/querysets/#update-or-create

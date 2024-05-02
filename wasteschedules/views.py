@@ -2,7 +2,7 @@ import json
 from django.db.models import Count
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models.query import QuerySet
-from django.http import Http404, HttpResponseRedirect
+from django.http import Http404, HttpResponseForbidden, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 from django.views import View
@@ -134,11 +134,15 @@ def schedule_comment_edit(request, pk, slug):
     if request.method == "POST":
 
         comment = get_object_or_404(Comment, pk=pk)
+        if comment.commented_by != request.user:
+            return HttpResponseForbidden()
+
         comment_form = CommentForm(data=request.POST, instance=comment)
 
         if comment_form.is_valid() and comment.commented_by == request.user:
             comment = comment_form.save(commit=False)
             comment.save()
+    # Do I need an else here to handle get? I am never expecting a get request for this
 
     postcode = comment.schedule_id.locations.all()[0]
     return HttpResponseRedirect(reverse('schedule_detail', kwargs={'postcode' : postcode, 'slug': slug}))
@@ -151,7 +155,7 @@ class ScheduleCommentDelete(DeleteView):
     def get_object(self):
         obj = super().get_object(queryset=None)
         if not obj.commented_by == self.request.user:
-            raise Http404("You're not the owner of this comment.")
+            return HttpResponseForbidden()
         return obj
 
     def get_success_url(self):
