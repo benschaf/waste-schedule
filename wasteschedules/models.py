@@ -91,7 +91,7 @@ class Comment(models.Model):
         return f"Comment {self.body} by {self.commented_by}"
 
     def get_absolute_url(self):
-        return reverse('schedule_detail', kwargs={'slug': self.schedule_id.slug})
+        return reverse('schedule_detail', kwargs={'postcode' : self.schedule_id.locations.all()[0], 'slug': self.schedule_id.slug})
 
 
 class Like(models.Model):
