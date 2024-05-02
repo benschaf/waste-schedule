@@ -36,7 +36,8 @@ class ScheduleList(ListView):
         queryset = super().get_queryset()
         # -> Credit for getting positional arguments within the get queryset function: https://docs.djangoproject.com/en/5.0/topics/class-based-views/generic-display/#dynamic-filtering
         postcode = self.kwargs['postcode']
-        queryset = queryset.filter(locations=postcode)
+        if (postcode != '0'):
+            queryset = queryset.filter(locations=postcode)
         return queryset
 
     def get_context_data(self, **kwargs):
