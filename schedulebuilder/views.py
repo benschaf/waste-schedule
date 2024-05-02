@@ -82,7 +82,8 @@ class EditCalendarView(LoginRequiredMixin, TemplateView):
                     }
                 )
             # oh and also i need to find out how to add exceptions to the rrule data
-            return JsonResponse({'redirect_url': reverse('display_schedule', kwargs={'schedule_id': schedule_id})})
+            postcode = schedule.locations.all()[0]
+            return JsonResponse({'redirect_url': reverse('schedule_detail', kwargs={'postcode': postcode, 'slug' : schedule.slug})})
         except json.JSONDecodeError:
             return JsonResponse({'message': 'Invalid JSON'}, status=400)
 
@@ -102,18 +103,3 @@ def _event_to_json(events):
             } if event.recurring_type else None
         })
     return event_list
-
-
-class DisplayCalendarView(LoginRequiredMixin, TemplateView):
-    login_url = reverse_lazy('account_login')
-    redirect_field_name = None
-    template_name = 'schedulebuilder/view_schedule.html'
-
-    def get_context_data(self, schedule_id, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["schedule"] = get_object_or_404(Schedule, id=schedule_id)
-
-        events = Event.objects.filter(schedule_id=schedule_id)
-        context["event_data"] = json.dumps(_event_to_json(events))
-
-        return context
