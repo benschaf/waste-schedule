@@ -36,6 +36,9 @@
         <button type="submit" name="schedule_id" value="{{ schedule.slug }}" class="btn btn-primary">Subscribe</button>
         {% endif %}
     </form>
+    {% if schedule.author == user %}
+    <a href="{% url 'add_bins' schedule.id %}" class="btn btn-secondary">Edit Schedule</a>
+    {% endif %}
     {% else %}
     <a tabindex="0" class="btn btn-primary" role="button" data-bs-toggle="popover" data-bs-trigger="focus"
         data-bs-toggle="popover" data-bs-custom-class="custom-popover"
