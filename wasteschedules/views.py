@@ -155,7 +155,7 @@ class ScheduleCommentDelete(DeleteView):
         return obj
 
     def get_success_url(self):
-        return self.request.META.get('HTTP_REFERER', reverse_lazy('wasteschedules/'))
+        return self.request.META.get('HTTP_REFERER', reverse_lazy('landing_page'))
 
 
 class ScheduleLike(LoginRequiredMixin, View):
