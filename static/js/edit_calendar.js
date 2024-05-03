@@ -154,19 +154,21 @@ function renderCalendar() {
  *
  * @returns {void}
  */
-function postCalendarEvents() {
+function postCalendarEvents(e) {
     // Should I use Ajax here instead?
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-    const json_body = JSON.stringify(get_calender_event_objects(calendar));
-    console.log(json_body);
-    fetch("{% url 'add_bins' schedule.id %}", {
+    const jsonBody = JSON.stringify(get_calender_event_objects());
+    console.log(jsonBody);
+    scheduleId = e.target.getAttribute('data-schedule-id');
+    console.log(e.target);
+    fetch(scheduleId, {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',
             // Include CSRF token in the header
             'X-CSRFToken': csrftoken
         },
-        body: json_body,
+        body: jsonBody,
     }).then(response => response.json()).then(data => {
         if (data.redirect_url) {
             window.location.href = data.redirect_url;
@@ -200,7 +202,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Call the postCalendarEvents function when the submit button is clicked
     document.getElementById('submit-button').addEventListener('click', function (e) {
         e.preventDefault();
-        postCalendarEvents(calendar);
+        postCalendarEvents(e);
     });
 
     // Save the event when the save button is clicked
