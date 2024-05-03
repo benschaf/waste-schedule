@@ -13,6 +13,8 @@ from schedulebuilder.views import _event_to_json
 from schedulebuilder.models import Event
 from .models import Schedule, Location, Comment, Like, Subscription
 from .forms import CommentForm
+from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib import messages
 
 # Create your views here.
 # -> Credit for class based views: https://docs.djangoproject.com/en/5.0/ref/class-based-views/
@@ -115,10 +117,11 @@ class ScheduleDetail(DetailView):
 
 
 # -> Credit for using the LoginRequiredMixin: https://docs.djangoproject.com/en/5.0/topics/auth/default/#the-loginrequiredmixin-mixin
-class ScheduleComment(LoginRequiredMixin, CreateView):
+class ScheduleComment(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Comment
     fields = ['body']
     login_url = '/accounts/login/'
+    success_message = "Your Comment was created successfully."
 
     def form_valid(self, form):
         form.instance.commented_by = self.request.user
@@ -136,12 +139,15 @@ def schedule_comment_edit(request, pk, slug):
 
         comment = get_object_or_404(Comment, pk=pk)
         if comment.commented_by != request.user:
-            return HttpResponseForbidden()
+            # instead of the response forbidden add a django message - and then delete return redirect to url that makes sense
+            messages.add_message(request, messages.ERROR, "You are not the owner of this coment.")
+            return redirect(request.META.get('HTTP_REFERER', 'landing_page'))
 
         comment_form = CommentForm(data=request.POST, instance=comment)
 
         if comment_form.is_valid() and comment.commented_by == request.user:
             comment = comment_form.save(commit=False)
+            messages.add_message(request, messages.INFO, "Your comment was edited successfully.")
             comment.save()
     # Do I need an else here to handle get? I am never expecting a get request for this
 
@@ -149,14 +155,16 @@ def schedule_comment_edit(request, pk, slug):
     return HttpResponseRedirect(reverse('schedule_detail', kwargs={'postcode' : postcode, 'slug': slug}))
 
 
-class ScheduleCommentDelete(DeleteView):
+class ScheduleCommentDelete(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     model = Comment
+    success_message = "Your comment was deleted succesfully."
 
 # i am not sure if this works correctly
     def get_object(self):
         obj = super().get_object(queryset=None)
         if not obj.commented_by == self.request.user:
-            return HttpResponseForbidden()
+            messages.add_message(self.request, messages.ERROR, "You are not the owner of this coment.")
+            return redirect(self.request.META.get('HTTP_REFERER', 'landing_page'))
         return obj
 
     def get_success_url(self):
@@ -174,10 +182,12 @@ class ScheduleLike(LoginRequiredMixin, View):
         if not Like.objects.filter(schedule_id=schedule.id, liked_by=request.user.id).exists():
             l = Like(schedule_id=schedule, liked_by=request.user)
             l.save()
+            messages.add_message(self.request, messages.SUCCESS, f"Successfully liked {schedule}")
         else:
             Like.objects.filter(schedule_id=schedule.id,
                                 liked_by=request.user.id).delete()
-        return redirect(request.META.get('HTTP_REFERER', 'wasteschedules/'))
+            messages.add_message(self.request, messages.SUCCESS, f"Successfully removed like from {schedule}")
+        return redirect(request.META.get('HTTP_REFERER', 'landing_page'))
 
 
 class ScheduleSubscribe(View):
@@ -186,7 +196,10 @@ class ScheduleSubscribe(View):
         if not Subscription.objects.filter(schedule_id=schedule.id, subscribed_by=request.user.id).exists():
             s = Subscription(schedule_id=schedule, subscribed_by=request.user)
             s.save()
+            messages.add_message(self.request, messages.SUCCESS, f"Successfully subscribed to {schedule}")
         else:
             Subscription.objects.filter(
                 schedule_id=schedule.id, subscribed_by=request.user.id).delete()
+            messages.add_message(self.request, messages.SUCCESS, f"Successfully unsubscribed from {schedule}")
+
         return redirect(request.META.get('HTTP_REFERER', 'wasteschedules/'))

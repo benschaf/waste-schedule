@@ -13,16 +13,19 @@ from django.views.generic import TemplateView
 
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 
 # Create your views here.
 
 
-class CreateSchedule(LoginRequiredMixin, CreateView):
+class CreateSchedule(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     login_url = reverse_lazy('account_login')
     redirect_field_name = None
     form_class = ScheduleForm
     template_name = 'schedulebuilder/schedule_form.html'
     model = Schedule
+    success_message = "Schedule was created successfully."
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -43,7 +46,8 @@ class EditCalendarView(LoginRequiredMixin, TemplateView):
     def dispatch(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
         schedule = get_object_or_404(Schedule, id=kwargs['schedule_id'])
         if schedule.author != request.user:
-                return HttpResponseForbidden()
+                messages.add_message(self.request, messages.ERROR, "You are not the owner of this schedule.")
+                return redirect(self.request.META.get('HTTP_REFERER', 'landing_page'))
         return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, schedule_id, **kwargs):
@@ -88,6 +92,8 @@ class EditCalendarView(LoginRequiredMixin, TemplateView):
                     }
                 )
             # oh and also i need to find out how to add exceptions to the rrule data
+
+            messages.add_message(self.request, messages.SUCCESS, "Your Schedule events were saved successfully.")
             postcode = schedule.locations.all()[0]
             return JsonResponse({'redirect_url': reverse('schedule_detail', kwargs={'postcode': postcode, 'slug' : schedule.slug})})
         except json.JSONDecodeError:

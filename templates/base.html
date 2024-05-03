@@ -32,9 +32,10 @@
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'landing_page' %}">
-                <img src="{% static 'images/logo.webp' %}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                <img src="{% static 'images/logo.webp' %}" alt="Logo" width="30" height="24"
+                    class="d-inline-block align-text-top">
                 tonne
-              </a>
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -67,6 +68,16 @@
             </div>
         </div>
     </nav>
+    <!-- -> Credit for django messages framework: https://docs.djangoproject.com/en/5.0/ref/contrib/messages/ -->
+    {% if messages %}
+    <div class="container">
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
 
     <main class="mt-5">
 
