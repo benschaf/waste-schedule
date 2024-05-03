@@ -1,21 +1,5 @@
 [
     {
-        "model": "auth.user",
-        "pk": 1,
-        "fields": {
-            "username": "resident1",
-            "password": "password1"
-        }
-    },
-    {
-        "model": "auth.user",
-        "pk": 2,
-        "fields": {
-            "username": "resident2",
-            "password": "password2"
-        }
-    },
-    {
         "model": "wasteschedules.location",
         "pk": "12345",
         "fields": {
@@ -399,34 +383,6 @@
             "liked_by": 2,
             "schedule_id": 3,
             "created_on": "2022-01-04T00:00:00Z"
-        }
-    },
-    {
-        "model": "auth.user",
-        "pk": 3,
-        "fields": {
-            "username": "user3",
-            "password": "pbkdf2_sha256$150000$VHJ4c5v7Yl4g$Eqvasc4l1R9vFjyB6BbQScnTJEZ6I8EOTRbbK3DxzZM=",
-            "last_login": "2022-01-01T00:00:00Z",
-            "is_superuser": false,
-            "email": "user3@example.com",
-            "is_staff": false,
-            "is_active": true,
-            "date_joined": "2022-01-01T00:00:00Z"
-        }
-    },
-    {
-        "model": "auth.user",
-        "pk": 4,
-        "fields": {
-            "username": "user4",
-            "password": "pbkdf2_sha256$150000$VHJ4c5v7Yl4g$Eqvasc4l1R9vFjyB6BbQScnTJEZ6I8EOTRbbK3DxzZM=",
-            "last_login": "2022-01-01T00:00:00Z",
-            "is_superuser": false,
-            "email": "user4@example.com",
-            "is_staff": false,
-            "is_active": true,
-            "date_joined": "2022-01-01T00:00:00Z"
         }
     },
     {
