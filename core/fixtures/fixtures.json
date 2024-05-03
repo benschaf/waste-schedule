@@ -33,8 +33,8 @@
         "model": "wasteschedules.schedule",
         "pk": 1,
         "fields": {
-            "title": "Green Waste Collection",
-            "slug": "green-waste-collection",
+            "title": "For our clean Neighbourhood",
+            "slug": "for-our-clean-neighbourhood",
             "author": 1,
             "description": "Collection schedule for green waste",
             "locations": ["12345"],
@@ -167,8 +167,8 @@
         "model": "wasteschedules.schedule",
         "pk": 3,
         "fields": {
-            "title": "General Waste Collection",
-            "slug": "general-waste-collection",
+            "title": "We don't want waste",
+            "slug": "we-dont-want-waste",
             "author": 1,
             "description": "Collection schedule for general waste",
             "locations": ["12345", "67890"],
