@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container">
+    <a href="{% url 'landing_page' %}">Back to the Homepage</a>
+    <h1>Are you Sure?</h1>
+    <p>
+        Are you sure you want to delete the schedule?
+        All schedule data will be lost and you wont get it back.
+    </p>
+    <p>
+        Schedule: {{ schedule }}
+    </p>
+    <p>
+        Location: {{ schedule.location }}
+    </p>
+    <p>
+        Description: {{ schedule.description }}
+    </p>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-danger">Yes, Delete my Schedule</button>
+    </form>
+</div>
+{% endblock %}

@@ -67,6 +67,22 @@ class CreateSchedule(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 
     # to add the location i will need an inline formset...
 
+class DeleteSchedule(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
+    login_url = reverse_lazy('account_login')
+    redirect_field_name = None
+    model = Schedule
+    template_name = 'schedulebuilder/schedule_confirm_delete.html'
+    success_message = "Schedule was deleted successfully."
+
+    def post(self, request, *args, **kwargs):
+        if self.get_object().author != request.user:
+            messages.add_message(self.request, messages.ERROR,
+                                 "You are not the owner of this schedule.")
+            return redirect(self.request.META.get('HTTP_REFERER', 'landing_page'))
+        return super().post(request, *args, **kwargs)
+
+    def get_success_url(self):
+        return reverse('schedule_list', kwargs={'postcode': self.object.locations.all()[0].postal_code})
 
 # maybe integrate this with the update or create events view - so the form can be displayed and post data using the same view
 class EditCalendarView(LoginRequiredMixin, TemplateView):
