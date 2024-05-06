@@ -11,7 +11,7 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 from schedulebuilder.views import _event_to_json
 from schedulebuilder.models import Event
-from .models import Schedule, Location, Comment, Like, Subscription
+from .models import Schedule, Comment, Like, Subscription
 from .forms import CommentForm
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages

@@ -2,18 +2,19 @@ from django.utils import timezone
 import json
 from typing import Any
 from django.forms import BaseModelForm
-from django.http import HttpRequest, HttpResponseForbidden, JsonResponse
+from django.http import HttpRequest, HttpResponseForbidden, HttpResponseRedirect, JsonResponse
 from django.http.response import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse, reverse_lazy
 from django.views import View
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, DeleteView
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 from .models import Event
-from wasteschedules.models import Schedule, Location
+from wasteschedules.models import Schedule, PostalCode
+from .forms import PostalCodeForm
 
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
@@ -23,28 +24,24 @@ from django.contrib.messages.views import SuccessMessageMixin
 # Create your views here.
 
 
-class PickLocation(LoginRequiredMixin, CreateView):
-    model = Location
-    fields = ('postal_code',)
+class PickLocation(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+    model = PostalCode
+    form_class = PostalCodeForm
     template_name = 'schedulebuilder/location_form.html'
+    success_message = "Location was created successfully."
 
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
-        # -> Credit for get_or_create(): https://docs.djangoproject.com/en/3.2/ref/models/querysets/#get-or-create
         postal_code = form.cleaned_data['postal_code']
-        location, created = Location.objects.get_or_create(
-            postal_code=postal_code,
-        )
-        form.instance.location = location
-        if created:
-            messages.add_message(self.request, messages.SUCCESS,
-                                 "Location was created successfully.")
-        else:
+
+        if PostalCode.objects.filter(postal_code=postal_code).exists():
             messages.add_message(self.request, messages.INFO,
-                                 "Your Location already exists. Check out if there already is a schedule for it.")
+                                    "Your Location already exists. Check out if there already is a schedule for it.")
+            return HttpResponseRedirect(reverse('create_schedule', kwargs={'postal_code': postal_code}))
+
         return super().form_valid(form)
 
     def get_success_url(self) -> str:
-        return reverse('create_schedule', kwargs={'postcode': self.object.postal_code})
+        return reverse('create_schedule', kwargs={'postal_code': self.object.postal_code})
 
 
 class CreateSchedule(LoginRequiredMixin, SuccessMessageMixin, CreateView):
@@ -57,7 +54,7 @@ class CreateSchedule(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 
     def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
-        context['postcode'] = self.kwargs['postcode']
+        context['postcode'] = self.kwargs['postal_code']
         return context
 
     def form_valid(self, form):
@@ -65,7 +62,7 @@ class CreateSchedule(LoginRequiredMixin, SuccessMessageMixin, CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        self.object.locations.add(get_object_or_404(Location, postal_code = self.kwargs['postcode']))
+        self.object.locations.add(get_object_or_404(PostalCode, postal_code = self.kwargs['postal_code']))
         return reverse('add_bins', kwargs={'schedule_id': self.object.id})
 
     # to add the location i will need an inline formset...

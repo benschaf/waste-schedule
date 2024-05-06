@@ -6,7 +6,7 @@
 <a href="{% url 'landing_page' %}">Back to the Homepage</a>
 <h1>Create a new schedule</h1>
 <p>
-    Location: {{ postcode }}
+    Location: {{ postal_code }}
 </p>
 <form method="POST">
     {% csrf_token %}

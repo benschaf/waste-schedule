@@ -24,7 +24,7 @@ class Schedule(models.Model):
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='schedules')
     description = models.TextField(blank=True)
-    locations = models.ManyToManyField('Location', related_name='schedules')
+    locations = models.ManyToManyField('PostalCode', related_name='schedules')
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
@@ -57,17 +57,9 @@ def validate_postal_code(value):
         raise ValidationError(f'{value} is not a valid postal code')
 
 
-class Location(models.Model):
-    """
-    Represents a location with a postal code and creation timestamp.
-
-    Attributes:
-        postal_code (str): The postal code of the location.
-        created_at (datetime): The timestamp when the location was created.
-    """
-
+class PostalCode(models.Model):
     postal_code = models.CharField(
-        validators=[validate_postal_code], primary_key=True)
+        validators=[validate_postal_code], unique=True)
 
     def __str__(self):
         return self.postal_code
