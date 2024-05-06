@@ -1,12 +1,14 @@
 import json
+from typing import Any
 from django.db.models import Count
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models.query import QuerySet
-from django.http import Http404, HttpResponseForbidden, HttpResponseRedirect
+from django.http import Http404, HttpRequest, HttpResponseForbidden, HttpResponseRedirect
+from django.http.response import HttpResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 from django.views import View
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 from schedulebuilder.views import _event_to_json
@@ -203,3 +205,18 @@ class ScheduleSubscribe(View):
             messages.add_message(self.request, messages.SUCCESS, f"Successfully unsubscribed from {schedule}")
 
         return redirect(request.META.get('HTTP_REFERER', 'wasteschedules/'))
+
+
+class Dashboard(LoginRequiredMixin, TemplateView):
+    template_name = 'wasteschedules/dashboard.html'
+
+    def get_context_data(self, **kwargs) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+
+        # is it safe to add the user to the context like this?
+        context['user'] = self.request.user
+        context['subscribed_schedules'] = Schedule.objects.filter(subscription__subscribed_by=self.request.user)
+        context['owned_schedules'] = Schedule.objects.filter(author=self.request.user)
+
+        return context
+
