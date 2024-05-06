@@ -160,6 +160,7 @@ def _event_to_json(events):
             'start': event.date.isoformat(),
             'rrule': {
                 'freq': event.recurring_type,
+                'interval': event.separation_count,
                 'dtstart': event.rrule_start.isoformat(),
                 'until': event.until.isoformat(),
             } if event.recurring_type else None
