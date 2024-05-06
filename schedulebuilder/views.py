@@ -101,6 +101,7 @@ class EditCalendarView(LoginRequiredMixin, TemplateView):
     def get_context_data(self, schedule_id, **kwargs):
         context = super().get_context_data(**kwargs)
         context["schedule"] = get_object_or_404(Schedule, id=schedule_id)
+        context["postal_code"] = context["schedule"].locations.all()[0].postal_code
 
         events = Event.objects.filter(schedule_id=schedule_id)
         context["event_data"] = json.dumps(_event_to_json(events))
