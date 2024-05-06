@@ -68,7 +68,6 @@ class Location(models.Model):
 
     postal_code = models.CharField(
         validators=[validate_postal_code], primary_key=True)
-    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.postal_code

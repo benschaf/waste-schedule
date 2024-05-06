@@ -1,13 +1,11 @@
+
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
 
 <div class="container">
 <a href="{% url 'landing_page' %}">Back to the Homepage</a>
-<h1>Create a new schedule</h1>
-<p>
-    Location: {{ postcode }}
-</p>
+<h1>Pick a Location</h1>
 <form method="POST">
     {% csrf_token %}
     {{ form|crispy }}
