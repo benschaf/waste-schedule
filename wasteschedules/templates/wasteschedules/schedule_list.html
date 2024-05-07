@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
@@ -8,6 +9,16 @@
     {% else %}
     <h1>Waste Schedules for: {{ postcode }}</h1>
     {% endif %}
+    <form id="postcodeForm">
+        <div class="input-group mb-3 mt-5">
+            <!-- -> Credit for manual input validation using regex pattern: https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation -->
+            <!-- -> Credit for the regex Pattern: ChatGPT -->
+            <input type="text" id="postcodeInput" class="form-control" placeholder="Enter your postcode"
+                aria-label="Enter your postcode" aria-describedby="button-addon2" pattern="^\d{5}$"
+                title="Please enter a 5 digit postcode (only German postcodes are supported)" required>
+            <button class="btn btn-primary" type="submit" id="button-addon2">Search</button>
+        </div>
+    </form>
     <div class="row gy-4">
         {% for schedule in schedule_list %}
         <div class="col-12 col-md-6 col-lg-4">
@@ -62,8 +73,14 @@
         <div class="column">
             <h5>Havent found your Schedule?</h5>
             <p>Just <a href="{% url 'create_schedule' %}">Make your own</a></p>
+            {% if not postcode == '0' %}
+            <p>or <a href="{% url 'schedule_list' '0' %}">See all Schedules</a></p>
+            {% endif %}
         </div>
     </div>
 </div>
+
+<!-- Script for the Location search field -->
+<script src="{% static 'js/index.js' %}"></script>
 
 {% endblock %}

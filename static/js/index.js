@@ -2,6 +2,7 @@
 document.getElementById('postcodeForm').addEventListener('submit', function (event) {
     event.preventDefault();
     var postcode = document.getElementById('postcodeInput').value;
-    var url = 'wasteschedules/location/' + postcode + '/';
+    let url = window.location.href;
+    url = url.substring(0, url.lastIndexOf('wasteschedules/')) + 'wasteschedules/location/' + postcode + '/';
     window.location.href = url;
 });

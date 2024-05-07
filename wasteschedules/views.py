@@ -13,7 +13,7 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 from schedulebuilder.views import _event_to_json
 from schedulebuilder.models import Event
-from .models import Schedule, Comment, Like, Subscription
+from .models import Schedule, Comment, Like, Subscription, PostalCode
 from .forms import CommentForm
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
@@ -41,7 +41,8 @@ class ScheduleList(ListView):
         # -> Credit for getting positional arguments within the get queryset function: https://docs.djangoproject.com/en/5.0/topics/class-based-views/generic-display/#dynamic-filtering
         postcode = self.kwargs['postcode']
         if (postcode != '0'):
-            queryset = queryset.filter(locations=postcode)
+            postcode_obj = get_object_or_404(PostalCode, postal_code=postcode)
+            queryset = queryset.filter(locations=postcode_obj)
         return queryset
 
     def get_context_data(self, **kwargs):
