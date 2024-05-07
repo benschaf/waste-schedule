@@ -6,5 +6,6 @@ class PostalCodeForm(forms.ModelForm):
         model = PostalCode
         fields = ['postal_code']
 
+    # -> Credit for skipping the unique validation goes to:
     def validate_unique(self):
         pass
