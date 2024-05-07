@@ -23,13 +23,18 @@
         {% for schedule in schedule_list %}
         <div class="col-12 col-md-6 col-lg-4">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body position-relative">
                     <h2>{{ schedule }}</h2>
                     <p>by {{ schedule.author }}</p>
                     {% if postcode == '0' %}
                     <p>Postcode: {{ schedule.locations.first }}</p>
                     {% endif %}
                     <p>{{ schedule.description }}</p>
+                    <a href="{% url 'schedule_detail' postcode schedule.slug %}" class="btn btn-light stretched-link"><i
+                            class="fa fa-info"></i></a>
+                </div>
+                <div class="card-footer">
+                    <!-- Like button -->
                     {% if user.is_authenticated %}
                     <form action="{% url 'schedule_like' schedule.slug %}" method="POST" class="d-inline">
                         {% csrf_token %}
@@ -44,12 +49,25 @@
                         data-bs-content="You need to be logged in to like a Schedule."><i class="fas fa-heart"></i></a>
                     {% endif %}
                     <div class="d-inline">{{ schedule.like__count }}</div>
+
+
+                    <!-- Subscribe Button -->
                     {% if user.is_authenticated %}
                     <form action="{% url 'schedule_subscribe' schedule.slug %}" method="POST" class="d-inline">
                         {% csrf_token %}
                         {% if schedule.id in user_subscriptions %}
-                        <button type="submit" name="schedule_id" value="{{ schedule.slug }}"
-                            class="btn btn-secondary">Subscribed</button>
+                        <div class="dropdown d-inline">
+                            <button type="submit" name="schedule_id" value="{{ schedule.slug }}"
+                                class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">Subscribed
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <button type="submit" name="schedule_id" value="{{ schedule.slug }}"
+                                        class="dropdown-item">Unsubscribe</button>
+                                </li>
+                            </ul>
+                        </div>
                         {% else %}
                         <button type="submit" name="schedule_id" value="{{ schedule.slug }}"
                             class="btn btn-primary">Subscribe</button>
@@ -60,8 +78,6 @@
                         data-bs-trigger="focus" data-bs-toggle="popover" data-bs-custom-class="custom-popover"
                         data-bs-content="You need to be logged in to Subscribe to a Schedule.">Subscribe</a>
                     {% endif %}
-                    <a href="{% url 'schedule_detail' postcode schedule.slug %}" class="btn btn-light"><i
-                            class="fa fa-info"></i></a>
                 </div>
             </div>
         </div>
