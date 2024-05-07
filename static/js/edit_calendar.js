@@ -75,21 +75,22 @@ function createEvent(date) {
 
 // This should handle Event removal but it is not working yet
 // To get this to work I need to add exdates to the rrule in the event object
-function handleModalSubmit(event, info, submitButton) {
-    console.log(info.event.id);
+// It just cant get the exdate property from the calendar which doesn't let me edit it .........
+// it might work if i change the calendar library import to NPM but i don't know if i want to do that ...
+// what i could also do instead is convert the whole rrule property into a string. https://stackoverflow.com/questions/56580678/is-exdate-not-included-in-rrule-for-full-calendar
+function handleDeletion(event, info, submitButton) {
+    //maybe i can just remove prevent default
     event.preventDefault();
     deleteEventModal.hide();
-    submitButton.removeEventListener('click', handleModalSubmit);
 
     if (document.getElementById('delete-select').value === 'only this event') {
-        info.event.exdate += [info.event.startStr];
+        console.log('one event removed');
+        // right here - setProp isnt accessible
+        info.event.setProp('exdate', '2024-05-23')
+        console.log(info.event);
     } else {
-        var events = calendar.getEvents();
-        for (var event of events) {
-            if (event.groupId === event.id) {
-                event.remove();
-            }
-        }
+        console.log('all events removed');
+        info.event.remove();
     }
     calendar.refetchEvents();
 }
@@ -135,13 +136,13 @@ function renderCalendar() {
         eventClick: function (info) {
             deleteEventModal = new bootstrap.Modal(document.getElementById('deleteEventModal'));
             document.getElementById('delete-event-modal-title').textContent = `Delete event: ${info.event.title} from ${info.event.start}`;
-
             let submitButton = document.getElementById('delete-event');
-            submitButton.addEventListener('click', (event) => handleModalSubmit(event, info, submitButton));
+            submitButton.addEventListener('click', (event) => handleDeletion(event, info, submitButton));
 
             deleteEventModal.show();
         },
         events: json_events,
+
     });
     calendar.render();
 }
@@ -229,11 +230,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     interval: recurrence,
                     dtstart: eventDate,
                     until: endRecurrence
-                }
+                },
+                exdate: []
             });
         }
         current_id++;
         createEventModal.hide();
     });
 });
-
