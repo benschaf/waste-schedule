@@ -28,3 +28,7 @@ main {
     --bs-popover-body-padding-x: 1rem;
     --bs-popover-body-padding-y: .5rem;
 }
+
+.bg-opacity {
+    transition: background-color 0.5s;
+}
