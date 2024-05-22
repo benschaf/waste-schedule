@@ -8,6 +8,13 @@
     <h1>{{ schedule }}</h1>
     <p>by {{ schedule.author }}</p>
     <p>{{ schedule.description }}</p>
+    <p>
+        {% if "placeholder" in schedule.image.url %}
+        No Schedule Image avaliable.
+        {% else %}
+        <img class="card-img-top" src=" {{ schedule.image.url }}" alt="{{ schedule }}">
+        {% endif %}
+    </p>
 
     <div id="calendar"></div>
 

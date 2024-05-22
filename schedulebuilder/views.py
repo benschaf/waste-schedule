@@ -48,7 +48,7 @@ class CreateSchedule(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     login_url = reverse_lazy('account_login')
     redirect_field_name = None
     model = Schedule
-    fields = ('title', 'description',)
+    fields = ('title', 'description', 'image',)
     template_name = 'schedulebuilder/schedule_form.html'
     success_message = "Schedule was created successfully."
 

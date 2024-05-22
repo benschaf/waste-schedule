@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.forms import ValidationError
 from django.urls import reverse
 from django.utils.text import slugify
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
@@ -25,6 +26,7 @@ class Schedule(models.Model):
         User, on_delete=models.CASCADE, related_name='schedules')
     description = models.TextField(blank=True)
     locations = models.ManyToManyField('PostalCode', related_name='schedules')
+    image = CloudinaryField('image', null=True, blank=True, default='placeholder')
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
