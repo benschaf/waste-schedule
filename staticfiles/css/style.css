@@ -8,6 +8,10 @@ h6,
     font-family: "Josefin Sans", sans-serif;
 }
 
+h1 {
+    padding-top: 7rem;
+}
+
 body {
     font-family: "Lato", sans-serif;
     /* stick footer to bottom */
@@ -27,4 +31,9 @@ main {
     --bs-popover-header-color: var(--bs-white);
     --bs-popover-body-padding-x: 1rem;
     --bs-popover-body-padding-y: .5rem;
+}
+
+.bg-opacity {
+    transition: background-color 0.5s;
+    transition: shadow 0.5s;
 }
