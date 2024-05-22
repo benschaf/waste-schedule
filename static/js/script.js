@@ -4,22 +4,27 @@ const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]
 const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
 
 window.addEventListener('scroll', (event) => {
+    const navBar = document.getElementsByTagName('nav')[0];
     if (window.scrollY > 0) {
-        console.log('scrolling');
-        document.getElementsByTagName('nav')[0].classList.remove('bg-transparent');
+        navBar.classList.remove('bg-transparent');
+        navBar.classList.add('shadow-lg');
     } else {
-        if (!document.getElementsByTagName('nav')[0].classList.contains('bg-transparent')) {
-            document.getElementsByTagName('nav')[0].classList.add('bg-transparent');
+        if (!navBar.classList.contains('bg-transparent')) {
+            navBar.classList.add('bg-transparent');
+            navBar.classList.remove('shadow-lg');
         }
     }
 });
 
 document.getElementsByClassName('navbar-toggler')[0].addEventListener('click', (event) => {
     if (window.scrollY == 0) {
-        if (!document.getElementsByTagName('nav')[0].classList.contains('bg-transparent')) {
-            document.getElementsByTagName('nav')[0].classList.add('bg-transparent');
+        const navBar = document.getElementsByTagName('nav')[0];
+        if (!navBar.classList.contains('bg-transparent')) {
+            navBar.classList.add('bg-transparent');
+            navBar.classList.remove('shadow-lg');
         } else {
-            document.getElementsByTagName('nav')[0].classList.remove('bg-transparent');
+            navBar.classList.remove('bg-transparent');
+            navBar.classList.add('shadow-lg');
         }
     }
 });
