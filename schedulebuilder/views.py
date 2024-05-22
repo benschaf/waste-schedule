@@ -7,7 +7,7 @@ from django.http.response import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse, reverse_lazy
 from django.views import View
-from django.views.generic.edit import CreateView, DeleteView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -65,7 +65,30 @@ class CreateSchedule(LoginRequiredMixin, SuccessMessageMixin, CreateView):
         self.object.locations.add(get_object_or_404(PostalCode, postal_code = self.kwargs['postal_code']))
         return reverse('add_bins', kwargs={'schedule_id': self.object.id})
 
-    # to add the location i will need an inline formset...
+
+class UpdateSchedule(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    login_url = reverse_lazy('account_login')
+    redirect_field_name = None
+    model = Schedule
+    fields = ('description', 'image',)
+    template_name = 'schedulebuilder/update_schedule_form.html'
+    success_message = "Schedule was updated successfully."
+
+    def get_context_data(self, **kwargs) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context['postcode'] = self.object.locations.all()[0]
+        return context
+
+    def get_success_url(self):
+        return reverse('add_bins', kwargs={'schedule_id': self.object.id})
+
+    def post(self, request, *args, **kwargs):
+        if self.get_object().author != request.user:
+            messages.add_message(self.request, messages.ERROR,
+                                 "You are not the owner of this schedule.")
+            return redirect(self.request.META.get('HTTP_REFERER', 'landing_page'))
+        return super().post(request, *args, **kwargs)
+
 
 class DeleteSchedule(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     login_url = reverse_lazy('account_login')

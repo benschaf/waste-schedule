@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container">
+<a href="{% url 'landing_page' %}">Back to the Homepage</a>
+<h1>Edit your schedule</h1>
+<p>
+    Location: {{ postal_code }}
+</p>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-primary">Next</button>
+</form>
+</div>
+{% endblock %}
