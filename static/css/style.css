@@ -12,6 +12,10 @@ h1 {
     padding-top: 7rem;
 }
 
+.high-z-index {
+    z-index: 1000;
+}
+
 body {
     font-family: "Lato", sans-serif;
     /* stick footer to bottom */
