@@ -45,13 +45,18 @@ main {
     width: fit-content;
 }
 
+.opacity-hover:hover {
+    opacity: 0.8;
+    transition: opacity 0.5s;
+}
+
 .submit-background {
     background: #25a55f;
     border-style: none;
 }
 
 .submit-background:hover {
-    background: #57d992;
+    background: #25a55fd8;
     transition: background-color 0.5s;
 }
 
