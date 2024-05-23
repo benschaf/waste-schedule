@@ -3,25 +3,35 @@
 {% block content %}
 
 
-<div class="row align-items-center">
-    <div class="col pe-0 order-lg-last">
-        <img src="{% static 'images/landing-hero.webp' %}" alt="Main image showing multiple waste bins."
-            class="img-fluid">
-    </div>
-    <div class="col-12 col-lg-4 pt-3">
-        <div class="container align-items-center text-center d-flex flex-column justify-content-center h-100">
-            <h2>simplify waste management</h2>
-            <h3>check your location to start:</h3>
-            <form id="postcodeForm">
-                <div class="input-group mb-3 mt-5">
-                    <!-- -> Credit for manual input validation using regex pattern: https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation -->
-                    <!-- -> Credit for the regex Pattern: ChatGPT -->
-                    <input type="text" id="postcodeInput" class="form-control" placeholder="Enter your postcode"
-                        aria-label="Enter your postcode" aria-describedby="button-addon2" pattern="^\d{5}$"
-                        title="Please enter a 5 digit postcode (only German postcodes are supported)" required>
-                    <button class="btn btn-primary" type="submit" id="button-addon2"><i class="fa-solid fa-magnifying-glass"></i></button>
-                </div>
-            </form>
+<!-- Hero Section -->
+<div class="container-fluid">
+    <div class="row align-items-center">
+        <div class="col pe-0 order-lg-last">
+            <img src="{% static 'images/landing-hero.webp' %}" alt="Main image showing multiple waste bins."
+                class="img-fluid">
+        </div>
+        <div class="col-12 col-lg-5 pt-3">
+            <div
+                class="container align-items-center align-items-lg-end text-center d-flex flex-column justify-content-center h-100">
+                <h2 class="gradient-text hero-stylized-text">simplify </h2>
+                <h2>waste management</h2>
+                <form id="postcodeForm">
+                    <div class="input-group mb-3 mt-4 rounded-pill shadow">
+                        <!-- -> Credit for manual input validation using regex pattern: https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation -->
+                        <!-- -> Credit for the regex Pattern: ChatGPT -->
+                        <div class="form-floating">
+                            <input type="text" id="postcodeInput" class="form-control rounded-corners"
+                                placeholder="Enter your postcode" aria-label="Enter your postcode"
+                                aria-describedby="button-addon2" pattern="^\d{5}$"
+                                title="Please enter a 5 digit postcode (only German postcodes are supported)" required>
+                            <label for="postcodeInput">Enter your postcode</label>
+                        </div>
+                        <button title="Search for your postcode"
+                            class="btn btn-primary submit-background rounded-corners min-width-4rem" type="submit"
+                            id="button-addon2"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
