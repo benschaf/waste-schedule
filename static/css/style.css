@@ -83,6 +83,26 @@ main {
     font-size: 3rem;
 }
 
+#calendar a {
+    text-decoration: unset;
+    color: unset;
+}
+
+#calendar button {
+    background: #5c636a;
+    border-style: none;
+}
+
+#calendar button:hover {
+    background: #5c636ad8;
+    transition: background-color 0.5s;
+}
+
+#calendar div .fc-h-event {
+    background-color: #1c7b47db;
+    border-color: #1c7b47db;
+}
+
 .custom-img-size {
     width: auto;
     height: 100px;
