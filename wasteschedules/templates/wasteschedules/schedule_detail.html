@@ -12,8 +12,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <img class="img-fluid rounded" src="{{ schedule.image.url }}"
-                    alt="{{ schedule }}">
+                <img class="img-fluid rounded" src="{{ schedule.image.url }}" alt="{{ schedule }}">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -22,142 +21,183 @@
     </div>
 </div>
 
+<!-- Return Link -->
 <div class="container mt-5 black-background">
+    <a href="{% url 'schedule_list' location %}"
+        class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Back to Waste
+        Schedule List</a>
+</div>
+
+<!-- Schedule Info -->
+<div class="container mt-5">
     <div class="row row-cols-1 row-cols-sm-2">
         <div class="col">
-            <a href="{% url 'schedule_list' location %}">Back to Waste Schedule List</a>
-            <h1>{{ schedule }}</h1>
-            <p>by {{ schedule.author }}</p>
-            <p>{{ schedule.description }}</p>
+            <h1 class="mb-0">Schedule: {{ schedule }}</h1>
+            <p class="text-muted">
+                Location | {{ schedule.locations.all.first }}
+                <br>
+                Author | {{ schedule.author }}
+            </p>
+            <p>
+            <h4>Description</h4>
+            {{ schedule.description }}
+            </p>
         </div>
         <div class="col">
             {% if "placeholder" in schedule.image.url %}
             No Schedule Image available.
             {% else %}
+            <p>
+            <h4>Schedule Image</h4>
+            </p>
             <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal">
-                <img class="img-fluid custom-img-size rounded img-thumbnail thumbnail-hover" src="{{ schedule.image.url }}"
-                    alt="{{ schedule }}">
+                <img class="img-fluid custom-img-size rounded img-thumbnail thumbnail-hover"
+                    src="{{ schedule.image.url }}" alt="{{ schedule }}">
             </a>
+            <p class="text-muted small">
+                Click on the image to enlarge
+            </p>
             {% endif %}
         </div>
     </div>
+</div>
 
-    <div id="calendar"></div>
-
-    {% if user.is_authenticated %}
-    <form action="{% url 'schedule_like' schedule.slug %}" method="POST" class="d-inline">
-        {% csrf_token %}
-        <button type="submit" name="schedule_id" value="{{ schedule.slug }}" class="btn btn-link">
-            <i class="{% if is_liked %}fas{% else %}far{% endif %} fa-heart"></i>
-        </button>
-    </form>
-    {% else %}
-    <a tabindex="0" class="btn btn-secondary" role="button" data-bs-toggle="popover" data-bs-trigger="focus"
-        data-bs-toggle="popover" data-bs-custom-class="custom-popover"
-        data-bs-content="You need to be logged in to like a Schedule.">
-        <i class="fas fa-heart"></i>
-    </a>
-    {% endif %}
-    <div class="d-inline">{{ like_count }}</div>
-    {% if user.is_authenticated %}
-    <form action="{% url 'schedule_subscribe' schedule.slug %}" method="POST" class="d-inline">
-        {% csrf_token %}
-        {% if is_subscribed %}
-        <div class="dropdown d-inline">
-            <button type="submit" name="schedule_id" value="{{ schedule.slug }}"
-                class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false">Subscribed
-            </button>
-            <ul class="dropdown-menu">
-                <li>
-                    <button type="submit" name="schedule_id" value="{{ schedule.slug }}"
-                        class="dropdown-item">Unsubscribe</button>
-                </li>
-            </ul>
+<!-- Schedule Action Buttons -->
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12 col-md-7">
+            <div id="calendar"></div>
         </div>
-        {% else %}
-        <button type="submit" name="schedule_id" value="{{ schedule.slug }}" class="btn btn-primary">Subscribe</button>
-        {% endif %}
-    </form>
-    {% if schedule.author == user %}
-    <a href="{% url 'edit_schedule' schedule.slug %}" class="btn btn-secondary">Edit Schedule</a>
-    <a href="{% url 'delete_schedule' schedule.slug %}" class="btn btn-danger">Delete Schedule</a>
-    {% endif %}
-    {% else %}
-    <a tabindex="0" class="btn btn-primary" role="button" data-bs-toggle="popover" data-bs-trigger="focus"
-        data-bs-toggle="popover" data-bs-custom-class="custom-popover"
-        data-bs-content="You need to be logged in to Subscribe to a Schedule.">
-        Subscribe
-    </a>
-    {% endif %}
-
-    <hr>
-
-    <h2>Comments</h2>
-    <!-- Creating New Comments -->
-    <!-- -> Credit for crispy forms: https://github.com/Code-Institute-Solutions/blog/tree/main/12_views_part_3/01_posting_to_database -->
-    <div class="col-md-4 card mb-4 mt-3">
-        <div class="card-body">
-            {% if user.is_authenticated %}
-            <h3>Leave a comment:</h3>
-            <p>Posting as: {{ user.username }}</p>
-            <form action="{% url 'schedule_comment' schedule.slug %}" method="POST" style="margin-top: 1.3em;">
-                {{ comment_form | crispy }}
-                {% csrf_token %}
-                <button id="submitButton" type="submit" class="btn btn-signup">Submit</button>
-            </form>
-            {% else %}
-            <p><a href="{% url 'account_login' %}">Log in</a> to leave a comment</p>
-            {% endif %}
-        </div>
-    </div>
-    {% for comment in comments %}
-    <p class="mb-0"><strong>{{ comment.commented_by }}</strong></p>
-    <p id="comment-field-{{ comment.id }}">{{ comment.body }}</p>
-    {% if comment.commented_by == user %}
-
-    <!-- -> Credit for modals: https://getbootstrap.com/docs/5.2/components/modal/ -->
-    <!-- -> Credit for passisng data attributes to js: https://blog.webdevsimplified.com/2020-10/javascript-data-attributes/ -->
-    <!-- -> Credit for passing the CSRF Token and using it in js: https://stackoverflow.com/questions/47527120/how-to-add-assign-csrf-token-in-the-html-submit-form -->
-    <!-- Button trigger modal -->
-    <div class="d-inline">
-        <a type="button" class="btn btn-link text-muted p-0 editButton" id="update-button{{ comment.id }}"
-            data-comment-id="{{ comment.id }}" data-comment-field-id="comment-field-{{ comment.id }}"
-            data-csrf-token="{{ csrf_token }}"
-            data-action-url='{% url "schedule_comment_update" comment.id schedule.slug %}'>
-            Edit
-        </a>
-        &centerdot;
-        <a type="button" class="btn btn-link text-muted p-0" data-bs-toggle="modal"
-            data-bs-target="#delete-modal-{{ comment.id }}">
-            Delete
-        </a>
-    </div>
-
-    <!-- Modal to confirm deletion -->
-    <div class="modal fade" id="delete-modal-{{ comment.id }}" tabindex="-1"
-        aria-labelledby="#modal-label-{{ comment.id }}" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="#modal-label-{{ comment.id }}">Are you sure?</h1>
-                </div>
-                <div class="modal-body">
-                    This will permanently delete your comment.
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Don't delete</button>
-                    <form method="post" action="{% url 'schedule_comment_delete' comment.id %}">
+        <div class="col-12 col-md-5">
+            <div class="row mt-2 mt-md-0 row-gap-3">
+                <div class="col d-flex gap-3">
+                    <!-- Like Button -->
+                    {% if user.is_authenticated %}
+                    <form action="{% url 'schedule_like' schedule.slug %}" method="POST" class="d-inline">
                         {% csrf_token %}
-                        <input type="submit" value="Delete Comment" class="btn btn-danger">
+                        <button type="submit" name="schedule_id" value="{{ schedule.slug }}" class="btn btn-light">
+                            <i class="{% if is_liked %}fas{% else %}far{% endif %} fa-heart link-danger"></i>
+                            <div class="d-inline">{{ like_count }}</div>
+                        </button>
                     </form>
+                    {% else %}
+                    <a tabindex="0" class="btn btn-light" role="button" data-bs-toggle="popover" data-bs-trigger="focus"
+                        data-bs-toggle="popover" data-bs-custom-class="custom-popover"
+                        data-bs-content="You need to be logged in to like a Schedule.">
+                        <i class="fas fa-heart link-danger"></i>
+                        <div class="d-inline">{{ like_count }}</div>
+                    </a>
+                    {% endif %}
+                    <!-- Subscribe Button -->
+                    {% if user.is_authenticated %}
+                    <form action="{% url 'schedule_subscribe' schedule.slug %}" method="POST">
+                        {% csrf_token %}
+                        {% if is_subscribed %}
+                        <div class="dropdown d-inline">
+                            <button type="submit" name="schedule_id" value="{{ schedule.slug }}"
+                                class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">Subscribed
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <button type="submit" name="schedule_id" value="{{ schedule.slug }}"
+                                        class="dropdown-item">Unsubscribe</button>
+                                </li>
+                            </ul>
+                        </div>
+                        {% else %}
+                        <button type="submit" name="schedule_id" value="{{ schedule.slug }}"
+                            class="btn btn-primary submit-background">Subscribe</button>
+                        {% endif %}
+                    </form>
+                </div>
+                <div class="col d-flex gap-3">
+                    <!-- Edit and Delete Buttons -->
+                    {% if schedule.author == user %}
+                    <a href="{% url 'edit_schedule' schedule.slug %}" class="btn btn-secondary text-nowrap">Edit Schedule</a>
+                    <a href="{% url 'delete_schedule' schedule.slug %}" class="btn btn-danger text-nowrap">Delete Schedule</a>
+                    {% endif %}
+                    {% else %}
+                    <a tabindex="0" class="btn btn-primary" role="button" data-bs-toggle="popover"
+                        data-bs-trigger="focus" data-bs-toggle="popover" data-bs-custom-class="custom-popover"
+                        data-bs-content="You need to be logged in to Subscribe to a Schedule.">
+                        Subscribe
+                    </a>
+                    {% endif %}
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    {% endif %}
-    {% endfor %}
+
+<hr>
+
+<h2>Comments</h2>
+<!-- Creating New Comments -->
+<!-- -> Credit for crispy forms: https://github.com/Code-Institute-Solutions/blog/tree/main/12_views_part_3/01_posting_to_database -->
+<div class="col-md-4 card mb-4 mt-3">
+    <div class="card-body">
+        {% if user.is_authenticated %}
+        <h3>Leave a comment:</h3>
+        <p>Posting as: {{ user.username }}</p>
+        <form action="{% url 'schedule_comment' schedule.slug %}" method="POST" style="margin-top: 1.3em;">
+            {{ comment_form | crispy }}
+            {% csrf_token %}
+            <button id="submitButton" type="submit" class="btn btn-signup">Submit</button>
+        </form>
+        {% else %}
+        <p><a href="{% url 'account_login' %}">Log in</a> to leave a comment</p>
+        {% endif %}
+    </div>
+</div>
+{% for comment in comments %}
+<p class="mb-0"><strong>{{ comment.commented_by }}</strong></p>
+<p id="comment-field-{{ comment.id }}">{{ comment.body }}</p>
+{% if comment.commented_by == user %}
+
+<!-- -> Credit for modals: https://getbootstrap.com/docs/5.2/components/modal/ -->
+<!-- -> Credit for passisng data attributes to js: https://blog.webdevsimplified.com/2020-10/javascript-data-attributes/ -->
+<!-- -> Credit for passing the CSRF Token and using it in js: https://stackoverflow.com/questions/47527120/how-to-add-assign-csrf-token-in-the-html-submit-form -->
+<!-- Button trigger modal -->
+<div class="d-inline">
+    <a type="button" class="btn btn-link text-muted p-0 editButton" id="update-button{{ comment.id }}"
+        data-comment-id="{{ comment.id }}" data-comment-field-id="comment-field-{{ comment.id }}"
+        data-csrf-token="{{ csrf_token }}"
+        data-action-url='{% url "schedule_comment_update" comment.id schedule.slug %}'>
+        Edit
+    </a>
+    &centerdot;
+    <a type="button" class="btn btn-link text-muted p-0" data-bs-toggle="modal"
+        data-bs-target="#delete-modal-{{ comment.id }}">
+        Delete
+    </a>
+</div>
+
+<!-- Modal to confirm deletion -->
+<div class="modal fade" id="delete-modal-{{ comment.id }}" tabindex="-1" aria-labelledby="#modal-label-{{ comment.id }}"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="#modal-label-{{ comment.id }}">Are you sure?</h1>
+            </div>
+            <div class="modal-body">
+                This will permanently delete your comment.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Don't delete</button>
+                <form method="post" action="{% url 'schedule_comment_delete' comment.id %}">
+                    {% csrf_token %}
+                    <input type="submit" value="Delete Comment" class="btn btn-danger">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endif %}
+{% endfor %}
 
 </div>
 
