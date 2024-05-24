@@ -3,18 +3,44 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<div class="container">
-    <a href="{% url 'schedule_list' location %}">Back to Waste Schedule List</a>
-    <h1>{{ schedule }}</h1>
-    <p>by {{ schedule.author }}</p>
-    <p>{{ schedule.description }}</p>
-    <p>
-        {% if "placeholder" in schedule.image.url %}
-        No Schedule Image avaliable.
-        {% else %}
-        <img class="card-img-top" src=" {{ schedule.image.url }}" alt="{{ schedule }}">
-        {% endif %}
-    </p>
+<!-- image Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imgLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header d-none">
+                <h1 class="modal-title fs-5" id="imgLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img class="img-fluid rounded" src="{{ schedule.image.url }}"
+                    alt="{{ schedule }}">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5 black-background">
+    <div class="row row-cols-1 row-cols-sm-2">
+        <div class="col">
+            <a href="{% url 'schedule_list' location %}">Back to Waste Schedule List</a>
+            <h1>{{ schedule }}</h1>
+            <p>by {{ schedule.author }}</p>
+            <p>{{ schedule.description }}</p>
+        </div>
+        <div class="col">
+            {% if "placeholder" in schedule.image.url %}
+            No Schedule Image available.
+            {% else %}
+            <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal">
+                <img class="img-fluid custom-img-size rounded img-thumbnail thumbnail-hover" src="{{ schedule.image.url }}"
+                    alt="{{ schedule }}">
+            </a>
+            {% endif %}
+        </div>
+    </div>
 
     <div id="calendar"></div>
 

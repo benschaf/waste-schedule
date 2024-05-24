@@ -8,10 +8,6 @@ h6,
     font-family: "Josefin Sans", sans-serif;
 }
 
-h1 {
-    padding-top: 7rem;
-}
-
 .high-z-index {
     z-index: 1000;
 }
@@ -60,6 +56,12 @@ main {
     transition: background-color 0.5s;
 }
 
+.thumbnail-hover:hover {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.5s;
+
+}
+
 .rounded-corners {
     border-radius: 2rem;
 }
@@ -79,6 +81,11 @@ main {
 .hero-stylized-text {
     font-weight: 900;
     font-size: 3rem;
+}
+
+.custom-img-size {
+    width: auto;
+    height: 100px;
 }
 
 .navbar-background {
