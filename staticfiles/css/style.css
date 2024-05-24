@@ -8,8 +8,8 @@ h6,
     font-family: "Josefin Sans", sans-serif;
 }
 
-h1 {
-    padding-top: 7rem;
+.high-z-index {
+    z-index: 1000;
 }
 
 body {
@@ -41,14 +41,25 @@ main {
     width: fit-content;
 }
 
+.opacity-hover:hover {
+    opacity: 0.8;
+    transition: opacity 0.5s;
+}
+
 .submit-background {
     background: #25a55f;
     border-style: none;
 }
 
 .submit-background:hover {
-    background: #57d992;
+    background: #25a55fd8;
     transition: background-color 0.5s;
+}
+
+.thumbnail-hover:hover {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.5s;
+
 }
 
 .rounded-corners {
@@ -70,6 +81,31 @@ main {
 .hero-stylized-text {
     font-weight: 900;
     font-size: 3rem;
+}
+
+#calendar a {
+    text-decoration: unset;
+    color: unset;
+}
+
+#calendar button {
+    background: #5c636a;
+    border-style: none;
+}
+
+#calendar button:hover {
+    background: #5c636ad8;
+    transition: background-color 0.5s;
+}
+
+#calendar div .fc-h-event {
+    background-color: #1c7b47db;
+    border-color: #1c7b47db;
+}
+
+.custom-img-size {
+    width: auto;
+    height: 100px;
 }
 
 .navbar-background {
