@@ -62,6 +62,10 @@ main {
 
 }
 
+.top-sticky-margin {
+    top: 80px;
+}
+
 .rounded-corners {
     border-radius: 2rem;
 }
