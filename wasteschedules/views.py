@@ -150,6 +150,7 @@ def schedule_comment_edit(request, pk, slug):
 
         if comment_form.is_valid() and comment.commented_by == request.user:
             comment = comment_form.save(commit=False)
+            comment.edited = True
             messages.add_message(request, messages.INFO, "Your comment was edited successfully.")
             comment.save()
     # Do I need an else here to handle get? I am never expecting a get request for this

@@ -154,6 +154,7 @@
 {% for comment in comments %}
 <p class="mb-0"><strong>{{ comment.commented_by }}</strong></p>
 <p id="comment-field-{{ comment.id }}">{{ comment.body }}</p>
+<p class="text-muted">{% if comment.edited %}edited{% endif %}</p>
 {% if comment.commented_by == user %}
 
 <!-- -> Credit for modals: https://getbootstrap.com/docs/5.2/components/modal/ -->

@@ -75,6 +75,7 @@ class Comment(models.Model):
     commented_by = models.ForeignKey(User, on_delete=models.CASCADE)
     schedule_id = models.ForeignKey(Schedule, on_delete=models.CASCADE)
     body = models.TextField()
+    edited = models.BooleanField(default=False)
     created_on = models.DateTimeField(auto_now=True)
 
     class Meta:
