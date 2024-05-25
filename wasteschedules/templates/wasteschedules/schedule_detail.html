@@ -75,7 +75,8 @@
                     {% if user.is_authenticated %}
                     <form action="{% url 'schedule_like' schedule.slug %}" method="POST" class="d-inline">
                         {% csrf_token %}
-                        <button type="submit" name="schedule_id" value="{{ schedule.slug }}" class="btn btn-light text-nowrap" style="white-space: nowrap;">
+                        <button type="submit" name="schedule_id" value="{{ schedule.slug }}"
+                            class="btn btn-light text-nowrap" style="white-space: nowrap;">
                             <i class="{% if is_liked %}fas{% else %}far{% endif %} fa-heart link-danger"></i>
                             <div class="d-inline">{{ like_count }}</div>
                         </button>
@@ -114,8 +115,10 @@
                 <div class="col d-flex gap-3">
                     <!-- Edit and Delete Buttons -->
                     {% if schedule.author == user %}
-                    <a href="{% url 'edit_schedule' schedule.slug %}" class="btn btn-secondary text-nowrap">Edit Schedule</a>
-                    <a href="{% url 'delete_schedule' schedule.slug %}" class="btn btn-danger text-nowrap">Delete Schedule</a>
+                    <a href="{% url 'edit_schedule' schedule.slug %}" class="btn btn-secondary text-nowrap">Edit
+                        Schedule</a>
+                    <a href="{% url 'delete_schedule' schedule.slug %}" class="btn btn-danger text-nowrap">Delete
+                        Schedule</a>
                     {% endif %}
                     {% else %}
                     <a tabindex="0" class="btn btn-primary" role="button" data-bs-toggle="popover"
@@ -131,76 +134,84 @@
 </div>
 
 
-<hr>
 
-<h2>Comments</h2>
-<!-- Creating New Comments -->
-<!-- -> Credit for crispy forms: https://github.com/Code-Institute-Solutions/blog/tree/main/12_views_part_3/01_posting_to_database -->
-<div class="col-md-4 card mb-4 mt-3">
-    <div class="card-body">
-        {% if user.is_authenticated %}
-        <h3>Leave a comment:</h3>
-        <p>Posting as: {{ user.username }}</p>
-        <form action="{% url 'schedule_comment' schedule.slug %}" method="POST" style="margin-top: 1.3em;">
-            {{ comment_form | crispy }}
-            {% csrf_token %}
-            <button id="submitButton" type="submit" class="btn btn-signup">Submit</button>
-        </form>
-        {% else %}
-        <p><a href="{% url 'account_login' %}">Log in</a> to leave a comment</p>
-        {% endif %}
-    </div>
-</div>
-{% for comment in comments %}
-<p class="mb-0"><strong>{{ comment.commented_by }}</strong></p>
-<p id="comment-field-{{ comment.id }}">{{ comment.body }}</p>
-<p class="text-muted">{% if comment.edited %}edited{% endif %}</p>
-{% if comment.commented_by == user %}
-
-<!-- -> Credit for modals: https://getbootstrap.com/docs/5.2/components/modal/ -->
-<!-- -> Credit for passisng data attributes to js: https://blog.webdevsimplified.com/2020-10/javascript-data-attributes/ -->
-<!-- -> Credit for passing the CSRF Token and using it in js: https://stackoverflow.com/questions/47527120/how-to-add-assign-csrf-token-in-the-html-submit-form -->
-<!-- Button trigger modal -->
-<div class="d-inline">
-    <a type="button" class="btn btn-link text-muted p-0 editButton" id="update-button{{ comment.id }}"
-        data-comment-id="{{ comment.id }}" data-comment-field-id="comment-field-{{ comment.id }}"
-        data-csrf-token="{{ csrf_token }}"
-        data-action-url='{% url "schedule_comment_update" comment.id schedule.slug %}'>
-        Edit
-    </a>
-    &centerdot;
-    <a type="button" class="btn btn-link text-muted p-0" data-bs-toggle="modal"
-        data-bs-target="#delete-modal-{{ comment.id }}">
-        Delete
-    </a>
-</div>
-
-<!-- Modal to confirm deletion -->
-<div class="modal fade" id="delete-modal-{{ comment.id }}" tabindex="-1" aria-labelledby="#modal-label-{{ comment.id }}"
-    aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="#modal-label-{{ comment.id }}">Are you sure?</h1>
-            </div>
-            <div class="modal-body">
-                This will permanently delete your comment.
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Don't delete</button>
-                <form method="post" action="{% url 'schedule_comment_delete' comment.id %}">
+<!-- Comments Section -->
+<div class="container mt-5">
+    <h2>Comments</h2>
+    <!-- Creating New Comments -->
+    <!-- -> Credit for crispy forms: https://github.com/Code-Institute-Solutions/blog/tree/main/12_views_part_3/01_posting_to_database -->
+    <div class="row row-cols-1 row-cols-md-2">
+        <div class="col mb-3 order-md-2">
+            <div class="card-body sticky-md-top top-sticky-margin">
+                {% if user.is_authenticated %}
+                <h4>Leave a comment:</h4>
+                <p>Posting as: {{ user.username }}</p>
+                <form action="{% url 'schedule_comment' schedule.slug %}" method="POST" style="margin-top: 1.3em;">
+                    {{ comment_form | crispy }}
                     {% csrf_token %}
-                    <input type="submit" value="Delete Comment" class="btn btn-danger">
+                    <button id="submitButton" type="submit" class="btn btn-light">Comment</button>
                 </form>
+                {% else %}
+                <p><a href="{% url 'account_login' %}">Log in</a> to leave a comment</p>
+                {% endif %}
             </div>
         </div>
+        <div class="col">
+            <ul class="list-group list-group-flush">
+                {% for comment in comments %}
+                <li class="list-group-item ps-0">
+                    <p><i class="fa-regular fa-user"></i>&#160;&#160;{{ comment.commented_by }}{% if comment.edited %} <span class="badge rounded-pill text-bg-light">edited</span>{% endif %}</p>
+                    <p id="comment-field-{{ comment.id }}">{{ comment.body }}</p>
+                    {% if comment.commented_by == user %}
+                    <!-- -> Credit for modals: https://getbootstrap.com/docs/5.2/components/modal/ -->
+                    <!-- -> Credit for passisng data attributes to js: https://blog.webdevsimplified.com/2020-10/javascript-data-attributes/ -->
+                    <!-- -> Credit for passing the CSRF Token and using it in js: https://stackoverflow.com/questions/47527120/how-to-add-assign-csrf-token-in-the-html-submit-form -->
+                    <!-- Button trigger modal -->
+                    <div class="d-inline">
+                        <a type="button" class="btn btn-link text-muted p-0 editButton"
+                            id="update-button{{ comment.id }}" data-comment-id="{{ comment.id }}"
+                            data-comment-field-id="comment-field-{{ comment.id }}" data-csrf-token="{{ csrf_token }}"
+                            data-action-url='{% url "schedule_comment_update" comment.id schedule.slug %}'>
+                            Edit
+                        </a>
+                        &centerdot;
+                        <a type="button" class="btn btn-link text-danger p-0" data-bs-toggle="modal"
+                            data-bs-target="#delete-modal-{{ comment.id }}">
+                            Delete
+                        </a>
+                    </div>
+                    <!-- Modal to confirm deletion -->
+                    <div class="modal fade" id="delete-modal-{{ comment.id }}" tabindex="-1"
+                        aria-labelledby="#modal-label-{{ comment.id }}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="#modal-label-{{ comment.id }}">Are you sure?</h1>
+                                </div>
+                                <div class="modal-body">
+                                    This will permanently delete your comment.
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Don't
+                                        delete</button>
+                                    <form method="post" action="{% url 'schedule_comment_delete' comment.id %}">
+                                        {% csrf_token %}
+                                        <input type="submit" value="Delete Comment" class="btn btn-danger">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
-</div>
-
-{% endif %}
-{% endfor %}
 
 </div>
+
+
 
 {% include 'only_schedule.html' %}
 
