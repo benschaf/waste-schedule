@@ -38,8 +38,8 @@
     <div class="row gy-4">
         {% for schedule in schedule_list %}
         <div class="col-12 col-md-6 col-lg-4">
-            <div class="card">
-                <div class="card-body position-relative">
+            <div class="card text-bg-light border-0 shadow">
+                <div class="card-body position-relative card-hover rounded-top">
                     <a href="{% url 'schedule_detail' postcode schedule.slug %}"
                         class="rounded-circle stretched-link text-decoration-none text-reset opacity-hover">
                         <h2>{{ schedule }}</h2>
