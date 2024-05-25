@@ -2,86 +2,154 @@
 {% load static %}
 {% block content %}
 
+<!-- image Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imgLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header d-none">
+                <h1 class="modal-title fs-5" id="imgLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img class="img-fluid rounded" src="{{ schedule.image.url }}" alt="{{ schedule }}">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Return Link -->
+<div class="container navbar-margin">
+    <a href="{% url 'landing_page' %}"
+        class="link-secondary link-underline-opacity-25 link-underline-opacity-100-hover">Back to the
+        Homepage
+    </a>
+</div>
+
+<!-- Schedule Info -->
+<div class="container mt-5">
+    <h1 class="mb-0">Add bins and events to your Schedule: {{ schedule }}</h1>
+    <p class="text-muted">
+        Location | {{ schedule.locations.all.first }}
+        <br>
+        Author | {{ schedule.author }}
+    </p>
+</div>
 <div class="container">
-    <div>
-        <h1>Add Bins to your Schedule</h1>
-        <p>Schedule Title: {{ schedule }}</p>
-        <p>Schedule Location: {{ postal_code }}</p>
-        <p>Schedule Description{{ schedule.description }}</p>
+    <div class="row">
+        <div class="col-12 col-sm-7 col-lg-4">
+            <p>
+            <h4>Description</h4>
+            {{ schedule.description }}
+            </p>
+        </div>
+        <div class="col-12 col-sm-5 col-lg-8">
+            {% if "placeholder" in schedule.image.url %}
+            No Schedule Image available.
+            {% else %}
+            <p>
+            <h4>Schedule Image</h4>
+            </p>
+            <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal">
+                <img class="img-fluid custom-img-size rounded img-thumbnail thumbnail-hover"
+                    src="{{ schedule.image.url }}" alt="{{ schedule }}">
+            </a>
+            <p class="text-muted small">
+                Click on the image to enlarge
+            </p>
+            {% endif %}
+        </div>
     </div>
+</div>
 
-    <!-- FullCalendar -->
-    <div id='calendar'></div>
 
-    <!-- Modal for Event Creation -->
-    <div class="modal" tabindex="-1" id="createEventModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="create-event-modal-title"></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>
-                        Pick a bin type:
-                        <select name="bin-type" id="bin-type">
-                            <option value="Restmüll">Restmüll</option>
-                            <option value="Biomüll">Biomüll</option>
-                            <option value="Papiermüll">Papiermüll</option>
-                            <option value="Gelbe Tonne">Gelbe Tonne</option>
-                        </select>
-                    </p>
-                    <p>
-                        This bin will be collected every:
-                        <select name="recurrence" id="recurrence">
-                            <option value="0">no recurrence</option>
-                            <option value="1">weekly</option>
-                            <option value="2">every other week</option>
-                            <option value="3">every third week</option>
-                            <option value="4">every fourth week</option>
-                        </select>
-                    </p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="save-event">Save changes</button>
+<!-- Schedule and Action Buttons -->
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12 col-md-7">
+            <!-- Schedule calendar display -->
+            <div id="calendar"></div>
+        </div>
+        <div class="col-12 col-md-5">
+            <div class="row row-cols-md-1 mt-2 mt-md-0 row-gap-3 sticky-md-top top-sticky-margin">
+                <div class="col-5 d-flex gap-3">
+                    <!-- Button to save the events by triggering the POST request -->
+                    <div class="btn btn-primary submit-background" id="submit-button" data-schedule-id="{{ schedule.id }}">Save</div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Modal for Event Deletion -->
-    <div class="modal" tabindex="-1" id="deleteEventModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="delete-event-modal-title"></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>
-                        Pick a bin type:
-                        <select name="delete-select" id="delete-select">
-                            <option value="only this event">only this event</option>
-                            <option value="all the events in this group">all the events in this group</option>
-                        </select>
-                    </p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="delete-event">Delete</button>
-                </div>
+<!-- Modal for Event Creation -->
+<div class="modal" tabindex="-1" id="createEventModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="create-event-modal-title"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Pick a bin type:
+                    <select name="bin-type" id="bin-type">
+                        <option value="Restmüll">Restmüll</option>
+                        <option value="Biomüll">Biomüll</option>
+                        <option value="Papiermüll">Papiermüll</option>
+                        <option value="Gelbe Tonne">Gelbe Tonne</option>
+                    </select>
+                </p>
+                <p>
+                    This bin will be collected every:
+                    <select name="recurrence" id="recurrence">
+                        <option value="0">no recurrence</option>
+                        <option value="1">weekly</option>
+                        <option value="2">every other week</option>
+                        <option value="3">every third week</option>
+                        <option value="4">every fourth week</option>
+                    </select>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="save-event">Save changes</button>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- CSRF Token for the POST method that sends the events json data -->
-    <form method="post">
-        {% csrf_token %}
-    </form>
+<!-- Modal for Event Deletion -->
+<div class="modal" tabindex="-1" id="deleteEventModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="delete-event-modal-title"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Pick a bin type:
+                    <select name="delete-select" id="delete-select">
+                        <option value="only this event">only this event</option>
+                        <option value="all the events in this group">all the events in this group</option>
+                    </select>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="delete-event">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <!-- Button to save the events by triggering the POST request -->
-    <div class="btn btn-primary" id="submit-button" data-schedule-id="{{ schedule.id }}">Save</div>
+<!-- CSRF Token for the POST method that sends the events json data -->
+<form method="post">
+    {% csrf_token %}
+</form>
+
 </div>
 
 <!-- Json string of events in this schedule -->
