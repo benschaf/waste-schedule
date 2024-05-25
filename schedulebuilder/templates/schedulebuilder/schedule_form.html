@@ -2,17 +2,31 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<div class="container">
-<a href="{% url 'landing_page' %}">Back to the Homepage</a>
-<h1>Create a new schedule</h1>
-<p>
-    Location: {{ postal_code }}
-</p>
-<!-- -> Credit for uploading a file using a form: https://www.w3schools.com/tags/att_form_enctype.asp -->
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form|crispy }}
-    <button type="submit" class="btn btn-primary">Next</button>
-</form>
+
+<!-- Schedule Form -->
+<div class="container navbar-margin">
+    <div class="row justify-content-center mt-3">
+        <div class="col col-lg-5">
+            <!-- Return Link -->
+            <a href="{% url 'landing_page' %}"
+                class="link-secondary link-underline-opacity-25 link-underline-opacity-100-hover">Back to the
+                Homepage
+            </a>
+            <div class="card mt-2">
+                <div class="card-body p-5">
+                    <h1>Create a new schedule</h1>
+                    <p>
+                        Location: {{ postal_code }}
+                    </p>
+                    <!-- -> Credit for uploading a file using a form: https://www.w3schools.com/tags/att_form_enctype.asp -->
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <button type="submit" class="btn btn-primary submit-background">Next</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

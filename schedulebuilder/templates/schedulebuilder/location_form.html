@@ -3,17 +3,19 @@
 {% block content %}
 
 <div class="container navbar-margin">
-    <!-- Return Link -->
-    <div class="containerd navbar-margin">
-        <a href="{% url 'landing_page' %}"
-            class="link-secondary link-underline-opacity-25 link-underline-opacity-100-hover">Back to the Homepage</a>
 
+    <!-- Location Form -->
+    <div class="container">
         <div class="row justify-content-center mt-3">
             <div class="col col-lg-5">
-                <div class="card">
+                <!-- Return Link -->
+                <a href="{% url 'landing_page' %}"
+                    class="link-secondary link-underline-opacity-25 link-underline-opacity-100-hover">Back to the
+                    Homepage
+                </a>
+                <div class="card mt-2">
                     <div class="card-body p-5">
                         <h1>Pick a Location</h1>
-                        <!-- Location Form -->
                         <form method="POST">
                             {% csrf_token %}
                             {{ form|crispy }}
