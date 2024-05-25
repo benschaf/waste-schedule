@@ -1,15 +1,28 @@
-
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
 
-<div class="container">
-<a href="{% url 'landing_page' %}">Back to the Homepage</a>
-<h1>Pick a Location</h1>
-<form method="POST">
-    {% csrf_token %}
-    {{ form|crispy }}
-    <button type="submit" class="btn btn-primary">Next</button>
-</form>
+<div class="container navbar-margin">
+    <!-- Return Link -->
+    <div class="containerd navbar-margin">
+        <a href="{% url 'landing_page' %}"
+            class="link-secondary link-underline-opacity-25 link-underline-opacity-100-hover">Back to the Homepage</a>
+
+        <div class="row justify-content-center mt-3">
+            <div class="col col-lg-5">
+                <div class="card">
+                    <div class="card-body p-5">
+                        <h1>Pick a Location</h1>
+                        <!-- Location Form -->
+                        <form method="POST">
+                            {% csrf_token %}
+                            {{ form|crispy }}
+                            <button type="submit" class="btn btn-primary submit-background">Next</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
