@@ -12,6 +12,10 @@ h6,
     z-index: 1000;
 }
 
+.navbar-margin {
+    margin-top: 80px;
+}
+
 body {
     font-family: "Lato", sans-serif;
     /* stick footer to bottom */
