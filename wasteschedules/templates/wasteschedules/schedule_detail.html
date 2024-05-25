@@ -69,13 +69,13 @@
             <div id="calendar"></div>
         </div>
         <div class="col-12 col-md-5">
-            <div class="row mt-2 mt-md-0 row-gap-3">
-                <div class="col d-flex gap-3">
+            <div class="row row-cols-md-1 mt-2 mt-md-0 row-gap-3">
+                <div class="col-5 d-flex gap-3">
                     <!-- Like Button -->
                     {% if user.is_authenticated %}
                     <form action="{% url 'schedule_like' schedule.slug %}" method="POST" class="d-inline">
                         {% csrf_token %}
-                        <button type="submit" name="schedule_id" value="{{ schedule.slug }}" class="btn btn-light">
+                        <button type="submit" name="schedule_id" value="{{ schedule.slug }}" class="btn btn-light text-nowrap" style="white-space: nowrap;">
                             <i class="{% if is_liked %}fas{% else %}far{% endif %} fa-heart link-danger"></i>
                             <div class="d-inline">{{ like_count }}</div>
                         </button>
