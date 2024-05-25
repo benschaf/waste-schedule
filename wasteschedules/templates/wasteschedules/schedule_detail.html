@@ -30,20 +30,22 @@
 
 <!-- Schedule Info -->
 <div class="container mt-5">
-    <div class="row row-cols-1 row-cols-sm-2">
-        <div class="col">
-            <h1 class="mb-0">Schedule: {{ schedule }}</h1>
-            <p class="text-muted">
-                Location | {{ schedule.locations.all.first }}
-                <br>
-                Author | {{ schedule.author }}
-            </p>
+    <h1 class="mb-0">Schedule: {{ schedule }}</h1>
+    <p class="text-muted">
+        Location | {{ schedule.locations.all.first }}
+        <br>
+        Author | {{ schedule.author }}
+    </p>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm-7">
             <p>
             <h4>Description</h4>
             {{ schedule.description }}
             </p>
         </div>
-        <div class="col">
+        <div class="col-12 col-sm-5">
             {% if "placeholder" in schedule.image.url %}
             No Schedule Image available.
             {% else %}
@@ -160,7 +162,9 @@
             <ul class="list-group list-group-flush">
                 {% for comment in comments %}
                 <li class="list-group-item ps-0">
-                    <p><i class="fa-regular fa-user"></i>&#160;&#160;{{ comment.commented_by }}{% if comment.edited %} <span class="badge rounded-pill text-bg-light">edited</span>{% endif %}</p>
+                    <p><i class="fa-regular fa-user"></i>&#160;&#160;{{ comment.commented_by }}{% if comment.edited %}
+                        <span class="badge rounded-pill text-bg-light">edited</span>{% endif %}
+                    </p>
                     <p id="comment-field-{{ comment.id }}">{{ comment.body }}</p>
                     {% if comment.commented_by == user %}
                     <!-- -> Credit for modals: https://getbootstrap.com/docs/5.2/components/modal/ -->
