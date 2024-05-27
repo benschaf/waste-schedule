@@ -4,7 +4,7 @@
 {% block content %}
 
 <div class="container navbar-margin">
-    {% if postcode == '0' %}
+    {% if postcode == '0' or postcode == '1' %}
     <h1>Waste Schedules</h1>
     {% else %}
     <h1>Waste Schedules for: {{ postcode }}</h1>

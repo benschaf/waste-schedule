@@ -40,8 +40,12 @@ class ScheduleList(ListView):
         queryset = super().get_queryset()
         # -> Credit for getting positional arguments within the get queryset function: https://docs.djangoproject.com/en/5.0/topics/class-based-views/generic-display/#dynamic-filtering
         postcode = self.kwargs['postcode']
-        if (postcode != '0'):
-            postcode_obj = get_object_or_404(PostalCode, postal_code=postcode)
+        if postcode != '0':
+            postcode_obj = None
+            try:
+                postcode_obj = PostalCode.objects.get(postal_code=postcode)
+            except PostalCode.DoesNotExist:
+                postcode_obj = None
             queryset = queryset.filter(locations=postcode_obj)
         return queryset
 
@@ -143,7 +147,8 @@ def schedule_comment_edit(request, pk, slug):
         comment = get_object_or_404(Comment, pk=pk)
         if comment.commented_by != request.user:
             # instead of the response forbidden add a django message - and then delete return redirect to url that makes sense
-            messages.add_message(request, messages.ERROR, "You are not the owner of this coment.")
+            messages.add_message(request, messages.ERROR,
+                                 "You are not the owner of this coment.")
             return redirect(request.META.get('HTTP_REFERER', 'landing_page'))
 
         comment_form = CommentForm(data=request.POST, instance=comment)
@@ -151,12 +156,13 @@ def schedule_comment_edit(request, pk, slug):
         if comment_form.is_valid() and comment.commented_by == request.user:
             comment = comment_form.save(commit=False)
             comment.edited = True
-            messages.add_message(request, messages.INFO, "Your comment was edited successfully.")
+            messages.add_message(request, messages.INFO,
+                                 "Your comment was edited successfully.")
             comment.save()
     # Do I need an else here to handle get? I am never expecting a get request for this
 
     postcode = comment.schedule_id.locations.all()[0]
-    return HttpResponseRedirect(reverse('schedule_detail', kwargs={'postcode' : postcode, 'slug': slug}))
+    return HttpResponseRedirect(reverse('schedule_detail', kwargs={'postcode': postcode, 'slug': slug}))
 
 
 class ScheduleCommentDelete(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
@@ -167,7 +173,8 @@ class ScheduleCommentDelete(LoginRequiredMixin, SuccessMessageMixin, DeleteView)
     def get_object(self):
         obj = super().get_object(queryset=None)
         if not obj.commented_by == self.request.user:
-            messages.add_message(self.request, messages.ERROR, "You are not the owner of this coment.")
+            messages.add_message(self.request, messages.ERROR,
+                                 "You are not the owner of this coment.")
             return redirect(self.request.META.get('HTTP_REFERER', 'landing_page'))
         return obj
 
@@ -186,11 +193,13 @@ class ScheduleLike(LoginRequiredMixin, View):
         if not Like.objects.filter(schedule_id=schedule.id, liked_by=request.user.id).exists():
             l = Like(schedule_id=schedule, liked_by=request.user)
             l.save()
-            messages.add_message(self.request, messages.SUCCESS, f"Successfully liked {schedule}")
+            messages.add_message(self.request, messages.SUCCESS,
+                                 f"Successfully liked {schedule}")
         else:
             Like.objects.filter(schedule_id=schedule.id,
                                 liked_by=request.user.id).delete()
-            messages.add_message(self.request, messages.SUCCESS, f"Successfully removed like from {schedule}")
+            messages.add_message(self.request, messages.SUCCESS,
+                                 f"Successfully removed like from {schedule}")
         return redirect(request.META.get('HTTP_REFERER', 'landing_page'))
 
 
@@ -200,11 +209,13 @@ class ScheduleSubscribe(View):
         if not Subscription.objects.filter(schedule_id=schedule.id, subscribed_by=request.user.id).exists():
             s = Subscription(schedule_id=schedule, subscribed_by=request.user)
             s.save()
-            messages.add_message(self.request, messages.SUCCESS, f"Successfully subscribed to {schedule}")
+            messages.add_message(self.request, messages.SUCCESS,
+                                 f"Successfully subscribed to {schedule}")
         else:
             Subscription.objects.filter(
                 schedule_id=schedule.id, subscribed_by=request.user.id).delete()
-            messages.add_message(self.request, messages.SUCCESS, f"Successfully unsubscribed from {schedule}")
+            messages.add_message(self.request, messages.SUCCESS,
+                                 f"Successfully unsubscribed from {schedule}")
 
         return redirect(request.META.get('HTTP_REFERER', 'wasteschedules/'))
 
@@ -217,8 +228,9 @@ class Dashboard(LoginRequiredMixin, TemplateView):
 
         # is it safe to add the user to the context like this?
         context['user'] = self.request.user
-        context['subscribed_schedules'] = Schedule.objects.filter(subscription__subscribed_by=self.request.user)
-        context['owned_schedules'] = Schedule.objects.filter(author=self.request.user)
+        context['subscribed_schedules'] = Schedule.objects.filter(
+            subscription__subscribed_by=self.request.user)
+        context['owned_schedules'] = Schedule.objects.filter(
+            author=self.request.user)
 
         return context
-
