@@ -9,7 +9,12 @@ h6,
 }
 
 .high-z-index {
-    z-index: 1000;
+    /* SO many times i had to increase this number... */
+    z-index: 10000000;
+}
+
+.navbar-margin {
+    margin-top: 80px;
 }
 
 body {
