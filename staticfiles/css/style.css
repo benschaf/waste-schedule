@@ -67,6 +67,15 @@ main {
 
 }
 
+.card-hover:hover {
+    background-color: #25a55f36;
+    transition: background-color 0.5s;
+}
+
+.top-sticky-margin {
+    top: 80px;
+}
+
 .rounded-corners {
     border-radius: 2rem;
 }
