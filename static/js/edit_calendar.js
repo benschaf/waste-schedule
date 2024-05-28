@@ -123,10 +123,9 @@ function renderCalendar() {
             createEvent(info.dateStr);
         },
         eventMouseEnter: function (info) {
-            info.el.style.backgroundColor = 'lightblue';
+            info.el.style.backgroundColor = '#1c7b47ff';
             info.el.style.border = 'none';
             info.el.style.color = 'white';
-            info.el.innerHTML += '<i class="fas fa-trash-alt"></i>';
         },
         eventMouseLeave: function (info) {
             info.el.style.backgroundColor = '';
