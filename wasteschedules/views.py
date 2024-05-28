@@ -27,18 +27,26 @@ class ScheduleList(ListView):
     A view that displays a list of schedules.
 
     Attributes:
+        model (Model): The model to be used for the queryset.
         template_name (str): The name of the template to be used.
-        queryset (QuerySet): The queryset to be used.
 
     Methods:
+        get_queryset: Returns the queryset to be used for the view.
         get_context_data: Adds additional context data to the view.
     """
     model = Schedule
     template_name = 'wasteschedules/schedule_list.html'
 
     def get_queryset(self):
+        """
+        Returns the queryset to be used for the view.
+
+        If a valid postcode is provided, filters the queryset based on the locations associated with the postcode.
+
+        Returns:
+            QuerySet: The filtered queryset.
+        """
         queryset = super().get_queryset()
-        # -> Credit for getting positional arguments within the get queryset function: https://docs.djangoproject.com/en/5.0/topics/class-based-views/generic-display/#dynamic-filtering
         postcode = self.kwargs['postcode']
         if postcode != '0':
             postcode_obj = None
@@ -54,10 +62,13 @@ class ScheduleList(ListView):
         Adds additional context data to the view.
 
         Additional context data:
+        - schedule_list: The list of schedules annotated with the count of likes.
+        - user_likes: The list of schedule IDs liked by the current user.
+        - user_subscriptions: The list of schedule IDs subscribed by the current user.
+        - postcode: The postcode associated with the view.
 
         Returns:
             dict: The context data.
-
         """
         context = super().get_context_data(**kwargs)
         # Maybe use comments to show one single comment at the top like for example under a youtube video
@@ -125,6 +136,12 @@ class ScheduleDetail(DetailView):
 
 # -> Credit for using the LoginRequiredMixin: https://docs.djangoproject.com/en/5.0/topics/auth/default/#the-loginrequiredmixin-mixin
 class ScheduleComment(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+    """
+    A view for creating comments on a schedule.
+
+    Inherits from LoginRequiredMixin, SuccessMessageMixin, and CreateView.
+    """
+
     model = Comment
     fields = ['body']
     login_url = '/accounts/login/'
@@ -140,7 +157,22 @@ class ScheduleComment(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 # -> Credit for edit view: https://github.com/Code-Institute-Solutions/blog/tree/main/12_views_part_3/05_edit_delete
 def schedule_comment_edit(request, pk, slug):
     """
-    view to edit comments
+    View to edit comments.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        pk (int): The primary key of the comment to be edited.
+        slug (str): The slug of the schedule.
+
+    Returns:
+        HttpResponseRedirect: Redirects to the schedule detail page.
+
+    Notes:
+        - This view expects a POST request to edit the comment.
+        - If the comment does not belong to the current user, a Django message with an error is added.
+        - If the comment is successfully edited, a Django message with a success message is added.
+        - After editing the comment, the user is redirected to the schedule detail page.
+
     """
     if request.method == "POST":
 
@@ -148,7 +180,7 @@ def schedule_comment_edit(request, pk, slug):
         if comment.commented_by != request.user:
             # instead of the response forbidden add a django message - and then delete return redirect to url that makes sense
             messages.add_message(request, messages.ERROR,
-                                 "You are not the owner of this coment.")
+                                 "You are not the owner of this comment.")
             return redirect(request.META.get('HTTP_REFERER', 'landing_page'))
 
         comment_form = CommentForm(data=request.POST, instance=comment)
@@ -166,26 +198,64 @@ def schedule_comment_edit(request, pk, slug):
 
 
 class ScheduleCommentDelete(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
-    model = Comment
-    success_message = "Your comment was deleted succesfully."
+    """
+    A view for deleting a comment from the schedule.
 
-# i am not sure if this works correctly
+    Inherits from LoginRequiredMixin, SuccessMessageMixin, and DeleteView.
+    """
+
+    model = Comment
+    success_message = "Your comment was deleted successfully."
+
     def get_object(self):
+        """
+        Retrieve the comment object to be deleted.
+
+        If the comment is not owned by the current user, an error message is added
+        and the user is redirected to the previous page.
+
+        Returns:
+            The comment object to be deleted.
+        """
         obj = super().get_object(queryset=None)
         if not obj.commented_by == self.request.user:
             messages.add_message(self.request, messages.ERROR,
-                                 "You are not the owner of this coment.")
+                                 "You are not the owner of this comment.")
             return redirect(self.request.META.get('HTTP_REFERER', 'landing_page'))
         return obj
 
     def get_success_url(self):
+        """
+        Get the URL to redirect to after the comment is successfully deleted.
+
+        Returns:
+            Redirects to the landing page
+        """
         return self.request.META.get('HTTP_REFERER', reverse_lazy('landing_page'))
 
 
 class ScheduleLike(LoginRequiredMixin, View):
+    """
+    Handles the liking and unliking of a schedule by a user.
+    """
+
     login_url = '/accounts/login/'
 
     def post(self, request, slug):
+        """
+        Handle the HTTP POST request for liking or removing a like from a schedule.
+
+        Args:
+            request (HttpRequest): The HTTP request object.
+            slug (str): The slug of the schedule.
+
+        Returns:
+            HttpResponseRedirect: A redirect response to the previous page.
+
+        Raises:
+            Http404: If the schedule with the given slug does not exist.
+
+        """
         schedule = get_object_or_404(Schedule, slug=slug)
         # -> Credit for creating an object: https://docs.djangoproject.com/en/5.0/topics/db/queries/#creating-objects
         # -> Credit for deleting an object: https://docs.djangoproject.com/en/5.0/topics/db/queries/#deleting-objects
@@ -204,7 +274,28 @@ class ScheduleLike(LoginRequiredMixin, View):
 
 
 class ScheduleSubscribe(View):
+    """
+    View class for subscribing or unsubscribing to a schedule.
+
+    Methods:
+    - post(request, slug): Handles the POST request for subscribing or unsubscribing to a schedule.
+    """
+
     def post(self, request, slug):
+        """
+        Handle the HTTP POST request for subscribing/unsubscribing to a schedule.
+
+        Args:
+            request (HttpRequest): The HTTP request object.
+            slug (str): The slug of the schedule.
+
+        Returns:
+            HttpResponseRedirect: A redirect response to the previous page.
+
+        Raises:
+            None
+
+        """
         schedule = get_object_or_404(Schedule, slug=slug)
         if not Subscription.objects.filter(schedule_id=schedule.id, subscribed_by=request.user.id).exists():
             s = Subscription(schedule_id=schedule, subscribed_by=request.user)
@@ -221,9 +312,38 @@ class ScheduleSubscribe(View):
 
 
 class Dashboard(LoginRequiredMixin, TemplateView):
+    """
+    A view class representing the dashboard page.
+
+    This view displays the dashboard page, which includes information about the user's subscribed schedules
+    and schedules they own.
+
+    Attributes:
+        template_name (str): The name of the template used to render the dashboard page.
+
+    Methods:
+        get_context_data(**kwargs): Retrieves the context data for rendering the dashboard page.
+
+    """
+
     template_name = 'wasteschedules/dashboard.html'
 
     def get_context_data(self, **kwargs) -> dict[str, Any]:
+        """
+        Retrieves the context data for rendering the dashboard page.
+
+        Additional context data:
+        - user: The current user.
+        - subscribed_schedules: The schedules subscribed to by the current user.
+        - owned_schedules: The schedules owned by the current user.
+
+        Args:
+            **kwargs: Additional keyword arguments.
+
+        Returns:
+            dict[str, Any]: The context data for rendering the dashboard page.
+
+        """
         context = super().get_context_data(**kwargs)
 
         # is it safe to add the user to the context like this?

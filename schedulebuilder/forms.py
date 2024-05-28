@@ -2,10 +2,21 @@ from wasteschedules.models import PostalCode, validate_postal_code
 from django import forms
 
 class PostalCodeForm(forms.ModelForm):
+    """
+    A form for handling postal codes.
+
+    This form is used to collect and validate postal codes.
+
+    Attributes:
+        postal_code (str): The postal code entered by the user.
+
+    Methods:
+        validate_unique(): Custom method to skip unique validation.
+                           Unique validation is performed later on in the view
+    """
     class Meta:
         model = PostalCode
         fields = ['postal_code']
 
-    # -> Credit for skipping the unique validation goes to:
     def validate_unique(self):
         pass
