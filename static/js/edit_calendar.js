@@ -73,11 +73,18 @@ function createEvent(date) {
 }
 
 
-// This should handle Event removal but it is not working yet
+// The function below should handle Event removal but it is not working yet
 // To get this to work I need to add exdates to the rrule in the event object
 // It just cant get the exdate property from the calendar which doesn't let me edit it .........
 // it might work if i change the calendar library import to NPM but i don't know if i want to do that ...
 // what i could also do instead is convert the whole rrule property into a string. https://stackoverflow.com/questions/56580678/is-exdate-not-included-in-rrule-for-full-calendar
+
+/**
+ * Handles the deletion of an event.
+ * @param {Event} event - The event object.
+ * @param {Object} info - Additional information about the event.
+ * @param {HTMLElement} submitButton - The submit button element.
+ */
 function handleDeletion(event, info, submitButton) {
     //maybe i can just remove prevent default
     event.preventDefault();
@@ -107,10 +114,9 @@ function getJsonEvents() {
 }
 
 /**
- * Renders the calendar with the provided event data.
- * Adjusts the Settings of the FullCalendar
+ * Renders the calendar using FullCalendar library.
  *
- * @function renderCalendar
+ * @returns {void}
  */
 function renderCalendar() {
     json_events = getJsonEvents();
@@ -123,7 +129,7 @@ function renderCalendar() {
             createEvent(info.dateStr);
         },
         eventMouseEnter: function (info) {
-            info.el.style.backgroundColor = '#1c7b47ff';
+            info.el.style.backgroundColor = '#1c7b47db';
             info.el.style.border = 'none';
             info.el.style.color = 'white';
         },
