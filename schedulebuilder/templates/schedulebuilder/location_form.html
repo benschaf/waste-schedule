@@ -3,25 +3,22 @@
 {% block content %}
 
 <div class="container navbar-margin">
-
     <!-- Location Form -->
-    <div class="container">
-        <div class="row justify-content-center mt-3">
-            <div class="col col-lg-5">
-                <!-- Return Link -->
-                <a href="{% url 'landing_page' %}"
-                    class="link-secondary link-underline-opacity-25 link-underline-opacity-100-hover">Back to the
-                    Homepage
-                </a>
-                <div class="card mt-2">
-                    <div class="card-body p-5">
-                        <h1>Pick a Location</h1>
-                        <form method="POST">
-                            {% csrf_token %}
-                            {{ form|crispy }}
-                            <button type="submit" class="btn btn-primary submit-background">Next</button>
-                        </form>
-                    </div>
+    <div class="row justify-content-center mt-3">
+        <div class="col col-lg-5">
+            <!-- Return Link -->
+            <a href="{% url 'landing_page' %}"
+                class="link-secondary link-underline-opacity-25 link-underline-opacity-100-hover">Back to the
+                Homepage
+            </a>
+            <div class="card mt-2">
+                <div class="card-body p-5">
+                    <h1>Pick a Location</h1>
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <button type="submit" class="btn btn-primary submit-background">Next</button>
+                    </form>
                 </div>
             </div>
         </div>
