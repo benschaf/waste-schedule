@@ -5,3 +5,6 @@ from django.views.generic import TemplateView
 
 class LandingPage(TemplateView):
     template_name = 'core/index.html'
+
+class AboutPage(TemplateView):
+    template_name = 'core/about.html'
