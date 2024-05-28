@@ -1,22 +1,16 @@
-from django.utils import timezone
 import json
 from typing import Any
 from django.forms import BaseModelForm
-from django.http import HttpRequest, HttpResponseForbidden, HttpResponseRedirect, JsonResponse
+from django.http import HttpRequest, HttpResponseRedirect, JsonResponse
 from django.http.response import HttpResponse
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
-from django.views import View
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from django.contrib.auth.decorators import login_required
-from django.core.exceptions import PermissionDenied
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 from .models import Event
 from wasteschedules.models import Schedule, PostalCode
 from .forms import PostalCodeForm
-from django.views.decorators.csrf import csrf_exempt
-from django.utils.decorators import method_decorator
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 

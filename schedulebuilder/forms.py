@@ -1,4 +1,4 @@
-from wasteschedules.models import PostalCode, validate_postal_code
+from wasteschedules.models import PostalCode
 from django import forms
 
 class PostalCodeForm(forms.ModelForm):

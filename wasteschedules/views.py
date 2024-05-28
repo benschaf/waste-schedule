@@ -2,15 +2,12 @@ import json
 from typing import Any
 from django.db.models import Count
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models.query import QuerySet
-from django.http import Http404, HttpRequest, HttpResponseForbidden, HttpResponseRedirect
-from django.http.response import HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 from django.views import View
 from django.views.generic import ListView, DetailView, TemplateView
-from django.views.generic.edit import CreateView, DeleteView, UpdateView
-
+from django.views.generic.edit import CreateView, DeleteView
 from schedulebuilder.views import _event_to_json
 from schedulebuilder.models import Event
 from .models import Schedule, Comment, Like, Subscription, PostalCode
