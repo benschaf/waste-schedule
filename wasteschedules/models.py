@@ -61,7 +61,7 @@ def validate_postal_code(value):
 
 class PostalCode(models.Model):
     postal_code = models.CharField(
-        validators=[validate_postal_code], unique=True)
+        validators=[validate_postal_code], max_length=5, unique=True)
 
     def __str__(self):
         return self.postal_code
