@@ -180,17 +180,30 @@ class ScheduleCommentTestCase(TestCase):
         Set up the necessary objects and data for the test case.
         """
         self.user = User.objects.create_user(username='testuser', password='12345')
+        self.client.login(username='testuser', password='12345')
         self.schedule = Schedule.objects.create(
             title='test schedule',
             author=self.user,
         )
         self.schedule.locations.add(PostalCode.objects.create(postal_code='12345'))
 
+    def test_comment_submission_while_logged_out(self):
+        """
+        This test verifies that when a user is logged out and tries to submit a comment,
+        the comment is not saved and the response status code is 302 (redirect).
+        """
+        post_data = {
+            'body': 'Test comment',
+        }
+        self.client.logout()
+        response = self.client.post(reverse('schedule_comment', kwargs={'slug': self.schedule.slug}), post_data)
+        self.assertEqual(response.status_code, 302)
+        self.assertFalse(Comment.objects.filter(body='Test comment').exists())
+
     def test_successful_comment_submission(self):
         """
         Tests if a comment is successfully submitted.
         """
-        self.client.login(username='testuser', password='12345')
         post_data = {
             'body': 'Test comment',
         }
@@ -198,4 +211,109 @@ class ScheduleCommentTestCase(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertTrue(Comment.objects.filter(body='Test comment').exists())
 
+    def test_empty_comment_submission(self):
+        """
+        Tests if a comment is not submitted if it is empty.
+        """
+        post_data = {
+            'body': '',
+        }
+        response = self.client.post(reverse('schedule_comment', kwargs={'slug': self.schedule.slug}), post_data)
+        self.assertEqual(response.status_code, 302)
+        self.assertFalse(Comment.objects.filter(body='').exists())
 
+
+class ScheduleCommentEditTestCase(TestCase):
+    """
+    Test case for the schedule_comment_edit view.
+    """
+
+    def setUp(self):
+        """
+        Set up the necessary objects and data for the test case.
+        """
+        self.user = User.objects.create_user(username='testuser', password='12345')
+        self.postal_code = PostalCode.objects.create(postal_code='12345')
+        self.schedule = Schedule.objects.create(
+            title='test schedule',
+            author=self.user,
+        )
+        self.schedule.locations.add(self.postal_code)
+        self.comment = Comment.objects.create(
+            schedule_id=self.schedule,
+            commented_by=self.user,
+            body='Test comment',
+        )
+
+    def test_schedule_comment_edit(self):
+        """
+        Tests if the comment is successfully edited.
+        """
+        self.client.login(username='testuser', password='12345')
+        new_comment_body = 'Updated comment'
+        response = self.client.post(reverse('schedule_comment_update', kwargs={'pk': self.comment.pk, 'slug': self.schedule.slug}), {'body': new_comment_body})
+        self.assertEqual(response.status_code, 302)
+        # -> Credit for refreshing the object from the database: https://stackoverflow.com/questions/4377861/reload-django-object-from-database
+        self.comment.refresh_from_db()
+        self.assertEqual(self.comment.body, new_comment_body)
+
+    def test_schedule_comment_edit_unauthorized(self):
+        """
+        Tests if an unauthorized user is prevented from editing the comment.
+        """
+        self.client.login(username='unauthorized', password='12345')
+        new_comment_body = 'Updated comment'
+        response = self.client.post(reverse('schedule_comment_update', kwargs={'pk': self.comment.pk, 'slug': self.schedule.slug}), {'body': new_comment_body})
+        self.assertEqual(response.status_code, 302)
+        self.comment.refresh_from_db()
+        self.assertNotEqual(self.comment.body, new_comment_body)
+
+    def test_schedule_comment_edit_empty_comment(self):
+        """
+        Tests if an empty comment is not allowed.
+        """
+        self.client.login(username='testuser', password='12345')
+        new_comment_body = ''
+        response = self.client.post(reverse('schedule_comment_update', kwargs={'pk': self.comment.pk, 'slug': self.schedule.slug}), {'body': new_comment_body})
+        self.assertEqual(response.status_code, 302)
+        self.comment.refresh_from_db()
+        self.assertNotEqual(self.comment.body, new_comment_body)
+
+
+class ScheduleCommentDeleteTestCase(TestCase):
+    """
+    Test case for the ScheduleCommentDelete view.
+    """
+
+    def setUp(self):
+        """
+        Set up the necessary objects and data for the test case.
+        """
+        self.user = User.objects.create_user(username='testuser', password='12345')
+        self.schedule = Schedule.objects.create(
+            title='test schedule',
+            author=self.user,
+        )
+        self.comment = Comment.objects.create(
+            schedule_id=self.schedule,
+            commented_by=self.user,
+            body='Test comment',
+        )
+
+    def test_delete_comment(self):
+        """
+        Tests if the comment is successfully deleted.
+        """
+        self.client.login(username='testuser', password='12345')
+        response = self.client.post(reverse('schedule_comment_delete', kwargs={'pk': self.comment.pk}))
+        self.assertEqual(response.status_code, 302)
+        self.assertFalse(Comment.objects.filter(pk=self.comment.pk).exists())
+
+    def test_delete_comment_unauthorized(self):
+        """
+        Tests if an unauthorized user cannot delete the comment.
+        """
+        self.client.login(username='unauthorized', password='12345')
+        response = self.client.post(reverse('schedule_comment_delete', kwargs={'pk': self.comment.pk}))
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(Comment.objects.filter(pk=self.comment.pk).exists())
