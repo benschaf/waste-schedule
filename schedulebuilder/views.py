@@ -68,8 +68,6 @@ class CreateSchedule(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     Inherits from LoginRequiredMixin, SuccessMessageMixin, and CreateView.
     """
 
-    login_url = reverse_lazy('account_login')
-    redirect_field_name = None
     model = Schedule
     fields = ('title', 'description', 'image',)
     template_name = 'schedulebuilder/schedule_form.html'
