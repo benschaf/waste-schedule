@@ -339,3 +339,55 @@ class ScheduleCommentDeleteTestCase(TestCase):
         response = self.client.post(reverse('schedule_comment_delete', kwargs={'pk': self.comment.pk}))
         self.assertEqual(response.status_code, 302)
         self.assertTrue(Comment.objects.filter(pk=self.comment.pk).exists())
+
+
+class ScheduleLikeTestCase(TestCase):
+    """
+    Test case for the ScheduleLike view.
+    """
+
+    def setUp(self):
+        """
+        Set up the necessary objects and data for the test case.
+        """
+        self.user = User.objects.create_user(username='testuser', password='12345')
+        self.schedule = Schedule.objects.create(
+            title='test schedule',
+            author=self.user,
+        )
+
+    def test_like_schedule(self):
+        """
+        Tests if a schedule can be liked.
+        """
+        self.client.login(username='testuser', password='12345')
+        response = self.client.post(reverse('schedule_like', kwargs={'slug': self.schedule.slug}))
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(Like.objects.filter(schedule_id=self.schedule.id, liked_by=self.user).exists())
+
+    def test_unlike_schedule(self):
+        """
+        Tests if a like can be removed from a schedule.
+        """
+        self.client.login(username='testuser', password='12345')
+        Like.objects.create(schedule_id=self.schedule, liked_by=self.user)
+        response = self.client.post(reverse('schedule_like', kwargs={'slug': self.schedule.slug}))
+        self.assertEqual(response.status_code, 302)
+        self.assertFalse(Like.objects.filter(schedule_id=self.schedule.id, liked_by=self.user).exists())
+
+    def test_like_schedule_unauthenticated(self):
+        """
+        Tests if an unauthenticated user can like a schedule.
+        """
+        response = self.client.post(reverse('schedule_like', kwargs={'slug': self.schedule.slug}))
+        self.assertEqual(response.status_code, 302)
+        self.assertFalse(Like.objects.filter(schedule_id=self.schedule.id, liked_by=self.user).exists())
+
+    def test_unlike_schedule_unauthenticated(self):
+        """
+        Tests if an unauthenticated user can remove a like from a schedule.
+        """
+        Like.objects.create(schedule_id=self.schedule, liked_by=self.user)
+        response = self.client.post(reverse('schedule_like', kwargs={'slug': self.schedule.slug}))
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(Like.objects.filter(schedule_id=self.schedule.id, liked_by=self.user).exists())
