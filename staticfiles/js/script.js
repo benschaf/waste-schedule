@@ -1,8 +1,9 @@
-// Trigger all popovers
 // -> Credit for popovers: https://getbootstrap.com/docs/5.2/components/popovers/#overview
+// Trigger all popovers
 const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
 const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
 
+// Event Listener for navbar background toggling on scroll
 window.addEventListener('scroll', (event) => {
     const navBar = document.getElementsByTagName('nav')[0];
     if (window.scrollY > 0) {
@@ -16,6 +17,7 @@ window.addEventListener('scroll', (event) => {
     }
 });
 
+// Event Listener for toggler background toggling on click
 document.getElementsByClassName('navbar-toggler')[0].addEventListener('click', (event) => {
     if (window.scrollY == 0) {
         const navBar = document.getElementsByTagName('nav')[0];

@@ -1,6 +1,6 @@
 // Global variables
 let eventDate = 0;
-let current_id = 0;
+let currendID = 0;
 let createEventModal = null;
 let deleteEventModal = null;
 let calendar = null;
@@ -14,13 +14,13 @@ let calendar = null;
  * @returns {number} - The next available ID.
  */
 function getMaxId(events) {
-    let max_id = 0;
+    let maxId = 0;
     for (let event of events) {
-        if (event.id > max_id) {
-            max_id = event.id;
+        if (event.id > maxId) {
+            maxId = event.id;
         }
     }
-    current_id = max_id + 1;
+    currendID = maxId + 1;
 }
 
 // -> Credit for getWeekday: https://www.w3schools.com/jsref/jsref_getday.asp
@@ -43,17 +43,17 @@ function getWeekDay(date) {
  * @returns {Object} - The converted event object with RRule information.
  */
 function toPlainObjectWithRRule(event) {
-    let event_object = event.toPlainObject();
+    let eventObject = event.toPlainObject();
     if (event._def.recurringDef) {
-        const event_rrule_object = {
+        const eventRruleObject = {
             freq: event._def.recurringDef.typeData.rruleSet._rrule[0].options.freq,
             interval: event._def.recurringDef.typeData.rruleSet._rrule[0].options.interval,
             dstart: event._def.recurringDef.typeData.rruleSet._rrule[0].options.dtstart.toISOString().split('T')[0],
             until: event._def.recurringDef.typeData.rruleSet._rrule[0].options.until.toISOString().split('T')[0],
         };
-        event_object.rrule = event_rrule_object;
+        eventObject.rrule = eventRruleObject;
     }
-    return event_object;
+    return eventObject;
 }
 
 /**
@@ -108,9 +108,9 @@ function handleDeletion(event, info, submitButton) {
  * @returns {Object} The parsed JSON events.
  */
 function getJsonEvents() {
-    let json_events = JSON.parse(document.getElementById('event-data').textContent);
-    json_events = JSON.parse(json_events);
-    return json_events;
+    let jsonEvents = JSON.parse(document.getElementById('event-data').textContent);
+    jsonEvents = JSON.parse(jsonEvents);
+    return jsonEvents;
 }
 
 /**
@@ -119,7 +119,7 @@ function getJsonEvents() {
  * @returns {void}
  */
 function renderCalendar() {
-    json_events = getJsonEvents();
+    jsonEvents = getJsonEvents();
 
     const calendarEl = document.getElementById('calendar');
     calendar = new FullCalendar.Calendar(calendarEl, {
@@ -146,41 +146,41 @@ function renderCalendar() {
 
             deleteEventModal.show();
         },
-        events: json_events,
+        events: jsonEvents,
 
     });
     calendar.render();
 }
 
 
+// -> Credit for query selector: https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector?retiredLocale=de
 /**
- * This function is responsible for posting calendar events to the server.
- * It includes The CSRF token that is generated in the Django template.
- * The function expects a redirect URL from the server.
- *
+ * Attaches an event listener to the submit button that sends a POST request with calendar events.
  * @returns {void}
  */
-function postCalendarEvents(e) {
-    // Should I use Ajax here instead?
-    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-    const jsonBody = JSON.stringify(get_calender_event_objects());
-    console.log(jsonBody);
-    scheduleId = e.target.getAttribute('data-schedule-id');
-    console.log(e.target);
-    fetch(scheduleId, {
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/json',
-            // Include CSRF token in the header
-            'X-CSRFToken': csrftoken
-        },
-        body: jsonBody,
-    }).then(response => response.json()).then(data => {
-        if (data.redirect_url) {
-            window.location.href = data.redirect_url;
-        }
-    }).catch(error => {
-        console.error('Error:', error);
+function postCalendarEvents() {
+    document.getElementById('submit-button').addEventListener('click', function (e) {
+        e.preventDefault();
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+        const jsonBody = JSON.stringify(getCalendarEventObjects());
+        console.log(jsonBody);
+        scheduleId = e.target.getAttribute('data-schedule-id');
+        console.log(e.target);
+        fetch(scheduleId, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                // Include CSRF token in the header
+                'X-CSRFToken': csrftoken
+            },
+            body: jsonBody,
+        }).then(response => response.json()).then(data => {
+            if (data.redirect_url) {
+                window.location.href = data.redirect_url;
+            }
+        }).catch(error => {
+            console.error('Error:', error);
+        });
     });
 }
 
@@ -188,7 +188,7 @@ function postCalendarEvents(e) {
  * Retrieves the calendar event objects.
  * @returns {Array} An array of calendar event objects.
  */
-function get_calender_event_objects() {
+function getCalendarEventObjects() {
     let events = [];
     for (let event of calendar.getEvents()) {
         console.log(event.toPlainObject());
@@ -197,39 +197,29 @@ function get_calender_event_objects() {
     return events;
 }
 
-// On document load
-document.addEventListener('DOMContentLoaded', function () {
-    renderCalendar();
-
-    // This is to know where to continue the ID count
-    getMaxId(calendar.getEvents());
-
-    // -> Credit for query selector: https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector?retiredLocale=de
-    // Call the postCalendarEvents function when the submit button is clicked
-    document.getElementById('submit-button').addEventListener('click', function (e) {
-        e.preventDefault();
-        postCalendarEvents(e);
-    });
-
-    // Save the event when the save button is clicked
+/**
+ * Saves the event by adding it to the calendar.
+ * @returns {void}
+ */
+function saveEvent() {
     document.getElementById('save-event').addEventListener('click', function () {
-        const bin_type = document.getElementById('bin-type').value;
+        const binType = document.getElementById('bin-type').value;
         const recurrence = document.getElementById('recurrence').value;
         if (recurrence === '0') {
             calendar.addEvent({
-                id: current_id,
-                title: bin_type,
+                id: currendID,
+                title: binType,
                 start: eventDate,
-                groupId: bin_type,
+                groupId: binType,
             });
         } else {
             // -> Credit for adding a year to a date: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setFullYear
             let endRecurrence = new Date(new Date(eventDate).setFullYear(eventDate.getFullYear() + 1));
             calendar.addEvent({
-                id: current_id,
-                title: bin_type,
+                id: currendID,
+                title: binType,
                 start: eventDate,
-                groupId: bin_type,
+                groupId: binType,
                 rrule: {
                     freq: 'weekly',
                     interval: recurrence,
@@ -239,7 +229,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 exdate: []
             });
         }
-        current_id++;
+        currendID++;
         createEventModal.hide();
     });
+}
+
+// On document load
+document.addEventListener('DOMContentLoaded', function () {
+    renderCalendar();
+    getMaxId(calendar.getEvents());
+
+    // Event listeners
+    postCalendarEvents();
+    saveEvent();
 });
