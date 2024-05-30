@@ -1,7 +1,11 @@
+from datetime import datetime
+from django.http import JsonResponse
 from django.test import TestCase
 from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth.models import User
+from schedulebuilder.models import Event
+from schedulebuilder.views import EditCalendarView
 from wasteschedules.models import PostalCode, Schedule
 from schedulebuilder.forms import PostalCodeForm
 from django.contrib.messages import get_messages
@@ -244,3 +248,65 @@ class DeleteScheduleTestCase(TestCase):
         response = self.client.post(reverse('delete_schedule', kwargs={'slug': self.schedule.slug}))
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response.url, reverse('schedule_list', kwargs={'postcode': self.postal_code.postal_code}))
+
+
+class EditCalendarViewTestCase(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username='testuser', password='12345')
+        self.postal_code = PostalCode.objects.create(postal_code='12345')
+        self.schedule = Schedule.objects.create(
+            title='test schedule',
+            author=self.user,
+        )
+        self.schedule.locations.add(self.postal_code)
+        self.event = Event.objects.create(
+            js_event_id='1',
+            schedule_id=self.schedule,
+            kind=0,
+            date=datetime.now(),
+        )
+
+    def test_dispatch_user_not_owner(self):
+        self.user2 = User.objects.create_user(username='anotheruser', password='12345')
+        self.client.login(username='anotheruser', password='12345')
+        response = self.client.get(reverse('add_bins', kwargs={'schedule_id': self.schedule.id}))
+        self.assertEqual(response.status_code, 302)
+        # tests if the user is redirected to the home page (HTTP_REFERER not tested)
+        self.assertRedirects(response, '/')
+
+    def test_dispatch_user_owner(self):
+        self.client.login(username='testuser', password='12345')
+        response = self.client.get(reverse('add_bins', kwargs={'schedule_id': self.schedule.id}))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'schedulebuilder/calendar.html')
+
+    def test_get_context_data(self):
+        self.client.login(username='testuser', password='12345')
+        response = self.client.get(reverse('add_bins', kwargs={'schedule_id': self.schedule.id}))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.context['schedule'], self.schedule)
+        self.assertEqual(response.context['postal_code'], self.postal_code.postal_code)
+        # i dont know how to test for the json data
+
+    def test_post_valid_json(self):
+        self.client.login(username='testuser', password='12345')
+        # dont know how to test for the json data
+
+
+    def test_post_invalid_json(self):
+        self.client.login(username='testuser', password='12345')
+        data = 'invalid json'
+        response = self.client.post(reverse('add_bins', kwargs={'schedule_id': self.schedule.id}), data, content_type='application/json')
+        self.assertEqual(response.status_code, 400)
+        self.assertIsInstance(response, JsonResponse)
+        self.assertEqual(response.json(), {'message': 'Invalid JSON'})
+        messages = list(get_messages(response.wsgi_request))
+        self.assertEqual(len(messages), 0)
+
+    def test_convert_kind_to_int(self):
+        view = EditCalendarView()
+        self.assertEqual(view._convert_kind_to_int('Restmüll'), 0)
+        self.assertEqual(view._convert_kind_to_int('Biomüll'), 1)
+        self.assertEqual(view._convert_kind_to_int('Papiermüll'), 2)
+        self.assertEqual(view._convert_kind_to_int('Gelbe Tonne'), 4)
+        self.assertIsNone(view._convert_kind_to_int('Invalid Kind'))
