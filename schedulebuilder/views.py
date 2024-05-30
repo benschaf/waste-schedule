@@ -230,8 +230,6 @@ class EditCalendarView(LoginRequiredMixin, TemplateView):
         post(request, schedule_id): Writes the updated events from the post request to the database.
     """
 
-    login_url = reverse_lazy('account_login')
-    redirect_field_name = None
     template_name = 'schedulebuilder/calendar.html'
 
     def dispatch(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
