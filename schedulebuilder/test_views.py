@@ -133,3 +133,59 @@ class CreateScheduleTestCase(TestCase):
         response = self.client.post(reverse('create_schedule', kwargs={'postal_code': '12345'}), form_data)
         self.assertEqual(response.status_code, 200)
         self.assertFalse(Schedule.objects.filter(title='').exists())
+
+
+class UpdateScheduleTestCase(TestCase):
+    """
+    Test case for the UpdateSchedule view.
+    """
+
+    def setUp(self):
+        """
+        Set up the necessary objects and data for the test case.
+        """
+        self.user = User.objects.create_user(username='testuser', password='12345')
+        self.schedule = Schedule.objects.create(
+            title='test schedule',
+            author=self.user,
+        )
+
+    def test_update_schedule(self):
+        """
+        Tests if a schedule can be successfully updated.
+        """
+        self.client.login(username='testuser', password='12345')
+        response = self.client.post(reverse('edit_schedule', kwargs={'slug': self.schedule.slug}), {
+            'description': 'Updated description',
+            'image': 'updated_image.jpg',
+        })
+        self.assertEqual(response.status_code, 302)
+        self.schedule.refresh_from_db()
+        self.assertEqual(self.schedule.description, 'Updated description')
+        self.assertNotEqual(self.schedule.image, 'placeholder')
+
+    def test_update_schedule_unauthenticated(self):
+        """
+        Tests if an unauthenticated user is redirected to the login page when trying to update a schedule.
+        """
+        response = self.client.post(reverse('edit_schedule', kwargs={'slug': self.schedule.slug}), {
+            'description': 'Updated description',
+            'image': 'updated_image.jpg',
+        })
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, '/accounts/login/')
+
+    def test_update_schedule_wrong_user(self):
+        """
+        Tests if a user cannot update another user's schedule.
+        """
+        self.user2 = User.objects.create_user(username='anotheruser', password='12345')
+        self.client.login(username='anotheruser', password='12345')
+        response = self.client.post(reverse('edit_schedule', kwargs={'slug': self.schedule.slug}), {
+            'description': 'Updated description',
+            'image': 'updated_image.jpg',
+        })
+        self.assertEqual(response.status_code, 302)
+        self.schedule.refresh_from_db()
+        self.assertNotEqual(self.schedule.description, 'Updated description')
+        self.assertNotEqual(self.schedule.image, 'updated_image.jpg')
