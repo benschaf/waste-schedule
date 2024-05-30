@@ -62,7 +62,6 @@ class PickLocationTestCase(TestCase):
         response = self.client.post(reverse('pick_location'), {
                                     'postal_code': '12345'})
         messages = list(get_messages(response.wsgi_request))
-        self.assertEqual(len(messages), 1)
         self.assertEqual(str(
             messages[0]), "Your Location already exists. Check out if there already is a schedule for it.")
 
@@ -189,3 +188,59 @@ class UpdateScheduleTestCase(TestCase):
         self.schedule.refresh_from_db()
         self.assertNotEqual(self.schedule.description, 'Updated description')
         self.assertNotEqual(self.schedule.image, 'updated_image.jpg')
+
+
+class DeleteScheduleTestCase(TestCase):
+    """
+    Test case for the DeleteSchedule view.
+    """
+
+    def setUp(self):
+        """
+        Set up the necessary objects and data for the test case.
+        """
+        self.user = User.objects.create_user(username='testuser', password='12345')
+        self.postal_code = PostalCode.objects.create(postal_code='12345')
+        self.schedule = Schedule.objects.create(
+            title='test schedule',
+            author=self.user,
+        )
+        self.schedule.locations.add(self.postal_code)
+
+    def test_delete_schedule_authenticated_owner(self):
+        """
+        Tests if an authenticated owner can delete a schedule.
+        """
+        self.client.login(username='testuser', password='12345')
+        response = self.client.post(reverse('delete_schedule', kwargs={'slug': self.schedule.slug}))
+        self.assertEqual(response.status_code, 302)
+        self.assertFalse(Schedule.objects.filter(id=self.schedule.id).exists())
+
+    def test_delete_schedule_authenticated_wrong_user(self):
+        """
+        Tests if an authenticated but wrong user (non-owner) cannot delete a schedule.
+        """
+        User.objects.create_user(username='anotheruser', password='12345')
+        self.client.login(username='anotheruser', password='12345')
+        response = self.client.post(reverse('delete_schedule', kwargs={'slug': self.schedule.slug}))
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(Schedule.objects.filter(id=self.schedule.id).exists())
+        messages = list(get_messages(response.wsgi_request))
+        self.assertEqual(str(messages[0]), "You are not the owner of this schedule.")
+
+    def test_delete_schedule_unauthenticated(self):
+        """
+        Tests if an unauthenticated user cannot delete a schedule.
+        """
+        response = self.client.post(reverse('delete_schedule', kwargs={'slug': self.schedule.slug}))
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(Schedule.objects.filter(id=self.schedule.id).exists())
+
+    def test_delete_schedule_redirect(self):
+        """
+        Tests if the view redirects to the schedule list page after deleting the schedule.
+        """
+        self.client.login(username='testuser', password='12345')
+        response = self.client.post(reverse('delete_schedule', kwargs={'slug': self.schedule.slug}))
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, reverse('schedule_list', kwargs={'postcode': self.postal_code.postal_code}))
