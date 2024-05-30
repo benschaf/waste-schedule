@@ -2,7 +2,8 @@ import json
 from typing import Any
 from django.db.models import Count
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponseRedirect
+from django.forms import BaseModelForm
+from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 from django.views import View
@@ -149,6 +150,14 @@ class ScheduleComment(LoginRequiredMixin, SuccessMessageMixin, CreateView):
         slug = self.kwargs.get('slug')
         form.instance.schedule_id = get_object_or_404(Schedule, slug=slug)
         return super().form_valid(form)
+
+    # -> Credit for finding class based view methods: https://www.brennantymrak.com/articles/createviewdiagram
+    def form_invalid(self, form: BaseModelForm) -> HttpResponse:
+        if form.instance.body == "":
+            messages.add_message(self.request, messages.ERROR,
+                                 "Your comment cannot be empty.")
+            return redirect(self.request.META.get('HTTP_REFERER', 'landing_page'))
+        return super().form_invalid(form)
 
 
 # -> Credit for edit view: https://github.com/Code-Institute-Solutions/blog/tree/main/12_views_part_3/05_edit_delete
