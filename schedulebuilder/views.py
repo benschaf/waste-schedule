@@ -181,8 +181,6 @@ class DeleteSchedule(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
         post(request, *args, **kwargs): Checks if the user is the owner of the schedule before deleting it.
         get_success_url(): Redirects to the schedule list page after the schedule is deleted.
     """
-    login_url = reverse_lazy('account_login')
-    redirect_field_name = None
     model = Schedule
     template_name = 'schedulebuilder/schedule_confirm_delete.html'
     success_message = "Schedule was deleted successfully."
