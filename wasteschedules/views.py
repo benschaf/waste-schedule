@@ -213,22 +213,13 @@ class ScheduleCommentDelete(LoginRequiredMixin, SuccessMessageMixin, DeleteView)
     model = Comment
     success_message = "Your comment was deleted successfully."
 
-    def get_object(self):
-        """
-        Retrieve the comment object to be deleted.
-
-        If the comment is not owned by the current user, an error message is added
-        and the user is redirected to the previous page.
-
-        Returns:
-            The comment object to be deleted.
-        """
-        obj = super().get_object(queryset=None)
+    def dispatch(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
+        obj = self.get_object()
         if not obj.commented_by == self.request.user:
             messages.add_message(self.request, messages.ERROR,
                                  "You are not the owner of this comment.")
             return redirect(self.request.META.get('HTTP_REFERER', 'landing_page'))
-        return obj
+        return super().dispatch(request, *args, **kwargs)
 
     def get_success_url(self):
         """
