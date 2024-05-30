@@ -270,7 +270,7 @@ class ScheduleLike(LoginRequiredMixin, View):
         return redirect(request.META.get('HTTP_REFERER', 'landing_page'))
 
 
-class ScheduleSubscribe(View):
+class ScheduleSubscribe(LoginRequiredMixin, View):
     """
     View class for subscribing or unsubscribing to a schedule.
 
