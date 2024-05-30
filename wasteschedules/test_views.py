@@ -443,3 +443,58 @@ class ScheduleSubscribeTestCase(TestCase):
         response = self.client.post(reverse('schedule_subscribe', kwargs={'slug': self.schedule.slug}))
         self.assertEqual(response.status_code, 302)
         self.assertTrue(Subscription.objects.filter(schedule_id=self.schedule.id).exists())
+
+
+class DashboardTestCase(TestCase):
+    """
+    Test case for the Dashboard view.
+    """
+
+    def setUp(self):
+        """
+        Set up the necessary objects and data for the test case.
+        """
+        self.user = User.objects.create_user(username='testuser', password='12345')
+        self.schedule1 = Schedule.objects.create(
+            title='test schedule1',
+            author=self.user,
+        )
+        self.schedule2 = Schedule.objects.create(
+            title='test schedule2',
+            author=self.user,
+        )
+        self.subscription = Subscription.objects.create(
+            subscribed_by=self.user,
+            schedule_id=self.schedule2,
+        )
+
+    def test_dashboard_page(self):
+        """
+        Tests if the dashboard page is rendered correctly.
+        """
+        self.client.login(username='testuser', password='12345')
+        response = self.client.get(reverse('dashboard'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'wasteschedules/dashboard.html')
+        self.assertIn(b'test schedule2', response.content)
+        self.assertIn(b'test schedule1', response.content)
+
+    def test_dashboard_context_variables(self):
+        """
+        Tests if the context variables are passed correctly to the dashboard page.
+        """
+        self.client.login(username='testuser', password='12345')
+        response = self.client.get(reverse('dashboard'))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.context['user'], self.user)
+        self.assertEqual(list(response.context['subscribed_schedules']), [self.schedule2])
+        # -> Credit for converting lists with different orders to sets to compare them: https://www.digitalocean.com/community/tutorials/how-to-compare-two-lists-in-python
+        self.assertEqual(set(response.context['owned_schedules']), set([self.schedule1, self.schedule2]))
+
+    def test_dashboard_unauthenticated_user(self):
+        """
+        Tests if an unauthenticated user is redirected to the login page.
+        """
+        response = self.client.get(reverse('dashboard'))
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, '/accounts/login/?next=/wasteschedules/dashboard/')
