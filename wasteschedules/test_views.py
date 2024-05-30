@@ -279,6 +279,18 @@ class ScheduleCommentEditTestCase(TestCase):
         self.comment.refresh_from_db()
         self.assertNotEqual(self.comment.body, new_comment_body)
 
+    def test_schedule_comment_edit_wrong_user(self):
+        """
+        Tests if a user cannot edit another user's comment.
+        """
+        self.user2 = User.objects.create_user(username='anotheruser', password='12345')
+        self.client.login(username='anotheruser', password='12345')
+        new_comment_body = 'Updated comment'
+        response = self.client.post(reverse('schedule_comment_update', kwargs={'pk': self.comment.pk, 'slug': self.schedule.slug}), {'body': new_comment_body})
+        self.assertEqual(response.status_code, 302)
+        self.comment.refresh_from_db()
+        self.assertNotEqual(self.comment.body, new_comment_body)
+
 
 class ScheduleCommentDeleteTestCase(TestCase):
     """
@@ -314,6 +326,16 @@ class ScheduleCommentDeleteTestCase(TestCase):
         Tests if an unauthorized user cannot delete the comment.
         """
         self.client.login(username='unauthorized', password='12345')
+        response = self.client.post(reverse('schedule_comment_delete', kwargs={'pk': self.comment.pk}))
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(Comment.objects.filter(pk=self.comment.pk).exists())
+
+    def test_delete_comment_wrong_user(self):
+        """
+        Tests if a user cannot delete another user's comment.
+        """
+        self.user2 = User.objects.create_user(username='anotheruser', password='12345')
+        self.client.login(username='anotheruser', password='12345')
         response = self.client.post(reverse('schedule_comment_delete', kwargs={'pk': self.comment.pk}))
         self.assertEqual(response.status_code, 302)
         self.assertTrue(Comment.objects.filter(pk=self.comment.pk).exists())
