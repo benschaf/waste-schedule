@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<div class="container">
+<div class="container navbar-margin">
     <a href="{% url 'landing_page' %}">Back to the Homepage</a>
     <h1>Are you Sure?</h1>
     <p>
@@ -13,7 +13,7 @@
         Schedule: {{ schedule }}
     </p>
     <p>
-        Location: {{ schedule.location }}
+        Location: {{ schedule.locations.first }}
     </p>
     <p>
         Description: {{ schedule.description }}
