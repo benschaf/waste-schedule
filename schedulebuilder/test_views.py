@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth.models import User
-from wasteschedules.models import PostalCode
+from wasteschedules.models import PostalCode, Schedule
 from schedulebuilder.forms import PostalCodeForm
 from django.contrib.messages import get_messages
 
@@ -76,3 +76,60 @@ class PickLocationTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'schedulebuilder/location_form.html')
         self.assertIsInstance(response.context['form'], PostalCodeForm)
+
+
+class CreateScheduleTestCase(TestCase):
+    """
+    Test case for the CreateSchedule view.
+    """
+
+    def setUp(self):
+        """
+        Set up the necessary objects and data for the test case.
+        """
+        self.user = User.objects.create_user(username='testuser', password='12345')
+        self.postal_code = PostalCode.objects.create(postal_code='12345')
+
+    def test_create_schedule_render(self):
+        """
+        Tests if a schedule can be created by an authenticated user.
+        """
+        self.client.login(username='testuser', password='12345')
+        response = self.client.get(reverse('create_schedule', kwargs={'postal_code': '12345'}))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'schedulebuilder/schedule_form.html')
+
+    def test_create_schedule_post(self):
+        """
+        Tests if a schedule can be created by an authenticated user.
+        """
+        self.client.login(username='testuser', password='12345')
+        form_data = {
+            'title': 'Test Schedule',
+            'description': 'This is a test schedule',
+            'image': 'test.jpg',
+        }
+        response = self.client.post(reverse('create_schedule', kwargs={'postal_code': '12345'}), form_data)
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(Schedule.objects.filter(title='Test Schedule').exists())
+
+    def test_create_schedule_unauthenticated(self):
+        """
+        Tests if an unauthenticated user is redirected to the login page.
+        """
+        response = self.client.get(reverse('create_schedule', kwargs={'postal_code': '12345'}))
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, '/accounts/login/?next=/schedule-builder/title-description/12345')
+
+
+    def test_create_schedule_empty_title(self):
+        """
+        Tests if the form is invalid when required fields are missing.
+        """
+        self.client.login(username='testuser', password='12345')
+        form_data = {
+            'title': '',
+        }
+        response = self.client.post(reverse('create_schedule', kwargs={'postal_code': '12345'}), form_data)
+        self.assertEqual(response.status_code, 200)
+        self.assertFalse(Schedule.objects.filter(title='').exists())
