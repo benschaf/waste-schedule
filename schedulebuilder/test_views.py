@@ -310,3 +310,5 @@ class EditCalendarViewTestCase(TestCase):
         self.assertEqual(view._convert_kind_to_int('Papiermüll'), 2)
         self.assertEqual(view._convert_kind_to_int('Gelbe Tonne'), 4)
         self.assertIsNone(view._convert_kind_to_int('Invalid Kind'))
+
+# I also don't know how to test the _event_to_json method
