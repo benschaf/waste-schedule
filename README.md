@@ -23,160 +23,7 @@ Our app is not just about managing waste, it's about creating a sustainable futu
 
 Join us in building a community-driven resource that's making a real difference. Together, we can create a cleaner, greener world - one bin at a time! 🌳
 
-## Design Thinking Process
-
-### Emphatise
-For this stage, I created 4 user personas to represent the different types of users that would interact with the app.
-
-For each persona, I considered their "5 Cs" (circumstances, constraints, context, criteria, and compensating behaviors) related to waste management and waste management reminders. This helped me understand their needs and motivations better.
-
-1. **Eco-Conscious Emma**:
-    Emma is a young environmental enthusiast living in a bustling city like Berlin. She actively separates her waste into different bins, composts organic materials, and participates in local recycling programs. Emma is passionate about reducing her ecological footprint and encourages her neighbors to do the same. She would appreciate an app that provides real-time reminders for waste collection days, educates users about proper waste sorting, and offers tips on sustainable living.
-    - **Circumstances**:
-        - Emma faces the problem when she’s juggling work, social commitments, and her passion for environmental sustainability.
-    - **Constraints**:
-        - Her busy lifestyle often leads to forgetfulness about waste collection days.
-        - Lack of clear information on local recycling centers and drop-off points.
-    - **Context**:
-        - Emma encounters this issue at home, especially during early mornings when she needs to take out her bins.
-    - **Criteria**:
-        - Solving this problem aligns with Emma’s values of reducing waste and contributing to a greener planet.
-    - **Compensating Behaviors**:
-        - Emma sets manual reminders on her phone but occasionally misses them due to her hectic schedule.
-
-2. **Busy Bernd**:
-    Bernd is a working professional in Munich. His busy schedule often leads to forgetfulness, and he occasionally misses waste collection days. He needs an app that sends notifications a day in advance, reminding him to take out his bins. Bernd also wants information on nearby recycling centers and drop-off points for hazardous waste. A feature that tracks his waste reduction progress would motivate him to be more diligent.
-    - **Circumstances**:
-        - Bernd’s demanding job and family responsibilities make it challenging for him to remember waste collection days.
-    - **Constraints**:
-        - Time constraints prevent him from researching local waste management rules thoroughly.
-    - **Context**:
-        - Bernd faces this issue at home, especially during evenings when he’s exhausted from work.
-    - **Criteria**:
-        - Solving this problem would reduce stress and prevent missed collections.
-    - **Compensating Behaviors**:
-        - Bernd relies on neighbors’ cues or waits until he hears the garbage truck to take out his bins.
-
-3. **Senior Sigrid**:
-    Sigrid, a retiree in Hamburg, values simplicity. She finds the current waste management system confusing and struggles with the various colored bins. Sigrid needs an app with clear instructions on waste separation, including visual cues. Additionally, a feature that connects her with local volunteers or services for assistance with heavy bins would be helpful.
-    - **Circumstances**:
-        - Sigrid’s age affects her memory, and she finds the waste separation process confusing.
-    - **Constraints**:
-        - Physical limitations prevent her from handling heavy bins easily.
-    - **Context**:
-        - Sigrid encounters this issue at home, especially when she needs to sort waste into different containers.
-    - **Criteria**:
-        - Solving this problem ensures Sigrid’s independence and reduces frustration.
-    - **Compensating Behaviors**:
-        - Sigrid asks her neighbor for help or leaves her bins outside for extended periods.
-
-4. **Family-Focused Felix**:
-    Felix lives in a suburban area near Frankfurt with his family. Managing waste for a household of four can be overwhelming. He wants an app that syncs with family members’ calendars, reminding everyone about collection days. Felix also seeks advice on minimizing waste, especially with kids in the house. Perhaps the app could gamify waste reduction to involve the whole family.
-    - **Circumstances**:
-        - Felix manages waste for his family, balancing work, parenting, and household chores.
-    - **Constraints**:
-        - Coordinating waste collection days among family members is challenging.
-    - **Context**:
-        - Felix faces this issue both at home and during family discussions.
-    - **Criteria**:
-        - Solving this problem streamlines family routines and teaches kids responsible waste management.
-    - **Compensating Behaviors**:
-        - Felix uses sticky notes or a shared calendar to remind everyone about bin days.
-
-### Define
-Considering all the user personas, I defined problem statements for each of them:
-
-## Problem statements:
-1. **Eco-Conscious Emma**:
-    - **Statement**: “I am Eco-Conscious Emma trying to reduce waste, but the lack of timely reminders due to my busy schedule makes me feel frustrated and guilty.”
-    - **Statement**: “I am Eco-Conscious Emma trying to educate my neighbors about waste sorting, but the unclear rules due to insufficient information make me feel determined yet overwhelmed.”
-2. **Busy Bernd**:
-    - **Statement**: “I am Busy Bernd trying to remember waste collection days, but my forgetfulness due to a hectic work schedule makes me feel stressed and annoyed.”
-    - **Statement**: “I am Busy Bernd trying to find local recycling centers, but the lack of time due to work commitments makes me feel overwhelmed and uninformed.”
-3. **Senior Sigrid**:
-    - **Statement**: “I am Senior Sigrid trying to sort waste, but the confusion due to age-related memory challenges makes me feel frustrated and helpless.”
-    - **Statement**: “I am Senior Sigrid trying to handle heavy bins, but my physical limitations due to aging make me feel dependent and anxious.”
-4. **Family-Focused Felix**:
-    - **Statement**: “I am Family-Focused Felix trying to coordinate family waste routines, but the complexity due to managing a household makes me feel overwhelmed yet responsible.”
-    - **Statement**: “I am Family-Focused Felix trying to involve kids in waste reduction, but the lack of guidance due to parenting challenges makes me feel determined and hopeful.”
-
-[!IMPORTANT]
-Overwork the problem statement
-
-**Overarching Problem Statement**: In a world grappling with stress and environmental challenges, our project aims to develop an integrated waste management solution that addresses the diverse needs of individuals — ranging from busy professionals and eco-conscious citizens to seniors and families. By providing a platform for community engagement, we strive to minimize the stress and confusion that accompany waste management, fostering a sense of responsibility and empowerment among communities. Our mission is to empower everyone, regardless of age or lifestyle, to actively participate in waste reduction, ultimately fostering a cleaner and greener planet.
-
-### Ideate
-Considering the problem statements, I brainstormed potential solutions that could address the needs of each user persona. Here are some ideas already with an added priority value (p1: high priority, p2: medium priority, p3: low priority):
-
-1. **Eco-Conscious Emma**:
-    - **Solution 1: Waste Collection Reminders**:
-        - **p1** Implement a calendar view that highlights upcoming collection days and allows Emma to set preferences (e.g., reminders a day in advance).
-        - **p1** Create a community platform within the app where users like Emma can voluntarily share their waste collection schedules.
-        - **p1** Neighbors receive real-time reminders based on shared schedules, fostering a sense of community responsibility.
-    - **Solution 2: Educational Resources**:
-        - **p2** Include an educational section within the app. Provide clear guidelines on waste sorting, recycling, and composting. Use visual cues (infographics, images) to simplify the information.
-        - **p3** Collaborate with local environmental organizations to curate content and host webinars on sustainable living.
-
-2. **Busy Bernd**:
-    - **Solution 1: Automated Notifications**:
-        - **p1** Upon login, prompt Bernd to input his address and preferred notification settings. Send automated reminders via email or SMS a day before waste collection days.
-        - **p1** Allow customization (e.g., specific time of day for reminders) to accommodate Bernd’s schedule.
-    - **Solution 2: Nearby Services Locator**:
-        - **p3** Integrate a map feature that displays nearby recycling centers, drop-off points, and hazardous waste disposal locations.
-        - **p3** Include operating hours, contact information, and directions.
-
-3. **Senior Sigrid**:
-    - **Solution 1: Visual Guides**:
-        - **p3** Develop an intuitive waste sorting guide with visual icons. Sigrid can easily identify which bin to use based on item categories (e.g., paper, plastic, glass).
-        - **p3** Include voice instructions for accessibility.
-    - **Solution 2: Assistance Network**:
-        - **p3** Create a community feature where neighbors can offer assistance. Sigrid can request help with heavy bins or ask for clarification on waste separation.
-        - **p2** Encourage local volunteers to participate.
-
-4. **Family-Focused Felix**:
-    - **Solution 1: Family Calendar Integration**:
-        - **p2** Allow Felix to invite family members to join the app. Sync the app with their calendars to display waste collection days.
-        - **p2** Enable notifications for all family members, ensuring everyone is aware.
-    - **Solution 2: Waste Reduction Challenges**:
-        - **p3** Gamify waste reduction within the family. Set monthly challenges (e.g., reduce plastic waste, compost more) and track progress.
-        - **p3** Award virtual badges or points for achieving goals.
-
-### Prototype
-
-#### Wireframes
-Wireframes were created using [draw.io](draw.io) to visualize the app's layout and features.
-
-View an [interactive preview](https://drive.google.com/file/d/1KmW3ppV6V6eGe11EsY1J0-Z69dtKagAU/view?usp=sharing) of the wireframes. (click on the "Open with" button and select "draw.io")
-
-[!IMPORTANT]
-include screenshots when done and delete the interactive Preview - it sucks...
-
-| Page | Mobile Wireframe | Tablet Wireframe | Desktop Wireframe |
-| --- | --- | --- | --- |
-| Landing Page | ![screenshot](documentation/wireframe-landing-mobile.png) | ![screenshot](documentation/wireframe-landing-tablet.png) | ![screenshot](documentation/wireframe-landing-desktop.png) |
-| Schedule List | ![screenshot](documentation/wireframe-list-mobile.png) | ![screenshot](documentation/wireframe-list-tablet.png) | ![screenshot](documentation/wireframe-list-desktop.png) |
-| Schedule Detail and Editor | ![screenshot](documentation/wireframe-detail-mobile.png) | ![screenshot](documentation/wireframe-detail-tablet.png) | ![screenshot](documentation/wireframe-detail-desktop.png) |
-| Dashboard | ![screenshot](documentation/wireframe-dashboard-mobile.png) | ![screenshot](documentation/wireframe-dashboard-tablet.png) | ![screenshot](documentation/wireframe-dashboard-desktop.png) |
-| Schedule Builder | ![screenshot](documentation/wireframe-builder-mobile.png) | ![screenshot](documentation/wireframe-builder-tablet.png) | ![screenshot](documentation/wireframe-builder-desktop.png) |
-
-
-
-### Test
-
-
 ## UX
-
-### Flowchart
-Somewhere include a flowchart that maps out the user journey through the site.
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑START OF NOTES (to be deleted)
-
-In this section, you will briefly explain your design processes.
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
-
-### Design
-Link to [Figma design language system](https://www.figma.com/file/GZDmOY3zdf4Wb1uBv6uAAq/Airbnb-UI-Kit-(Community)?type=design&node-id=239%3A3762&mode=design&t=Lo4zPL7ic94pf63j-1)
 
 ### Colour Scheme
 I used a very subtle green and white colour scheme to reflect the eco-friendly nature of the app. Coolors was used to generate the [colour palette](https://coolors.co/25a55f-2a2a2a-1c7b47-e6e6e6-57d992).
@@ -848,3 +695,129 @@ A few examples have been provided below to give you some ideas.
 - I would like to thank the [Code Institute Slack community](https://code-institute-room.slack.com) for the moral support; it kept me going during periods of self doubt and imposter syndrome.
 - I would like to thank my partner (John/Jane), for believing in me, and allowing me to make this transition into software development.
 - I would like to thank my employer, for supporting me in my career development change towards becoming a software developer.
+
+## Design Thinking Process
+### Emphatise
+For this stage, I created 4 user personas to represent the different types of users that would interact with the app.
+
+For each persona, I considered their "5 Cs" (circumstances, constraints, context, criteria, and compensating behaviors) related to waste management and waste management reminders. This helped me understand their needs and motivations better.
+
+1. **Eco-Conscious Emma**:
+    Emma is a young environmental enthusiast living in a bustling city like Berlin. She actively separates her waste into different bins, composts organic materials, and participates in local recycling programs. Emma is passionate about reducing her ecological footprint and encourages her neighbors to do the same. She would appreciate an app that provides real-time reminders for waste collection days, educates users about proper waste sorting, and offers tips on sustainable living.
+    - **Circumstances**:
+        - Emma faces the problem when she’s juggling work, social commitments, and her passion for environmental sustainability.
+    - **Constraints**:
+        - Her busy lifestyle often leads to forgetfulness about waste collection days.
+        - Lack of clear information on local recycling centers and drop-off points.
+    - **Context**:
+        - Emma encounters this issue at home, especially during early mornings when she needs to take out her bins.
+    - **Criteria**:
+        - Solving this problem aligns with Emma’s values of reducing waste and contributing to a greener planet.
+    - **Compensating Behaviors**:
+        - Emma sets manual reminders on her phone but occasionally misses them due to her hectic schedule.
+
+2. **Busy Bernd**:
+    Bernd is a working professional in Munich. His busy schedule often leads to forgetfulness, and he occasionally misses waste collection days. He needs an app that sends notifications a day in advance, reminding him to take out his bins. Bernd also wants information on nearby recycling centers and drop-off points for hazardous waste. A feature that tracks his waste reduction progress would motivate him to be more diligent.
+    - **Circumstances**:
+        - Bernd’s demanding job and family responsibilities make it challenging for him to remember waste collection days.
+    - **Constraints**:
+        - Time constraints prevent him from researching local waste management rules thoroughly.
+    - **Context**:
+        - Bernd faces this issue at home, especially during evenings when he’s exhausted from work.
+    - **Criteria**:
+        - Solving this problem would reduce stress and prevent missed collections.
+    - **Compensating Behaviors**:
+        - Bernd relies on neighbors’ cues or waits until he hears the garbage truck to take out his bins.
+
+3. **Senior Sigrid**:
+    Sigrid, a retiree in Hamburg, values simplicity. She finds the current waste management system confusing and struggles with the various colored bins. Sigrid needs an app with clear instructions on waste separation, including visual cues. Additionally, a feature that connects her with local volunteers or services for assistance with heavy bins would be helpful.
+    - **Circumstances**:
+        - Sigrid’s age affects her memory, and she finds the waste separation process confusing.
+    - **Constraints**:
+        - Physical limitations prevent her from handling heavy bins easily.
+    - **Context**:
+        - Sigrid encounters this issue at home, especially when she needs to sort waste into different containers.
+    - **Criteria**:
+        - Solving this problem ensures Sigrid’s independence and reduces frustration.
+    - **Compensating Behaviors**:
+        - Sigrid asks her neighbor for help or leaves her bins outside for extended periods.
+
+4. **Family-Focused Felix**:
+    Felix lives in a suburban area near Frankfurt with his family. Managing waste for a household of four can be overwhelming. He wants an app that syncs with family members’ calendars, reminding everyone about collection days. Felix also seeks advice on minimizing waste, especially with kids in the house. Perhaps the app could gamify waste reduction to involve the whole family.
+    - **Circumstances**:
+        - Felix manages waste for his family, balancing work, parenting, and household chores.
+    - **Constraints**:
+        - Coordinating waste collection days among family members is challenging.
+    - **Context**:
+        - Felix faces this issue both at home and during family discussions.
+    - **Criteria**:
+        - Solving this problem streamlines family routines and teaches kids responsible waste management.
+    - **Compensating Behaviors**:
+        - Felix uses sticky notes or a shared calendar to remind everyone about bin days.
+
+### Define
+Considering all the user personas, I defined problem statements for each of them:
+
+#### Problem statements:
+1. **Eco-Conscious Emma**:
+    - **Statement**: “I am Eco-Conscious Emma trying to reduce waste, but the lack of timely reminders due to my busy schedule makes me feel frustrated and guilty.”
+    - **Statement**: “I am Eco-Conscious Emma trying to educate my neighbors about waste sorting, but the unclear rules due to insufficient information make me feel determined yet overwhelmed.”
+2. **Busy Bernd**:
+    - **Statement**: “I am Busy Bernd trying to remember waste collection days, but my forgetfulness due to a hectic work schedule makes me feel stressed and annoyed.”
+    - **Statement**: “I am Busy Bernd trying to find local recycling centers, but the lack of time due to work commitments makes me feel overwhelmed and uninformed.”
+3. **Senior Sigrid**:
+    - **Statement**: “I am Senior Sigrid trying to sort waste, but the confusion due to age-related memory challenges makes me feel frustrated and helpless.”
+    - **Statement**: “I am Senior Sigrid trying to handle heavy bins, but my physical limitations due to aging make me feel dependent and anxious.”
+4. **Family-Focused Felix**:
+    - **Statement**: “I am Family-Focused Felix trying to coordinate family waste routines, but the complexity due to managing a household makes me feel overwhelmed yet responsible.”
+    - **Statement**: “I am Family-Focused Felix trying to involve kids in waste reduction, but the lack of guidance due to parenting challenges makes me feel determined and hopeful.”
+
+[!IMPORTANT]
+Overwork the problem statement
+
+**Overarching Problem Statement**: In a world grappling with stress and environmental challenges, our project aims to develop an integrated waste management solution that addresses the diverse needs of individuals — ranging from busy professionals and eco-conscious citizens to seniors and families. By providing a platform for community engagement, we strive to minimize the stress and confusion that accompany waste management, fostering a sense of responsibility and empowerment among communities. Our mission is to empower everyone, regardless of age or lifestyle, to actively participate in waste reduction, ultimately fostering a cleaner and greener planet.
+
+### Ideate
+Considering the problem statements, I brainstormed potential solutions that could address the needs of each user persona. Here are some ideas already with an added priority value (p1: high priority, p2: medium priority, p3: low priority):
+
+1. **Eco-Conscious Emma**:
+    - **Solution 1: Waste Collection Reminders**:
+        - **p1** Implement a calendar view that highlights upcoming collection days and allows Emma to set preferences (e.g., reminders a day in advance).
+        - **p1** Create a community platform within the app where users like Emma can voluntarily share their waste collection schedules.
+        - **p1** Neighbors receive real-time reminders based on shared schedules, fostering a sense of community responsibility.
+    - **Solution 2: Educational Resources**:
+        - **p2** Include an educational section within the app. Provide clear guidelines on waste sorting, recycling, and composting. Use visual cues (infographics, images) to simplify the information.
+        - **p3** Collaborate with local environmental organizations to curate content and host webinars on sustainable living.
+
+2. **Busy Bernd**:
+    - **Solution 1: Automated Notifications**:
+        - **p1** Upon login, prompt Bernd to input his address and preferred notification settings. Send automated reminders via email or SMS a day before waste collection days.
+        - **p1** Allow customization (e.g., specific time of day for reminders) to accommodate Bernd’s schedule.
+    - **Solution 2: Nearby Services Locator**:
+        - **p3** Integrate a map feature that displays nearby recycling centers, drop-off points, and hazardous waste disposal locations.
+        - **p3** Include operating hours, contact information, and directions.
+
+3. **Senior Sigrid**:
+    - **Solution 1: Visual Guides**:
+        - **p3** Develop an intuitive waste sorting guide with visual icons. Sigrid can easily identify which bin to use based on item categories (e.g., paper, plastic, glass).
+        - **p3** Include voice instructions for accessibility.
+    - **Solution 2: Assistance Network**:
+        - **p3** Create a community feature where neighbors can offer assistance. Sigrid can request help with heavy bins or ask for clarification on waste separation.
+        - **p2** Encourage local volunteers to participate.
+
+4. **Family-Focused Felix**:
+    - **Solution 1: Family Calendar Integration**:
+        - **p2** Allow Felix to invite family members to join the app. Sync the app with their calendars to display waste collection days.
+        - **p2** Enable notifications for all family members, ensuring everyone is aware.
+    - **Solution 2: Waste Reduction Challenges**:
+        - **p3** Gamify waste reduction within the family. Set monthly challenges (e.g., reduce plastic waste, compost more) and track progress.
+        - **p3** Award virtual badges or points for achieving goals.
+
+### Prototype
+After ideating I created wireframes and content for the prototype of the site which is of course this repository.
+
+Check out the full prototype including wireframes, user stories, and the working site by browsing around the readme and the repository. Also check out the [tonne website](https://tonne-waste-reminders-a6836f2888b0.herokuapp.com/) itself.
+
+### Test
+The prototype of the site was tested manually and progamatically to ensure that it is working as intended.
+Testing in the sense of design thinking has not been very extensive yet. This will be done in the future.
