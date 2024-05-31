@@ -24,15 +24,26 @@
                         aria-labelledby="heading{{ schedule.id }}" data-bs-parent="#subscribed_accordion">
                         <div class="accordion-body">
                             <p>{{ schedule.description }}</p>
-                            <a href="{% url 'schedule_detail' schedule.locations.first schedule.slug %}"
-                                class="btn btn-secondary">View
-                                Schedule</a>
-                            <a href="#" class="btn btn-primary">Download csv</a>
-                            {% if schedule.author == user %}
-                            <a href="{% url 'add_bins' schedule.id %}" class="btn btn-secondary">Edit Schedule</a>
-                            <a href="{% url 'delete_schedule' schedule.slug %}" class="btn btn-danger">Delete
-                                Schedule</a>
-                            {% endif %}
+                            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-xl-2 g-2 ">
+                                <div class="col">
+                                    <a href="#" class="btn btn-primary submit-background">Download csv</a>
+                                </div>
+                                <div class="col">
+                                    <a href="{% url 'schedule_detail' schedule.locations.first schedule.slug %}"
+                                        class="btn btn-secondary">View
+                                        Schedule</a>
+                                </div>
+                                {% if schedule.author == user %}
+                                <div class="col">
+                                    <a href="{% url 'add_bins' schedule.id %}" class="btn btn-secondary">Edit
+                                        Schedule</a>
+                                </div>
+                                <div class="col">
+                                    <a href="{% url 'delete_schedule' schedule.slug %}" class="btn btn-danger">Delete
+                                        Schedule</a>
+                                </div>
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -59,15 +70,26 @@
                         aria-labelledby="heading{{ schedule.id }}created" data-bs-parent="#created_accordion">
                         <div class="accordion-body">
                             <p>{{ schedule.description }}</p>
-                            <a href="{% url 'schedule_detail' schedule.locations.first schedule.slug %}"
-                                class="btn btn-secondary">View
-                                Schedule</a>
-                            <a href="#" class="btn btn-primary">Download csv</a>
-                            {% if schedule.author == user %}
-                            <a href="{% url 'add_bins' schedule.id %}" class="btn btn-secondary">Edit Schedule</a>
-                            <a href="{% url 'delete_schedule' schedule.slug %}" class="btn btn-danger">Delete
-                                Schedule</a>
-                            {% endif %}
+                            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-xl-2 g-2 ">
+                                <div class="col">
+                                    <a href="#" class="btn btn-primary submit-background">Download csv</a>
+                                </div>
+                                <div class="col">
+                                    <a href="{% url 'schedule_detail' schedule.locations.first schedule.slug %}"
+                                        class="btn btn-secondary">View
+                                        Schedule</a>
+                                </div>
+                                {% if schedule.author == user %}
+                                <div class="col">
+                                    <a href="{% url 'add_bins' schedule.id %}" class="btn btn-secondary">Edit
+                                        Schedule</a>
+                                </div>
+                                <div class="col">
+                                    <a href="{% url 'delete_schedule' schedule.slug %}" class="btn btn-danger">Delete
+                                        Schedule</a>
+                                </div>
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
                 </div>
