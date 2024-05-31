@@ -1,3 +1,14 @@
+
+:root {
+    --primary-color: #25a55f;
+    --secondary-color: #57d992;
+    --darker-secondary-color: #1c7b47;
+    --primary-transparent-background: #25a55f45;
+    --secondary-transparent-background: #1c7b47db;
+    --dark-background: #2a2a2a;
+    --light-background: #e6e6e6;
+}
+
 h1,
 h2,
 h3,
@@ -47,8 +58,8 @@ main {
 }
 
 .dark-section {
-    background: #2a2a2a;
-    color: #e6e6e6;
+    background: var(--dark-background);
+    color: var(--light-background);
 }
 
 .opacity-hover:hover {
@@ -57,12 +68,12 @@ main {
 }
 
 .submit-background {
-    background: #25a55f;
+    background: var(--primary-color);
     border-style: none;
 }
 
 .submit-background:hover {
-    background: #25a55fd8;
+    background: var(--darker-secondary-color);
     transition: background-color 0.5s;
 }
 
@@ -72,8 +83,13 @@ main {
 
 }
 
+.text-tonne {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
 .card-hover:hover {
-    background-color: #25a55f36;
+    background-color: var(--primary-transparent-background);
     transition: background-color 0.5s;
 }
 
@@ -99,7 +115,7 @@ main {
 
 /* Selected accordion-button bootstrap class override */
 .accordion-button:not(.collapsed) {
-    background-color: #25a55f53;
+    background-color: var(--primary-transparent-background);
     color: black;
 }
 
@@ -124,8 +140,8 @@ main {
 }
 
 #calendar div .fc-h-event {
-    background-color: #1c7b47db;
-    border-color: #1c7b47db;
+    background-color: var(--secondary-transparent-background);
+    background-color: var(--secondary-transparent-background);
 }
 
 .custom-img-size {
@@ -140,7 +156,7 @@ main {
 /* Timeline */
 /* -> Credit for timeline CSS & HTML: https://www.bootdey.com/snippets/view/timeline-events */
 .timeline {
-    border-left: 3px solid #57d992;
+    border-left: 3px solid var(--secondary-color);
     margin: 0 auto;
     letter-spacing: 0.2px;
     line-height: 1.4em;
@@ -215,8 +231,8 @@ main {
 }
 
 .timeline .event:after {
-    -webkit-box-shadow: 0 0 0 3px #57d992;
-    box-shadow: 0 0 0 3px #57d992;
+    -webkit-box-shadow: 0 0 0 3px var(--secondary-color);
+    box-shadow: 0 0 0 3px var(--secondary-color);
     left: -55.8px;
     background: #fff;
     border-radius: 50%;
@@ -238,7 +254,7 @@ main {
     border-top-right-radius: 0;
     border-bottom-left-radius: 4px;
     border-top-left-radius: 4px;
-    border-right: 3px solid #57d992;
+    border-right: 3px solid var(--secondary-color);
 }
 
 .rtl .timeline .event::before {
