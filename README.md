@@ -98,7 +98,9 @@ View the [user story map](https://github.com/users/benschaf/projects/9/views/2) 
 !!!Manually add the user stories ...
 
 ### Flowchart
-Somewhere include a flowchart that maps out the user journey through the site.
+The following flowchart depicts possible user journeys in the waste management app. The app tries to let the user do as much as possible without having to sign up or log in. Only when the user has to perform any kind of CRUD operation, they are asked to sign up or log in.
+
+![screenshot](documentation/flowchart.png)
 
 ## Features
 
