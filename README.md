@@ -75,6 +75,20 @@ In order to have easier access to my colour scheme within my code i used CSS `:r
 
 - [Font Awesome](https://fontawesome.com) icons were used throughout the site, such as the social media icons in the footer.
 
+## Wireframes
+To follow best practice, wireframes were developed for mobile, tablet, and desktop sizes.
+I've used [draw.io](https://balsamiq.com/wireframes) to design my site wireframes.
+
+View the [original draw.io file](https://drive.google.com/file/d/1KmW3ppV6V6eGe11EsY1J0-Z69dtKagAU/view?usp=sharing) of the wireframes. (click on the "Open with" button and select "draw.io")
+
+| Page | Mobile Wireframe | Tablet Wireframe | Desktop Wireframe |
+| --- | --- | --- | --- |
+| Landing Page | ![screenshot](documentation/wireframe-landing-mobile.png) | ![screenshot](documentation/wireframe-landing-tablet.png) | ![screenshot](documentation/wireframe-landing-desktop.png) |
+| Schedule List | ![screenshot](documentation/wireframe-list-mobile.png) | ![screenshot](documentation/wireframe-list-tablet.png) | ![screenshot](documentation/wireframe-list-desktop.png) |
+| Schedule Detail and Editor | ![screenshot](documentation/wireframe-detail-mobile.png) | ![screenshot](documentation/wireframe-detail-tablet.png) | ![screenshot](documentation/wireframe-detail-desktop.png) |
+| Dashboard | ![screenshot](documentation/wireframe-dashboard-mobile.png) | ![screenshot](documentation/wireframe-dashboard-tablet.png) | ![screenshot](documentation/wireframe-dashboard-desktop.png) |
+| Schedule Builder | ![screenshot](documentation/wireframe-builder-mobile.png) | ![screenshot](documentation/wireframe-builder-tablet.png) | ![screenshot](documentation/wireframe-builder-desktop.png) |
+
 ## User Stories
 
 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 START OF NOTES (to be deleted)
@@ -110,94 +124,9 @@ View the [user story map](https://github.com/users/benschaf/projects/9/views/2) 
 - As a site administrator, I should be able to ____________, so that I can ____________.
 - As a site administrator, I should be able to ____________, so that I can ____________.
 
-## Wireframes
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 START OF NOTES (to be deleted)
-
-In this section, display your wireframe screenshots using a Markdown `table`.
-Instructions on how to do Markdown `tables` start on line #213 on this site: https://pandao.github.io/editor.md/en.html
-
-Alternatively, dropdowns are a way to condense several wireframes into a collapsible menu to save space.
-Dropdowns in Markdown are considered some of the only acceptable HTML components that are allowed for assessment purposes.
-
-⚠️ **IMPORTANT**! ⚠️ **IMPORTANT**! ⚠️ **IMPORTANT**! ⚠️
-The example below uses the `details` and `summary` code elements.
-However, for these scripts to work, I've had to add spaces within the `< >` elements.
-
-You MUST remove these spaces for it to work properly on your own README/TESTING files.
-Remove the spaces within the `< >` brackets for the `details` and `summary` code elements,
-for the Mobile, Tablet, and Desktop wireframes.
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
-
-To follow best practice, wireframes were developed for mobile, tablet, and desktop sizes.
-I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wireframes.
-
-### Mobile Wireframes
-
-< details >
-< summary > Click here to see the Mobile Wireframes < / summary >
-
-Home
-  - ![screenshot](documentation/wireframes/mobile-home.png)
-
-About
-  - ![screenshot](documentation/wireframes/mobile-about.png)
-
-Contact
-  - ![screenshot](documentation/wireframes/mobile-contact.png)
-
-Gallery
-  - ![screenshot](documentation/wireframes/mobile-gallery.png)
-
-etc.
-  - repeat for any remaining mobile wireframes
-
-< / details >
-
-### Tablet Wireframes
-
-< details >
-< summary > Click here to see the Tablet Wireframes < / summary >
-
-Home
-  - ![screenshot](documentation/wireframes/tablet-home.png)
-
-About
-  - ![screenshot](documentation/wireframes/tablet-about.png)
-
-Contact
-  - ![screenshot](documentation/wireframes/tablet-contact.png)
-
-Gallery
-  - ![screenshot](documentation/wireframes/tablet-gallery.png)
-
-etc.
-  - repeat for any remaining tablet wireframes
-
-< / details >
-
-### Desktop Wireframes
-
-< details >
-< summary > Click here to see the Desktop Wireframes < / summary >
-
-Home
-  - ![screenshot](documentation/wireframes/desktop-home.png)
-
-About
-  - ![screenshot](documentation/wireframes/desktop-about.png)
-
-Contact
-  - ![screenshot](documentation/wireframes/desktop-contact.png)
-
-Gallery
-  - ![screenshot](documentation/wireframes/desktop-gallery.png)
-
-etc.
-  - repeat for any remaining desktop wireframes
-
-< / details >
+### Flowchart
+Somewhere include a flowchart that maps out the user journey through the site.
 
 ## Features
 
