@@ -72,6 +72,11 @@ main {
 
 }
 
+.text-tonne {
+    color: #25a55f;
+    font-weight: 700;
+}
+
 .card-hover:hover {
     background-color: #25a55f36;
     transition: background-color 0.5s;
