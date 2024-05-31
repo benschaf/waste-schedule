@@ -15,12 +15,11 @@ Welcome to the Waste Management App, your go-to solution in the quest for effici
 Our app is not just about managing waste, it's about creating a sustainable future, one notification at a time. Here's what we offer:
 
 1. 📅 **Waste Collection Reminders:**
-    - Say goodbye to forgotten collection days! Our intuitive dashboard allows you to input your address and receive real-time reminders. Whether it's the Grüne Tonne or Gelbe Tonne, our timely notifications ensure your bins are always ready.
-    - Our calendar view not only highlights upcoming collection days, but also allows you to set preferences (like reminders for the evening before). No more last-minute scrambles or debates about who should have remembered the trash!
+    - Say goodbye to forgotten collection days! Our intuitive dashboard allows you to search for your postcode and receive real-time reminders in your calendar. Whether it's the Grüne Tonne or Gelbe Tonne, our timely notifications ensure that you will never have to rush out your bins again in the last second.
 
 2. 👥 **Community Interaction:**
-    - Be part of a green revolution! Users can upload and rate waste collection schedules, ensuring the highest level of accuracy and reliability.
-    - Customize existing schedules and actively contribute to your communities.
+    - Be part of the green revolution! Users can upload and rate waste collection schedules, ensuring the highest level of accuracy and reliability.
+    - Everyone can Customize existing schedules and actively contribute to your communities.
 
 Join us in building a community-driven resource that's making a real difference. Together, we can create a cleaner, greener world - one bin at a time! 🌳
 
@@ -104,7 +103,7 @@ Considering all the user personas, I defined problem statements for each of them
 [!IMPORTANT]
 Overwork the problem statement
 
-**Overarching Problem Statement**: In a world grappling with stress and environmental challenges, our project aims to develop an integrated waste management solution that addresses the diverse needs of individuals — ranging from busy professionals and eco-conscious citizens to seniors and families. By providing a platform for community engagement, we strive to minimize the stress and confusion that accompany waste management, fostering a sense of responsibility and empowerment among communities. Our mission is to empower everyone, regardless of age or lifestyle, to actively participate in waste reduction, fostering a cleaner and greener planet.
+**Overarching Problem Statement**: In a world grappling with stress and environmental challenges, our project aims to develop an integrated waste management solution that addresses the diverse needs of individuals — ranging from busy professionals and eco-conscious citizens to seniors and families. By providing a platform for community engagement, we strive to minimize the stress and confusion that accompany waste management, fostering a sense of responsibility and empowerment among communities. Our mission is to empower everyone, regardless of age or lifestyle, to actively participate in waste reduction, ultimately fostering a cleaner and greener planet.
 
 ### Ideate
 Considering the problem statements, I brainstormed potential solutions that could address the needs of each user persona. Here are some ideas already with an added priority value (p1: high priority, p2: medium priority, p3: low priority):
