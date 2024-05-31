@@ -179,43 +179,34 @@ In this section, you will briefly explain your design processes.
 Link to [Figma design language system](https://www.figma.com/file/GZDmOY3zdf4Wb1uBv6uAAq/Airbnb-UI-Kit-(Community)?type=design&node-id=239%3A3762&mode=design&t=Lo4zPL7ic94pf63j-1)
 
 ### Colour Scheme
+I used a very subtle green and white colour scheme to reflect the eco-friendly nature of the app. Coolors was used to generate the [colour palette](https://coolors.co/25a55f-2a2a2a-1c7b47-e6e6e6-57d992).
 
-link to coolors: https://coolors.co/25a55f-2a2a2a-1c7b47-e6e6e6-57d992
+![screenshot](documentation/coolors-tonne.png)
+Screenshot of the colour palette from Coolors
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑START OF NOTES (to be deleted)
+- `--pigment-green: #25a55f` - used for primary buttons and highlights
+- `--emerald: #57d992` - used for secondary buttons and highlights
+- `--dark-spring-green: #1c7b47` - used for darker highlights
+- `--jet: #2a2a2a` - used for bright backgrounds
+- `--platinum: #e6e6e6` - used for light buttons
 
-Explain your colours and the colour scheme.
+In order to have easier access to my colour scheme within my code i used CSS `:root` variables. These also include transparent versions of the colours for backgrounds.
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
+```css
+:root {
+    --primary-color: #25a55f;
+    --secondary-color: #57d992;
+    --darker-secondary-color: #1c7b47;
+    --primary-transparent-background: #25a55f45;
+    --secondary-transparent-background: #1c7b47db;
+    --dark-background: #2a2a2a;
+    --light-background: #e6e6e6;
+}
+```
 
-- `#000000` used for primary text.
-- `#E84610` used for primary highlights.
-- `#4A4A4F` used for secondary text.
-- `#009FE3` used for secondary highlights.
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑START OF NOTES (to be deleted)
 
-Consider adding a link and screenshot for your colour scheme using "coolors".
-https://coolors.co/generate
 
-When you add a colour to the palette, the URL is dynamically updated, making it easier for you to return back to your colour palette later if needed.
-
-Example:
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
-
-I used [coolors.co](https://coolors.co/e84610-009fe3-4a4a4f-445261-d63649-e6ecf0-000000) to generate my colour palette.
-
-![screenshot](documentation/coolors.png)
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑START OF NOTES (to be deleted)
-
-⚠️ ONLY IF YOU ACTUALLY ADDED `:root` variables in CSS! ⚠️
-If you've used CSS `:root` variables, consider also including a code snippet here!
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
-
-I've used CSS `:root` variables to easily update the global colour scheme by changing only one value, instead of everywhere in the CSS file.
 
 ```css
 :root {
@@ -231,19 +222,9 @@ I've used CSS `:root` variables to easily update the global colour scheme by cha
 
 ### Typography
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑START OF NOTES (to be deleted)
+- [Josefin Sans](https://fonts.google.com/specimen/Josefin+Sans) was used for all titles and subheadings. It's a modern, elegant font that stands out, complementing the otherwise minimalistic colour scheme and design.
 
-Explain any fonts and icon libraries used, like Google Fonts and/or Font Awesome.
-
-Consider adding a link to each font used, and the Font Awesome site if used (or similar icon library).
-
-Example:
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
-
-- [Josefin Sans](https://fonts.google.com/specimen/Josefin+Sans) was used for all titles and subheadings.
-
-- [Lato](https://fonts.google.com/specimen/Lato) was used for body and all other text.
+- [Lato](https://fonts.google.com/specimen/Lato) was used for body and all other text. It's a clean, easy-to-read font that ensures a smooth user experience.
 
 - [Font Awesome](https://fontawesome.com) icons were used throughout the site, such as the social media icons in the footer.
 
