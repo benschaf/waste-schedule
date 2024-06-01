@@ -95,7 +95,7 @@ View the [user story map](https://github.com/users/benschaf/projects/9/views/2) 
 
 ![screenshot](documentation/user-story-map.png)
 
-!!!Manually add the user stories ...
+!!! Manually add the user stories ...
 
 ### Flowchart
 The following flowchart depicts possible user journeys in the waste management app. The app tries to let the user do as much as possible without having to sign up or log in. Only when the user has to perform any kind of CRUD operation, they are asked to sign up or log in.
@@ -104,48 +104,161 @@ The following flowchart depicts possible user journeys in the waste management a
 
 ## Features
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 START OF NOTES (to be deleted)
-
-In this section, you should go over the different parts of your project,
-and describe each in a sentence or so.
-
-You will need to explain what value each of the features provides for the user,
-focusing on who this website is for, what it is that they want to achieve,
-and how your project is the best way to help them achieve these things.
-
-For some/all of your features, you may choose to reference the specific project files that implement them.
-
-IMPORTANT: Remember to always include a screenshot of each individual feature!
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
-
 ### Existing Features
 
-- **YOUR-TITLE-FOR-FEATURE-#1**
+#### Inviting landing Page
 
-    - Details about this particular feature, including the value to the site, and benefit for the user. Be as detailed as possible!
+When first visiting the site, users are greeted with a clean, modern, and inviting landing page. It includes a hero image, a brief description of the site, and a call-to-action form to get started.
 
-![screenshot](documentation/features/feature01.png)
+The landing page is designed to be simple and user-friendly, providing a quick overview of the site's purpose and functionality. It encourages users to explore the site further and get started with their waste management journey.
 
-- **YOUR-TITLE-FOR-FEATURE-#2**
+![screenshot](documentation/feature-landing.png)
 
-    - Details about this particular feature, including the value to the site, and benefit for the user. Be as detailed as possible!
+project files: [index.html](core/templates/core/index.html)
 
-![screenshot](documentation/features/feature02.png)
+#### Navigation Bar with the most important links
 
-- **YOUR-TITLE-FOR-FEATURE-#3**
+The navigation bar is fixed at the top of the page, ensuring easy access to the most important links. It includes the logo (which is a link to the homepage), links to the schedule list, the schedule builder, the dashboard and login/register.
 
-    - Details about this particular feature, including the value to the site, and benefit for the user. Be as detailed as possible!
+The navigation bar is designed to be simple and intuitive, providing quick access to the site's main features. It is responsive and collapses into a hamburger menu on smaller screens using the Bootstrap CSS framework.
 
-![screenshot](documentation/features/feature03.png)
+![screenshot](documentation/feature-navbar.png)
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 START OF NOTES (to be deleted)
+project files: [base.html](templates/base.html)
 
-Repeat as necessary for as many features as your site contains.
+#### Footer with social media links
 
-Hint: the more, the merrier!
+The footer includes links to the site's social media profiles, such as Facebook, Twitter, and Instagram. It also includes a link to the About page and displays a copyright notice.
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
+The footer is designed to be simple and unobtrusive, providing additional information and links for users who are interested.
+
+![screenshot](documentation/feature-footer.png)
+
+project files: [base.html](templates/base.html)
+
+#### About Page
+
+The About page provides a brief overview of the site's purpose and the creator. It also identifies the site as a Code Institute student project.
+
+The About page is designed to be informative and engaging, providing users with additional context and background information. It helps to establish trust and credibility with users, ensuring they feel comfortable using the site.
+
+![screenshot](documentation/feature-about.png)
+
+project files: [about.html](core/templates/core/about.html)
+
+#### Schedule Search Bar and List
+
+The schedule search bar allows users to search for their postcode and receive a list of waste collection schedules. The search bar is displayed prominently on as the CTA on the Landing page and in the Schedule List page.
+
+Once the user has entered their postcode, they are presented with a list set of schedule cards that match their search criteria. From here, they can already like and/or subscribe to a schedule.
+
+The search bar and list are designed to be simple and intuitive, providing users with a quick and easy way to find the information they need.
+
+![screenshot](documentation/feature-search.png)
+
+project files: [schedule_list.html](wasteschedules/templates/wasteschedules/schedule_list.html), [index.js](static/js/index.js)
+
+#### Schedule Detail View
+
+When a user clicks on a schedule card, they are taken to the schedule detail view. Here, they can see all the details of the schedule, including the waste types, collection days, and any additional notes. They can also like and subscribe to the schedule.
+
+Below the schedule details is a list of user comments, allowing users to share their thoughts and experiences with the schedule.
+
+For the schedule as well as for each comment, the owner of the schedule/comment can edit or delete it.
+
+The schedule detail view is designed to be informative and engaging, providing users with all the information and possibilites to take action they need in one place.
+
+![screenshot](documentation/feature-detail.png)
+
+project files: [schedule_detail.html](wasteschedules/templates/wasteschedules/schedule_detail.html), [comments.js](static/js/comments.js), [only_schedule.js](static/js/only_schedule.js)
+
+#### User Likes, Subscriptions, and Comments
+
+Users can like and subscribe to schedules, as well as leave comments. This allows them to interact with the site and the community, providing feedback and sharing their experiences.
+
+A like is a simple way for users to show their appreciation for a schedule. Other users can see how many likes a schedule has received - thereby indicating its popularity and reliability.
+
+Subscribing to a schedule means that the user will be able to set up notifications for this schedule. A subscribed to schedule will be displayed on the user's dashboard. Subscriptions also contribute to indicate the reliability of a schedule.
+
+Schedules and likes can be added and removed by the user via the schedule list, schedule detail and dashboard pages.
+
+Comments allow users to share their thoughts and experiences on a schedule. They can ask questions, provide feedback, or share additional information. Comments are displayed below the schedule details and can be edited or deleted by the owner. Comments can be added, edited and deleted via the schedule detail page.
+
+The like, subscribe and comment features are designed to encourage user interaction and engagement, creating a sense of community and trust.
+
+![screenshot](documentation/feature-comments.png)
+
+project files: [comments.js](static/js/comments.js), [schedule_detail.html](wasteschedules/templates/wasteschedules/schedule_detail.html), [schedule_list.html](wasteschedules/templates/wasteschedules/schedule_list.html), [dashboard.html](wasteschedules/templates/wasteschedules/dashboard.html)
+
+
+#### Schedule Builder
+
+The schedule builder allows users to create a new waste collection schedule. They can add waste types, collection days, and any additional notes. Once the schedule is created, it is added to the database and can be viewed by other users.
+
+The schedule builder is split up into 3 steps:
+1. Location Form
+
+Here the user can enter their postcode. If a schedule for this postcode already exists, the user is notified.
+
+2. Schedule Title / Description / Image Form
+
+Here the user can enter a title and description for the schedule. They can also upload an image to help validate the schedule.
+
+3. Collection Events Calendar Form
+
+Here the user can add collection events to the schedule. They can select the waste type, the collection day directly from a calendar. The calendar is implemented using the [FullCalendar](https://fullcalendar.io/) library.
+
+The schedule builder is designed to be intuitive and user-friendly, providing a step-by-step process for creating a new schedule. It allows users to contribute to the site and share their knowledge with the community.
+
+![screenshot](documentation/feature-builder1.png)
+
+Location Form
+
+![screenshot](documentation/feature-builder2.png)
+
+Schedule Title / Description / Image Form
+
+![screenshot](documentation/feature-builder3.png)
+
+Collection Events Calendar Form
+
+project files: [location_form.html](schedulebuilder/templates/schedulebuilder/location_form.html), [schedule_form.html](schedulebuilder/templates/schedulebuilder/schedule_form.html), [calendar.html](schedulebuilder/templates/schedulebuilder/calendar.html), [edit_calendar.js](static/js/edit_calendar.js)
+
+#### Dashboard
+
+The dashboard is a user-specific page that displays all the schedules the user has created. It also displays any schedules the user has subscribed to.
+
+From the dashboard, the user can edit or delete their schedules, as well as unsubscribe from schedules they are no longer interested in. It provides a quick overview and a general starting point for established users that are already familiar with the site.
+
+![screenshot](documentation/feature-dashboard.png)
+
+project files: [dashboard.html](wasteschedules/templates/wasteschedules/dashboard.html)
+
+#### User Registration and Login
+
+Users can register for an account on the site, providing a username and password. Once registered, they can log in to the site using their credentials. They also have the option to register and sign in using their Google account. This feature is implemented using the Django Allauth package.
+
+The site tries to prompt the user to register or log in only when it is necessary. This means that the user can do as much as possible without having to sign up or log in. Only when the user has to perform any kind of CRUD operation, they are asked to sign up or log in. For an overview of the user flow, see the [flowchart](#flowchart).
+
+![screenshot](documentation/feature-register.png)
+
+project files: find the adapted Allauth templates in the [templates/account](templates/account) folder.
+
+#### Django messages
+
+Django messages are used to provide feedback to the user. They are displayed at the bottom of the page and disappear after a few seconds. They are used to confirm successful actions, such as creating a schedule, as well as to provide error messages, such as when a user tries to access a page they are not authorized to view.
+
+The messages are designed to be unobtrusive and informative, providing users with feedback on their actions and helping them navigate the site.
+
+![screenshot](documentation/feature-messages.png)
+
+project files: [base.html](templates/base.html)
+
+#### Responsive Design
+
+The site is fully responsive and optimized for all devices. It looks great on mobile, tablet, and desktop screens, ensuring a smooth user experience no matter the device. The responsive design was implemented using the Bootstrap CSS framework. Custom CSS was used to create a unique design that fits the site's theme.
+
+project files: all template files and [styles.css](static/css/styles.css) (for custom styles)
 
 ### Future Features
 
@@ -158,12 +271,13 @@ Consider adding any helpful links or notes to help remind you in the future, if 
 
 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
 
-- YOUR-TITLE-FOR-FUTURE-FEATURE-#1
-    - Any additional notes about this feature.
-- YOUR-TITLE-FOR-FUTURE-FEATURE-#2
-    - Any additional notes about this feature.
-- YOUR-TITLE-FOR-FUTURE-FEATURE-#3
-    - Any additional notes about this feature.
+All Ideas for Future Features are organized by Epic and MoSCoW priority in the [User Story Map](https://github.com/users/benschaf/projects/9/views/2)
+
+These are my three favorite ideas for future features:
+- **User Notifications**: A feature that sends users actual real time notifications to remind them of their waste collection days. Sadly, this feature is not in the scope of this project because it cant really be implemented when using a free Heroku account that isn't able to keep the server running all the time.
+- **Gamification and Household sharing** A feature that allows members of a household to share their schedules and compete / collaborate with each other. This feature would also include a leaderboard and achievements.
+- **Local Waste Collection Services**: A feature that allows users to find local waste collection services in their area, such as recycling centers, composting facilities, and hazardous waste disposal sites.
+
 
 ## Tools & Technologies Used
 - [![Markdown Builder](https://img.shields.io/badge/Markdown_Builder-grey?logo=markdown&logoColor=000000)](https://tim.2bn.dev/markdown-builder) used to generate README and TESTING templates.
