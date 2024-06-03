@@ -291,8 +291,8 @@ AM I USING THIS??
 - [![WhiteNoise](https://img.shields.io/badge/WhiteNoise-grey?logo=python&logoColor=FFFFFF)](https://whitenoise.readthedocs.io) used for serving static files with Heroku.
 - [![Font Awesome](https://img.shields.io/badge/Font_Awesome-grey?logo=fontawesome&logoColor=528DD7)](https://fontawesome.com) used for the icons.
 - [![ChatGPT](https://img.shields.io/badge/ChatGPT-grey?logo=chromatic&logoColor=75A99C)](https://chat.openai.com) used to help debug, troubleshoot, and explain things.
-- [![Coolors](https://img.shields.io/badge/Coolors-grey?logo=coolors&logoColor=05E6B6)](https://coolors.co) used to generate the colour palette.
-- [![draw.io](https://img.shields.io/badge/draw.io-grey?logo=drawio&logoColor=F0A60A)](https://draw.io) used to design the wireframes.
+- [![coolors](https://img.shields.io/badge/Coolors-grey?logo=coolors&logoColor=05E6B6)](https://coolors.co) used to generate the colour palette.
+- [![draw.io](https://img.shields.io/badge/draw.io-grey?logo=diagrams.net&logoColor=F0A60A)](https://draw.io) used to design the wireframes.
 
 
 ## Database Design
