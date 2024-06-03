@@ -20,7 +20,7 @@ function getMaxId(events) {
             maxId = event.id;
         }
     }
-    currendID = maxId + 1;
+    return maxId + 1;
 }
 
 // -> Credit for getWeekday: https://www.w3schools.com/jsref/jsref_getday.asp
@@ -237,9 +237,13 @@ function saveEvent() {
 // On document load
 document.addEventListener('DOMContentLoaded', function () {
     renderCalendar();
-    getMaxId(calendar.getEvents());
+    currendID = getMaxId(calendar.getEvents());
 
     // Event listeners
     postCalendarEvents();
     saveEvent();
 });
+
+if (typeof module !== "undefined") module.exports = {
+    getMaxId
+};

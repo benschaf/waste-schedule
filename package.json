@@ -1,0 +1,28 @@
+{
+  "name": "waste-schedule",
+  "version": "1.0.0",
+  "description": "[Experience our live website here!](https://tonne-waste-reminders-a6836f2888b0.herokuapp.com/)",
+  "main": "index.js",
+  "dependencies": {
+    "preact": "^10.12.1",
+    "rrule": "^2.8.1",
+    "tslib": "^2.6.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benschaf/waste-schedule.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/benschaf/waste-schedule/issues"
+  },
+  "homepage": "https://github.com/benschaf/waste-schedule#readme"
+}
