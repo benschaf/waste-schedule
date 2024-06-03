@@ -1,4 +1,5 @@
 
+/* -> Credit for using CSS root variables: https://www.w3schools.com/css/css3_variables.asp */
 :root {
     --primary-color: #25a55f;
     --secondary-color: #57d992;
