@@ -379,17 +379,6 @@ Github issues was mainly used to track bugs and smaller feature requests that we
 > For all testing, please refer to the [TESTING.md](TESTING.md) file.
 
 ## Deployment
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-START OF NOTES (to be deleted)
-
-**IMPORTANT:**
-
-- ⚠️ DO NOT update the environment variables to your own! These should NOT be included in this file; just demo values! ⚠️
-- ⚠️ DO NOT update the environment variables to your own! These should NOT be included in this file; just demo values! ⚠️
-- ⚠️ DO NOT update the environment variables to your own! These should NOT be included in this file; just demo values! ⚠️
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
-
 The live deployed application can be found deployed on [Heroku](https://fdfsaf1beedfcc0.herokuapp.com).
 
 ### PostgreSQL Database
@@ -403,8 +392,7 @@ To obtain my own Postgres Database from Code Institute, I followed these steps:
 
 > [!CAUTION]
 > - PostgreSQL databases by Code Institute are only available to CI Students.
-> - You must acquire your own PostgreSQL database through some other method
-> if you plan to clone/fork this repository.
+> - You must acquire your own PostgreSQL database through some other method if you plan to clone/> > fork this repository.
 > - Code Institute students are allowed a maximum of 8 databases.
 > - Databases are subject to deletion after 18 months.
 
@@ -512,6 +500,7 @@ Once the project is cloned or forked, in order to run it locally, you'll need to
 - Make any necessary migrations: `python3 manage.py makemigrations`
 - Migrate the data to the database: `python3 manage.py migrate`
 - Create a superuser: `python3 manage.py createsuperuser`
+!!!! CREATE FIXTURES
 - Load fixtures (if applicable): `python3 manage.py loaddata file-name.json` (repeat for each file)
 - Everything should be ready now, so run the Django app again: `python3 manage.py runserver`
 
@@ -543,14 +532,6 @@ You can fork this repository by using the following steps:
 1. Log in to GitHub and locate the [GitHub Repository](https://github.com/benschaf/waste-schedule)
 2. At the top of the Repository (not top of page) just above the "Settings" Button on the menu, locate the "Fork" Button.
 3. Once clicked, you should now have a copy of the original repository in your own GitHub account!
-
-### Local VS Deployment
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-START OF NOTES (to be deleted)
-
-Use this space to discuss any differences between the local version you've developed, and the live deployment site on Heroku.
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
 
 ## Credits
 
