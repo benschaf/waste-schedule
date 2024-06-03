@@ -296,48 +296,15 @@ AM I USING THIS??
 
 
 ## Database Design
-Entity Relationship Diagrams (ERD) help to visualize database architecture before creating models.
-Understanding the relationships between different tables can save time later in the project.
+A relational database was used for this project. The database schema was designed using [dbdiagram.io](https://dbdiagram.io) before development began. The schema was then implemented using Django's built-in ORM. Throughout the development process, the schema was adjusted and updated as needed. The initial and the final version of the schema can be found below.
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 START OF NOTES (to be deleted)
+### Initial ERD
+At the core of the database design is the `Schedule` model. This model represents a waste collection schedule and includes fields for the schedule title, description, and image. On the left side of the ERD view below are models that allow users to like, comment on, and subscribe to schedules. On the right side are models that handle individual collection events. They adhere to the [RRule standard](https://github.com/jkbrzt/rrule), which allows for complex recurring events to be defined.
 
-Using your defined models (one example below), create an ERD with the relationships identified.
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
-
-```python
-class Product(models.Model):
-    category = models.ForeignKey(
-        "Category", null=True, blank=True, on_delete=models.SET_NULL)
-    sku = models.CharField(max_length=254, null=True, blank=True)
-    name = models.CharField(max_length=254)
-    description = models.TextField()
-    has_sizes = models.BooleanField(default=False, null=True, blank=True)
-    price = models.DecimalField(max_digits=6, decimal_places=2)
-    rating = models.DecimalField(
-        max_digits=6, decimal_places=2, null=True, blank=True)
-    image_url = models.URLField(max_length=1024, null=True, blank=True)
-    image = models.ImageField(null=True, blank=True)
-
-    def __str__(self):
-        return self.name
-```
-
+![screenshot](documentation/erd-initial.png)
 Link to the [ERD](https://dbdiagram.io/e/66178e7003593b6b61bbb163/6618fa1203593b6b61d512e4)
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 START OF NOTES (to be deleted)
-
-A couple recommendations for building free ERDs:
-- [Draw.io](https://draw.io)
-- [Lucidchart](https://www.lucidchart.com/pages/ER-diagram-symbols-and-meaning)
-
-A more comprehensive ERD can be auto-generated once you're
-at the end of your development stages, just before you submit.
-Follow the steps below to obtain a thorough ERD that you can include.
-Feel free to leave the steps in the README for future use to yourself.
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
-
+### Final ERD
 I have used `pygraphviz` and `django-extensions` to auto-generate an ERD.
 
 The steps taken were as follows:
@@ -359,7 +326,9 @@ INSTALLED_APPS = [
 - finally, in the terminal: `pip3 uninstall django-extensions pygraphviz -y`
 
 ![erd](documentation/erd.png)
-source: [medium.com](https://medium.com/@yathomasi1/1-using-django-extensions-to-visualize-the-database-diagram-in-django-application-c5fa7e710e16)
+source for django ERD generation: [medium.com](https://medium.com/@yathomasi1/1-using-django-extensions-to-visualize-the-database-diagram-in-django-application-c5fa7e710e16)
+
+**Note about migration files:** While debugging the project, migration files were deleted and recreated which results in the `migrations` folders only containing one migration file each. The migration history can be recreated in older versions of the github repository. Thanks for John from the tutor team for the help with debugging my migrations! (see [the relevant commit](https://github.com/benschaf/waste-schedule/commit/ea26c6f6037916747e75c8918a234437f2f3ae20))
 
 
 ## Agile Development Process
