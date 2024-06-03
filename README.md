@@ -537,13 +537,70 @@ You can fork this repository by using the following steps:
 
 ### Content
 
-| Source | Location | Notes |
+
+<!-- CREDITS_START -->
+All the Credits and hyperlinks can be found in the respective files on the indicated lines.
+
+Note that the list of credits below is automatically generated from the project files using the [copy-credits.py](copy-credits.py) script.
+The script was written by me, with much help from the Microsoft Edge Copilot.
+| File | Notes | Source |
 | --- | --- | --- |
-| [Markdown Builder](https://tim.2bn.dev/markdown-builder) | README and TESTING | tool to help generate the Markdown files |
-| [Chris Beams](https://chris.beams.io/posts/git-commit) | version control | "How to Write a Git Commit Message" |
-| [W3Schools](https://www.w3schools.com/howto/howto_js_topnav_responsive.asp) | entire site | responsive HTML/CSS/JS navbar |
-| [W3Schools](https://www.w3schools.com/css/css3_variables.asp) | entire site | how to use CSS :root variables |
-| [WhiteNoise](http://whitenoise.evans.io) | entire site | hosting static files on Heroku temporarily |
+| [index.html: Line 20](https://github.com/benschaf/waste-schedule/blob/main/core/templates/core/index.html#L20) | manual input validation using regex pattern | [developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation) |
+| [index.html: Line 21](https://github.com/benschaf/waste-schedule/blob/main/core/templates/core/index.html#L21) | regex Pattern (generated using Bing AI) | [www.bing.com](https://www.bing.com/chat) |
+| [models.py: Line 38](https://github.com/benschaf/waste-schedule/blob/main/schedulebuilder/models.py#L38) | strftime | [www.programiz.com](https://www.programiz.com/python-programming/datetime/strftime) |
+| [test_views.py: Line 59](https://github.com/benschaf/waste-schedule/blob/main/schedulebuilder/test_views.py#L59) | getting django messages from response | [stackoverflow.com](https://stackoverflow.com/questions/2897609/how-can-i-unit-test-django-messages) |
+| [views.py: Line 319](https://github.com/benschaf/waste-schedule/blob/main/schedulebuilder/views.py#L319) | update_or_create | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/models/querysets/#update-or-create) |
+| [views.py: Line 320](https://github.com/benschaf/waste-schedule/blob/main/schedulebuilder/views.py#L320) | dict.get() | [www.w3schools.com](https://www.w3schools.com/python/ref_dictionary_get.asp) |
+| [views.py: Line 359](https://github.com/benschaf/waste-schedule/blob/main/schedulebuilder/views.py#L359) | get_kind_display() | [docs.djangoproject.com](https://docs.djangoproject.com/en/3.2/ref/models/instances/#django.db.models.Model.get_FOO_display) |
+| [schedule_form.html: Line 21](https://github.com/benschaf/waste-schedule/blob/main/schedulebuilder/templates/schedulebuilder/schedule_form.html#L21) | uploading a file using a form | [www.w3schools.com](https://www.w3schools.com/tags/att_form_enctype.asp) |
+| [style.css: Line 2](https://github.com/benschaf/waste-schedule/blob/main/static/css/style.css#L2) | using CSS root variables | [www.w3schools.com](https://www.w3schools.com/css/css3_variables.asp) |
+| [style.css: Line 53](https://github.com/benschaf/waste-schedule/blob/main/static/css/style.css#L53) | Gradient text | [cssgradient.io](https://cssgradient.io/blog/css-gradient-text/) |
+| [style.css: Line 158](https://github.com/benschaf/waste-schedule/blob/main/static/css/style.css#L158) | timeline CSS & HTML | [www.bootdey.com](https://www.bootdey.com/snippets/view/timeline-events) |
+| [edit_calendar.js: Line 26](https://github.com/benschaf/waste-schedule/blob/main/static/js/edit_calendar.js#L26) | getWeekday | [www.w3schools.com](https://www.w3schools.com/jsref/jsref_getday.asp) |
+| [edit_calendar.js: Line 68](https://github.com/benschaf/waste-schedule/blob/main/static/js/edit_calendar.js#L68) | selectedIndex | [www.w3schools.com](https://www.w3schools.com/jsref/prop_select_selectedindex.asp) |
+| [edit_calendar.js: Line 156](https://github.com/benschaf/waste-schedule/blob/main/static/js/edit_calendar.js#L156) | query selector | [developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector?retiredLocale=de) |
+| [edit_calendar.js: Line 216](https://github.com/benschaf/waste-schedule/blob/main/static/js/edit_calendar.js#L216) | adding a year to a date | [developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setFullYear) |
+| [index.js: Line 1](https://github.com/benschaf/waste-schedule/blob/main/static/js/index.js#L1) | redirecting to a url in javascript | [stackoverflow.com](https://stackoverflow.com/questions/503093/how-can-i-make-a-redirect-page-in-jquery-javascript) |
+| [script.js: Line 1](https://github.com/benschaf/waste-schedule/blob/main/static/js/script.js#L1) | popovers | [getbootstrap.com](https://getbootstrap.com/docs/5.2/components/popovers/#overview) |
+| [style.css: Line 52](https://github.com/benschaf/waste-schedule/blob/main/staticfiles/css/style.css#L52) | Gradient text | [cssgradient.io](https://cssgradient.io/blog/css-gradient-text/) |
+| [style.css: Line 157](https://github.com/benschaf/waste-schedule/blob/main/staticfiles/css/style.css#L157) | timeline CSS & HTML | [www.bootdey.com](https://www.bootdey.com/snippets/view/timeline-events) |
+| [edit_calendar.js: Line 26](https://github.com/benschaf/waste-schedule/blob/main/staticfiles/js/edit_calendar.js#L26) | getWeekday | [www.w3schools.com](https://www.w3schools.com/jsref/jsref_getday.asp) |
+| [edit_calendar.js: Line 68](https://github.com/benschaf/waste-schedule/blob/main/staticfiles/js/edit_calendar.js#L68) | selectedIndex | [www.w3schools.com](https://www.w3schools.com/jsref/prop_select_selectedindex.asp) |
+| [edit_calendar.js: Line 156](https://github.com/benschaf/waste-schedule/blob/main/staticfiles/js/edit_calendar.js#L156) | query selector | [developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector?retiredLocale=de) |
+| [edit_calendar.js: Line 216](https://github.com/benschaf/waste-schedule/blob/main/staticfiles/js/edit_calendar.js#L216) | adding a year to a date | [developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setFullYear) |
+| [index.js: Line 1](https://github.com/benschaf/waste-schedule/blob/main/staticfiles/js/index.js#L1) | redirecting to a url in javascript | [stackoverflow.com](https://stackoverflow.com/questions/503093/how-can-i-make-a-redirect-page-in-jquery-javascript) |
+| [script.js: Line 1](https://github.com/benschaf/waste-schedule/blob/main/staticfiles/js/script.js#L1) | popovers | [getbootstrap.com](https://getbootstrap.com/docs/5.2/components/popovers/#overview) |
+| [base.html: Line 86](https://github.com/benschaf/waste-schedule/blob/main/templates/base.html#L86) | django messages framework | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/contrib/messages/) |
+| [only_schedule.html: Line 3](https://github.com/benschaf/waste-schedule/blob/main/templates/only_schedule.html#L3) | sending JSON data to JavaScript | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/templates/builtins/#std-templatefilter-json_script) |
+| [login.html: Line 29](https://github.com/benschaf/waste-schedule/blob/main/templates/account/login.html#L29) | google sign in button | [developers.google.com](https://developers.google.com/identity/branding-guidelines?hl=de) |
+| [signup.html: Line 37](https://github.com/benschaf/waste-schedule/blob/main/templates/account/signup.html#L37) | social Login setup | [www.youtube.com](https://www.youtube.com/watch?v=yO6PP0vEOMc&ab_channel=AkamaiDevRel) |
+| [signup.html: Line 38](https://github.com/benschaf/waste-schedule/blob/main/templates/account/signup.html#L38) | documentation for social Locin setup | [docs.allauth.org](https://docs.allauth.org/en/latest/socialaccount/introduction.html) |
+| [signup.html: Line 40](https://github.com/benschaf/waste-schedule/blob/main/templates/account/signup.html#L40) | google sign in button | [developers.google.com](https://developers.google.com/identity/branding-guidelines?hl=de) |
+| [test_views.py: Line 8](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/test_views.py#L8) | django test assertions | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/topics/testing/tools/#assertions) |
+| [test_views.py: Line 92](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/test_views.py#L92) | converting a QuerySet to a list | [stackoverflow.com](https://stackoverflow.com/questions/4424435/how-to-convert-a-django-queryset-to-a-list) |
+| [test_views.py: Line 256](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/test_views.py#L256) | refreshing the object from the database | [stackoverflow.com](https://stackoverflow.com/questions/4377861/reload-django-object-from-database) |
+| [test_views.py: Line 491](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/test_views.py#L491) | converting lists with different orders to sets to compare them | [www.digitalocean.com](https://www.digitalocean.com/community/tutorials/how-to-compare-two-lists-in-python) |
+| [views.py: Line 20](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/views.py#L20) | class based views | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/class-based-views/) |
+| [views.py: Line 73](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/views.py#L73) | adding an annotation to each object in a list | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/topics/db/aggregation/) |
+| [views.py: Line 76](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/views.py#L76) | passing only the id field value to the template | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/models/querysets/#values-list) |
+| [views.py: Line 100](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/views.py#L100) | additional context data in class based views | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/topics/class-based-views/generic-display/) |
+| [views.py: Line 121](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/views.py#L121) | checking wether a queryset contains any items | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/models/querysets/#django.db.models.query.QuerySet.exists) |
+| [views.py: Line 122](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/views.py#L122) | authenticating the logged in user | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/topics/auth/default/#authentication-in-web-requests) |
+| [views.py: Line 135](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/views.py#L135) | using the LoginRequiredMixin | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/topics/auth/default/#the-loginrequiredmixin-mixin) |
+| [views.py: Line 154](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/views.py#L154) | finding class based view methods | [www.brennantymrak.com](https://www.brennantymrak.com/articles/createviewdiagram) |
+| [views.py: Line 163](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/views.py#L163) | edit view | [github.com](https://github.com/Code-Institute-Solutions/blog/tree/main/12_views_part_3/05_edit_delete) |
+| [views.py: Line 257](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/views.py#L257) | creating an object | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/topics/db/queries/#creating-objects) |
+| [views.py: Line 258](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/views.py#L258) | deleting an object | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/topics/db/queries/#deleting-objects) |
+| [views.py: Line 259](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/views.py#L259) | checking if an object exists | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/models/querysets/#exists) |
+| [schedule_detail.html: Line 145](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/templates/wasteschedules/schedule_detail.html#L145) | crispy forms | [github.com](https://github.com/Code-Institute-Solutions/blog/tree/main/12_views_part_3/01_posting_to_database) |
+| [schedule_detail.html: Line 171](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/templates/wasteschedules/schedule_detail.html#L171) | modals | [getbootstrap.com](https://getbootstrap.com/docs/5.2/components/modal/) |
+| [schedule_detail.html: Line 172](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/templates/wasteschedules/schedule_detail.html#L172) | passisng data attributes to js | [blog.webdevsimplified.com](https://blog.webdevsimplified.com/2020-10/javascript-data-attributes/) |
+| [schedule_detail.html: Line 173](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/templates/wasteschedules/schedule_detail.html#L173) | passing the CSRF Token and using it in js | [stackoverflow.com](https://stackoverflow.com/questions/47527120/how-to-add-assign-csrf-token-in-the-html-submit-form) |
+| [schedule_list.html: Line 20](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/templates/wasteschedules/schedule_list.html#L20) | manual input validation using regex pattern | [developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation) |
+| [schedule_list.html: Line 64](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/templates/wasteschedules/schedule_list.html#L64) | popovers | [getbootstrap.com](https://getbootstrap.com/docs/5.2/components/popovers/#overview) |
+<!-- CREDITS_END -->
+
+Additionaly, [Chris Beams](https://chris.beams.io/posts/git-commit) article "How to Write a Git Commit Message" was used as a guideline for writing commit messages.
 
 ### Media
 
