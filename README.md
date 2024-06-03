@@ -291,6 +291,7 @@ AM I USING THIS??
 - [![ChatGPT](https://img.shields.io/badge/ChatGPT-grey?logo=chromatic&logoColor=75A99C)](https://chat.openai.com) used to help debug, troubleshoot, and explain things.
 - [![coolors](https://img.shields.io/badge/Coolors-grey?logo=coolors&logoColor=05E6B6)](https://coolors.co) used to generate the colour palette.
 - [![draw.io](https://img.shields.io/badge/draw.io-grey?logo=diagrams.net&logoColor=F0A60A)](https://draw.io) used to design the wireframes.
+- [![pixlr](https://img.shields.io/badge/Pixlr-grey?logo=pixlr&logoColor=FF0000)](https://pixlr.com) used to edit images.
 
 
 ## Database Design
