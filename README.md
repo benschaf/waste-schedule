@@ -210,15 +210,9 @@ Here the user can add collection events to the schedule. They can select the was
 
 The schedule builder is designed to be intuitive and user-friendly, providing a step-by-step process for creating a new schedule. It allows users to contribute to the site and share their knowledge with the community.
 
-![screenshot](documentation/feature-builder1.png)
-
-Location Form
-
-![screenshot](documentation/feature-builder2.png)
-
-Schedule Title / Description / Image Form
-
-![screenshot](documentation/feature-builder3.png)
+| Location Form | Schedule Title / Description / Image Form | Collection Events Calendar Form |
+| --- | --- | --- |
+| ![screenshot](documentation/feature-builder1.png) | ![screenshot](documentation/feature-builder2.png) | ![screenshot](documentation/feature-builder3.png) |
 
 Collection Events Calendar Form
 
@@ -240,7 +234,9 @@ Users can register for an account on the site, providing a username and password
 
 The site tries to prompt the user to register or log in only when it is necessary. This means that the user can do as much as possible without having to sign up or log in. Only when the user has to perform any kind of CRUD operation, they are asked to sign up or log in. For an overview of the user flow, see the [flowchart](#flowchart).
 
-![screenshot](documentation/feature-register.png)
+| | |
+| --- | --- |
+| ![screenshot](documentation/feature-register.png) | screenshot |
 
 project files: find the adapted Allauth templates in the [templates/account](templates/account) folder.
 
@@ -250,7 +246,9 @@ Django messages are used to provide feedback to the user. They are displayed at 
 
 The messages are designed to be unobtrusive and informative, providing users with feedback on their actions and helping them navigate the site.
 
-![screenshot](documentation/feature-messages.png)
+| | |
+| --- | --- |
+| ![screenshot](documentation/feature-messages.png) | screenshot |
 
 project files: [base.html](templates/base.html)
 
