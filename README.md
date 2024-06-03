@@ -338,28 +338,29 @@ source for django ERD generation: [medium.com](https://medium.com/@yathomasi1/1-
 [GitHub Projects](https://github.com/benschaf/waste-schedule/projects) served as an Agile tool for this project.
 It isn't a specialized tool, but with the right tags and project creation/issue assignments, it can be made to work.
 
-Through it, user stories, issues, and milestone tasks were planned, then tracked on a weekly basis using the basic Kanban board.
+Through it, a user story map was created, and issues were managed in an Agile way. User stories were created using a custom **User Story Template**.
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 START OF NOTES (to be deleted)
+User stories are grouped by Epic and MoSCoW priority. The epics were determined before development began as part of the design process. In depth information about the conception of the idea for the site and the User Stories can be found under the Design Thinking Progress section at the bottom of this file.
 
-Consider adding a basic screenshot of your Projects Board.
+Throughout the development process, user stories were reevaluated after each iteration and adjusted accordingly.
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
+![screenshot](documentation/user-story-map.png)
 
-![screenshot](documentation/gh-projects.png)
+#### MoSCoW Prioritization
+
+I've decomposed my Epics into stories prior to prioritizing and implementing them.
+Using this approach, I was able to apply the MoSCow prioritization as custom project fields to my user stories within the project settings on GitHub.
+
+- **Must Have**: guaranteed to be delivered (*max 60% of stories*)
+- **Should Have**: adds significant value, but not vital (*the rest ~20% of stories*)
+- **Could Have**: has small impact if left out (*20% of stories*)
+- **Won't Have**: not a priority for this iteration
 
 ### GitHub Issues
 
 [GitHub Issues](https://github.com/benschaf/waste-schedule/issues) served as an another Agile tool.
-There, I used my own **User Story Template** to manage user stories.
 
-It also helped with milestone iterations on a weekly basis.
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 START OF NOTES (to be deleted)
-
-Consider adding a screenshot of your Open and Closed Issues.
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
+Github issues was mainly used to track bugs and smaller feature requests that weren't big enough to be considered a user story. They also contain the user stories which means that filtering is key to keep the overview.
 
 - [Open Issues](https://github.com/benschaf/waste-schedule/issues) [![GitHub issues](https://img.shields.io/github/issues/benschaf/waste-schedule)](https://github.com/benschaf/waste-schedule/issues)
 
@@ -369,15 +370,8 @@ Consider adding a screenshot of your Open and Closed Issues.
 
     ![screenshot](documentation/gh-issues-closed.png)
 
-### MoSCoW Prioritization
+**Note about the screenshots:** The screenshots do not show the complete list of issues as there would be too many. They are meant to give an impression of how the issues are structured and how they are used in the project. The actual list of issues can be found by following the links above.
 
-I've decomposed my Epics into stories prior to prioritizing and implementing them.
-Using this approach, I was able to apply the MoSCow prioritization and labels to my user stories within the Issues tab.
-
-- **Must Have**: guaranteed to be delivered (*max 60% of stories*)
-- **Should Have**: adds significant value, but not vital (*the rest ~20% of stories*)
-- **Could Have**: has small impact if left out (*20% of stories*)
-- **Won't Have**: not a priority for this iteration
 
 ## Testing
 
