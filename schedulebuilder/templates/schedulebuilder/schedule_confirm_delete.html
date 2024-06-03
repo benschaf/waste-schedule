@@ -1,28 +1,38 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
+<!-- Return Link -->
+<div class="container navbar-margin mb-5">
+    <div class="row justify-content-center mt-3">
+        <div class="col col-lg-5">
+            <a href="{% url 'landing_page' %}"
+                class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Back to
+                the Homepage</a>
+            <div class="card mt-2">
+                <div class="card-body p-5">
+                    <h1>Are you Sure?</h1>
+                    <p>
+                        Are you sure you want to delete the schedule?
+                        All schedule data will be lost and you wont get it back.
+                    </p>
+                    <p>
+                        Schedule: {{ schedule }}
+                    </p>
+                    <p>
+                        Location: {{ schedule.locations.first }}
+                    </p>
+                    <p>
+                        Description: {{ schedule.description }}
+                    </p>
 
-<div class="container navbar-margin">
-    <a href="{% url 'landing_page' %}">Back to the Homepage</a>
-    <h1>Are you Sure?</h1>
-    <p>
-        Are you sure you want to delete the schedule?
-        All schedule data will be lost and you wont get it back.
-    </p>
-    <p>
-        Schedule: {{ schedule }}
-    </p>
-    <p>
-        Location: {{ schedule.locations.first }}
-    </p>
-    <p>
-        Description: {{ schedule.description }}
-    </p>
-
-    <form method="POST">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <button type="submit" class="btn btn-danger">Yes, Delete my Schedule</button>
-    </form>
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <button type="submit" class="btn btn-danger">Yes, Delete my Schedule</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
