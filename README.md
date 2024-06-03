@@ -202,7 +202,7 @@ Here the user can enter their postcode. If a schedule for this postcode already 
 
 2. Schedule Title / Description / Image Form
 
-Here the user can enter a title and description for the schedule. They can also upload an image to help validate the schedule.
+Here the user can enter a title and description for the schedule. They can also **upload an image** to help validate the schedule.
 
 3. Collection Events Calendar Form
 
@@ -262,21 +262,12 @@ project files: all template files and [styles.css](static/css/styles.css) (for c
 
 ### Future Features
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 START OF NOTES (to be deleted)
-
-Do you have additional ideas that you'd like to include on your project in the future?
-Fantastic! List them here!
-It's always great to have plans for future improvements!
-Consider adding any helpful links or notes to help remind you in the future, if you revisit the project in a couple years.
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
-
-All Ideas for Future Features are organized by Epic and MoSCoW priority in the [User Story Map](https://github.com/users/benschaf/projects/9/views/2)
+All Ideas for Future Features are organized as user Stories by Epic and MoSCoW priority in the [User Story Map](https://github.com/users/benschaf/projects/9/views/2)
 
 These are my three favorite ideas for future features:
-- **User Notifications**: A feature that sends users actual real time notifications to remind them of their waste collection days. Sadly, this feature is not in the scope of this project because it cant really be implemented when using a free Heroku account that isn't able to keep the server running all the time.
-- **Gamification and Household sharing** A feature that allows members of a household to share their schedules and compete / collaborate with each other. This feature would also include a leaderboard and achievements.
-- **Local Waste Collection Services**: A feature that allows users to find local waste collection services in their area, such as recycling centers, composting facilities, and hazardous waste disposal sites.
+- **[Issue #8](https://github.com/benschaf/waste-schedule/issues/8): User Notifications**: A feature that sends users actual real time notifications to remind them of their waste collection days. Sadly, this feature is not in the scope of this project because it cant really be implemented when using a free Heroku account that isn't able to keep the server running all the time.
+- **[Issue #40](https://github.com/benschaf/waste-schedule/issues/40) Gamification and Household sharing** A feature that allows members of a household to share their schedules and compete / collaborate with each other. This feature would also include a leaderboard and achievements.
+- **[Issue #41](https://github.com/benschaf/waste-schedule/issues/41)Local Waste Collection Services**: A feature that allows users to find local waste collection services in their area, such as recycling centers, composting facilities, and hazardous waste disposal sites.
 
 
 ## Tools & Technologies Used
