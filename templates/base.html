@@ -54,7 +54,8 @@
                             Make your own</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'dashboard' %}"><i class="fa fa-table-columns"></i> Dashboard</a>
+                        <a class="nav-link" href="{% url 'dashboard' %}"><i class="fa fa-table-columns"></i>
+                            Dashboard</a>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item dropdown">
@@ -86,17 +87,19 @@
 
     <!-- -> Credit for django messages framework: https://docs.djangoproject.com/en/5.0/ref/contrib/messages/ -->
     {% if messages %}
-    <div class="container mt-5 position-fixed bottom-0 start-0 high-z-index">
+    <div class="container mt-5 position-fixed end-0 high-z-index message-class">
         <ul class="messages list-unstyled">
             {% for message in messages %}
             <li
                 class="alert alert-success alert-dismissable fade show border-0  d-flex justify-content-between shadow {% if message.tags %}{{ message.tags }}{% endif %}">
-                {{ message }}<button type="button" class="btn-close" data-bs-dismiss="alert"
-                    aria-label="Close"></button></li>
+                {{ message }}</li>
             {% endfor %}
         </ul>
     </div>
     {% endif %}
+
+    <script>
+    </script>
 
     <main>
 

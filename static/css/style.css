@@ -29,6 +29,19 @@ h6,
     margin-top: 80px;
 }
 
+/* -> Credit for keyframes: https://stackoverflow.com/questions/45330061/how-to-flash-a-div-only */
+@keyframes flash {
+    0% {transform: scale(1);}
+    50% {transform: scale(.9);}
+    100% {transform: scale(1);}
+}
+
+.message-class {
+    top: 20px;
+    width: fit-content;
+    animation: flash 1s .3s;
+}
+
 body {
     font-family: "Lato", sans-serif;
     /* stick footer to bottom */
