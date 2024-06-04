@@ -91,12 +91,8 @@ function handleDeletion(event, info, submitButton) {
     deleteEventModal.hide();
 
     if (document.getElementById('delete-select').value === 'only this event') {
-        console.log('one event removed');
-        // right here - setProp isnt accessible
-        info.event.setProp('exdate', '2024-05-23')
-        console.log(info.event);
+        // right here - info.event.setProp isnt accessible i should be able to add exdate here ...
     } else {
-        console.log('all events removed');
         info.event.remove();
     }
     calendar.refetchEvents();
@@ -130,13 +126,12 @@ function renderCalendar() {
         },
         eventMouseEnter: function (info) {
             info.el.style.backgroundColor = '#1c7b47db';
-            info.el.style.border = 'none';
-            info.el.style.color = 'white';
+            info.el.style.cursor = 'pointer';
+            info.el.style.borderColor = 'red';
         },
         eventMouseLeave: function (info) {
             info.el.style.backgroundColor = '';
-            info.el.innerHTML = `${info.event.title}<br>`;
-            info.el.style.color = 'white';
+            info.el.style.borderColor = '';
         },
         eventClick: function (info) {
             deleteEventModal = new bootstrap.Modal(document.getElementById('deleteEventModal'));
