@@ -175,7 +175,7 @@
                     <!-- -> Credit for passing the CSRF Token and using it in js: https://stackoverflow.com/questions/47527120/how-to-add-assign-csrf-token-in-the-html-submit-form -->
                     <!-- Button trigger modal -->
                     <div class="d-inline">
-                        <a type="button" class="btn btn-link text-muted p-0 editButton"
+                        <a type="button" class="btn btn-link text-muted p-0 edit-button"
                             id="update-button{{ comment.id }}" data-comment-id="{{ comment.id }}"
                             data-comment-field-id="comment-field-{{ comment.id }}" data-csrf-token="{{ csrf_token }}"
                             data-action-url='{% url "schedule_comment_update" comment.id schedule.slug %}'>

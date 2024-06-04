@@ -1,4 +1,4 @@
-let editButtons = document.getElementsByClassName("btn-link");
+let editButtons = document.getElementsByClassName("edit-button");
 
 for (let button of editButtons) {
     button.addEventListener("click", (e) => {
@@ -12,7 +12,7 @@ for (let button of editButtons) {
                     <form method="POST" action="${actionUrl}">
                         <input type="hidden" name="csrfmiddlewaretoken" value="${csrfToken}">
                         <input type="textarea" class="form-control" name="body" value="${currentText}">
-                        <input type="submit" value="Edit Comment" class="btn btn-link">
+                        <input type="submit" value="Edit Comment" class="btn btn-link text-muted p-0">
                     </form>`
     });
 }
