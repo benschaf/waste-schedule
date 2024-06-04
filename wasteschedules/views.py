@@ -1,3 +1,4 @@
+from ics import Calendar, Event as IcsEvent
 import json
 from typing import Any
 from django.db.models import Count
@@ -351,3 +352,26 @@ class Dashboard(LoginRequiredMixin, TemplateView):
             author=self.request.user)
 
         return context
+
+
+def download_ics(request, id):
+    # -> Credit for ics.py library that helps to create ics files: https://icspy.readthedocs.io/en/stable
+    # I cannot add the rrule properties to the event because ics.py does not support it yet: https://icspy.readthedocs.io/en/stable/misc.html#missing-support-for-recurrent-events
+    c = Calendar()
+
+    schedule_events = Event.objects.filter(schedule_id=id)
+    for db_event in schedule_events:
+        e = IcsEvent()
+        e.name = db_event.get_kind_display()
+        e.description = db_event.get_kind_display()
+        e.location = "right on your doorstep"
+        e.begin = db_event.date
+        e.created = db_event.created_on
+        e.make_all_day()
+        c.events.add(e)
+
+    # -> Credit for creating a download response: https://docs.djangoproject.com/en/5.0/ref/request-response/#fileresponse-objects
+    response = HttpResponse(str(c.serialize()), content_type='text/calendar')
+    response['Content-Disposition'] = 'attachment; filename="events.ics"'
+
+    return response

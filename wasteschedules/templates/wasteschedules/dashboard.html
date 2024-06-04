@@ -26,7 +26,7 @@
                             <p>{{ schedule.description }}</p>
                             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-xl-2 g-2 ">
                                 <div class="col">
-                                    <a href="#" class="btn btn-primary submit-background">Download csv</a>
+                                    <a href="{% url 'download_ics' schedule.id %}" class="btn btn-primary submit-background">Download ics Calendar</a>
                                 </div>
                                 <div class="col">
                                     <a href="{% url 'schedule_detail' schedule.locations.first schedule.slug %}"
@@ -72,7 +72,7 @@
                             <p>{{ schedule.description }}</p>
                             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-xl-2 g-2 ">
                                 <div class="col">
-                                    <a href="#" class="btn btn-primary submit-background">Download csv</a>
+                                    <a href="{% url 'download_ics' schedule.id %}" class="btn btn-primary submit-background">Download ics Calendar</a>
                                 </div>
                                 <div class="col">
                                     <a href="{% url 'schedule_detail' schedule.locations.first schedule.slug %}"
