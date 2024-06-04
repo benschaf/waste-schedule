@@ -20,7 +20,7 @@ function getMaxId(events) {
             maxId = event.id;
         }
     }
-    currendID = maxId + 1;
+    return maxId + 1;
 }
 
 // -> Credit for getWeekday: https://www.w3schools.com/jsref/jsref_getday.asp
@@ -38,6 +38,7 @@ function getWeekDay(date) {
 /**
  * Converts an event object to a plain object with recurrence rule (RRule) information.
  * If the event is recurring, it extracts the RRule information and adds it to the event object.
+ * The RRule information is added manually because the FullCalendar RRule plugin doesn't seem to provide a way to access it.
  *
  * @param {Object} event - The event object to convert.
  * @returns {Object} - The converted event object with RRule information.
@@ -57,12 +58,11 @@ function toPlainObjectWithRRule(event) {
 }
 
 /**
- * Creates a new event on the specified date.
- * Does this by resetting and showing the create event modal.
+ * Displays the event creation modal with the specified date.
  *
- * @param {string} date - The date for which the event is to be created.
+ * @param {Date} date - The date for which the event creation modal should be displayed.
  */
-function createEvent(date) {
+function displayEventCreationModal(date) {
     createEventModal = new bootstrap.Modal(document.getElementById('createEventModal'));
     document.getElementById('create-event-modal-title').textContent = `Create a new event on ${getWeekDay(date)}, ${date}`;
     // -> Credit for selectedIndex: https://www.w3schools.com/jsref/prop_select_selectedindex.asp
@@ -72,38 +72,33 @@ function createEvent(date) {
     createEventModal.show();
 }
 
-
-// The function below should handle Event removal but it is not working yet
-// To get this to work I need to add exdates to the rrule in the event object
-// It just cant get the exdate property from the calendar which doesn't let me edit it .........
-// it might work if i change the calendar library import to NPM but i don't know if i want to do that ...
-// what i could also do instead is convert the whole rrule property into a string. https://stackoverflow.com/questions/56580678/is-exdate-not-included-in-rrule-for-full-calendar
+/**
+ * The function below should handle Event removal but it is not working yet
+ * To get this to work I need to add exdates to the rrule in the event object
+ * It just cant get the exdate property from the calendar which doesn't let me edit it .........
+ * it might work if i change the calendar library import to NPM but i don't know if i want to do that ...
+ * what i could also do instead is convert the whole rrule property into a string. https://stackoverflow.com/questions/56580678/is-exdate-not-included-in-rrule-for-full-calendar
+ */
 
 /**
  * Handles the deletion of an event.
  * @param {Event} event - The event object.
  * @param {Object} info - Additional information about the event.
- * @param {HTMLElement} submitButton - The submit button element.
  */
-function handleDeletion(event, info, submitButton) {
-    //maybe i can just remove prevent default
+function handleDeletion(event, info) {
     event.preventDefault();
     deleteEventModal.hide();
 
     if (document.getElementById('delete-select').value === 'only this event') {
-        console.log('one event removed');
-        // right here - setProp isnt accessible
-        info.event.setProp('exdate', '2024-05-23')
-        console.log(info.event);
+        // right here - info.event.setProp isnt accessible i should be able to add exdate here ...
     } else {
-        console.log('all events removed');
         info.event.remove();
     }
     calendar.refetchEvents();
 }
 
 /**
- * Retrieves JSON events from the 'event-data' element and parses them into an object.
+ * Retrieves JSON events from the 'event-data' context-variable and parses them into an object.
  *
  * @returns {Object} The parsed JSON events.
  */
@@ -116,6 +111,12 @@ function getJsonEvents() {
 /**
  * Renders the calendar using FullCalendar library.
  *
+ * The calendar is rendered with the initial view set to 'dayGridMonth'.
+ * The dateClick event listener is set to display the event creation modal.
+ * The eventMouseEnter and eventMouseLeave event listeners are set to change the background color of the event element on hover to indicate that it is clickable.
+ * The eventClick event listener is set to display the delete event modal.
+ * The events are set to the parsed JSON events from the 'event-data' context-variable.
+ *
  * @returns {void}
  */
 function renderCalendar() {
@@ -126,23 +127,22 @@ function renderCalendar() {
         initialView: 'dayGridMonth',
         defaultAllDay: true,
         dateClick: function (info) {
-            createEvent(info.dateStr);
+            displayEventCreationModal(info.dateStr);
         },
         eventMouseEnter: function (info) {
             info.el.style.backgroundColor = '#1c7b47db';
-            info.el.style.border = 'none';
-            info.el.style.color = 'white';
+            info.el.style.cursor = 'pointer';
+            info.el.style.borderColor = 'red';
         },
         eventMouseLeave: function (info) {
             info.el.style.backgroundColor = '';
-            info.el.innerHTML = `${info.event.title}<br>`;
-            info.el.style.color = 'white';
+            info.el.style.borderColor = '';
         },
         eventClick: function (info) {
             deleteEventModal = new bootstrap.Modal(document.getElementById('deleteEventModal'));
             document.getElementById('delete-event-modal-title').textContent = `Delete event: ${info.event.title} from ${info.event.start}`;
             let submitButton = document.getElementById('delete-event');
-            submitButton.addEventListener('click', (event) => handleDeletion(event, info, submitButton));
+            submitButton.addEventListener('click', (event) => handleDeletion(event, info));
 
             deleteEventModal.show();
         },
@@ -153,34 +153,31 @@ function renderCalendar() {
 }
 
 
-// -> Credit for query selector: https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector?retiredLocale=de
 /**
- * Attaches an event listener to the submit button that sends a POST request with calendar events.
+ * Sends a POST request to the server with the calendar event data.
+ *
+ * @param {Event} e - The event object.
  * @returns {void}
  */
-function postCalendarEvents() {
-    document.getElementById('submit-button').addEventListener('click', function (e) {
-        e.preventDefault();
-        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-        const jsonBody = JSON.stringify(getCalendarEventObjects());
-        console.log(jsonBody);
-        scheduleId = e.target.getAttribute('data-schedule-id');
-        console.log(e.target);
-        fetch(scheduleId, {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-                // Include CSRF token in the header
-                'X-CSRFToken': csrftoken
-            },
-            body: jsonBody,
-        }).then(response => response.json()).then(data => {
-            if (data.redirect_url) {
-                window.location.href = data.redirect_url;
-            }
-        }).catch(error => {
-            console.error('Error:', error);
-        });
+function postCalendarEvents(e) {
+    // -> Credit for query selector: https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector?retiredLocale=de
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    const jsonBody = JSON.stringify(getCalendarEventObjects());
+    scheduleId = e.target.getAttribute('data-schedule-id');
+    fetch(scheduleId, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+            // Include CSRF token in the header
+            'X-CSRFToken': csrftoken
+        },
+        body: jsonBody,
+    }).then(response => response.json()).then(data => {
+        if (data.redirect_url) {
+            window.location.href = data.redirect_url;
+        }
+    }).catch(error => {
+        console.error('Error:', error);
     });
 }
 
@@ -191,7 +188,6 @@ function postCalendarEvents() {
 function getCalendarEventObjects() {
     let events = [];
     for (let event of calendar.getEvents()) {
-        console.log(event.toPlainObject());
         events.push(toPlainObjectWithRRule(event));
     }
     return events;
@@ -199,47 +195,62 @@ function getCalendarEventObjects() {
 
 /**
  * Saves the event by adding it to the calendar.
+ * The bin type and recurrence are retrieved from the modal form.
+ *
  * @returns {void}
  */
 function saveEvent() {
-    document.getElementById('save-event').addEventListener('click', function () {
-        const binType = document.getElementById('bin-type').value;
-        const recurrence = document.getElementById('recurrence').value;
-        if (recurrence === '0') {
-            calendar.addEvent({
-                id: currendID,
-                title: binType,
-                start: eventDate,
-                groupId: binType,
-            });
-        } else {
-            // -> Credit for adding a year to a date: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setFullYear
-            let endRecurrence = new Date(new Date(eventDate).setFullYear(eventDate.getFullYear() + 1));
-            calendar.addEvent({
-                id: currendID,
-                title: binType,
-                start: eventDate,
-                groupId: binType,
-                rrule: {
-                    freq: 'weekly',
-                    interval: recurrence,
-                    dtstart: eventDate,
-                    until: endRecurrence
-                },
-                exdate: []
-            });
-        }
-        currendID++;
-        createEventModal.hide();
-    });
+    const binType = document.getElementById('bin-type').value;
+    const recurrence = document.getElementById('recurrence').value;
+    if (recurrence === '0') {
+        calendar.addEvent({
+            id: currendID,
+            title: binType,
+            start: eventDate,
+            groupId: binType,
+        });
+    } else {
+        // -> Credit for adding a year to a date: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setFullYear
+        let endRecurrence = new Date(new Date(eventDate).setFullYear(eventDate.getFullYear() + 1));
+        calendar.addEvent({
+            id: currendID,
+            title: binType,
+            start: eventDate,
+            groupId: binType,
+            rrule: {
+                freq: 'weekly',
+                interval: recurrence,
+                dtstart: eventDate,
+                until: endRecurrence
+            },
+            exdate: []
+        });
+    }
+    currendID++;
+    createEventModal.hide();
 }
 
 // On document load
 document.addEventListener('DOMContentLoaded', function () {
     renderCalendar();
-    getMaxId(calendar.getEvents());
+    currendID = getMaxId(calendar.getEvents());
 
     // Event listeners
-    postCalendarEvents();
-    saveEvent();
+    document.getElementById('submit-button').addEventListener('click', function(event) {
+        postCalendarEvents(event);
+    });
+    document.getElementById('save-event').addEventListener('click', saveEvent);
 });
+
+if (typeof module !== "undefined") module.exports = {
+    getMaxId,
+    getWeekDay,
+    toPlainObjectWithRRule, // Don't know how to test this
+    displayEventCreationModal, // I would need to test the html output
+    handleDeletion, // Don't know how to test this
+    getJsonEvents, // This is getting a json object from the django context variables ...
+    renderCalendar, // Don't know how to test this
+    postCalendarEvents, // Don't know how to test this
+    getCalendarEventObjects, // Don't know how to test this
+    saveEvent // Don't know how to test this
+};
