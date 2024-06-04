@@ -82,7 +82,7 @@ main {
 }
 
 .submit-background {
-    background: var(--primary-color);
+    background: var(--darker-secondary-color);
     border-style: none;
 }
 
@@ -159,8 +159,8 @@ main {
 }
 
 #calendar div .fc-h-event {
-    background-color: var(--secondary-transparent-background);
-    border-color: var(--secondary-transparent-background);
+    background-color: var(--darker-secondary-color);
+    border-color: var(--darker-secondary-color);
     border-width: 3px;
 }
 
