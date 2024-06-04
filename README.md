@@ -242,7 +242,7 @@ project files: find the adapted Allauth templates in the [templates/account](tem
 
 #### Django messages
 
-Django messages are used to provide feedback to the user. They are displayed at the bottom of the page and disappear after a few seconds. They are used to confirm successful actions, such as creating a schedule, as well as to provide error messages, such as when a user tries to access a page they are not authorized to view.
+Django messages are used to provide feedback to the user. They are displayed at the top of the page and disappear after a few seconds. They are used to confirm successful actions, such as creating a schedule, as well as to provide error messages, such as when a user tries to access a page they are not authorized to view.
 
 The messages are designed to be unobtrusive and informative, providing users with feedback on their actions and helping them navigate the site.
 
