@@ -35,7 +35,7 @@
                                 </div>
                                 {% if schedule.author == user %}
                                 <div class="col">
-                                    <a href="{% url 'add_bins' schedule.id %}" class="btn btn-secondary">Edit
+                                    <a href="{% url 'edit_schedule' schedule.slug %}" class="btn btn-secondary">Edit
                                         Schedule</a>
                                 </div>
                                 <div class="col">
@@ -81,7 +81,7 @@
                                 </div>
                                 {% if schedule.author == user %}
                                 <div class="col">
-                                    <a href="{% url 'add_bins' schedule.id %}" class="btn btn-secondary">Edit
+                                    <a href="{% url 'edit_schedule' schedule.slug %}" class="btn btn-secondary">Edit
                                         Schedule</a>
                                 </div>
                                 <div class="col">
