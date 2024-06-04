@@ -8,9 +8,13 @@
 <html class="h-100" lang="en">
 
 <head>
-    <title>Tonne</title>
+    <title>Tonne Schedules</title>
     <link rel="shortcut icon" type="image/png" href="{% static 'images/logo.ico' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- SEO Description and keywords -->
+    <meta name="description" content="Improve your waste management with Tonne. Browse locations, create your own schedule, and track your progress. Sign up now!">
+    <meta name="keywords" content="waste management, waste schedule, recycling, sustainability">
 
     <!-- Google Fonts CSS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,6 +29,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
 </head>
 
 <body class="d-flex flex-column h-100 main-bg">
@@ -47,7 +52,7 @@
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'schedule_list' '0' %}"><i class="fa-regular fa-map"></i>
-                            Browse Locations</a>
+                            Browse Schedules</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'pick_location' %}"><i class="fa-regular fa-square-plus"></i>
@@ -115,34 +120,36 @@
             <div class="row row-cols-1 row-cols-sm-2 justify-content-between">
                 <div class="col justify-content-center">
                     <div class="d-flex flex-column align-items-center gap-2">
-                        <div class="text-secondary">Follow us:</div>
+                        <div class="brighter-text">Follow us:</div>
                         <div class="navbar-background rounded-pill px-4 py-1 d-flex justify-content-center gap-3">
                             <!-- Facebook -->
-                            <a style="color: #3b5998;" href="#!" role="button"><i
-                                    class="fab fa-facebook-f fa-lg opacity-hover"></i></a>
+                            <a style="color: #3b5998;" href="https://www.facebook.com" role="button" aria-label="Facebook" rel="noopener noreferrer"><i
+                                class="fab fa-facebook-f fa-lg opacity-hover"></i></a>
 
                             <!-- Twitter -->
-                            <a style="color: #000;" href="#!" role="button"><i
-                                    class="fab fa-x-twitter fa-lg opacity-hover"></i></a>
+                            <a style="color: #000;" href="https://www.twitter.com" role="button" aria-label="Twitter" rel="noopener noreferrer"><i
+                                class="fab fa-x-twitter fa-lg opacity-hover"></i></a>
 
-                            <!-- Google -->
-                            <a style="color: #000;" href="#!" role="button"><i
-                                    class="fab fa-github fa-lg opacity-hover"></i></a>
+                            <!-- GitHub -->
+                            <a style="color: #000;" href="https://www.github.com/benschaf" role="button" aria-label="GitHub" rel="noopener noreferrer"><i
+                                class="fab fa-github fa-lg opacity-hover"></i></a>
 
                             <!-- Instagram -->
-                            <a style="color: #ac2bac;" href="#!" role="button"><i
-                                    class="fab fa-instagram fa-lg opacity-hover"></i></a>
-                        </div>
-                        <div class="col">
-                            <a href="{% url 'about_page' %}" class="link-secondary">About us</a>
+                            <a style="color: #ac2bac;" href="https://www.instagram.com" role="button" aria-label="Instagram" rel="noopener noreferrer"><i
+                                class="fab fa-instagram fa-lg opacity-hover"></i></a>
                         </div>
                     </div>
-                </div>
-                <div
-                    class="col d-flex align-items-center justify-content-center justify-content-sm-start order-sm-first mt-4 mt-sm-0">
-                    &copy; 2024 Benjamin Schäfer
+                    </div>
+                    <div class="col">
+                        <a href="{% url 'about_page' %}" class="brighter-text">About us</a>
+                    </div>
                 </div>
             </div>
+            <div
+                class="col d-flex align-items-center justify-content-center justify-content-sm-start order-sm-first mt-4 mt-sm-0">
+                &copy; 2024 Benjamin Schäfer
+            </div>
+        </div>
         </div>
     </footer>
 

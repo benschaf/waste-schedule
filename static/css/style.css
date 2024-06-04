@@ -98,8 +98,13 @@ main {
 }
 
 .text-tonne {
-    color: var(--primary-color);
+    color: var(--darker-secondary-color);
     font-weight: 700;
+}
+
+.brighter-text {
+    color: var(--light-background) !important;
+    font-weight: 900;
 }
 
 .card-hover:hover {
