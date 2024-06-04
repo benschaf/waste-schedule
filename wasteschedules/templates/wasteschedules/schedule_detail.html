@@ -3,6 +3,7 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
+{% if "placeholder" not in schedule.image.url %}
 <!-- image Modal -->
 <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imgLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -20,6 +21,7 @@
         </div>
     </div>
 </div>
+{% endif %}
 
 <!-- Return Link -->
 <div class="container navbar-margin">
