@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 import sys
 import dj_database_url
+import cloudinary
 if os.path.isfile('env.py'):
     import env
 
@@ -68,6 +69,11 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
+
+# -> Credit for cloudinary saving using HTTPs (this is a link to the code institute internal Slack server): https://code-institute-room.slack.com/archives/C026PTF46F5/p1706622757171679
+cloudinary.config(
+    secure=True,
+)
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
