@@ -16,7 +16,7 @@
                             data-bs-toggle="collapse" data-bs-target="#collapse{{ schedule.id }}"
                             aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}"
                             aria-controls="collapse{{ schedule.id }}">
-                            <span class="fw-bold">{{ schedule }}</span> by {{ schedule.author }}
+                            <span class="fw-bold">{{ schedule }} </span> &nbsp; by {{ schedule.author }}
                         </button>
                     </h2>
                     <div id="collapse{{ schedule.id }}"
@@ -26,7 +26,7 @@
                             <p>{{ schedule.description }}</p>
                             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-xl-2 g-2 ">
                                 <div class="col">
-                                    <a href="{% url 'download_ics' schedule.id %}" class="btn btn-primary submit-background">Download ics Calendar</a>
+                                    <a href="{% url 'download_ics' schedule.id %}" class="btn btn-primary submit-background">Download</a>
                                 </div>
                                 <div class="col">
                                     <a href="{% url 'schedule_detail' schedule.locations.first schedule.slug %}"
@@ -63,7 +63,7 @@
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapse{{ schedule.id }}created " aria-expanded="false"
                             aria-controls="collapse{{ schedule.id }}created">
-                            <span class="fw-bold">{{ schedule }}</span> by {{ schedule.author }}
+                            <span class="fw-bold">{{ schedule }} </span> &nbsp; by {{ schedule.author }}
                         </button>
                     </h2>
                     <div id="collapse{{ schedule.id }}created" class="accordion-collapse collapse"
@@ -72,7 +72,7 @@
                             <p>{{ schedule.description }}</p>
                             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-xl-2 g-2 ">
                                 <div class="col">
-                                    <a href="{% url 'download_ics' schedule.id %}" class="btn btn-primary submit-background">Download ics Calendar</a>
+                                    <a href="{% url 'download_ics' schedule.id %}" class="btn btn-primary submit-background">Download</a>
                                 </div>
                                 <div class="col">
                                     <a href="{% url 'schedule_detail' schedule.locations.first schedule.slug %}"
