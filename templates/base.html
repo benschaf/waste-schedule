@@ -13,7 +13,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- SEO Description and keywords -->
-    <meta name="description" content="Improve your waste management with Tonne. Browse locations, create your own schedule, and track your progress. Sign up now!">
+    <meta name="description"
+        content="Improve your waste management with Tonne. Browse locations, create your own schedule, and track your progress. Sign up now!">
     <meta name="keywords" content="waste management, waste schedule, recycling, sustainability">
 
     <!-- Google Fonts CSS -->
@@ -115,41 +116,37 @@
     </main>
 
     <!-- Footer -->
-    <footer class="dark-section mt-3">
-        <div class="container p-4">
-            <div class="row row-cols-1 row-cols-sm-2 justify-content-between">
-                <div class="col justify-content-center">
-                    <div class="d-flex flex-column align-items-center gap-2">
-                        <div class="brighter-text">Follow us:</div>
-                        <div class="navbar-background rounded-pill px-4 py-1 d-flex justify-content-center gap-3">
-                            <!-- Facebook -->
-                            <a style="color: #3b5998;" href="https://www.facebook.com" role="button" aria-label="Facebook" rel="noopener noreferrer"><i
-                                class="fab fa-facebook-f fa-lg opacity-hover"></i></a>
+    <footer class="container-fluid mt-3 p-4 dark-section">
+        <div class="row row-cols-1 row-cols-sm-2 justify-content-between">
+            <div class="col justify-content-center">
+                <div class="d-flex flex-column align-items-center gap-2">
+                    <div class="brighter-text">Follow us:</div>
+                    <div class="navbar-background rounded-pill px-4 py-1 d-flex justify-content-center gap-3">
+                        <!-- Facebook -->
+                        <a style="color: #3b5998;" href="https://www.facebook.com" role="button" aria-label="Facebook"
+                            rel="noopener noreferrer"><i class="fab fa-facebook-f fa-lg opacity-hover"></i></a>
 
-                            <!-- Twitter -->
-                            <a style="color: #000;" href="https://www.twitter.com" role="button" aria-label="Twitter" rel="noopener noreferrer"><i
-                                class="fab fa-x-twitter fa-lg opacity-hover"></i></a>
+                        <!-- Twitter -->
+                        <a style="color: #000;" href="https://www.twitter.com" role="button" aria-label="Twitter"
+                            rel="noopener noreferrer"><i class="fab fa-x-twitter fa-lg opacity-hover"></i></a>
 
-                            <!-- GitHub -->
-                            <a style="color: #000;" href="https://www.github.com/benschaf" role="button" aria-label="GitHub" rel="noopener noreferrer"><i
-                                class="fab fa-github fa-lg opacity-hover"></i></a>
+                        <!-- GitHub -->
+                        <a style="color: #000;" href="https://www.github.com/benschaf" role="button" aria-label="GitHub"
+                            rel="noopener noreferrer"><i class="fab fa-github fa-lg opacity-hover"></i></a>
 
-                            <!-- Instagram -->
-                            <a style="color: #ac2bac;" href="https://www.instagram.com" role="button" aria-label="Instagram" rel="noopener noreferrer"><i
-                                class="fab fa-instagram fa-lg opacity-hover"></i></a>
-                        </div>
+                        <!-- Instagram -->
+                        <a style="color: #ac2bac;" href="https://www.instagram.com" role="button" aria-label="Instagram"
+                            rel="noopener noreferrer"><i class="fab fa-instagram fa-lg opacity-hover"></i></a>
                     </div>
-                    </div>
-                    <div class="col">
-                        <a href="{% url 'about_page' %}" class="brighter-text">About us</a>
-                    </div>
+                </div>
+                <div class="col text-center">
+                    <a href="{% url 'about_page' %}" class="brighter-text">About us</a>
                 </div>
             </div>
             <div
                 class="col d-flex align-items-center justify-content-center justify-content-sm-start order-sm-first mt-4 mt-sm-0">
                 &copy; 2024 Benjamin Schäfer
             </div>
-        </div>
         </div>
     </footer>
 
