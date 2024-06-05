@@ -71,6 +71,7 @@ SOCIALACCOUNT_PROVIDERS = {
 
 # -> Credit for cloudinary saving using HTTPs (this is a link to the code institute internal Slack server): https://code-institute-room.slack.com/archives/C026PTF46F5/p1706622757171679
 cloudinary.config(
+    cloud_name=os.environ.get("CLOUDINARY_CLOUD_NAME"),
     secure=True,
 )
 
