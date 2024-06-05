@@ -15,7 +15,7 @@ const {
 beforeAll(() => {
     let fs = require("fs");
     // I doubt this will work because this is linking to a html file with templating language in it
-    let fileContents = fs.readFileSync("workspace/waste-schedule/schedulebuilder/templates/schedulebuilder/calendar.html", "utf-8");
+    let fileContents = fs.readFileSync("/workspace/waste-schedule/schedulebuilder/templates/schedulebuilder/calendar.html", "utf-8");
     document.open();
     document.write(fileContents);
     document.close();
@@ -52,5 +52,5 @@ describe("displayEventCreationModal tests", () => {
 });
 
 // All functions working with fullCalendar might need to be tested in the browser ...
-// I don't know how to work with real full calendar models.
-// and making mock models is too inaccurate i think.
+// I don't know how to work with real full calendar event objects.
+// and making mock objects is too inaccurate i think.
