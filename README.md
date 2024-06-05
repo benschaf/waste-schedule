@@ -1,4 +1,4 @@
-# 🌍 Eco-Conscious Waste Management App: Your Partner in Green Living! 🌿
+# tonne: Your Partner in Green Living! 🌿
 [Experience our live website here!](https://tonne-waste-reminders-a6836f2888b0.herokuapp.com/)
 
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/t/benschaf/waste-schedule)](https://github.com/benschaf/waste-schedule/commits/main)
@@ -6,16 +6,16 @@
 [![GitHub repo size](https://img.shields.io/github/repo-size/benschaf/waste-schedule)](https://github.com/benschaf/waste-schedule)
 [![GitHub issues](https://img.shields.io/github/issues/benschaf/waste-schedule)](https://github.com/benschaf/waste-schedule/issues)
 
-Welcome to the Waste Management App, your go-to solution in the quest for efficient and eco-friendly waste handling! 🚀
+Welcome to the **tonne** (german for: Waste Bin) - Waste Management site, your go-to solution in the quest for efficient and eco-friendly waste handling! 🚀
 
 ![screenshot](documentation/responsive-image.png)
 
 ⤴️ preview of the site on different devices
 
-Our app is not just about managing waste, it's about creating a sustainable future, one notification at a time. Here's what we offer:
+We are not just about managing waste, it's about creating a sustainable future, one **tonne** at a time. Here's what we offer:
 
 1. 📅 **Waste Collection Reminders:**
-    - Say goodbye to forgotten collection days! Our intuitive dashboard allows you to search for your postcode and receive real-time reminders in your calendar. Whether it's the Grüne Tonne or Gelbe Tonne, our timely notifications ensure that you will never have to rush out your bins again in the last second.
+    - Say goodbye to forgotten collection days! Our site allows you to search for your postcode and receive real-time reminders in your calendar. Whether it's the Grüne Tonne or Gelbe Tonne, our timely notifications ensure that you will never have to rush out your bins again in the last second.
 
 2. 👥 **Community Interaction:**
     - Be part of the green revolution! Users can upload and rate waste collection schedules, ensuring the highest level of accuracy and reliability.
@@ -29,7 +29,7 @@ Join us in building a community-driven resource that's making a real difference.
 I used a very subtle green and white colour scheme to reflect the eco-friendly nature of the app. Coolors was used to generate the [colour palette](https://coolors.co/25a55f-2a2a2a-1c7b47-e6e6e6-57d992).
 
 ![screenshot](documentation/coolors-tonne.png)
-Screenshot of the colour palette from Coolors
+⤴️ Screenshot of the colour palette from Coolors
 
 - `--pigment-green: #25a55f` - used for primary buttons and highlights
 - `--emerald: #57d992` - used for secondary buttons and highlights
@@ -48,22 +48,6 @@ In order to have easier access to my colour scheme within my code i used CSS `:r
     --secondary-transparent-background: #1c7b47db;
     --dark-background: #2a2a2a;
     --light-background: #e6e6e6;
-}
-```
-
-
-
-
-
-```css
-:root {
-    /* P = Primary | S = Secondary */
-    --p-text: #000000;
-    --p-highlight: #E84610;
-    --s-text: #4A4A4F;
-    --s-highlight: #009FE3;
-    --white: #FFFFFF;
-    --black: #000000;
 }
 ```
 
@@ -91,12 +75,13 @@ View the [original draw.io file](https://drive.google.com/file/d/1KmW3ppV6V6eGe1
 
 ## User Stories
 
-View the [user story map](https://github.com/users/benschaf/projects/9/views/2) created for this project using Github Projects. It includes all user stories and makes them easier to manage as they are grouped by Epic and MoSCoW priority.
+Check out the [User Story Map](https://github.com/users/benschaf/projects/9/views/2) created for this project using Github Projects. It includes all user stories and makes them easier to manage as they are grouped by Epic and MoSCoW priority.
 
 ![screenshot](documentation/user-story-map.png)
+⤴️ Screenshot of the User Story Map
 
 ### MoSCoW Prioritization: Must Have
-Below are the user stories that were prioritized as **Must Have**.
+Listed below are only the user stories that were prioritized as **Must Have**.
 
 For all user stories, please refer to the [User Story Map](https://github.com/users/benschaf/projects/9/views/2).
 
@@ -108,7 +93,7 @@ For all user stories, please refer to the [User Story Map](https://github.com/us
 #### Epic: Picking a Schedule
 
 * [#5](https://github.com/benschaf/waste-schedule/issues/5) As a user, I want to be able to browse waste collection schedules for my area without logging in, so that I can explore available options easily.
-* [#6](https://github.com/benschaf/waste-schedule/issues/6) As a user, I want to only have to log in, when I want to subscribe to a schedule or make a schedule.
+* [#6](https://github.com/benschaf/waste-schedule/issues/6) As a user, I want to only have to log in, when I want to subscribe to a schedule or make a schedule so that I can explore as much of the site without being distracted by a log in screen.
 * [#14](https://github.com/benschaf/waste-schedule/issues/14) As a user I can click on a specific waste collection schedule from the search results and view detailed information about that schedule so that I can confirm that it's helpful for me
 * [#15](https://github.com/benschaf/waste-schedule/issues/15) As a user, I can subscribe to waste collection schedules so that I receive timely reminders for upcoming collection events.
 
@@ -128,9 +113,10 @@ For all user stories, please refer to the [User Story Map](https://github.com/us
 * [#19](https://github.com/benschaf/waste-schedule/issues/19) As a user I can like or express appreciation for a specific waste collection schedule so that I can acknowledge well-maintained schedules.
 
 ### Flowchart
-The following flowchart depicts possible user journeys in the waste management app. The app tries to let the user do as much as possible without having to sign up or log in. Only when the user has to perform any kind of CRUD operation, they are asked to sign up or log in.
+The following flowchart depicts possible user journeys in the waste management app. The app tries to let the user do as much as possible without having to sign up or log in. The user is only prompted to sign up when they want to subscribe to a schedule or create a new one. The flowchart also shows the user journey for the schedule builder and the dashboard.
 
 ![screenshot](documentation/flowchart.png)
+⤴️ Flowchart of the user journey
 
 ## Features
 
@@ -138,13 +124,14 @@ The following flowchart depicts possible user journeys in the waste management a
 
 #### Inviting landing Page
 
-When first visiting the site, users are greeted with a clean, modern, and inviting landing page. It includes a hero image, a brief description of the site, and a call-to-action form to get started.
+When first visiting the site, users are greeted with a clean, modern and inviting landing page. It includes a hero image, a brief description of the site, and a call-to-action form to get started.
 
 The landing page is designed to be simple and user-friendly, providing a quick overview of the site's purpose and functionality. It encourages users to explore the site further and get started with their waste management journey.
 
 ![screenshot](documentation/feature-landing.png)
+⤴️ Screenshot of the landing page
 
-project files: [index.html](core/templates/core/index.html)
+relevant project files: [index.html](core/templates/core/index.html)
 
 #### Navigation Bar with the most important links
 
@@ -153,8 +140,11 @@ The navigation bar is fixed at the top of the page, ensuring easy access to the 
 The navigation bar is designed to be simple and intuitive, providing quick access to the site's main features. It is responsive and collapses into a hamburger menu on smaller screens using the Bootstrap CSS framework.
 
 ![screenshot](documentation/feature-navbar.png)
+⤴️ Screenshot of the navigation bar
 
-project files: [base.html](templates/base.html)
+Some custom Javascript code was used to change the navigation bar's opacity once scrolling down the page. This was done to make the hero section of the landing page cleaner and more focused.
+
+relevant project files: [base.html](templates/base.html), [index.js](static/js/index.js)
 
 #### Footer with social media links
 
@@ -163,22 +153,24 @@ The footer includes links to the site's social media profiles, such as Facebook,
 The footer is designed to be simple and unobtrusive, providing additional information and links for users who are interested.
 
 ![screenshot](documentation/feature-footer.png)
+⤴️ Screenshot of the footer
 
-project files: [base.html](templates/base.html)
+relevant project files: [base.html](templates/base.html)
 
 #### About Page
 
 The About page provides a brief overview of the site's purpose and the creator. It also identifies the site as a Code Institute student project.
 
-The About page is designed to be informative and engaging, providing users with additional context and background information. It helps to establish trust and credibility with users, ensuring they feel comfortable using the site.
+The About page is designed to be informative, providing users with additional context and background information. It helps to establish trust and credibility with users, ensuring they feel comfortable using the site.
 
 ![screenshot](documentation/feature-about.png)
+⤴️ Screenshot of the about page
 
-project files: [about.html](core/templates/core/about.html)
+relevant project files: [about.html](core/templates/core/about.html)
 
 #### Schedule Search Bar and List
 
-The schedule search bar allows users to search for their postcode and receive a list of waste collection schedules. The search bar is displayed prominently on as the CTA on the Landing page and in the Schedule List page.
+The schedule search bar allows users to search for their postcode and receive a list of waste collection schedules. The search bar is displayed prominently as the CTA (Call to Action) on the Landing page and in the Schedule List page.
 
 Once the user has entered their postcode, they are presented with a list set of schedule cards that match their search criteria. From here, they can already like and/or subscribe to a schedule.
 
@@ -187,22 +179,36 @@ The schedule list has enabled pagination, so that the user can easily navigate t
 The search bar and list are designed to be simple and intuitive, providing users with a quick and easy way to find the information they need.
 
 ![screenshot](documentation/feature-search.png)
+⤴️ Screenshot of the search bar and schedule list
 
-project files: [schedule_list.html](wasteschedules/templates/wasteschedules/schedule_list.html), [index.js](static/js/index.js)
+A custom form validator using a regex pattern was used to ensure that the user enters a valid postcode and gets appropriate feedback if they don't.
+
+```html
+<div class="form-floating">
+    <input type="text" id="postcodeInput" class="form-control rounded-corners"
+        placeholder="Enter a postcode" aria-label="Enter a postcode"
+        aria-describedby="button-addon2" pattern="^\d{5}$"
+        title="Please enter a 5 digit postcode (only German postcodes are supported)" required>
+    <label for="postcodeInput">Enter a postcode</label>
+</div>
+```
+
+relevant project files: [schedule_list.html](wasteschedules/templates/wasteschedules/schedule_list.html), [index.js](static/js/index.js)
 
 #### Schedule Detail View
 
-When a user clicks on a schedule card, they are taken to the schedule detail view. Here, they can see all the details of the schedule, including the waste types, collection days, and any additional notes. They can also like and subscribe to the schedule.
+When a user clicks on a schedule card, they are taken to the schedule detail view. Here, they can see all the details of the schedule, including the waste types, collection days, title, location and description. They can also like and subscribe to the schedule.
 
 Below the schedule details is a list of user comments, allowing users to share their thoughts and experiences with the schedule.
 
-For the schedule as well as for each comment, the owner of the schedule/comment can edit or delete it.
+For the schedule as well as for each comment, the owner of the item can edit or delete it.
 
 The schedule detail view is designed to be informative and engaging, providing users with all the information and possibilites to take action they need in one place.
 
 ![screenshot](documentation/feature-detail.png)
+⤴️ Screenshot of a schedule detail view
 
-project files: [schedule_detail.html](wasteschedules/templates/wasteschedules/schedule_detail.html), [comments.js](static/js/comments.js), [only_schedule.js](static/js/only_schedule.js)
+relevant project files: [schedule_detail.html](wasteschedules/templates/wasteschedules/schedule_detail.html), [comments.js](static/js/comments.js), [only_schedule.js](static/js/only_schedule.js)
 
 #### User Likes, Subscriptions, and Comments
 
@@ -212,15 +218,16 @@ A like is a simple way for users to show their appreciation for a schedule. Othe
 
 Subscribing to a schedule means that the user will be able to set up notifications for this schedule. A subscribed to schedule will be displayed on the user's dashboard. Subscriptions also contribute to indicate the reliability of a schedule.
 
-Schedules and likes can be added and removed by the user via the schedule list, schedule detail and dashboard pages.
+Subscriptions and likes can be added and removed by the owner via the schedule list and schedule detail pages.
 
 Comments allow users to share their thoughts and experiences on a schedule. They can ask questions, provide feedback, or share additional information. Comments are displayed below the schedule details and can be edited or deleted by the owner. Comments can be added, edited and deleted via the schedule detail page.
 
 The like, subscribe and comment features are designed to encourage user interaction and engagement, creating a sense of community and trust.
 
 ![screenshot](documentation/feature-comments.png)
+⤴️ Screenshot of the comments section and the like and subscribe buttons
 
-project files: [comments.js](static/js/comments.js), [schedule_detail.html](wasteschedules/templates/wasteschedules/schedule_detail.html), [schedule_list.html](wasteschedules/templates/wasteschedules/schedule_list.html), [dashboard.html](wasteschedules/templates/wasteschedules/dashboard.html)
+relevant project files: [comments.js](static/js/comments.js), [schedule_detail.html](wasteschedules/templates/wasteschedules/schedule_detail.html), [schedule_list.html](wasteschedules/templates/wasteschedules/schedule_list.html), [dashboard.html](wasteschedules/templates/wasteschedules/dashboard.html)
 
 
 #### Schedule Builder
@@ -238,7 +245,7 @@ Here the user can enter a title and description for the schedule. They can also 
 
 3. Collection Events Calendar Form
 
-Here the user can add collection events to the schedule. They can select the waste type, the collection day directly from a calendar. The calendar is implemented using the [FullCalendar](https://fullcalendar.io/) library.
+Here the user can add collection events to the schedule. They can select the waste type and the collection day directly from a calendar. The calendar is implemented using the [FullCalendar](https://fullcalendar.io/) library. The user can add recurring events, such as weekly or monthly collections, as well as one-time events. The deletion of recurring events is not yet implemented because the FullCalendar library doesn't support it natively. Singular events and all events that are part of the same recurrence can be deleted.
 
 The schedule builder is designed to be intuitive and user-friendly, providing a step-by-step process for creating a new schedule. It allows users to contribute to the site and share their knowledge with the community.
 
@@ -246,31 +253,33 @@ The schedule builder is designed to be intuitive and user-friendly, providing a 
 | --- | --- | --- |
 | ![screenshot](documentation/feature-builder1.png) | ![screenshot](documentation/feature-builder2.png) | ![screenshot](documentation/feature-builder3.png) |
 
-Collection Events Calendar Form
-
-project files: [location_form.html](schedulebuilder/templates/schedulebuilder/location_form.html), [schedule_form.html](schedulebuilder/templates/schedulebuilder/schedule_form.html), [calendar.html](schedulebuilder/templates/schedulebuilder/calendar.html), [edit_calendar.js](static/js/edit_calendar.js)
+relevant project files: [location_form.html](schedulebuilder/templates/schedulebuilder/location_form.html), [schedule_form.html](schedulebuilder/templates/schedulebuilder/schedule_form.html), [calendar.html](schedulebuilder/templates/schedulebuilder/calendar.html), [edit_calendar.js](static/js/edit_calendar.js)
 
 #### Dashboard
 
 The dashboard is a user-specific page that displays all the schedules the user has created. It also displays any schedules the user has subscribed to.
 
-From the dashboard, the user can edit or delete their schedules, as well as unsubscribe from schedules they are no longer interested in. It provides a quick overview and a general starting point for established users that are already familiar with the site.
+From the dashboard, the user can edit or delete their schedules. It provides a quick overview and a general starting point for established users that are already familiar with the site.
+
+Finally, users can download an .ics file of the displayed schedules to import them into their calendar app. (This feature is only partly implemented as of now because the fullCalendar library doesn't natively support the RRule standard for recurring events.)
 
 ![screenshot](documentation/feature-dashboard.png)
+⤴️ Screenshot of the dashboard
 
-project files: [dashboard.html](wasteschedules/templates/wasteschedules/dashboard.html)
+relevant project files: [dashboard.html](wasteschedules/templates/wasteschedules/dashboard.html)
 
 #### User Registration and Login
 
-Users can register for an account on the site, providing a username and password. Once registered, they can log in to the site using their credentials. They also have the option to register and sign in using their Google account. This feature is implemented using the Django Allauth package.
+Users can register for an account on the site, providing a username and password. Once registered, they can log in to the site using their credentials. They also have the option to register and sign in using their Google account. This feature is implemented using the Django Allauth package as well as the Google OAuth2 API.
 
-The site tries to prompt the user to register or log in only when it is necessary. This means that the user can do as much as possible without having to sign up or log in. Only when the user has to perform any kind of CRUD operation, they are asked to sign up or log in. For an overview of the user flow, see the [flowchart](#flowchart).
+The site tries to prompt the user to register or log in only when it is necessary. This means that the user can do as much as possible without having to sign up or log in. Only when the user has to perform any kind of CRUD operation or if they want to see their dashboard, they are asked to sign up or log in. For an overview of the user flow, see the [flowchart](#flowchart).
 
 | | |
 | --- | --- |
 | ![screenshot](documentation/feature-register.png) | screenshot |
+⤴️ Screenshot of the registration page
 
-project files: find the adapted Allauth templates in the [templates/account](templates/account) folder.
+relevant project files: find the adapted Allauth templates in the [templates/account](templates/account) folder.
 
 #### Django messages
 
@@ -281,18 +290,24 @@ The messages are designed to be unobtrusive and informative, providing users wit
 | | |
 | --- | --- |
 | ![screenshot](documentation/feature-messages.png) | screenshot |
+⤴️ Screenshot of a success message
 
-project files: [base.html](templates/base.html)
+relevant project files: [base.html](templates/base.html)
 
 #### Custom 404 error page
 
 A custom 404 error page is displayed when a user tries to access a page that does not exist. It provides a friendly message and a link back to the homepage.
 
+![screenshot](documentation/feature-404.png)
+⤴️ Screenshot of the 404 error page
+
+relevant project files: [404.html](templates/404.html)
+
 #### Responsive Design
 
 The site is fully responsive and optimized for all devices. It looks great on mobile, tablet, and desktop screens, ensuring a smooth user experience no matter the device. The responsive design was implemented using the Bootstrap CSS framework. Custom CSS was used to create a unique design that fits the site's theme.
 
-project files: all template files and [styles.css](static/css/styles.css) (for custom styles)
+relevant project files: all template files and [style.css](static/css/style.css) (for custom styles)
 
 ### Future Features
 
@@ -300,7 +315,7 @@ All Ideas for Future Features are organized as user Stories by Epic and MoSCoW p
 
 These are my three favorite ideas for future features:
 - **[Issue #8](https://github.com/benschaf/waste-schedule/issues/8): User Notifications**: A feature that sends users actual real time notifications to remind them of their waste collection days. Sadly, this feature is not in the scope of this project because it cant really be implemented when using a free Heroku account that isn't able to keep the server running all the time.
-- **[Issue #40](https://github.com/benschaf/waste-schedule/issues/40) Gamification and Household sharing** A feature that allows members of a household to share their schedules and compete / collaborate with each other. This feature would also include a leaderboard and achievements.
+- **[Issue #40](https://github.com/benschaf/waste-schedule/issues/40) Gamification and Household sharing**: A feature that allows members of a household to share their schedules and compete / collaborate with each other. This feature would also include a leaderboard and achievements.
 - **[Issue #41](https://github.com/benschaf/waste-schedule/issues/41)Local Waste Collection Services**: A feature that allows users to find local waste collection services in their area, such as recycling centers, composting facilities, and hazardous waste disposal sites.
 
 
@@ -395,7 +410,7 @@ Using this approach, I was able to apply the MoSCow prioritization as custom pro
 
 [GitHub Issues](https://github.com/benschaf/waste-schedule/issues) served as an another Agile tool.
 
-Github issues was mainly used to track bugs and smaller feature requests that weren't big enough to be considered a user story. They also contain the user stories which means that filtering is key to keep the overview.
+Github issues was mainly used to track bugs and smaller feature requests that weren't big enough to be considered a user story. They also contain the user stories which means that filtering is key to keep an overview over the issues.
 
 - [Open Issues](https://github.com/benschaf/waste-schedule/issues) [![GitHub issues](https://img.shields.io/github/issues/benschaf/waste-schedule)](https://github.com/benschaf/waste-schedule/issues)
 
@@ -457,6 +472,9 @@ Deployment steps are as follows, after account setup:
 
 | Key | Value |
 | --- | --- |
+| `CLOUDINARY_API_KEY` | user's own value |
+| `CLOUDINARY_API_SECRET` | user's own value |
+| `CLOUDINARY_CLOUD_NAME` | user's own value |
 | `CLOUDINARY_URL` | user's own value |
 | `DATABASE_URL` | user's own value |
 | `DISABLE_COLLECTSTATIC` | 1 (*this is temporary, and can be removed for the final deployment*) |
@@ -519,7 +537,9 @@ Sample `env.py` file:
 
 ```python
 import os
-
+os.environ.setdefault("CLOUDINARY_API_KEY", "user's own value")
+os.environ.setdefault("CLOUDINARY_API_SECRET", "user's own value")
+os.environ.setdefault("CLOUDINARY_CLOUD_NAME", "user's own value")
 os.environ.setdefault("CLOUDINARY_URL", "user's own value")
 os.environ.setdefault("DATABASE_URL", "user's own value")
 os.environ.setdefault("SECRET_KEY", "user's own value")
@@ -571,12 +591,12 @@ You can fork this repository by using the following steps:
 
 ### Content
 
-
 <!-- CREDITS_START -->
-All the Credits and hyperlinks can be found in the respective files on the indicated lines.
+All the Credits and hyperlinks can be found in the respective files on the indicated lines (just click the link to get there).
 
 Note that the list of credits below is automatically generated from the project files using the [copy-credits.py](copy-credits.py) script.
 The script was written by me, with much help from the Microsoft Edge Copilot.
+
 | File | Notes | Source |
 | --- | --- | --- |
 | [index.html: Line 20](https://github.com/benschaf/waste-schedule/blob/main/core/templates/core/index.html#L20) | manual input validation using regex pattern | [developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation) |
@@ -619,25 +639,27 @@ The script was written by me, with much help from the Microsoft Edge Copilot.
 | [test_views.py: Line 256](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/test_views.py#L256) | refreshing the object from the database | [stackoverflow.com](https://stackoverflow.com/questions/4377861/reload-django-object-from-database) |
 | [test_views.py: Line 491](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/test_views.py#L491) | converting lists with different orders to sets to compare them | [www.digitalocean.com](https://www.digitalocean.com/community/tutorials/how-to-compare-two-lists-in-python) |
 | [views.py: Line 21](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/views.py#L21) | class based views | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/class-based-views/) |
-| [views.py: Line 74](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/views.py#L74) | adding an annotation to each object in a list | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/topics/db/aggregation/) |
-| [views.py: Line 77](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/views.py#L77) | passing only the id field value to the template | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/models/querysets/#values-list) |
-| [views.py: Line 101](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/views.py#L101) | additional context data in class based views | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/topics/class-based-views/generic-display/) |
-| [views.py: Line 122](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/views.py#L122) | checking wether a queryset contains any items | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/models/querysets/#django.db.models.query.QuerySet.exists) |
-| [views.py: Line 123](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/views.py#L123) | authenticating the logged in user | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/topics/auth/default/#authentication-in-web-requests) |
-| [views.py: Line 136](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/views.py#L136) | using the LoginRequiredMixin | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/topics/auth/default/#the-loginrequiredmixin-mixin) |
-| [views.py: Line 170](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/views.py#L170) | finding class based view methods | [www.brennantymrak.com](https://www.brennantymrak.com/articles/createviewdiagram) |
-| [views.py: Line 179](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/views.py#L179) | edit view | [github.com](https://github.com/Code-Institute-Solutions/blog/tree/main/12_views_part_3/05_edit_delete) |
-| [views.py: Line 294](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/views.py#L294) | creating an object | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/topics/db/queries/#creating-objects) |
-| [views.py: Line 295](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/views.py#L295) | deleting an object | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/topics/db/queries/#deleting-objects) |
-| [views.py: Line 296](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/views.py#L296) | checking if an object exists | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/models/querysets/#exists) |
-| [views.py: Line 394](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/views.py#L394) | ics.py library that helps to create ics files | [icspy.readthedocs.io](https://icspy.readthedocs.io/en/stable) |
-| [views.py: Line 409](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/views.py#L409) | creating a download response | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/request-response/#fileresponse-objects) |
+| [views.py: Line 75](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/views.py#L75) | adding an annotation to each object in a list | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/topics/db/aggregation/) |
+| [views.py: Line 78](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/views.py#L78) | passing only the id field value to the template | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/models/querysets/#values-list) |
+| [views.py: Line 102](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/views.py#L102) | additional context data in class based views | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/topics/class-based-views/generic-display/) |
+| [views.py: Line 123](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/views.py#L123) | checking wether a queryset contains any items | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/models/querysets/#django.db.models.query.QuerySet.exists) |
+| [views.py: Line 124](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/views.py#L124) | authenticating the logged in user | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/topics/auth/default/#authentication-in-web-requests) |
+| [views.py: Line 137](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/views.py#L137) | using the LoginRequiredMixin | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/topics/auth/default/#the-loginrequiredmixin-mixin) |
+| [views.py: Line 171](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/views.py#L171) | finding class based view methods | [www.brennantymrak.com](https://www.brennantymrak.com/articles/createviewdiagram) |
+| [views.py: Line 180](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/views.py#L180) | edit view | [github.com](https://github.com/Code-Institute-Solutions/blog/tree/main/12_views_part_3/05_edit_delete) |
+| [views.py: Line 295](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/views.py#L295) | creating an object | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/topics/db/queries/#creating-objects) |
+| [views.py: Line 296](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/views.py#L296) | deleting an object | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/topics/db/queries/#deleting-objects) |
+| [views.py: Line 297](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/views.py#L297) | checking if an object exists | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/models/querysets/#exists) |
+| [views.py: Line 395](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/views.py#L395) | ics.py library that helps to create ics files | [icspy.readthedocs.io](https://icspy.readthedocs.io/en/stable) |
+| [views.py: Line 410](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/views.py#L410) | creating a download response | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/request-response/#fileresponse-objects) |
 | [schedule_detail.html: Line 147](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/templates/wasteschedules/schedule_detail.html#L147) | crispy forms | [github.com](https://github.com/Code-Institute-Solutions/blog/tree/main/12_views_part_3/01_posting_to_database) |
 | [schedule_detail.html: Line 173](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/templates/wasteschedules/schedule_detail.html#L173) | modals | [getbootstrap.com](https://getbootstrap.com/docs/5.2/components/modal/) |
 | [schedule_detail.html: Line 174](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/templates/wasteschedules/schedule_detail.html#L174) | passisng data attributes to js | [blog.webdevsimplified.com](https://blog.webdevsimplified.com/2020-10/javascript-data-attributes/) |
 | [schedule_detail.html: Line 175](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/templates/wasteschedules/schedule_detail.html#L175) | passing the CSRF Token and using it in js | [stackoverflow.com](https://stackoverflow.com/questions/47527120/how-to-add-assign-csrf-token-in-the-html-submit-form) |
-| [schedule_list.html: Line 20](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/templates/wasteschedules/schedule_list.html#L20) | manual input validation using a regex pattern | [developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation) |
-| [schedule_list.html: Line 64](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/templates/wasteschedules/schedule_list.html#L64) | popovers | [getbootstrap.com](https://getbootstrap.com/docs/5.2/components/popovers/#overview) |
+| [schedule_list.html: Line 14](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/templates/wasteschedules/schedule_list.html#L14) | manual input validation using a regex pattern | [developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation) |
+| [schedule_list.html: Line 66](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/templates/wasteschedules/schedule_list.html#L66) | popovers | [getbootstrap.com](https://getbootstrap.com/docs/5.2/components/popovers/#overview) |
+| [schedule_list.html: Line 109](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/templates/wasteschedules/schedule_list.html#L109) | pagination with django | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/topics/pagination/) |
+| [schedule_list.html: Line 110](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/templates/wasteschedules/schedule_list.html#L110) | pagination styles | [getbootstrap.com](https://getbootstrap.com/docs/5.3/components/pagination/) |
 <!-- CREDITS_END -->
 
 Additionaly, [Chris Beams](https://chris.beams.io/posts/git-commit) article "How to Write a Git Commit Message" was used as a guideline for writing commit messages.
@@ -656,7 +678,7 @@ All images used in this project were generated using the [Copilot Designer](http
 
 ### Acknowledgements
 
-- I would like to greatly thank my Code Institute mentor, [Tim Nelson](https://github.com/TravelTimN) for his support throughout the development of this project.
+- Immense thanks go to my Code Institute mentor, [Tim Nelson](https://github.com/TravelTimN) for his support throughout the development of this project.
 - I would like to thank the [Code Institute](https://codeinstitute.net) tutor team for their assistance and their time with troubleshooting and debugging some project issues.
 - I would like to thank my partner for her support and understanding during the development of this project.
 
