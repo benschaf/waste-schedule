@@ -95,10 +95,37 @@ View the [user story map](https://github.com/users/benschaf/projects/9/views/2) 
 
 ![screenshot](documentation/user-story-map.png)
 
-### Epic: Landing Page optimization
-| User Story | MoSCoW |
-| --- | --- |
-* [#32](https://github.com/benschaf/waste-schedule/issues/32) | Must Have |
+### MoSCoW Prioritization: Must Have
+Below are the user stories that were prioritized as **Must Have**.
+
+For all user stories, please refer to the [User Story Map](https://github.com/users/benschaf/projects/9/views/2).
+
+#### Epic: Landing Page optimization
+
+* [#3](https://github.com/benschaf/waste-schedule/issues/3) As a user, I want an intuitive landing page that explains the app’s purpose and features clearly, so that I can quickly understand how to use it.
+* [#13](https://github.com/benschaf/waste-schedule/issues/13) As a user I can instantly find relevant information for my area when visiting the website so that I can get right into setting up the reminders I came for
+
+#### Epic: Picking a Schedule
+
+* [#5](https:/github.com/benschaf/waste-schedule/issues/5) As a user, I want to be able to browse waste collection schedules for my area without logging in, so that I can explore available options easily.
+* [#6](https:/github.com/benschaf/waste-schedule/issues/6) As a user, I want to only have to log in, when I want to subscribe to a schedule or make a schedule.
+* [#14](https:/github.com/benschaf/waste-schedule/issues/14) As a user I can click on a specific waste collection schedule from the search results and view detailed information about that schedule so that I can confirm that it's helpful for me
+* [#15](https:/github.com/benschaf/waste-schedule/issues/15) As a user, I can subscribe to waste collection schedules so that I receive timely reminders for upcoming collection events.
+
+#### Epic: Managing and recieving reminders
+
+* [#17](https:/github.com/benschaf/waste-schedule/issues/17) As a user I can view a dashboard that provides relevant information on my subscribed schedules so that I can stay organized and have an overview of what I subscribed to.
+
+#### Epic: Upload waste collection Schedules
+
+* [#10](https:/github.com/benschaf/waste-schedule/issues/10) As a user, I want to upload my community’s waste collection schedule, so that others can benefit from accurate information.
+
+#### Epic: Rate and Comment on waste collection Schedules
+
+* [#12](https:/github.com/benschaf/waste-schedule/issues/12) As a user, I want to verify the accuracy of uploaded schedules by comparing them with official waste calendars or images, so that I can trust the data.
+* [#11](https:/github.com/benschaf/waste-schedule/issues/11) As a user, I want to rate and provide feedback on uploaded schedules to help the community, so that we collectively improve waste management.
+* [#18](https:/github.com/benschaf/waste-schedule/issues/18) As a user who commented on a schedule I can edit or delete my comment so that I can refine or retract my feedback.
+* [#19](https:/github.com/benschaf/waste-schedule/issues/19) As a user I can like or express appreciation for a specific waste collection schedule so that I can acknowledge well-maintained schedules.
 
 ### Flowchart
 The following flowchart depicts possible user journeys in the waste management app. The app tries to let the user do as much as possible without having to sign up or log in. Only when the user has to perform any kind of CRUD operation, they are asked to sign up or log in.
