@@ -651,6 +651,11 @@ All images used in this project were generated using the [Copilot Designer](http
 ---
 
 ## Design Thinking Process
+
+**This Section is added at the end of the README file to keep it clean and concise. Though it is not part of the usual README structure, it was added to provide a more detailed insight into the project's conception and development process.**
+
+The design thinking process was used to develop the idea for this project. The process consists of five stages: Empathise, Define, Ideate, Prototype, and Test. Each stage was used to understand the problem, generate ideas, and create a solution that meets the needs of the target audience.
+
 ### Emphatise
 For this stage, I created 4 user personas to represent the different types of users that would interact with the app.
 
