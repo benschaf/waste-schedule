@@ -95,7 +95,10 @@ View the [user story map](https://github.com/users/benschaf/projects/9/views/2) 
 
 ![screenshot](documentation/user-story-map.png)
 
-!!! Manually add the user stories ...
+### Epic: Landing Page optimization
+| User Story | MoSCoW |
+| --- | --- |
+| [#32](https://github.com/benschaf/waste-schedule/issues/32) | Must Have |
 
 ### Flowchart
 The following flowchart depicts possible user journeys in the waste management app. The app tries to let the user do as much as possible without having to sign up or log in. Only when the user has to perform any kind of CRUD operation, they are asked to sign up or log in.
