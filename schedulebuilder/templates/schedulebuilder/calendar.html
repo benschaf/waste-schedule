@@ -75,7 +75,12 @@
             </div>
             <div class="col-12 col-md-5">
                 <div class="row row-cols-md-1 mt-2 mt-md-0 row-gap-3 sticky-md-top top-sticky-margin">
-                    <div class="col-5 d-flex gap-3">
+                    <div class="col">
+                        <p>
+                            Select a date in the calendar to add an event. <br>
+                            Events can also be deleted again by selecting them.
+                        </p>
+                        <p>When you are finished editing, hit "Save" to complete your Schedule</p>
                         <!-- Button to save the events by triggering the POST request -->
                         <div class="btn btn-primary submit-background" id="submit-button"
                             data-schedule-id="{{ schedule.id }}">Save</div>
