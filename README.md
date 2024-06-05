@@ -182,6 +182,8 @@ The schedule search bar allows users to search for their postcode and receive a 
 
 Once the user has entered their postcode, they are presented with a list set of schedule cards that match their search criteria. From here, they can already like and/or subscribe to a schedule.
 
+The schedule list has enabled pagination, so that the user can easily navigate through the list of schedules.
+
 The search bar and list are designed to be simple and intuitive, providing users with a quick and easy way to find the information they need.
 
 ![screenshot](documentation/feature-search.png)
@@ -529,8 +531,7 @@ Once the project is cloned or forked, in order to run it locally, you'll need to
 - Make any necessary migrations: `python3 manage.py makemigrations`
 - Migrate the data to the database: `python3 manage.py migrate`
 - Create a superuser: `python3 manage.py createsuperuser`
-!!!! CREATE FIXTURES
-- Load fixtures (if applicable): `python3 manage.py loaddata file-name.json` (repeat for each file)
+- Load fixtures: `python3 manage.py loaddata db2.json` (note that one of the users in the fixture is a superuser)
 - Everything should be ready now, so run the Django app again: `python3 manage.py runserver`
 
 #### Cloning
@@ -641,8 +642,10 @@ Additionaly, [Chris Beams](https://chris.beams.io/posts/git-commit) article "How
 
 The tonne logo was drawn by me, adapting the design from a [vecteezy graphic](https://de.vecteezy.com/vektorkunst/571076-mulleimer-symbol).
 
-Images for sample Waste Schedules were taken from the following websites and uploaded to Cloudinary for use in the project:
-    !!!!!!! INSERT HERE AFTER MAKING FIXTURES
+Images for sample Waste Schedules were taken from the following websites and uploaded to Cloudinary as an example usecase in the project:
+* [Landkreis Coburg](https://www.landkreis-coburg.de/73-0-Abfallwirtschaft.html)
+* [Öhningen Waste Calendar](https://www.oehningen.de/fileadmin/redakteur/Abfallkalender_NEU_%C3%96hningen_2024.pdf)
+* [Landkreis Schweinfurt](https://www.landkreis-schweinfurt.de/abfuhrkalender)
 
 All images used in this project were generated using the [Copilot Designer](https://www.bing.com/images/create?cc=de)
 
@@ -658,7 +661,8 @@ All images used in this project were generated using the [Copilot Designer](http
 
 ## Design Thinking Process
 
-**This Section is added at the end of the README file to keep it clean and concise. Though it is not part of the usual README structure, it was added to provide a more detailed insight into the project's conception and development process.**
+> [!NOTE]
+> This Section is added at the end of the README file to keep it clean and concise. Though it is not part of the usual README structure, it was added to provide a more detailed insight into the project's conception and development process.
 
 The design thinking process was used to develop the idea for this project. The process consists of five stages: Empathise, Define, Ideate, Prototype, and Test. Each stage was used to understand the problem, generate ideas, and create a solution that meets the needs of the target audience.
 

@@ -35,6 +35,7 @@ class ScheduleList(ListView):
     """
     model = Schedule
     template_name = 'wasteschedules/schedule_list.html'
+    paginate_by = 6
 
     def get_queryset(self):
         """

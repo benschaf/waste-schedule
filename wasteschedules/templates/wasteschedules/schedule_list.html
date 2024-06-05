@@ -20,9 +20,9 @@
                 <!-- -> Credit for manual input validation using a regex pattern: https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation -->
                 <div class="form-floating">
                     <input type="text" id="postcodeInput" class="form-control rounded-corners"
-                        placeholder="Enter a postcode" aria-label="Enter a postcode"
-                        aria-describedby="button-addon2" pattern="^\d{5}$"
-                        title="Please enter a 5 digit postcode (only German postcodes are supported)" required>
+                        placeholder="Enter a postcode" aria-label="Enter a postcode" aria-describedby="button-addon2"
+                        pattern="^\d{5}$" title="Please enter a 5 digit postcode (only German postcodes are supported)"
+                        required>
                     <label for="postcodeInput">Enter a postcode</label>
                 </div>
                 <button title="Search for your postcode"
@@ -104,6 +104,29 @@
         {% empty %}
         <p>No Schedules found</p>
         {% endfor %}
+        <!-- -> Credit for pagination with django: https://docs.djangoproject.com/en/5.0/topics/pagination/ -->
+        <!-- -> Credit for pagination styles: https://getbootstrap.com/docs/5.3/components/pagination/ -->
+        {% if page_obj.has_other_pages %}
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                {% endif %}
+                <li class="page-item page-link text-muted">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</li>
+                {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
     </div>
     <div class="row mt-5">
         <div class="column">
