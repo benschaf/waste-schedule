@@ -201,31 +201,22 @@ I've tested my deployed project on multiple devices to check for responsiveness 
 
 ## Lighthouse Audit
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-START OF NOTES (to be deleted)
-
-Use this space to discuss testing the live/deployed site's Lighthouse Audit reports.
-Avoid testing the local version (especially if developing in Gitpod), as this can have knock-on effects of performance.
-
-If you don't have Lighthouse in your Developer Tools,
-it can be added as an [extension](https://chrome.google.com/webstore/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk).
-
-Don't just test the home page (unless it's a single-page application).
-Make sure to test the Lighthouse Audit results for all of your pages.
-
-**IMPORTANT**: You must provide screenshots of the results, to "prove" that you've actually tested them.
-
-Sample Lighthouse testing documentation:
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
-
-I've tested my deployed project using the Lighthouse Audit tool to check for any major issues.
+I've tested my deployed project using the Lighthouse Audit tool in the Chrome Developer Tools to mainly check for accessibility and best practices but also to check for performance and SEO.
 
 | Page | Mobile | Desktop | Notes |
 | --- | --- | --- | --- |
-| Home | ![screenshot](documentation/lighthouse/lighthouse-home-mobile.png) | ![screenshot](documentation/lighthouse/lighthouse-home-desktop.png) | Some minor warnings |
-| About | ![screenshot](documentation/lighthouse/lighthouse-about-mobile.png) | ![screenshot](documentation/lighthouse/lighthouse-about-desktop.png) | Some minor warnings |
-| Gallery | ![screenshot](documentation/lighthouse/lighthouse-gallery-mobile.png) | ![screenshot](documentation/lighthouse/lighthouse-gallery-desktop.png) | Slow response time due to large images |
-| x | x | x | repeat for any other tested pages/sizes |
+| Landing | ![screenshot](documentation/lighthouse-landing-mobile.png) | ![screenshot](documentation/lighthouse-landing-desktop.png) |  Warnings about performance due to hero image and layout shift (acceptable) |
+| About | ![screenshot](documentation/lighthouse-about-mobile.png) | ![screenshot](documentation/lighthouse-about-desktop.png) | Minor warnings |
+| Schedule List | ![screenshot](documentation/lighthouse-schedule-list-mobile.png) | ![screenshot](documentation/lighthouse-schedule-list-desktop.png) | Minor warnings |
+| Schedule Detail | ![screenshot](documentation/lighthouse-schedule-detail-mobile.png) | ![screenshot](documentation/lighthouse-schedule-detail-desktop.png) | Warnings due to schedule image loading, layout shift, and "links aren't crawlable" |
+| Dashboard | ![screenshot](documentation/lighthouse-dashboard-mobile.png) | ![screenshot](documentation/lighthouse-dashboard-desktop.png) | Minor warnings |
+| Builder Location | ![screenshot](documentation/lighthouse-builder-location-mobile.png) | ![screenshot](documentation/lighthouse-builder-location-desktop.png) | Minor warnings |
+| Builder Schedule | ![screenshot](documentation/lighthouse-builder-schedule-mobile.png) | ![screenshot](documentation/lighthouse-builder-schedule-desktop.png) | Minor warnings |
+| Builder Calendar | ![screenshot](documentation/lighthouse-builder-calendar-mobile.png) | ![screenshot](documentation/lighthouse-builder-calendar-desktop.png) | Minor warnings and "links aren't crawlable" |
+| Register | ![screenshot](documentation/lighthouse-register-mobile.png) | ![screenshot](documentation/lighthouse-register-desktop.png) | Minor warnings |
+| Login | ![screenshot](documentation/lighthouse-login-mobile.png) | ![screenshot](documentation/lighthouse-login-desktop.png) | Minor warnings |
+
+The "links aren't crawlable" warning is due to FullCalendar which puts some anchor tags into the DOM that aren't actually links. These links not being crawlable is not an issue as they are not meant to be followed by search engines and are only used for FullCalendar's internal functionality.
 
 ## Defensive Programming
 
