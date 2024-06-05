@@ -244,12 +244,6 @@ I fully acknowledge and understand that, in a real-world scenario, an extensive 
 
 ### JavaScript (Jest Testing)
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-START OF NOTES (to be deleted)
-
-Adjust the code below (file names, etc.) to match your own project files/folders.
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
-
 I have used the [Jest](https://jestjs.io) JavaScript testing framework to test the application functionality.
 
 In order to work with Jest, I first had to initialize NPM.
@@ -281,7 +275,8 @@ const { function1, function2, function3, etc. } = require("../script-name");
 
 beforeAll(() => {
     let fs = require("fs");
-    let fileContents = fs.readFileSync("index.html", "utf-8");
+    let fileContents = fs.readFileSync(
+        "/workspace/waste-schedule/schedulebuilder/templates/schedulebuilder/calendar.html", "utf-8");
     document.open();
     document.write(fileContents);
     document.close();
@@ -289,7 +284,7 @@ beforeAll(() => {
 ```
 
 Remember to adjust the `fs.readFileSync()` to the specific file you'd like you test.
-The example above is testing the `index.html` file.
+The example above is testing the `calendar.html` file.
 
 Finally, at the bottom of the script file where your primary scripts are written, include the following at the bottom of the file.
 Make sure to include the name of all of your functions that are being tested in the `.test.js` file.
