@@ -284,6 +284,10 @@ The messages are designed to be unobtrusive and informative, providing users wit
 
 project files: [base.html](templates/base.html)
 
+#### Custom 404 error page
+
+A custom 404 error page is displayed when a user tries to access a page that does not exist. It provides a friendly message and a link back to the homepage.
+
 #### Responsive Design
 
 The site is fully responsive and optimized for all devices. It looks great on mobile, tablet, and desktop screens, ensuring a smooth user experience no matter the device. The responsive design was implemented using the Bootstrap CSS framework. Custom CSS was used to create a unique design that fits the site's theme.
