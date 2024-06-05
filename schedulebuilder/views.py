@@ -128,6 +128,24 @@ class UpdateSchedule(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     template_name = 'schedulebuilder/update_schedule_form.html'
     success_message = "Schedule was updated successfully."
 
+    def get(self, request: HttpRequest, *args: str, **kwargs: Any) -> HttpResponse:
+            """
+            Checks if the user is the owner of the schedule before displaying the update form.
+
+            Args:
+                request (HttpRequest): The HTTP request object.
+                *args (str): Variable length argument list.
+                **kwargs (Any): Arbitrary keyword arguments.
+
+            Returns:
+                HttpResponse: The HTTP response object.
+            """
+            if self.get_object().author != request.user:
+                messages.add_message(self.request, messages.ERROR,
+                                     "You are not the owner of this schedule.")
+                return redirect(self.request.META.get('HTTP_REFERER', 'landing_page'))
+            return super().get(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs) -> dict[str, Any]:
         """
         Returns the context data for the view.
@@ -184,6 +202,25 @@ class DeleteSchedule(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     model = Schedule
     template_name = 'schedulebuilder/schedule_confirm_delete.html'
     success_message = "Schedule was deleted successfully."
+
+    def get(self, request: HttpRequest, *args: str, **kwargs: Any) -> HttpResponse:
+            """
+            Checks if the user is the owner of the schedule before displaying the delete form.
+
+            Args:
+                request (HttpRequest): The HTTP request object.
+                *args (str): Variable length argument list.
+                **kwargs (Any): Arbitrary keyword arguments.
+
+            Returns:
+                HttpResponse: The HTTP response object.
+            """
+            # This is a lot of repeating code, maybe I can refactor this into a decorator or something
+            if self.get_object().author != request.user:
+                messages.add_message(self.request, messages.ERROR,
+                                        "You are not the owner of this schedule.")
+                return redirect(self.request.META.get('HTTP_REFERER', 'landing_page'))
+            return super().get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
         """

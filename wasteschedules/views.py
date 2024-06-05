@@ -146,6 +146,21 @@ class ScheduleComment(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     login_url = '/accounts/login/'
     success_message = "Your Comment was created successfully."
 
+    def get(self, request: HttpRequest, *args: str, **kwargs: Any) -> HttpResponse:
+            """
+            If the user tries to access the URL for the comment creation page directly, they are redirected to the schedule detail page (as there is no comment creation template)
+
+            Args:
+                request (HttpRequest): The HTTP request object.
+                *args (str): Variable length argument list.
+                **kwargs (Any): Arbitrary keyword arguments.
+
+            Returns:
+                HttpResponse: The HTTP response object.
+            """
+            postcode = Schedule.objects.get(slug=self.kwargs['slug']).locations.all()[0]
+            return redirect(reverse('schedule_detail', kwargs={'postcode': postcode, 'slug': self.kwargs['slug']}))
+
     def form_valid(self, form):
         form.instance.commented_by = self.request.user
         slug = self.kwargs.get('slug')
@@ -165,6 +180,7 @@ class ScheduleComment(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 def schedule_comment_edit(request, pk, slug):
     """
     View to edit comments.
+    The get method is not allowed, this is to prevent users from accessing the edit page directly.
 
     Args:
         request (HttpRequest): The HTTP request object.
@@ -179,7 +195,6 @@ def schedule_comment_edit(request, pk, slug):
         - If the comment does not belong to the current user, a Django message with an error is added.
         - If the comment is successfully edited, a Django message with a success message is added.
         - After editing the comment, the user is redirected to the schedule detail page.
-
     """
     if request.method == "POST":
 
@@ -198,7 +213,10 @@ def schedule_comment_edit(request, pk, slug):
             messages.add_message(request, messages.INFO,
                                  "Your comment was edited successfully.")
             comment.save()
-    # Do I need an else here to handle get? I am never expecting a get request for this
+    elif request.method == "GET":
+        messages.add_message(request, messages.ERROR,
+                             "please use the edit button to edit your comment.")
+        return redirect(request.META.get('HTTP_REFERER', 'landing_page'))
 
     postcode = comment.schedule_id.locations.all()[0]
     return HttpResponseRedirect(reverse('schedule_detail', kwargs={'postcode': postcode, 'slug': slug}))
@@ -213,6 +231,24 @@ class ScheduleCommentDelete(LoginRequiredMixin, SuccessMessageMixin, DeleteView)
 
     model = Comment
     success_message = "Your comment was deleted successfully."
+
+    def get(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
+        """
+        This adds an error message to the request's messages framework and redirects
+        the user back to the previous page.
+
+        Args:
+            request (HttpRequest): The HTTP request object.
+            *args: Variable length argument list.
+            **kwargs: Arbitrary keyword arguments.
+
+        Returns:
+            HttpResponse: The HTTP response object.
+
+        """
+        messages.add_message(request, messages.ERROR,
+                                "Please use the delete button to delete your comment.")
+        return redirect(request.META.get('HTTP_REFERER', 'landing_page'))
 
     def dispatch(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
         obj = self.get_object()
