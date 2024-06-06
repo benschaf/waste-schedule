@@ -1,4 +1,4 @@
-# tonne: Your Partner in Green Living! 🌿
+# ![logo](/static/images/logo.webp) tonne: Your Partner in Green Living!
 [Experience our live website here!](https://tonne-waste-reminders-a6836f2888b0.herokuapp.com/)
 
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/t/benschaf/waste-schedule)](https://github.com/benschaf/waste-schedule/commits/main)
