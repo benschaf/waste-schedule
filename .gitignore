@@ -7,3 +7,4 @@ __pycache__/
 node_modules/
 cloudinary_python.txt
 */fixtures/users.json
+db.sqlite3
