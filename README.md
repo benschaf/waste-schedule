@@ -87,7 +87,7 @@ Check out the [User Story Map](https://github.com/users/benschaf/projects/9/view
 ### MoSCoW Prioritization: Must Have
 Listed below are only the user stories that were prioritized as **Must Have**.
 
-For all user stories and especially to see the acceptance criteria for each story listed below, please refer to the [User Story Map](https://github.com/users/benschaf/projects/9/views/2) instead.
+For all user stories and especially to see the acceptance criteria for each story listed below, please refer to the [User Story Map](https://github.com/users/benschaf/projects/9/views/2) instead. Note that MoSCoW prioritization of the user stories is frozen at the beginning of the last iteration to give more insight in the development process.
 
 #### Epic: Landing Page optimization
 
@@ -396,7 +396,7 @@ Through it, a user story map was created, and issues were managed in an Agile wa
 
 User stories are grouped by Epic and MoSCoW priority. The epics were determined before development began as part of the design process. In depth information about the conception of the idea for the site and the User Stories can be found under the Design Thinking Progress section at the bottom of this file.
 
-Throughout the development process, user stories were reevaluated after each iteration and adjusted accordingly.
+Throughout the development process, user stories were reevaluated after each iteration and adjusted accordingly. At this time, they are frozen at the beginning of the last iteration to give more insight in the development process.
 
 ![screenshot](documentation/user-story-map.png)
 
