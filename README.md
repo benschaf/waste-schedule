@@ -75,7 +75,7 @@ View the [original draw.io file](https://drive.google.com/file/d/1KmW3ppV6V6eGe1
 
 ## User Stories
 
-Check out the [User Story Map](https://github.com/users/benschaf/projects/9/views/2) created for this project using Github Projects. It includes all user stories and makes them easier to manage as they are grouped by Epic and MoSCoW priority.
+Check out the [User Story Map](https://github.com/users/benschaf/projects/9/views/2) created for this project using Github Projects. It includes all user stories and makes them easier to manage as they are grouped by Epic and MoSCoW priority. Meaningful accepance criteria were added to each user story in order to make development more goal focused.
 
 ![screenshot](documentation/user-story-map.png)
 ⤴️ Screenshot of the User Story Map
@@ -83,7 +83,7 @@ Check out the [User Story Map](https://github.com/users/benschaf/projects/9/view
 ### MoSCoW Prioritization: Must Have
 Listed below are only the user stories that were prioritized as **Must Have**.
 
-For all user stories, please refer to the [User Story Map](https://github.com/users/benschaf/projects/9/views/2).
+For all user stories and especially to see the acceptance criteria for each story listed below, please refer to the [User Story Map](https://github.com/users/benschaf/projects/9/views/2) instead.
 
 #### Epic: Landing Page optimization
 
