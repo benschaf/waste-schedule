@@ -2,15 +2,37 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
+
+
+<!-- Return Link -->
 <div class="container navbar-margin">
-    <!-- Location Form -->
+    <a href="{% url 'landing_page' %}"
+        class="link-secondary link-underline-opacity-25 link-underline-opacity-100-hover">Back to the
+        Homepage
+    </a>
+</div>
+
+<!-- Progress Bar -->
+<div class="container">
+    <div class="card card-timeline px-2 border-0 mt-5">
+        <ul class="bs4-order-tracking">
+            <li class="step active">
+                <div><i class="fas fa-map-marker-alt"></i></div> Pick a Location
+            </li>
+            <li class="step">
+                <div><i class="fas fa-list"></i></div> Add Schedule Details
+            </li>
+            <li class="step">
+                <div><i class="fas fa-calendar-alt"></i></div> Add tonne Events
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Location Form -->
+<div class="container">
     <div class="row justify-content-center mt-3">
         <div class="col col-lg-5">
-            <!-- Return Link -->
-            <a href="{% url 'landing_page' %}"
-                class="link-secondary link-underline-opacity-25 link-underline-opacity-100-hover">Back to the
-                Homepage
-            </a>
             <div class="card mt-2">
                 <div class="card-body p-5">
                     <h1>Pick a Location</h1>

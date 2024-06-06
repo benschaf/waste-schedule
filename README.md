@@ -1,4 +1,4 @@
-# tonne: Your Partner in Green Living! 
+# tonne: Your Partner in Green Living!
 [Experience our live website here!](https://tonne-waste-reminders-a6836f2888b0.herokuapp.com/)
 
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/t/benschaf/waste-schedule)](https://github.com/benschaf/waste-schedule/commits/main)
@@ -251,7 +251,7 @@ Here the user can enter a title and description for the schedule. They can also 
 
 Here the user can add collection events to the schedule. They can select the waste type and the collection day directly from a calendar. The calendar is implemented using the [FullCalendar](https://fullcalendar.io/) library. The user can add recurring events, such as weekly or monthly collections, as well as one-time events. The deletion of recurring events is not yet implemented because the FullCalendar library doesn't support it natively. Singular events and all events that are part of the same recurrence can be deleted.
 
-The schedule builder is designed to be intuitive and user-friendly, providing a step-by-step process for creating a new schedule. It allows users to contribute to the site and share their knowledge with the community.
+The schedule builder is designed to be intuitive and user-friendly, providing a step-by-step process for creating a new schedule. It allows users to contribute to the site and share their knowledge with the community. And it even includes a step by step progress bar!
 
 | Location Form | Schedule Title / Description / Image Form | Collection Events Calendar Form |
 | --- | --- | --- |
@@ -596,11 +596,10 @@ You can fork this repository by using the following steps:
 ### Content
 
 <!-- CREDITS_START -->
-All the Credits and hyperlinks can be found in the respective files on the indicated lines (just click the link to get there).
+All the Credits and hyperlinks can be found in the respective files on the indicated lines.
 
 Note that the list of credits below is automatically generated from the project files using the [copy-credits.py](copy-credits.py) script.
 The script was written by me, with much help from the Microsoft Edge Copilot.
-
 | File | Notes | Source |
 | --- | --- | --- |
 | [index.html: Line 20](https://github.com/benschaf/waste-schedule/blob/main/core/templates/core/index.html#L20) | manual input validation using regex pattern | [developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation) |
@@ -610,11 +609,12 @@ The script was written by me, with much help from the Microsoft Edge Copilot.
 | [views.py: Line 356](https://github.com/benschaf/waste-schedule/blob/main/schedulebuilder/views.py#L356) | update_or_create | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/models/querysets/#update-or-create) |
 | [views.py: Line 357](https://github.com/benschaf/waste-schedule/blob/main/schedulebuilder/views.py#L357) | dict.get() | [www.w3schools.com](https://www.w3schools.com/python/ref_dictionary_get.asp) |
 | [views.py: Line 396](https://github.com/benschaf/waste-schedule/blob/main/schedulebuilder/views.py#L396) | get_kind_display() | [docs.djangoproject.com](https://docs.djangoproject.com/en/3.2/ref/models/instances/#django.db.models.Model.get_FOO_display) |
-| [schedule_form.html: Line 21](https://github.com/benschaf/waste-schedule/blob/main/schedulebuilder/templates/schedulebuilder/schedule_form.html#L21) | uploading a file using a form | [www.w3schools.com](https://www.w3schools.com/tags/att_form_enctype.asp) |
+| [schedule_form.html: Line 41](https://github.com/benschaf/waste-schedule/blob/main/schedulebuilder/templates/schedulebuilder/schedule_form.html#L41) | uploading a file using a form | [www.w3schools.com](https://www.w3schools.com/tags/att_form_enctype.asp) |
 | [style.css: Line 2](https://github.com/benschaf/waste-schedule/blob/main/static/css/style.css#L2) | using CSS root variables | [www.w3schools.com](https://www.w3schools.com/css/css3_variables.asp) |
 | [style.css: Line 32](https://github.com/benschaf/waste-schedule/blob/main/static/css/style.css#L32) | keyframes | [stackoverflow.com](https://stackoverflow.com/questions/45330061/how-to-flash-a-div-only) |
 | [style.css: Line 66](https://github.com/benschaf/waste-schedule/blob/main/static/css/style.css#L66) | Gradient text | [cssgradient.io](https://cssgradient.io/blog/css-gradient-text/) |
 | [style.css: Line 177](https://github.com/benschaf/waste-schedule/blob/main/static/css/style.css#L177) | timeline CSS & HTML | [www.bootdey.com](https://www.bootdey.com/snippets/view/timeline-events) |
+| [style.css: Line 329](https://github.com/benschaf/waste-schedule/blob/main/static/css/style.css#L329) | progress bar | [bbbootstrap.com](https://bbbootstrap.com/snippets/bootstrap-4-bootstrap-4-timeline-order-tracking-step-step-progress-bar-26897417) |
 | [edit_calendar.js: Line 26](https://github.com/benschaf/waste-schedule/blob/main/static/js/edit_calendar.js#L26) | getWeekday | [www.w3schools.com](https://www.w3schools.com/jsref/jsref_getday.asp) |
 | [edit_calendar.js: Line 68](https://github.com/benschaf/waste-schedule/blob/main/static/js/edit_calendar.js#L68) | selectedIndex | [www.w3schools.com](https://www.w3schools.com/jsref/prop_select_selectedindex.asp) |
 | [edit_calendar.js: Line 163](https://github.com/benschaf/waste-schedule/blob/main/static/js/edit_calendar.js#L163) | query selector | [developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector?retiredLocale=de) |
@@ -631,8 +631,8 @@ The script was written by me, with much help from the Microsoft Edge Copilot.
 | [edit_calendar.js: Line 213](https://github.com/benschaf/waste-schedule/blob/main/staticfiles/js/edit_calendar.js#L213) | adding a year to a date | [developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setFullYear) |
 | [index.js: Line 1](https://github.com/benschaf/waste-schedule/blob/main/staticfiles/js/index.js#L1) | redirecting to a url in javascript | [stackoverflow.com](https://stackoverflow.com/questions/503093/how-can-i-make-a-redirect-page-in-jquery-javascript) |
 | [script.js: Line 2](https://github.com/benschaf/waste-schedule/blob/main/staticfiles/js/script.js#L2) | popovers | [getbootstrap.com](https://getbootstrap.com/docs/5.2/components/popovers/#overview) |
-| [base.html: Line 94](https://github.com/benschaf/waste-schedule/blob/main/templates/base.html#L94) | django messages framework | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/contrib/messages/) |
 | [only_schedule.html: Line 3](https://github.com/benschaf/waste-schedule/blob/main/templates/only_schedule.html#L3) | sending JSON data to JavaScript | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/templates/builtins/#std-templatefilter-json_script) |
+| [base.html: Line 94](https://github.com/benschaf/waste-schedule/blob/main/templates/base.html#L94) | django messages framework | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/contrib/messages/) |
 | [login.html: Line 29](https://github.com/benschaf/waste-schedule/blob/main/templates/account/login.html#L29) | google sign in button | [developers.google.com](https://developers.google.com/identity/branding-guidelines?hl=de) |
 | [signup.html: Line 37](https://github.com/benschaf/waste-schedule/blob/main/templates/account/signup.html#L37) | social Login setup | [www.youtube.com](https://www.youtube.com/watch?v=yO6PP0vEOMc&ab_channel=AkamaiDevRel) |
 | [signup.html: Line 38](https://github.com/benschaf/waste-schedule/blob/main/templates/account/signup.html#L38) | documentation for social Locin setup | [docs.allauth.org](https://docs.allauth.org/en/latest/socialaccount/introduction.html) |
