@@ -3,8 +3,12 @@
 
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/t/benschaf/waste-schedule)](https://github.com/benschaf/waste-schedule/commits/main)
 [![GitHub last commit](https://img.shields.io/github/last-commit/benschaf/waste-schedule)](https://github.com/benschaf/waste-schedule/commits/main)
-[![GitHub repo size](https://img.shields.io/github/repo-size/benschaf/waste-schedule)](https://github.com/benschaf/waste-schedule)
 [![GitHub issues](https://img.shields.io/github/issues/benschaf/waste-schedule)](https://github.com/benschaf/waste-schedule/issues)
+[![GitHub closed issues](https://img.shields.io/github/issues-closed/benschaf/waste-schedule)](https://github.com/benschaf/waste-schedule/issues?q=is%3Aissue+is%3Aclosed)
+[![GitHub repo size](https://img.shields.io/github/repo-size/benschaf/waste-schedule)](https://github.com/benschaf/waste-schedule)
+[![Python version](https://img.shields.io/badge/python-3.12.2-blue)](https://www.python.org/downloads/release/python-3121/)
+[![npm version](https://img.shields.io/badge/npm-8.1.0-blue)](https://www.npmjs.com/package/npm)
+[![Heroku](https://img.shields.io/badge/heroku-eco-purple)](https://tonne-waste-reminders-a6836f2888b0.herokuapp.com/)
 
 Welcome to the **tonne** (german for: Waste Bin) - Waste Management site, your go-to solution in the quest for efficient and eco-friendly waste handling! 🚀
 
