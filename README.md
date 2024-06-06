@@ -190,10 +190,10 @@ A custom form validator using a regex pattern was used to ensure that the user e
 ```html
 <div class="form-floating">
     <input type="text" id="postcodeInput" class="form-control rounded-corners"
-        placeholder="Enter a postcode" aria-label="Enter a postcode"
+        placeholder="Search by postcode" aria-label="Search by postcode"
         aria-describedby="button-addon2" pattern="^\d{5}$"
         title="Please enter a 5 digit postcode (only German postcodes are supported)" required>
-    <label for="postcodeInput">Enter a postcode</label>
+    <label for="postcodeInput">Search by postcode</label>
 </div>
 ```
 
