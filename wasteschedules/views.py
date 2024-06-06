@@ -1,4 +1,5 @@
 from ics import Calendar, Event as IcsEvent
+from ics.grammar.parse import ContentLine
 import json
 from typing import Any
 from django.db.models import Count
@@ -148,19 +149,20 @@ class ScheduleComment(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     success_message = "Your Comment was created successfully."
 
     def get(self, request: HttpRequest, *args: str, **kwargs: Any) -> HttpResponse:
-            """
-            If the user tries to access the URL for the comment creation page directly, they are redirected to the schedule detail page (as there is no comment creation template)
+        """
+        If the user tries to access the URL for the comment creation page directly, they are redirected to the schedule detail page (as there is no comment creation template)
 
-            Args:
-                request (HttpRequest): The HTTP request object.
-                *args (str): Variable length argument list.
-                **kwargs (Any): Arbitrary keyword arguments.
+        Args:
+            request (HttpRequest): The HTTP request object.
+            *args (str): Variable length argument list.
+            **kwargs (Any): Arbitrary keyword arguments.
 
-            Returns:
-                HttpResponse: The HTTP response object.
-            """
-            postcode = Schedule.objects.get(slug=self.kwargs['slug']).locations.all()[0]
-            return redirect(reverse('schedule_detail', kwargs={'postcode': postcode, 'slug': self.kwargs['slug']}))
+        Returns:
+            HttpResponse: The HTTP response object.
+        """
+        postcode = Schedule.objects.get(
+            slug=self.kwargs['slug']).locations.all()[0]
+        return redirect(reverse('schedule_detail', kwargs={'postcode': postcode, 'slug': self.kwargs['slug']}))
 
     def form_valid(self, form):
         form.instance.commented_by = self.request.user
@@ -248,7 +250,7 @@ class ScheduleCommentDelete(LoginRequiredMixin, SuccessMessageMixin, DeleteView)
 
         """
         messages.add_message(request, messages.ERROR,
-                                "Please use the delete button to delete your comment.")
+                             "Please use the delete button to delete your comment.")
         return redirect(request.META.get('HTTP_REFERER', 'landing_page'))
 
     def dispatch(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
