@@ -51,9 +51,7 @@
             {% if "placeholder" in schedule.image.url %}
             No Schedule Image available.
             {% else %}
-            <p>
             <h2 class="h4">Schedule Image</h2>
-            </p>
             <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal">
                 <img class="img-fluid custom-img-size rounded img-thumbnail thumbnail-hover"
                     src="{{ schedule.image.url }}" alt="{{ schedule }}">
@@ -126,7 +124,7 @@
                         Schedule</a>
                     {% endif %}
                     {% else %}
-                    <a tabindex="0" class="btn btn-primary submit-background" role="button" data-bs-toggle="popover"
+                    <a tabindex="0" class="btn btn-primary submit-background" role="button"
                         data-bs-trigger="focus" data-bs-toggle="popover" data-bs-custom-class="custom-popover"
                         data-bs-content="You need to be logged in to Subscribe to a Schedule.">
                         Subscribe
