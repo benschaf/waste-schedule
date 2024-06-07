@@ -373,7 +373,7 @@ main {
 
 .bs4-order-tracking li:after {
     content: '';
-    width: 150%;
+    width: 100%;
     height: 2px;
     background: #878788;
     position: absolute;
@@ -388,8 +388,8 @@ main {
 }
 
 .bs4-order-tracking li:last-child:after {
-    left: 0% !important;
-    width: 0% !important
+    left: 0;
+    width: 50%;
 }
 
 .bs4-order-tracking li.active {
