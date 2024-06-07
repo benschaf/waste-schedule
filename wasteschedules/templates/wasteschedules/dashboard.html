@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 
 
@@ -26,7 +27,8 @@
                             <p>{{ schedule.description }}</p>
                             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-xl-2 g-2 ">
                                 <div class="col">
-                                    <a href="{% url 'download_ics' schedule.id %}" class="btn btn-primary submit-background">Download</a>
+                                    <a href="{% url 'download_ics' schedule.id %}"
+                                        class="btn btn-primary submit-background downloadButton">Download</a>
                                 </div>
                                 <div class="col">
                                     <a href="{% url 'schedule_detail' schedule.locations.first schedule.slug %}"
@@ -72,7 +74,8 @@
                             <p>{{ schedule.description }}</p>
                             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-xl-2 g-2 ">
                                 <div class="col">
-                                    <a href="{% url 'download_ics' schedule.id %}" class="btn btn-primary submit-background">Download</a>
+                                    <a href="{% url 'download_ics' schedule.id %}"
+                                        class="btn btn-primary submit-background downloadButton">Download</a>
                                 </div>
                                 <div class="col">
                                     <a href="{% url 'schedule_detail' schedule.locations.first schedule.slug %}"
@@ -101,4 +104,34 @@
     </div>
 </div>
 
+<!-- Download instructions modal -->
+<div class="modal fade" id="downloadInstructionsModal" tabindex="-1" aria-labelledby="downloadLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="downloadLabel">Thanks for downloading this Schedule</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-muted">
+                    Here are some instructions to help you get the most out of your new Schedule.
+                </p>
+                <ol>
+                    <li>Open your calendar app</li>
+                    <li>Find the import option</li>
+                    <li>Choose the downloaded file</li>
+                    <li>Its probably best to add the Schedule to a new calendar - that way it stands out from the other
+                        calendars in your app.</li>
+                    <li>Set reminders for each of your bin types.</li>
+                    <li>Enjoy your timely reminders by tonne 🥳</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/dashboard.js' %}"></script>
 {% endblock %}

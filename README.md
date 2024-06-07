@@ -265,12 +265,22 @@ The dashboard is a user-specific page that displays all the schedules the user h
 
 From the dashboard, the user can edit or delete their schedules. It provides a quick overview and a general starting point for established users that are already familiar with the site.
 
-Finally, users can download an .ics file of the displayed schedules to import them into their calendar app. (This feature is only partly implemented as of now because the fullCalendar library doesn't natively support the RRule standard for recurring events.)
 
 ![screenshot](documentation/feature-dashboard.png)
 ⤴️ Screenshot of the dashboard
 
 relevant project files: [dashboard.html](wasteschedules/templates/wasteschedules/dashboard.html)
+
+#### Schedule Export
+
+Users can export their schedules to their calendar app via an ics file. This allows them to receive notifications and reminders directly on their phone or computer. When Downloading a Schedule, a modal containing instructions on how to import the schedule into a calendar app is displayed.
+
+The export feature is designed to provide users with a convenient way to receive reminders for their waste collection days. It ensures that users don't miss any important events and helps them stay organized.
+
+![screenshot](documentation/feature-export.png)
+⤴️ Screenshot of the export modal
+
+relevant project files: [dashboard.html](wasteschedules/templates/wasteschedules/dashboard.html), [dasboard.js](static/js/dashboard.js)
 
 #### User Registration and Login
 

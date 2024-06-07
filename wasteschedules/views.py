@@ -407,9 +407,12 @@ def download_ics(request, id):
         e.begin = db_event.date
         e.created = db_event.created_on
         e.make_all_day()
-        
-        rrule = ContentLine(name="RRULE", params={}, value="FREQ=DAILY;COUNT=1")
+
+        separation_count = db_event.separation_count
+        until = db_event.until.strftime("%Y%m%dT%H%M%SZ")
+        rrule = ContentLine(name="RRULE", params={}, value=f"FREQ=WEEKLY;INTERVAL={separation_count};UNTIL={until}")
         e.extra.append(rrule)
+
         c.events.add(e)
 
     # -> Credit for creating a download response: https://docs.djangoproject.com/en/5.0/ref/request-response/#fileresponse-objects
