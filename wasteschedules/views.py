@@ -409,6 +409,7 @@ def download_ics(request, id):
         e.make_all_day()
 
         separation_count = db_event.separation_count
+        # -> Credit for formatting a date object width strftime: https://strftime.org/
         until = db_event.until.strftime("%Y%m%dT%H%M%SZ")
         rrule = ContentLine(name="RRULE", params={}, value=f"FREQ=WEEKLY;INTERVAL={separation_count};UNTIL={until}")
         e.extra.append(rrule)
