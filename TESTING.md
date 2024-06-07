@@ -5,35 +5,24 @@
 
 ## Code Validation
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-START OF NOTES (to be deleted)
-
-Use the space to discuss code validation for any of your own code files (where applicable).
-You are not required to validate external libraries/frameworks, such as imported Bootstrap, Materialize, Font Awesome, etc.
-
-**IMPORTANT**: You must provide a screenshot for each file you validate.
-
-**PRO TIP**: Always validate the live site pages, not your local code. There could be subtle/hidden differences.
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
-
 ### HTML
 
-I have used the recommended [HTML W3C Validator](https://validator.w3.org) to validate all of my HTML files.
+I have used the recommended [HTML W3C Validator](https://validator.w3.org) to validate all of my HTML deployed source code. In the table below, the results are by template file that would render the respective page.
 
 | Directory | File | Screenshot | Notes |
 | --- | --- | --- | --- |
-| core | about.html | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| core | index.html | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| schedulebuilder | calendar.html | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| schedulebuilder | location_form.html | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| schedulebuilder | schedule_confirm_delete.html | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| schedulebuilder | schedule_form.html | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| schedulebuilder | update_schedule_form.html | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| templates | 404.html | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| templates | only_schedule.html | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| wasteschedules | dashboard.html | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| wasteschedules | schedule_detail.html | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| wasteschedules | schedule_list.html | ![screenshot](documentation/validation/path-to-screenshot.png) | |
+| core | about.html | ![screenshot](documentation/validation-about.png) | no warnings or errors |
+| core | index.html | ![screenshot](documentation/validation-index.png) | no warnings or errors |
+| schedulebuilder | calendar.html | ![screenshot](documentation/validation-calendar.png) | no warnings or errors |
+| schedulebuilder | location_form.html | ![screenshot](documentation/validation-location-form.png) | no warnings or errors |
+| schedulebuilder | schedule_confirm_delete.html | ![screenshot](documentation/validation-schedule-confirm-delete.png) | no warnings or errors |
+| schedulebuilder | schedule_form.html | ![screenshot](documentation/validation-schedule-form.png) | no warnings or errors |
+| schedulebuilder | update_schedule_form.html | ![screenshot](documentation/validation-update-schedule-form.png) | no warnings or errors |
+| templates | 404.html | ![screenshot](documentation/validation-404.png) | no warnings or errors |
+| templates | 500.html | ![screenshot](documentation/validation-500.png) | no warnings or errors |
+| wasteschedules | dashboard.html | ![screenshot](documentation/validation-dashboard.png) | no warnings or errors |
+| wasteschedules | schedule_detail.html | ![screenshot](documentation/validation-schedule-detail.png) | no warnings or errors |
+| wasteschedules | schedule_list.html | ![screenshot](documentation/validation-schedule-list.png) | no warnings or errors |
 
 ### CSS
 
@@ -50,6 +39,7 @@ I have used the recommended [JShint Validator](https://jshint.com) to validate a
 | Directory | File | Screenshot | Notes |
 | --- | --- | --- | --- |
 | static | comments.js | ![screenshot](documentation/validation/path-to-screenshot.png) | |
+| static | dashboard.js | ![screenshot](documentation/validation/path-to-screenshot.png) | |
 | static | edit_calendar.js | ![screenshot](documentation/validation/path-to-screenshot.png) | |
 | static | index.js | ![screenshot](documentation/validation/path-to-screenshot.png) | |
 | static | only_schedule.js | ![screenshot](documentation/validation/path-to-screenshot.png) | |
