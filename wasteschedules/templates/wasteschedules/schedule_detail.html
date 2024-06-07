@@ -42,9 +42,9 @@
 <div class="container">
     <div class="row">
         <div class="col-12 col-sm-7 col-lg-4">
-            <p>
             <h2 class="h4">Description</h2>
-            {{ schedule.description }}
+            <p>
+                {{ schedule.description }}
             </p>
         </div>
         <div class="col-12 col-sm-5 col-lg-8">
@@ -88,7 +88,7 @@
                     </form>
                     {% else %}
                     <a tabindex="0" class="btn btn-light" role="button" data-bs-toggle="popover" data-bs-trigger="focus"
-                        data-bs-toggle="popover" data-bs-custom-class="custom-popover"
+                        data-bs-custom-class="custom-popover"
                         data-bs-content="You need to be logged in to like a Schedule.">
                         <i class="fas fa-heart link-danger"></i>
                         <div class="d-inline">{{ like_count }}</div>
