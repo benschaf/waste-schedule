@@ -172,11 +172,15 @@
     </div>
 </div>
 
+
+{% endblock %}
+
+{% block extra_js %}
+
 <!-- CSRF Token for the POST method that sends the events json data -->
 <form method="post">
     {% csrf_token %}
 </form>
-
 
 <!-- Json string of events in this schedule -->
 {{ event_data|json_script:"event-data" }}
