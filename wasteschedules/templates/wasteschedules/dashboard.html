@@ -6,8 +6,8 @@
 <div class="container navbar-margin">
     <h1>Dashboard</h1>
     <p class="text-muted">Welcome {{ user }}!</p>
-    <div class="row row-cols-1 row-cols-xl-2 g-5">
-        <div class="col">
+    <div class="row row-cols-1 row-cols-xl-2">
+        <div class="col mb-5">
             <h2>Schedules You are subscribed to</h2>
             <div class="accordion" id="subscribed_accordion">
                 {% for schedule in subscribed_schedules %}
@@ -54,7 +54,6 @@
                 {% endfor %}
             </div>
         </div>
-
 
         <div class="col">
             <h2>Schedules you have created</h2>
