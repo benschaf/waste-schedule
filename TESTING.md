@@ -68,33 +68,35 @@ Files that are unchanged from the Django template have been excluded from the va
 
 | Directory | File | CI URL | Screenshot | Notes |
 | --- | --- | --- | --- | --- |
-|  | copy-credits.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/copy-credits.py) | ![screenshot](documentation/python-validation-copy-credits.png) | |
-| core | urls.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/core/urls.py) | ![screenshot](documentation/python-validation-core-urls.png) | |
-| core | views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/core/views.py) | ![screenshot](documentation/python-validation-core-views.png) | |
-| schedulebuilder | admin.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/schedulebuilder/admin.py) | ![screenshot](documentation/python-validation-schedulebuilder-admin.png) | |
-| schedulebuilder | forms.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/schedulebuilder/forms.py) | ![screenshot](documentation/python-validation-schedulebuilder-forms.png) | |
-| schedulebuilder | models.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/schedulebuilder/models.py) | ![screenshot](documentation/python-validation-schedulebuilder-models.png) | |
-| schedulebuilder | urls.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/schedulebuilder/urls.py) | ![screenshot](documentation/python-validation-schedulebuilder-urls.png) | |
-| schedulebuilder | views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/schedulebuilder/views.py) | ![screenshot](documentation/python-validation-schedulebuilder-views.png) | |
-| tonne | settings.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/tonne/settings.py) | ![screenshot](documentation/python-validation-tonne-settings.png) | |
-| tonne | urls.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/tonne/urls.py) | ![screenshot](documentation/python-validation-tonne-urls.png) | |
-| wasteschedules | admin.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/wasteschedules/admin.py) | ![screenshot](documentation/python-validation-wasteschedules-admin.png) | |
-| wasteschedules | forms.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/wasteschedules/forms.py) | ![screenshot](documentation/python-validation-wasteschedules-forms.png) | |
-| wasteschedules | models.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/wasteschedules/models.py) | ![screenshot](documentation/python-validation-wasteschedules-models.png) | |
-| wasteschedules | urls.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/wasteschedules/urls.py) | ![screenshot](documentation/python-validation-wasteschedules-urls.png) | |
-| wasteschedules | views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/wasteschedules/views.py) | ![screenshot](documentation/python-validation-wasteschedules-views.png) | |
+|  | copy-credits.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/copy-credits.py) | ![screenshot](documentation/python-validation-copy-credits.png) | no issues |
+| core | urls.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/core/urls.py) | ![screenshot](documentation/python-validation-core-urls.png) | no issues |
+| core | views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/core/views.py) | ![screenshot](documentation/python-validation-core-views.png) | no issues |
+| schedulebuilder | admin.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/schedulebuilder/admin.py) | ![screenshot](documentation/python-validation-schedulebuilder-admin.png) | no issues |
+| schedulebuilder | forms.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/schedulebuilder/forms.py) | ![screenshot](documentation/python-validation-schedulebuilder-forms.png) | no issues |
+| schedulebuilder | models.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/schedulebuilder/models.py) | ![screenshot](documentation/python-validation-schedulebuilder-models.png) | no issues |
+| schedulebuilder | urls.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/schedulebuilder/urls.py) | ![screenshot](documentation/python-validation-schedulebuilder-urls.png) | no issues |
+| schedulebuilder | views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/schedulebuilder/views.py) | ![screenshot](documentation/python-validation-schedulebuilder-views.png) | no issues |
+| tonne | settings.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/tonne/settings.py) | ![screenshot](documentation/python-validation-tonne-settings.png) | no issues |
+| tonne | urls.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/tonne/urls.py) | ![screenshot](documentation/python-validation-tonne-urls.png) | no issues |
+| wasteschedules | admin.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/wasteschedules/admin.py) | ![screenshot](documentation/python-validation-wasteschedules-admin.png) | no issues |
+| wasteschedules | forms.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/wasteschedules/forms.py) | ![screenshot](documentation/python-validation-wasteschedules-forms.png) | no issues |
+| wasteschedules | models.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/wasteschedules/models.py) | ![screenshot](documentation/python-validation-wasteschedules-models.png) | no issues |
+| wasteschedules | urls.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/wasteschedules/urls.py) | ![screenshot](documentation/python-validation-wasteschedules-urls.png) | no issues |
+| wasteschedules | views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/wasteschedules/views.py) | ![screenshot](documentation/python-validation-wasteschedules-views.png) | no issues |
 
 Test Files were validated, too:
 
 | Directory | File | CI URL | Screenshot | Notes |
 | --- | --- | --- | --- | --- |
-| core | test_views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/core/test_views.py) | ![screenshot](documentation/python-validation-core-test-views.png) | |
-| schedulebuilder | test_forms.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/schedulebuilder/test_forms.py) | ![screenshot](documentation/python-validation-schedulebuilder-test-forms.png) | |
-| schedulebuilder | test_views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/schedulebuilder/test_views.py) | ![screenshot](documentation/python-validation-schedulebuilder-test-views.png) | |
-| wasteschedules | test_forms.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/wasteschedules/test_forms.py) | ![screenshot](documentation/python-validation-wasteschedules-test-forms.png) | |
-| wasteschedules | test_views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/wasteschedules/test_views.py) | ![screenshot](documentation/python-validation-wasteschedules-test-views.png) | |
+| core | test_views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/core/test_views.py) | ![screenshot](documentation/python-validation-core-test-views.png) | no issues |
+| schedulebuilder | test_forms.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/schedulebuilder/test_forms.py) | ![screenshot](documentation/python-validation-schedulebuilder-test-forms.png) | no issues |
+| schedulebuilder | test_views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/schedulebuilder/test_views.py) | ![screenshot](documentation/python-validation-schedulebuilder-test-views.png) | no issues |
+| wasteschedules | test_forms.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/wasteschedules/test_forms.py) | ![screenshot](documentation/python-validation-wasteschedules-test-forms.png) | no issues |
+| wasteschedules | test_views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/wasteschedules/test_views.py) | ![screenshot](documentation/python-validation-wasteschedules-test-views.png) | no issues |
 
 Additionaly to the final testing, pycodestyle was used frequently to test python files locally.
+
+There were no issues with the Python files.
 
 ## Browser Compatibility
 
@@ -108,6 +110,8 @@ I've tested my deployed project manually on multiple browsers to check for compa
 | Brave | ![screenshot](documentation/browser-brave-landing.png) | ![screenshot](documentation/browser-brave-schedule-list.png) | ![screenshot](documentation/browser-brave-schedule-detail.png) | ![screenshot](documentation/browser-brave-schedule-builder.png) | ![screenshot](documentation/browser-brave-dashboard.png) | ![screenshot](documentation/browser-brave-about.png) | no issues |
 | Opera | ![screenshot](documentation/browser-opera-landing.png) | ![screenshot](documentation/browser-opera-schedule-list.png) | ![screenshot](documentation/browser-opera-schedule-detail.png) | ![screenshot](documentation/browser-opera-schedule-builder.png) | ![screenshot](documentation/browser-opera-dashboard.png) | ![screenshot](documentation/browser-opera-about.png) | no issues |
 | Safari | ![screenshot](documentation/browser-safari-landing.png) | ![screenshot](documentation/browser-safari-schedule-list.png) | ![screenshot](documentation/browser-safari-schedule-detail.png) | ![screenshot](documentation/browser-safari-schedule-builder.png) | ![screenshot](documentation/browser-safari-dashboard.png) | ![screenshot](documentation/browser-safari-about.png) | minor differences but no issues |
+
+There were no compatibility issues on any of the browsers tested.
 
 ## Responsiveness
 
@@ -140,6 +144,8 @@ I've tested my deployed project using the Lighthouse Audit tool in the Chrome De
 | Login | ![screenshot](documentation/lighthouse-login-mobile.png) | ![screenshot](documentation/lighthouse-login-desktop.png) | Minor warnings |
 
 The "links aren't crawlable" warning is due to FullCalendar which puts some anchor tags into the DOM that aren't actually links. These links not being crawlable is not an issue as they are not meant to be followed by search engines and are only used for FullCalendar's internal functionality.
+
+Besides the warnings mentioned above, there were no issues with the Lighthouse Audit.
 
 ## Defensive Programming
 
