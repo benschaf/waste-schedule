@@ -84,6 +84,18 @@ Files that are unchanged from the Django template have been excluded from the va
 | wasteschedules | urls.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/wasteschedules/urls.py) | ![screenshot](documentation/python-validation-wasteschedules-urls.png) | |
 | wasteschedules | views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/wasteschedules/views.py) | ![screenshot](documentation/python-validation-wasteschedules-views.png) | |
 
+Test Files were validated, too:
+
+| Directory | File | CI URL | Screenshot | Notes |
+| --- | --- | --- | --- | --- |
+| core | test_views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/core/test_views.py) | ![screenshot](documentation/python-validation-core-test-views.png) | |
+| schedulebuilder | test_forms.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/schedulebuilder/test_forms.py) | ![screenshot](documentation/python-validation-schedulebuilder-test-forms.png) | |
+| schedulebuilder | test_views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/schedulebuilder/test_views.py) | ![screenshot](documentation/python-validation-schedulebuilder-test-views.png) | |
+| wasteschedules | test_forms.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/wasteschedules/test_forms.py) | ![screenshot](documentation/python-validation-wasteschedules-test-forms.png) | |
+| wasteschedules | test_views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/wasteschedules/test_views.py) | ![screenshot](documentation/python-validation-wasteschedules-test-views.png) | |
+
+Additionaly to the final testing, pycodestyle was used frequently to test python files locally.
+
 ## Browser Compatibility
 
 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-START OF NOTES (to be deleted)
