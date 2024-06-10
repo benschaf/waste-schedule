@@ -198,6 +198,7 @@ main {
 }
 
 #calendar div .fc-h-event {
+    /* Same color for background and border is needed because of FullCalendar */
     background-color: var(--darker-secondary-color);
     border-color: var(--darker-secondary-color);
     border-width: 3px;
@@ -291,7 +292,7 @@ main {
     left: -207px;
     content: attr(data-date);
     text-align: right;
-    font-family: josefin sans, sans-serif;
+    font-family: "Josefin sans", sans-serif;
     font-weight: 400;
     font-size: 1rem;
     color: #25a55f;

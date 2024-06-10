@@ -28,9 +28,15 @@ I have used the recommended [HTML W3C Validator](https://validator.w3.org) to va
 
 I have used the recommended [CSS Jigsaw Validator](https://jigsaw.w3.org/css-validator) to validate all of my CSS files.
 
+![jigsaw badge](http://jigsaw.w3.org/css-validator/images/vcss-blue)
+
 | Directory | File | Screenshot | Notes |
 | --- | --- | --- | --- |
-| static | style.css | ![screenshot](documentation/validation/path-to-screenshot.png) | |
+| static | style.css | ![screenshot](documentation/validation-css.png) | no errors, 51 Warnings |
+
+The warnings are due to the vendor prefixes that are used in the CSS file. I added the prefixes using the [Autoprefixer](https://autoprefixer.github.io) tool. The prefixes are necessary for the CSS to work on all browsers.
+
+There is one other warning that is due to the background color and border of the calendar events having the same color value. This was necessary in order to override the default FullCalendar styling.
 
 ### JavaScript
 
