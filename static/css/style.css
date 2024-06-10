@@ -1,5 +1,5 @@
-
 /* -> Credit for using CSS root variables: https://www.w3schools.com/css/css3_variables.asp */
+/* ROOT color variables */
 :root {
     --primary-color: #25a55f;
     --secondary-color: #57d992;
@@ -10,6 +10,8 @@
     --light-background: #e6e6e6;
 }
 
+/* general Styles */
+
 h1,
 h2,
 h3,
@@ -18,62 +20,6 @@ h5,
 h6,
 .font-heading {
     font-family: "Josefin Sans", sans-serif;
-}
-
-.high-z-index {
-    /* SO many times i had to increase this number... */
-    z-index: 10000000;
-}
-
-.navbar-margin {
-    margin-top: 80px;
-}
-
-/* -> Credit for keyframes: https://stackoverflow.com/questions/45330061/how-to-flash-a-div-only */
-@keyframes flash {
-    0% {transform: scale(1);}
-    50% {transform: scale(.9);}
-    100% {transform: scale(1);}
-}
-
-.message-class {
-    top: 20px;
-    width: fit-content;
-    animation: flash 1s .3s;
-}
-
-body {
-    font-family: "Lato", sans-serif;
-    /* stick footer to bottom */
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-main {
-    flex: 1;
-}
-
-.custom-popover {
-    --bs-popover-max-width: 200px;
-    --bs-popover-border-color: var(--bs-primary);
-    --bs-popover-header-bg: var(--bs-primary);
-    --bs-popover-header-color: var(--bs-white);
-    --bs-popover-body-padding-x: 1rem;
-    --bs-popover-body-padding-y: .5rem;
-}
-
-/* -> Credit for Gradient text: https://cssgradient.io/blog/css-gradient-text/ */
-.gradient-text {
-    background: linear-gradient(90deg, #25a55f 0%, #57d992 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    width: fit-content;
-}
-
-.dark-section {
-    background: var(--dark-background);
-    color: var(--light-background);
 }
 
 .opacity-hover:hover {
@@ -97,9 +43,67 @@ main {
 
 }
 
+.high-z-index {
+    /* SO many times i had to increase this number... */
+    z-index: 10000000;
+}
+
+body {
+    font-family: "Lato", sans-serif;
+    /* stick footer to bottom */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
+/* bootstrap messages */
+
+.message-class {
+    top: 20px;
+    width: fit-content;
+    animation: flash 1s .3s;
+}
+
+/* -> Credit for keyframes: https://stackoverflow.com/questions/45330061/how-to-flash-a-div-only */
+@keyframes flash {
+    0% {transform: scale(1);}
+    50% {transform: scale(.9);}
+    100% {transform: scale(1);}
+}
+
+/* bootstrap popovers */
+.custom-popover {
+    --bs-popover-max-width: 200px;
+    --bs-popover-border-color: var(--bs-primary);
+    --bs-popover-header-bg: var(--bs-primary);
+    --bs-popover-header-color: var(--bs-white);
+    --bs-popover-body-padding-x: 1rem;
+    --bs-popover-body-padding-y: .5rem;
+}
+
+/* Navigation Bar Styles */
+
+.navbar-margin {
+    margin-top: 80px;
+}
+
+.navbar-background {
+    background: #f8f9fa;
+}
+
 .text-tonne {
     color: var(--darker-secondary-color);
     font-weight: 700;
+}
+
+/* Footer */
+.dark-section {
+    background: var(--dark-background);
+    color: var(--light-background);
 }
 
 .brighter-text {
@@ -107,41 +111,37 @@ main {
     font-weight: 900;
 }
 
-.card-hover:hover {
-    background-color: var(--primary-transparent-background);
-    transition: background-color 0.5s;
-}
+/* Hero Section */
 
-.top-sticky-margin {
-    top: 80px;
-}
-
-.rounded-corners {
-    border-radius: 2rem;
-}
-
-.min-width-4rem {
-    min-width: 4rem;
-}
-
-.margin-top-50vh {
-    margin-top: 50vh;
-}
-
-.bg-opacity {
-    transition: background-color 0.5s, box-shadow 0.5s;
-}
-
-/* Selected accordion-button bootstrap class override */
-.accordion-button:not(.collapsed) {
-    background-color: var(--primary-transparent-background);
-    color: black;
+/* -> Credit for Gradient text: https://cssgradient.io/blog/css-gradient-text/ */
+.gradient-text {
+    background: linear-gradient(90deg, #25a55f 0%, #57d992 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    width: fit-content;
 }
 
 .hero-stylized-text {
     font-weight: 900;
     font-size: 3rem;
 }
+
+.rounded-corners {
+    border-radius: 2rem;
+}
+
+/* Schedule List Section */
+
+.card-hover:hover {
+    background-color: var(--primary-transparent-background);
+    transition: background-color 0.5s;
+}
+
+.min-width-4rem {
+    min-width: 4rem;
+}
+
+/* Schedule Details (calendar) Section */
 
 #calendar a {
     text-decoration: unset;
@@ -169,8 +169,20 @@ main {
     height: 100px;
 }
 
-.navbar-background {
-    background: #f8f9fa;
+.top-sticky-margin {
+    top: 80px;
+}
+
+.bg-opacity {
+    transition: background-color 0.5s, box-shadow 0.5s;
+}
+
+/* Dashboard Section */
+
+/* Selected accordion-button bootstrap class override */
+.accordion-button:not(.collapsed) {
+    background-color: var(--primary-transparent-background);
+    color: black;
 }
 
 /* Timeline */
