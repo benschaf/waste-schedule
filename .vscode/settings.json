@@ -23,7 +23,7 @@
    "files.autoSave": "afterDelay",
    "workbench.colorTheme": "Visual Studio Dark",
    "terminal.integrated.gpuAcceleration": "canvas",
-   "editor.defaultFormatter": "HookyQR.beautify",
+   "editor.defaultFormatter": "ms-python.black-formatter",
    "[python]": {
       "editor.defaultFormatter": "ms-python.black-formatter",
    },
