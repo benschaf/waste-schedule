@@ -104,33 +104,38 @@
             </div>
         </div>
         {% empty %}
-        <p>No Schedules found</p>
+        <div class="col">
+            <p>No Schedules found</p>
+        </div>
         {% endfor %}
-        <!-- -> Credit for pagination with django: https://docs.djangoproject.com/en/5.0/topics/pagination/ -->
-        <!-- -> Credit for pagination styles: https://getbootstrap.com/docs/5.3/components/pagination/ -->
-        {% if page_obj.has_other_pages %}
-        <nav aria-label="Page navigation example">
-            <ul class="pagination">
-                {% if page_obj.has_previous %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                {% endif %}
-                <li class="page-item page-link text-muted">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages
-                    }}</li>
-                {% if page_obj.has_next %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-                {% endif %}
-            </ul>
-        </nav>
-        {% endif %}
     </div>
+    <!-- -> Credit for pagination with django: https://docs.djangoproject.com/en/5.0/topics/pagination/ -->
+    <!-- -> Credit for pagination styles: https://getbootstrap.com/docs/5.3/components/pagination/ -->
+    {% if page_obj.has_other_pages %}
+    <div class="row my-3">
+        <div class="col d-flex justify-content-center align-items-center">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    <li class="page-item page-link text-muted">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</li>
+                    {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+    {% endif %}
     <div class="row mt-5">
         <div class="column">
             <h3>Havent found your Schedule?</h3>
