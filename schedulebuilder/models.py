@@ -64,7 +64,7 @@ class Event(models.Model):
         return strftime('%Y-%m-%d', self.date)
 
 
-class Exception(models.Model):
+class EventException(models.Model):
     """
     Represents an exception for an event in the waste schedule.
 

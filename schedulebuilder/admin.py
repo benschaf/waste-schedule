@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import *
+from .models import Event, EventException
 
 # Register your models here.
 admin.site.register(Event)
-admin.site.register(Exception)
+admin.site.register(EventException)
