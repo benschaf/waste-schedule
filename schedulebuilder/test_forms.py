@@ -1,6 +1,7 @@
 from django.test import TestCase
 from .forms import PostalCodeForm
 
+
 class TestPostalCodeForm(TestCase):
     def test_postal_code_form_valid(self):
         form = PostalCodeForm({'postal_code': '12345'})
