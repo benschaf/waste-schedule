@@ -40,16 +40,25 @@ There is one other warning that is due to the background color and border of the
 
 ### JavaScript
 
-I have used the recommended [JShint Validator](https://jshint.com) to validate all of my JS files.
+I have used the recommended [JShint Validator](https://jshint.com) via its command-line interface to validate all of my JavaScript files. for this I installed the jshint package as a dev dependency using the command `npm install jshint --save-dev`. After this I created a `.jshintrc` file in the root of the project with the following content in order to enable ES6 syntax:
+
+```json
+{
+    "esversion": 6
+}
+```
+
+I then ran the following command to validate all of my JavaScript files: `npx jshint <directory>/<filename.js>`:
 
 | Directory | File | Screenshot | Notes |
 | --- | --- | --- | --- |
-| static | comments.js | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| static | dashboard.js | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| static | edit_calendar.js | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| static | index.js | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| static | only_schedule.js | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| static | script.js | ![screenshot](documentation/validation/path-to-screenshot.png) | |
+| static | comments.js | ![screenshot](documentation/js-validation-comments.png) | Warning about a function within a loop. This is not an issue as the function is only referencing and not changing the document object. It is used to create a form for each comment. |
+| static | dashboard.js | ![screenshot](documentation/js-validation-dashboard.png) | Warning about a function within a loop. This is not an issue as the function is only referencing and not changing the document object. It is used to trigger a modal for a click on any download button. |
+| static | edit_calendar.js | ![screenshot](documentation/js-validation-edit-calendar.png) | no warnings or errors |
+| static | index.js | ![screenshot](documentation/js-validation-index.png) | no warnings or errors |
+| static | only_schedule.js | ![screenshot](documentation/js-validation-only-schedule.png) | no warnings or errors |
+| static | script.js | ![screenshot](documentation/js-validation-script.png) | no warnings or errors |
+| static/test | edit_calendar.test.js | ![screenshot](documentation/js-validation-edit-calendar-test.png) | warning about document.write. This is save to ignore as it is used to load my own HTML template file for testing. |
 
 ### Python
 

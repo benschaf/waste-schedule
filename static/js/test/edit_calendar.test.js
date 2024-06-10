@@ -8,8 +8,8 @@ const {
 } = require("@jest/globals");
 const {
     getMaxId,
-    displayEventCreationModal,
     getWeekDay,
+    displayEventCreationModal,
 } = require("../edit_calendar.js");
 
 beforeAll(() => {
@@ -42,7 +42,7 @@ describe("helper function tests", () => {
     });
 });
 
-// this doesnt work because FullCalendar elements need to be loaded in their library ...
+// this doesnt work because FullCalendar elements need to be loaded in their library for anything within the calendar to load to the DOM ...
 describe("displayEventCreationModal tests", () => {
     test("displayEventCreationModal displays the modal", () => {
         displayEventCreationModal();

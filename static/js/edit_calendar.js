@@ -73,14 +73,6 @@ function displayEventCreationModal(date) {
 }
 
 /**
- * The function below should handle Event removal but it is not working yet
- * To get this to work I need to add exdates to the rrule in the event object
- * It just cant get the exdate property from the calendar which doesn't let me edit it .........
- * it might work if i change the calendar library import to NPM but i don't know if i want to do that ...
- * what i could also do instead is convert the whole rrule property into a string. https://stackoverflow.com/questions/56580678/is-exdate-not-included-in-rrule-for-full-calendar
- */
-
-/**
  * Handles the deletion of an event.
  * @param {Event} event - The event object.
  * @param {Object} info - Additional information about the event.
@@ -242,15 +234,10 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('save-event').addEventListener('click', saveEvent);
 });
 
+// Export the functions for testing
 if (typeof module !== "undefined") module.exports = {
     getMaxId,
     getWeekDay,
-    toPlainObjectWithRRule, // Don't know how to test this
-    displayEventCreationModal, // I would need to test the html output
-    handleDeletion, // Don't know how to test this
-    getJsonEvents, // This is getting a json object from the django context variables ...
-    renderCalendar, // Don't know how to test this
-    postCalendarEvents, // Don't know how to test this
-    getCalendarEventObjects, // Don't know how to test this
-    saveEvent // Don't know how to test this
+    displayEventCreationModal
+    // The other functions are not exported as they are not used in the tests
 };
