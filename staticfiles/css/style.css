@@ -1,5 +1,12 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
 
 /* -> Credit for using CSS root variables: https://www.w3schools.com/css/css3_variables.asp */
+/* ROOT color variables */
 :root {
     --primary-color: #25a55f;
     --secondary-color: #57d992;
@@ -9,6 +16,8 @@
     --dark-background: #2a2a2a;
     --light-background: #e6e6e6;
 }
+
+/* general Styles */
 
 h1,
 h2,
@@ -20,64 +29,10 @@ h6,
     font-family: "Josefin Sans", sans-serif;
 }
 
-.high-z-index {
-    /* SO many times i had to increase this number... */
-    z-index: 10000000;
-}
-
-.navbar-margin {
-    margin-top: 80px;
-}
-
-/* -> Credit for keyframes: https://stackoverflow.com/questions/45330061/how-to-flash-a-div-only */
-@keyframes flash {
-    0% {transform: scale(1);}
-    50% {transform: scale(.9);}
-    100% {transform: scale(1);}
-}
-
-.message-class {
-    top: 20px;
-    width: fit-content;
-    animation: flash 1s .3s;
-}
-
-body {
-    font-family: "Lato", sans-serif;
-    /* stick footer to bottom */
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-main {
-    flex: 1;
-}
-
-.custom-popover {
-    --bs-popover-max-width: 200px;
-    --bs-popover-border-color: var(--bs-primary);
-    --bs-popover-header-bg: var(--bs-primary);
-    --bs-popover-header-color: var(--bs-white);
-    --bs-popover-body-padding-x: 1rem;
-    --bs-popover-body-padding-y: .5rem;
-}
-
-/* -> Credit for Gradient text: https://cssgradient.io/blog/css-gradient-text/ */
-.gradient-text {
-    background: linear-gradient(90deg, #25a55f 0%, #57d992 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    width: fit-content;
-}
-
-.dark-section {
-    background: var(--dark-background);
-    color: var(--light-background);
-}
-
 .opacity-hover:hover {
     opacity: 0.8;
+    -webkit-transition: opacity 0.5s;
+    -o-transition: opacity 0.5s;
     transition: opacity 0.5s;
 }
 
@@ -88,13 +43,87 @@ main {
 
 .submit-background:hover {
     background: var(--darker-secondary-color);
+    -webkit-transition: background-color 0.5s;
+    -o-transition: background-color 0.5s;
     transition: background-color 0.5s;
 }
 
 .thumbnail-hover:hover {
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    -webkit-transition: -webkit-box-shadow 0.5s;
+    transition: -webkit-box-shadow 0.5s;
+    -o-transition: box-shadow 0.5s;
     transition: box-shadow 0.5s;
+    transition: box-shadow 0.5s, -webkit-box-shadow 0.5s;
 
+}
+
+.high-z-index {
+    /* SO many times i had to increase this number... */
+    z-index: 10000000;
+}
+
+body {
+    font-family: "Lato", sans-serif;
+    /* stick footer to bottom */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+}
+
+/* bootstrap messages */
+
+.message-class {
+    top: 20px;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    -webkit-animation: flash 1s .3s;
+            animation: flash 1s .3s;
+}
+
+/* -> Credit for keyframes: https://stackoverflow.com/questions/45330061/how-to-flash-a-div-only */
+@-webkit-keyframes flash {
+    0% {-webkit-transform: scale(1);transform: scale(1);}
+    50% {-webkit-transform: scale(.9);transform: scale(.9);}
+    100% {-webkit-transform: scale(1);transform: scale(1);}
+}
+@keyframes flash {
+    0% {-webkit-transform: scale(1);transform: scale(1);}
+    50% {-webkit-transform: scale(.9);transform: scale(.9);}
+    100% {-webkit-transform: scale(1);transform: scale(1);}
+}
+
+/* bootstrap popovers */
+.custom-popover {
+    --bs-popover-max-width: 200px;
+    --bs-popover-border-color: var(--bs-primary);
+    --bs-popover-header-bg: var(--bs-primary);
+    --bs-popover-header-color: var(--bs-white);
+    --bs-popover-body-padding-x: 1rem;
+    --bs-popover-body-padding-y: .5rem;
+}
+
+/* Navigation Bar Styles */
+
+.navbar-margin {
+    margin-top: 80px;
+}
+
+.navbar-background {
+    background: #f8f9fa;
 }
 
 .text-tonne {
@@ -102,46 +131,54 @@ main {
     font-weight: 700;
 }
 
+/* Footer */
+.dark-section {
+    background: var(--dark-background);
+    color: var(--light-background);
+}
+
 .brighter-text {
     color: var(--light-background) !important;
     font-weight: 900;
 }
 
-.card-hover:hover {
-    background-color: var(--primary-transparent-background);
-    transition: background-color 0.5s;
-}
+/* Hero Section */
 
-.top-sticky-margin {
-    top: 80px;
-}
-
-.rounded-corners {
-    border-radius: 2rem;
-}
-
-.min-width-4rem {
-    min-width: 4rem;
-}
-
-.margin-top-50vh {
-    margin-top: 50vh;
-}
-
-.bg-opacity {
-    transition: background-color 0.5s, box-shadow 0.5s;
-}
-
-/* Selected accordion-button bootstrap class override */
-.accordion-button:not(.collapsed) {
-    background-color: var(--primary-transparent-background);
-    color: black;
+/* -> Credit for Gradient text: https://cssgradient.io/blog/css-gradient-text/ */
+.gradient-text {
+    background: -webkit-gradient(linear, left top, right top, from(#25a55f), to(#57d992));
+    background: -o-linear-gradient(left, #25a55f 0%, #57d992 100%);
+    background: linear-gradient(90deg, #25a55f 0%, #57d992 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
 }
 
 .hero-stylized-text {
     font-weight: 900;
     font-size: 3rem;
 }
+
+.rounded-corners {
+    border-radius: 2rem;
+}
+
+/* Schedule List Section */
+
+.card-hover:hover {
+    background-color: var(--primary-transparent-background);
+    -webkit-transition: background-color 0.5s;
+    -o-transition: background-color 0.5s;
+    transition: background-color 0.5s;
+}
+
+.min-width-4rem {
+    min-width: 4rem;
+}
+
+/* Schedule Details (calendar) Section */
 
 #calendar a {
     text-decoration: unset;
@@ -155,6 +192,8 @@ main {
 
 #calendar button:hover {
     background: #5c636ad8;
+    -webkit-transition: background-color 0.5s;
+    -o-transition: background-color 0.5s;
     transition: background-color 0.5s;
 }
 
@@ -169,8 +208,24 @@ main {
     height: 100px;
 }
 
-.navbar-background {
-    background: #f8f9fa;
+.top-sticky-margin {
+    top: 80px;
+}
+
+.bg-opacity {
+    -webkit-transition: background-color 0.5s, -webkit-box-shadow 0.5s;
+    transition: background-color 0.5s, -webkit-box-shadow 0.5s;
+    -o-transition: background-color 0.5s, box-shadow 0.5s;
+    transition: background-color 0.5s, box-shadow 0.5s;
+    transition: background-color 0.5s, box-shadow 0.5s, -webkit-box-shadow 0.5s;
+}
+
+/* Dashboard Section */
+
+/* Selected accordion-button bootstrap class override */
+.accordion-button:not(.collapsed) {
+    background-color: var(--primary-transparent-background);
+    color: black;
 }
 
 /* Timeline */
@@ -296,7 +351,6 @@ main {
     background-color: #f2f2f2;
     background-image: none;
     border: none;
-    -webkit-border-radius: 20px;
     border-radius: 20px;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -312,11 +366,17 @@ main {
     position: relative;
     text-align: center;
     -webkit-transition: background-color .218s, border-color .218s, box-shadow .218s;
+    -webkit-transition: background-color .218s, border-color .218s, -webkit-box-shadow .218s;
+    transition: background-color .218s, border-color .218s, -webkit-box-shadow .218s;
+    -o-transition: background-color .218s, border-color .218s, box-shadow .218s;
     transition: background-color .218s, border-color .218s, box-shadow .218s;
+    transition: background-color .218s, border-color .218s, box-shadow .218s, -webkit-box-shadow .218s;
     vertical-align: middle;
     white-space: nowrap;
     width: auto;
     max-width: 400px;
+    min-width: -webkit-min-content;
+    min-width: -moz-min-content;
     min-width: min-content;
   }
 
@@ -373,7 +433,7 @@ main {
 
 .bs4-order-tracking li:after {
     content: '';
-    width: 150%;
+    width: 100%;
     height: 2px;
     background: #878788;
     position: absolute;
@@ -388,8 +448,8 @@ main {
 }
 
 .bs4-order-tracking li:last-child:after {
-    left: 0% !important;
-    width: 0% !important
+    left: 0;
+    width: 50%;
 }
 
 .bs4-order-tracking li.active {

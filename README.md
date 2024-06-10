@@ -356,6 +356,7 @@ AM I USING THIS??
 - [![coolors](https://img.shields.io/badge/Coolors-grey?logo=coolors&logoColor=05E6B6)](https://coolors.co) used to generate the colour palette.
 - [![draw.io](https://img.shields.io/badge/draw.io-grey?logo=diagrams.net&logoColor=F0A60A)](https://draw.io) used to design the wireframes.
 - [![pixlr](https://img.shields.io/badge/Pixlr-grey?logo=pixlr&logoColor=FF0000)](https://pixlr.com) used to edit images.
+- [![autoprefixer](https://img.shields.io/badge/Autoprefixer-grey?logo=autoprefixer&logoColor=000000)](https://autoprefixer.github.io) used to add vendor prefixes to CSS.
 
 
 ## Database Design
