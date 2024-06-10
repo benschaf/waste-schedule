@@ -47,6 +47,7 @@ for root, dirs, files in os.walk("."):
                         .replace(" -> Credit ", "")
                         .replace("-->", "")
                         .replace("*/", "")
+                        .replace("# noqa", "")
                         .strip()[len(comment_symbols[ext]):]
                         .split(": ")
                     )

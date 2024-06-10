@@ -19,7 +19,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 
 # Create your views here.
-# -> Credit for class based views: https://docs.djangoproject.com/en/5.0/ref/class-based-views/
+# -> Credit for class based views: https://docs.djangoproject.com/en/5.0/ref/class-based-views/  # noqa
 
 
 class ScheduleList(ListView):
@@ -42,7 +42,8 @@ class ScheduleList(ListView):
         """
         Returns the queryset to be used for the view.
 
-        If a valid postcode is provided, filters the queryset based on the locations associated with the postcode.
+        If a valid postcode is provided, filters the queryset based on the
+        locations associated with the postcode.
 
         Returns:
             QuerySet: The filtered queryset.
@@ -63,24 +64,27 @@ class ScheduleList(ListView):
         Adds additional context data to the view.
 
         Additional context data:
-        - schedule_list: The list of schedules annotated with the count of likes.
+        - schedule_list: The list of schedules annotated with the count of
+            likes.
         - user_likes: The list of schedule IDs liked by the current user.
-        - user_subscriptions: The list of schedule IDs subscribed by the current user.
+        - user_subscriptions: The list of schedule IDs subscribed by the
+            current user.
         - postcode: The postcode associated with the view.
 
         Returns:
             dict: The context data.
         """
         context = super().get_context_data(**kwargs)
-        # Maybe use comments to show one single comment at the top like for example under a youtube video
-        # -> Credit for adding an annotation to each object in a list: https://docs.djangoproject.com/en/5.0/topics/db/aggregation/
+        # -> Credit for adding an annotation to each object in a list: https://docs.djangoproject.com/en/5.0/topics/db/aggregation/  # noqa
         context["schedule_list"] = context["schedule_list"].annotate(
             Count('like'))
-        # -> Credit for passing only the id field value to the template: https://docs.djangoproject.com/en/5.0/ref/models/querysets/#values-list
+        # -> Credit for passing only the id field value to the template: https://docs.djangoproject.com/en/5.0/ref/models/querysets/#values-list  # noqa
         context["user_likes"] = Like.objects.filter(
-            liked_by=self.request.user.id).values_list('schedule_id', flat=True)
+            liked_by=self.request.user.id).values_list('schedule_id',
+                                                       flat=True)
         context["user_subscriptions"] = Subscription.objects.filter(
-            subscribed_by=self.request.user.id).values_list('schedule_id', flat=True)
+            subscribed_by=self.request.user.id).values_list('schedule_id',
+                                                            flat=True)
         context["postcode"] = self.kwargs['postcode']
         return context
 
@@ -100,7 +104,7 @@ class ScheduleDetail(DetailView):
     template_name = 'wasteschedules/schedule_detail.html'
     model = Schedule
 
-    # -> Credit for additional context data in class based views: https://docs.djangoproject.com/en/5.0/topics/class-based-views/generic-display/
+    # -> Credit for additional context data in class based views: https://docs.djangoproject.com/en/5.0/topics/class-based-views/generic-display/  # noqa
     def get_context_data(self, **kwargs):
         """
         Adds additional context data to the view.
@@ -108,8 +112,10 @@ class ScheduleDetail(DetailView):
         Additional context data:
             comments (QuerySet): The comments associated with the schedule.
             like_count (int): The number of likes associated with the schedule.
-            is_liked (bool): Whether the schedule is liked by the logged in user.
-            is_subscribed (bool): Whether the schedule is subscribed to by the logged in user.
+            is_liked (bool): Whether the schedule is liked by the logged in
+                user.
+            is_subscribed (bool): Whether the schedule is subscribed to by the
+                logged in user.
 
         Returns:
             dict: The context data.
@@ -121,12 +127,14 @@ class ScheduleDetail(DetailView):
             schedule_id=self.object.id)
         context["like_count"] = Like.objects.filter(
             schedule_id=self.object.id).count()
-        # -> Credit for checking wether a queryset contains any items: https://docs.djangoproject.com/en/5.0/ref/models/querysets/#django.db.models.query.QuerySet.exists
-        # -> Credit for authenticating the logged in user: https://docs.djangoproject.com/en/5.0/topics/auth/default/#authentication-in-web-requests
+        # -> Credit for checking wether a queryset contains any items: https://docs.djangoproject.com/en/5.0/ref/models/querysets/#django.db.models.query.QuerySet.exists  # noqa
+        # -> Credit for authenticating the logged in user: https://docs.djangoproject.com/en/5.0/topics/auth/default/#authentication-in-web-requests  # noqa
         context["is_liked"] = Like.objects.filter(
-            schedule_id=self.object.id, liked_by=self.request.user.id).exists()
+            schedule_id=self.object.id,
+            liked_by=self.request.user.id).exists()
         context["is_subscribed"] = Subscription.objects.filter(
-            schedule_id=self.object.id, subscribed_by=self.request.user.id).exists()
+            schedule_id=self.object.id,
+            subscribed_by=self.request.user.id).exists()
         context["comment_form"] = CommentForm()
         context["location"] = self.kwargs['postcode']
 
@@ -135,7 +143,7 @@ class ScheduleDetail(DetailView):
         return context
 
 
-# -> Credit for using the LoginRequiredMixin: https://docs.djangoproject.com/en/5.0/topics/auth/default/#the-loginrequiredmixin-mixin
+# -> Credit for using the LoginRequiredMixin: https://docs.djangoproject.com/en/5.0/topics/auth/default/#the-loginrequiredmixin-mixin  # noqa
 class ScheduleComment(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     """
     A view for creating comments on a schedule.
@@ -148,9 +156,11 @@ class ScheduleComment(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     login_url = '/accounts/login/'
     success_message = "Your Comment was created successfully."
 
-    def get(self, request: HttpRequest, *args: str, **kwargs: Any) -> HttpResponse:
+    def get(self, request: HttpRequest, *args: str, **kwargs) -> HttpResponse:
         """
-        If the user tries to access the URL for the comment creation page directly, they are redirected to the schedule detail page (as there is no comment creation template)
+        If the user tries to access the URL for the comment creation page
+        directly, they are redirected to the schedule detail page
+        (as there is no comment creation template)
 
         Args:
             request (HttpRequest): The HTTP request object.
@@ -162,7 +172,9 @@ class ScheduleComment(LoginRequiredMixin, SuccessMessageMixin, CreateView):
         """
         postcode = Schedule.objects.get(
             slug=self.kwargs['slug']).locations.all()[0]
-        return redirect(reverse('schedule_detail', kwargs={'postcode': postcode, 'slug': self.kwargs['slug']}))
+        return redirect(reverse('schedule_detail',
+                                kwargs={'postcode': postcode,
+                                        'slug': self.kwargs['slug']}))
 
     def form_valid(self, form):
         form.instance.commented_by = self.request.user
@@ -170,20 +182,22 @@ class ScheduleComment(LoginRequiredMixin, SuccessMessageMixin, CreateView):
         form.instance.schedule_id = get_object_or_404(Schedule, slug=slug)
         return super().form_valid(form)
 
-    # -> Credit for finding class based view methods: https://www.brennantymrak.com/articles/createviewdiagram
+    # -> Credit for finding class based view methods: https://www.brennantymrak.com/articles/createviewdiagram  # noqa
     def form_invalid(self, form: BaseModelForm) -> HttpResponse:
         if form.instance.body == "":
             messages.add_message(self.request, messages.ERROR,
                                  "Your comment cannot be empty.")
-            return redirect(self.request.META.get('HTTP_REFERER', 'landing_page'))
+            return redirect(
+                self.request.META.get('HTTP_REFERER', 'landing_page'))
         return super().form_invalid(form)
 
 
-# -> Credit for edit view: https://github.com/Code-Institute-Solutions/blog/tree/main/12_views_part_3/05_edit_delete
+# -> Credit for edit view: https://github.com/Code-Institute-Solutions/blog/tree/main/12_views_part_3/05_edit_delete  # noqa
 def schedule_comment_edit(request, pk, slug):
     """
     View to edit comments.
-    The get method is not allowed, this is to prevent users from accessing the edit page directly.
+    The get method is not allowed, this is to prevent users from accessing
+    the edit page directly.
 
     Args:
         request (HttpRequest): The HTTP request object.
@@ -195,15 +209,17 @@ def schedule_comment_edit(request, pk, slug):
 
     Notes:
         - This view expects a POST request to edit the comment.
-        - If the comment does not belong to the current user, a Django message with an error is added.
-        - If the comment is successfully edited, a Django message with a success message is added.
-        - After editing the comment, the user is redirected to the schedule detail page.
+        - If the comment does not belong to the current user, a Django message
+        with an error is added.
+        - If the comment is successfully edited, a Django message with a
+        success message is added.
+        - After editing the comment, the user is redirected to the schedule
+        detail page.
     """
     if request.method == "POST":
 
         comment = get_object_or_404(Comment, pk=pk)
         if comment.commented_by != request.user:
-            # instead of the response forbidden add a django message - and then delete return redirect to url that makes sense
             messages.add_message(request, messages.ERROR,
                                  "You are not the owner of this comment.")
             return redirect(request.META.get('HTTP_REFERER', 'landing_page'))
@@ -217,15 +233,19 @@ def schedule_comment_edit(request, pk, slug):
                                  "Your comment was edited successfully.")
             comment.save()
     elif request.method == "GET":
-        messages.add_message(request, messages.ERROR,
-                             "please use the edit button to edit your comment.")
+        messages.add_message(
+            request, messages.ERROR,
+            "please use the edit button to edit your comment.")
         return redirect(request.META.get('HTTP_REFERER', 'landing_page'))
 
     postcode = comment.schedule_id.locations.all()[0]
-    return HttpResponseRedirect(reverse('schedule_detail', kwargs={'postcode': postcode, 'slug': slug}))
+    return HttpResponseRedirect(reverse(
+        'schedule_detail', kwargs={'postcode': postcode, 'slug': slug}))
 
 
-class ScheduleCommentDelete(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
+class ScheduleCommentDelete(LoginRequiredMixin,
+                            SuccessMessageMixin,
+                            DeleteView):
     """
     A view for deleting a comment from the schedule.
 
@@ -235,10 +255,11 @@ class ScheduleCommentDelete(LoginRequiredMixin, SuccessMessageMixin, DeleteView)
     model = Comment
     success_message = "Your comment was deleted successfully."
 
-    def get(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
+    def get(self, request: HttpRequest, *args: Any,
+            **kwargs: Any) -> HttpResponse:
         """
-        This adds an error message to the request's messages framework and redirects
-        the user back to the previous page.
+        This adds an error message to the request's messages framework and
+        redirects the user back to the previous page.
 
         Args:
             request (HttpRequest): The HTTP request object.
@@ -249,16 +270,19 @@ class ScheduleCommentDelete(LoginRequiredMixin, SuccessMessageMixin, DeleteView)
             HttpResponse: The HTTP response object.
 
         """
-        messages.add_message(request, messages.ERROR,
-                             "Please use the delete button to delete your comment.")
+        messages.add_message(
+            request, messages.ERROR,
+            "Please use the delete button to delete your comment.")
         return redirect(request.META.get('HTTP_REFERER', 'landing_page'))
 
-    def dispatch(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
+    def dispatch(self, request: HttpRequest, *args: Any,
+                 **kwargs: Any) -> HttpResponse:
         obj = self.get_object()
         if not obj.commented_by == self.request.user:
             messages.add_message(self.request, messages.ERROR,
                                  "You are not the owner of this comment.")
-            return redirect(self.request.META.get('HTTP_REFERER', 'landing_page'))
+            return redirect(self.request.META.get(
+                'HTTP_REFERER', 'landing_page'))
         return super().dispatch(request, *args, **kwargs)
 
     def get_success_url(self):
@@ -268,7 +292,8 @@ class ScheduleCommentDelete(LoginRequiredMixin, SuccessMessageMixin, DeleteView)
         Returns:
             Redirects to the landing page
         """
-        return self.request.META.get('HTTP_REFERER', reverse_lazy('landing_page'))
+        return self.request.META.get(
+            'HTTP_REFERER', reverse_lazy('landing_page'))
 
 
 class ScheduleLike(LoginRequiredMixin, View):
@@ -280,7 +305,8 @@ class ScheduleLike(LoginRequiredMixin, View):
 
     def post(self, request, slug):
         """
-        Handle the HTTP POST request for liking or removing a like from a schedule.
+        Handle the HTTP POST request for liking or removing a like from a
+        schedule.
 
         Args:
             request (HttpRequest): The HTTP request object.
@@ -294,12 +320,13 @@ class ScheduleLike(LoginRequiredMixin, View):
 
         """
         schedule = get_object_or_404(Schedule, slug=slug)
-        # -> Credit for creating an object: https://docs.djangoproject.com/en/5.0/topics/db/queries/#creating-objects
-        # -> Credit for deleting an object: https://docs.djangoproject.com/en/5.0/topics/db/queries/#deleting-objects
-        # -> Credit for checking if an object exists: https://docs.djangoproject.com/en/5.0/ref/models/querysets/#exists
-        if not Like.objects.filter(schedule_id=schedule.id, liked_by=request.user.id).exists():
-            l = Like(schedule_id=schedule, liked_by=request.user)
-            l.save()
+        # -> Credit for creating an object: https://docs.djangoproject.com/en/5.0/topics/db/queries/#creating-objects  # noqa
+        # -> Credit for deleting an object: https://docs.djangoproject.com/en/5.0/topics/db/queries/#deleting-objects  # noqa
+        # -> Credit for deleting an object: https://docs.djangoproject.com/en/5.0/topics/db/queries/#deleting-objects  # noqa
+        if not Like.objects.filter(schedule_id=schedule.id,
+                                   liked_by=request.user.id).exists():
+            like = Like(schedule_id=schedule, liked_by=request.user)
+            like.save()
             messages.add_message(self.request, messages.SUCCESS,
                                  f"Successfully liked {schedule}")
         else:
@@ -315,12 +342,14 @@ class ScheduleSubscribe(LoginRequiredMixin, View):
     View class for subscribing or unsubscribing to a schedule.
 
     Methods:
-    - post(request, slug): Handles the POST request for subscribing or unsubscribing to a schedule.
+    - post(request, slug): Handles the POST request for subscribing or
+        unsubscribing to a schedule.
     """
 
     def post(self, request, slug):
         """
-        Handle the HTTP POST request for subscribing/unsubscribing to a schedule.
+        Handle the HTTP POST request for subscribing/unsubscribing to a
+        schedule.
 
         Args:
             request (HttpRequest): The HTTP request object.
@@ -334,14 +363,21 @@ class ScheduleSubscribe(LoginRequiredMixin, View):
 
         """
         schedule = get_object_or_404(Schedule, slug=slug)
-        if not Subscription.objects.filter(schedule_id=schedule.id, subscribed_by=request.user.id).exists():
+
+        subscription_exists = Subscription.objects.filter(
+            schedule_id=schedule.id,
+            subscribed_by=request.user.id
+        ).exists()
+
+        if not subscription_exists:
             s = Subscription(schedule_id=schedule, subscribed_by=request.user)
             s.save()
             messages.add_message(self.request, messages.SUCCESS,
                                  f"Successfully subscribed to {schedule}")
         else:
             Subscription.objects.filter(
-                schedule_id=schedule.id, subscribed_by=request.user.id).delete()
+                schedule_id=schedule.id,
+                subscribed_by=request.user.id).delete()
             messages.add_message(self.request, messages.SUCCESS,
                                  f"Successfully unsubscribed from {schedule}")
 
@@ -352,14 +388,17 @@ class Dashboard(LoginRequiredMixin, TemplateView):
     """
     A view class representing the dashboard page.
 
-    This view displays the dashboard page, which includes information about the user's subscribed schedules
+    This view displays the dashboard page, which includes information about
+    the user's subscribed schedules
     and schedules they own.
 
     Attributes:
-        template_name (str): The name of the template used to render the dashboard page.
+        template_name (str): The name of the template used to render the
+            dashboard page.
 
     Methods:
-        get_context_data(**kwargs): Retrieves the context data for rendering the dashboard page.
+        get_context_data(**kwargs): Retrieves the context data for rendering
+            the dashboard page.
 
     """
 
@@ -371,7 +410,8 @@ class Dashboard(LoginRequiredMixin, TemplateView):
 
         Additional context data:
         - user: The current user.
-        - subscribed_schedules: The schedules subscribed to by the current user.
+        - subscribed_schedules: The schedules subscribed to by the current
+            user.
         - owned_schedules: The schedules owned by the current user.
 
         Args:
@@ -382,8 +422,6 @@ class Dashboard(LoginRequiredMixin, TemplateView):
 
         """
         context = super().get_context_data(**kwargs)
-
-        # is it safe to add the user to the context like this?
         context['user'] = self.request.user
         context['subscribed_schedules'] = Schedule.objects.filter(
             subscription__subscribed_by=self.request.user)
@@ -394,8 +432,8 @@ class Dashboard(LoginRequiredMixin, TemplateView):
 
 
 def download_ics(request, id):
-    # -> Credit for ics.py library that helps to create ics files: https://icspy.readthedocs.io/en/stable
-    # I cannot add the rrule properties to the event because ics.py does not support it yet: https://icspy.readthedocs.io/en/stable/misc.html#missing-support-for-recurrent-events
+    # -> Credit for ics.py library that helps to create ics files: https://icspy.readthedocs.io/en/stable  # noqa
+    # I cannot add the rrule properties to the event because ics.py does not support it yet: https://icspy.readthedocs.io/en/stable/misc.html#missing-support-for-recurrent-events  # noqa
     c = Calendar()
 
     schedule_events = Event.objects.filter(schedule_id=id)
@@ -409,14 +447,16 @@ def download_ics(request, id):
         e.make_all_day()
 
         separation_count = db_event.separation_count
-        # -> Credit for formatting a date object width strftime: https://strftime.org/
+        # -> Credit for formatting a date object width strftime: https://strftime.org/  # noqa
         until = db_event.until.strftime("%Y%m%dT%H%M%SZ")
-        rrule = ContentLine(name="RRULE", params={}, value=f"FREQ=WEEKLY;INTERVAL={separation_count};UNTIL={until}")
+        rrule = ContentLine(
+            name="RRULE",
+            params={},
+            value=f"FREQ=WEEKLY;INTERVAL={separation_count};UNTIL={until}")
         e.extra.append(rrule)
-
         c.events.add(e)
 
-    # -> Credit for creating a download response: https://docs.djangoproject.com/en/5.0/ref/request-response/#fileresponse-objects
+    # -> Credit for creating a download response: https://docs.djangoproject.com/en/5.0/ref/request-response/#fileresponse-objects  # noqa
     response = HttpResponse(str(c.serialize()), content_type='text/calendar')
     response['Content-Disposition'] = 'attachment; filename="events.ics"'
 

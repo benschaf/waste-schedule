@@ -69,7 +69,7 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-# -> Credit for cloudinary saving using HTTPs (this is a link to the code institute internal Slack server): https://code-institute-room.slack.com/archives/C026PTF46F5/p1706622757171679
+# -> Credit for cloudinary saving using HTTPs (this is a link to the code institute internal Slack server): https://code-institute-room.slack.com/archives/C026PTF46F5/p1706622757171679 # noqa
 cloudinary.config(
     cloud_name=os.environ.get("CLOUDINARY_CLOUD_NAME"),
     api_key=os.environ.get("CLOUDINARY_API_KEY"),
@@ -125,9 +125,7 @@ if 'test' in sys.argv:
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': BASE_DIR / 'db.sqlite3',
         }
-}
-
-
+    }
 
 print('Databases = ', DATABASES)
 
@@ -141,16 +139,16 @@ CSRF_TRUSTED_ORIGINS = [
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',  # noqa
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',  # noqa
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',  # noqa
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',  # noqa
     },
 ]
 
@@ -184,4 +182,3 @@ AUTENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 )
-

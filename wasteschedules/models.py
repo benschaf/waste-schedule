@@ -15,9 +15,12 @@ class Schedule(models.Model):
     Attributes:
         name (str): The name of the schedule.
         description (str): The description of the schedule.
-        locations (ManyToManyField): The locations associated with the schedule.
-        created_at (DateTimeField): The date and time when the schedule was created.
-        updated_at (DateTimeField): The date and time when the schedule was last updated.
+        locations (ManyToManyField): The locations associated with the
+            schedule.
+        created_at (DateTimeField): The date and time when the schedule was
+            created.
+        updated_at (DateTimeField): The date and time when the schedule was
+            last updated.
     """
 
     title = models.CharField(max_length=100, unique=True)
@@ -26,11 +29,15 @@ class Schedule(models.Model):
         User, on_delete=models.CASCADE, related_name='schedules')
     description = models.TextField(blank=True)
     locations = models.ManyToManyField('PostalCode', related_name='schedules')
-    image = CloudinaryField('image', null=True, blank=True, default='placeholder')
+    image = CloudinaryField(
+        'image', null=True, blank=True, default='placeholder')
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
     class Meta:
+        """
+        Orders the query results based on the created_on field.
+        """
         ordering = ["-created_on"]
 
     def save(self, *args, **kwargs):
@@ -39,6 +46,13 @@ class Schedule(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
+        """
+        Returns the title of the schedule a string representation of the
+        object.
+
+        Returns:
+            str: A string representation of the object.
+        """
         return self.title
 
 
@@ -60,6 +74,13 @@ def validate_postal_code(value):
 
 
 class PostalCode(models.Model):
+    """
+    Represents a postal code.
+
+    Attributes:
+        postal_code (str): The postal code value.
+    """
+
     postal_code = models.CharField(
         validators=[validate_postal_code], max_length=5, unique=True)
 
@@ -85,7 +106,19 @@ class Comment(models.Model):
         return f"Comment {self.body} by {self.commented_by}"
 
     def get_absolute_url(self):
-        return reverse('schedule_detail', kwargs={'postcode' : self.schedule_id.locations.all()[0], 'slug': self.schedule_id.slug})
+        """
+        Returns the absolute URL for the schedule detail view of the
+        WasteSchedule object.
+
+        The URL is generated using the reverse function and the schedule's
+        attributes.
+
+        Returns:
+            str: The absolute URL for the schedule detail view.
+        """
+        return reverse('schedule_detail', kwargs={
+            'postcode': self.schedule_id.locations.all()[0],
+            'slug': self.schedule_id.slug})
 
 
 class Like(models.Model):
@@ -99,6 +132,7 @@ class Like(models.Model):
 
     def __str__(self):
         return f"Like by {self.liked_by}"
+
 
 class Subscription(models.Model):
     """

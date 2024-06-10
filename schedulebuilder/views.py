@@ -8,11 +8,11 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
-from .models import Event
-from wasteschedules.models import Schedule, PostalCode
-from .forms import PostalCodeForm
-from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib import messages
+from wasteschedules.models import Schedule, PostalCode
+from .models import Event
+from .forms import PostalCodeForm
 
 # Create your views here.
 
@@ -26,7 +26,7 @@ class PickLocation(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 
     model = PostalCode
     form_class = PostalCodeForm
-    template_name = 'schedulebuilder/location_form.html'
+    template_name = "schedulebuilder/location_form.html"
     success_message = "Location was created successfully."
 
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
@@ -42,23 +42,32 @@ class PickLocation(LoginRequiredMixin, SuccessMessageMixin, CreateView):
             HttpResponse: Opens the view to insert the schedule details if
                             the form is valid
         """
-        postal_code = form.cleaned_data['postal_code']
+        postal_code = form.cleaned_data["postal_code"]
 
         if PostalCode.objects.filter(postal_code=postal_code).exists():
-            messages.add_message(self.request, messages.INFO,
-                                    "Your Location already exists. Check out if there already is a schedule for it.")
-            return HttpResponseRedirect(reverse('create_schedule', kwargs={'postal_code': postal_code}))
+            messages.add_message(
+                self.request,
+                messages.INFO,
+                "Your Location already exists. "
+                "Check out if there already is a schedule "
+                "for it.",
+            )
+            return HttpResponseRedirect(
+                reverse("create_schedule", kwargs={"postal_code": postal_code})
+            )
 
         return super().form_valid(form)
 
     def get_success_url(self) -> str:
         """
-        Returns the URL to redirect to after the form is successfully submitted.
+        Returns the URL to redirect to after the form is successfully submitted
 
         Returns:
             str: The success URL redirects to the create_schedule view.
         """
-        return reverse('create_schedule', kwargs={'postal_code': self.object.postal_code})
+        return reverse(
+            "create_schedule", kwargs={"postal_code": self.object.postal_code}
+        )
 
 
 class CreateSchedule(LoginRequiredMixin, SuccessMessageMixin, CreateView):
@@ -69,8 +78,12 @@ class CreateSchedule(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     """
 
     model = Schedule
-    fields = ('title', 'description', 'image',)
-    template_name = 'schedulebuilder/schedule_form.html'
+    fields = (
+        "title",
+        "description",
+        "image",
+    )
+    template_name = "schedulebuilder/schedule_form.html"
     success_message = "Schedule was created successfully."
 
     def get_context_data(self, **kwargs) -> dict[str, Any]:
@@ -84,7 +97,7 @@ class CreateSchedule(LoginRequiredMixin, SuccessMessageMixin, CreateView):
             A dictionary containing the context data.
         """
         context = super().get_context_data(**kwargs)
-        context['postcode'] = self.kwargs['postal_code']
+        context["postcode"] = self.kwargs["postal_code"]
         return context
 
     def form_valid(self, form):
@@ -105,13 +118,17 @@ class CreateSchedule(LoginRequiredMixin, SuccessMessageMixin, CreateView):
         """
         Returns the URL to redirect to after a successful form submission.
 
-        Adds the current schedule's location to the PostalCode model and redirects to the 'add_bins' view.
+        Adds the current schedule's location to the PostalCode model and
+        redirects to the 'add_bins' view.
 
         Returns:
             The success URL.
         """
-        self.object.locations.add(get_object_or_404(PostalCode, postal_code=self.kwargs['postal_code']))
-        return reverse('add_bins', kwargs={'schedule_id': self.object.id})
+        self.object.locations.add(
+            get_object_or_404(
+                PostalCode, postal_code=self.kwargs["postal_code"])
+        )
+        return reverse("add_bins", kwargs={"schedule_id": self.object.id})
 
 
 class UpdateSchedule(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
@@ -121,30 +138,37 @@ class UpdateSchedule(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     Inherits from LoginRequiredMixin, SuccessMessageMixin, and UpdateView.
     """
 
-    login_url = reverse_lazy('account_login')
+    login_url = reverse_lazy("account_login")
     redirect_field_name = None
     model = Schedule
-    fields = ('description', 'image',)
-    template_name = 'schedulebuilder/update_schedule_form.html'
+    fields = (
+        "description",
+        "image",
+    )
+    template_name = "schedulebuilder/update_schedule_form.html"
     success_message = "Schedule was updated successfully."
 
-    def get(self, request: HttpRequest, *args: str, **kwargs: Any) -> HttpResponse:
-            """
-            Checks if the user is the owner of the schedule before displaying the update form.
+    def get(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
+        """
+        Checks if the user is the owner of the schedule before
+        displaying the update form.
 
-            Args:
-                request (HttpRequest): The HTTP request object.
-                *args (str): Variable length argument list.
-                **kwargs (Any): Arbitrary keyword arguments.
+        Args:
+            request (HttpRequest): The HTTP request object.
+            *args (str): Variable length argument list.
+            **kwargs (Any): Arbitrary keyword arguments.
 
-            Returns:
-                HttpResponse: The HTTP response object.
-            """
-            if self.get_object().author != request.user:
-                messages.add_message(self.request, messages.ERROR,
-                                     "You are not the owner of this schedule.")
-                return redirect(self.request.META.get('HTTP_REFERER', 'landing_page'))
-            return super().get(request, *args, **kwargs)
+        Returns:
+            HttpResponse: The HTTP response object.
+        """
+        if self.get_object().author != request.user:
+            messages.add_message(
+                self.request, messages.ERROR,
+                "You are not the owner of this schedule."
+            )
+            return redirect(self.request.META.get(
+                "HTTP_REFERER", "landing_page"))
+        return super().get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs) -> dict[str, Any]:
         """
@@ -157,7 +181,7 @@ class UpdateSchedule(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
             A dictionary containing the context data.
         """
         context = super().get_context_data(**kwargs)
-        context['postcode'] = self.object.locations.all()[0]
+        context["postcode"] = self.object.locations.all()[0]
         return context
 
     def get_success_url(self):
@@ -167,7 +191,7 @@ class UpdateSchedule(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
         Returns:
             The success URL redirects to the add_bins view.
         """
-        return reverse('add_bins', kwargs={'schedule_id': self.object.id})
+        return reverse("add_bins", kwargs={"schedule_id": self.object.id})
 
     def post(self, request, *args, **kwargs):
         """
@@ -183,9 +207,12 @@ class UpdateSchedule(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
             The HTTP response.
         """
         if self.get_object().author != request.user:
-            messages.add_message(self.request, messages.ERROR,
-                                 "You are not the owner of this schedule.")
-            return redirect(self.request.META.get('HTTP_REFERER', 'landing_page'))
+            messages.add_message(
+                self.request, messages.ERROR,
+                "You are not the owner of this schedule."
+            )
+            return redirect(
+                self.request.META.get("HTTP_REFERER", "landing_page"))
         return super().post(request, *args, **kwargs)
 
 
@@ -196,83 +223,103 @@ class DeleteSchedule(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     Inherits from LoginRequiredMixin, SuccessMessageMixin, and DeleteView.
 
     Methods:
-        post(request, *args, **kwargs): Checks if the user is the owner of the schedule before deleting it.
-        get_success_url(): Redirects to the schedule list page after the schedule is deleted.
+        post(request, *args, **kwargs): Checks if the user is the owner of the
+            schedule before deleting it.
+        get_success_url(): Redirects to the schedule list page after the
+            schedule is deleted.
     """
+
     model = Schedule
-    template_name = 'schedulebuilder/schedule_confirm_delete.html'
+    template_name = "schedulebuilder/schedule_confirm_delete.html"
     success_message = "Schedule was deleted successfully."
 
-    def get(self, request: HttpRequest, *args: str, **kwargs: Any) -> HttpResponse:
-            """
-            Checks if the user is the owner of the schedule before displaying the delete form.
+    def get(self, request: HttpRequest, *args: str, **kwargs) -> HttpResponse:
+        """
+        Checks if the user is the owner of the schedule before displaying
+        the delete form.
 
-            Args:
-                request (HttpRequest): The HTTP request object.
-                *args (str): Variable length argument list.
-                **kwargs (Any): Arbitrary keyword arguments.
+        Args:
+            request (HttpRequest): The HTTP request object.
+            *args (str): Variable length argument list.
+            **kwargs (Any): Arbitrary keyword arguments.
 
-            Returns:
-                HttpResponse: The HTTP response object.
-            """
-            # This is a lot of repeating code, maybe I can refactor this into a decorator or something
-            if self.get_object().author != request.user:
-                messages.add_message(self.request, messages.ERROR,
-                                        "You are not the owner of this schedule.")
-                return redirect(self.request.META.get('HTTP_REFERER', 'landing_page'))
-            return super().get(request, *args, **kwargs)
+        Returns:
+            HttpResponse: The HTTP response object.
+        """
+        if self.get_object().author != request.user:
+            messages.add_message(
+                self.request,
+                messages.ERROR,
+                "You are not the owner of this " "schedule.",
+            )
+            return redirect(
+                self.request.META.get("HTTP_REFERER", "landing_page"))
+        return super().get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
         """
         Handles the HTTP POST request for deleting the schedule.
         Checks if the user is the owner of the schedule before deleting it.
 
-        If the user is not the owner of the schedule, an error message is added and the user is redirected
-        to the previous page.
+        If the user is not the owner of the schedule, an error message is
+        added and the user is redirected to the previous page.
 
         Returns:
             HttpResponseRedirect: The redirect response.
 
         """
         if self.get_object().author != request.user:
-            messages.add_message(self.request, messages.ERROR,
-                                 "You are not the owner of this schedule.")
-            return redirect(self.request.META.get('HTTP_REFERER', 'landing_page'))
+            messages.add_message(
+                self.request, messages.ERROR,
+                "You are not the owner of this schedule."
+            )
+            return redirect(
+                self.request.META.get("HTTP_REFERER", "landing_page"))
         return super().post(request, *args, **kwargs)
 
     def get_success_url(self):
         """
         Returns the URL to redirect to after the schedule is deleted.
 
-        The URL is generated based on the postal code of the first location associated with the schedule.
+        The URL is generated based on the postal code of the first location
+        associated with the schedule.
 
         Returns:
             str: The URL to redirect to the schedule list page.
 
         """
-        return reverse('schedule_list', kwargs={'postcode': self.object.locations.all()[0].postal_code})
+        return reverse(
+            "schedule_list",
+            kwargs={"postcode": self.object.locations.all()[0].postal_code},
+        )
 
-# maybe integrate this with the update or create events view - so the form can be displayed and post data using the same view
+
 class EditCalendarView(LoginRequiredMixin, TemplateView):
     """
     View for editing a calendar.
 
-    This view allows users to edit a calendar by updating the events associated with it.
+    This view allows users to edit a calendar by updating the events associated
+    with it.
     Only the owner of the calendar can access this view.
 
     Methods:
-        dispatch(request, *args, **kwargs): Checks if the user is the owner of the schedule before rendering the view.
-        get_context_data(schedule_id, **kwargs): Returns the context data for rendering the template.
-        _convert_kind_to_int(kind): Helper method to convert the kind of event to an integer value.
-        post(request, schedule_id): Writes the updated events from the post request to the database.
+        dispatch(request, *args, **kwargs): Checks if the user is the owner of
+            the schedule before rendering the view.
+        get_context_data(schedule_id, **kwargs): Returns the context data for
+            rendering the template.
+        _convert_kind_to_int(kind): Helper method to convert the kind of event
+            to an integer value.
+        post(request, schedule_id): Writes the updated events from the post
+            request to the database.
     """
 
-    template_name = 'schedulebuilder/calendar.html'
+    template_name = "schedulebuilder/calendar.html"
 
     def dispatch(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
         """
         Handles the HTTP request and returns the HTTP response.
-        Checks if the user is the owner of the schedule before rendering the view.
+        Checks if the user is the owner of the schedule before rendering
+        the view.
 
         Returns:
             HttpResponse: The HTTP response.
@@ -280,11 +327,14 @@ class EditCalendarView(LoginRequiredMixin, TemplateView):
         Raises:
             Http404: If the schedule with the given ID does not exist.
         """
-        schedule = get_object_or_404(Schedule, id=kwargs['schedule_id'])
+        schedule = get_object_or_404(Schedule, id=kwargs["schedule_id"])
         if schedule.author != request.user:
-            messages.add_message(self.request, messages.ERROR,
-                                 "You are not the owner of this schedule.")
-            return redirect(self.request.META.get('HTTP_REFERER', 'landing_page'))
+            messages.add_message(
+                self.request, messages.ERROR,
+                "You are not the owner of this schedule."
+            )
+            return redirect(
+                self.request.META.get("HTTP_REFERER", "landing_page"))
         return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, schedule_id, **kwargs):
@@ -305,7 +355,8 @@ class EditCalendarView(LoginRequiredMixin, TemplateView):
         """
         context = super().get_context_data(**kwargs)
         context["schedule"] = get_object_or_404(Schedule, id=schedule_id)
-        context["postal_code"] = context["schedule"].locations.all()[0].postal_code
+        context["postal_code"] = (
+            context["schedule"].locations.all()[0].postal_code)
 
         events = Event.objects.filter(schedule_id=schedule_id)
         context["event_data"] = json.dumps(_event_to_json(events))
@@ -322,13 +373,13 @@ class EditCalendarView(LoginRequiredMixin, TemplateView):
         Returns:
             int: The integer value corresponding to the kind of event.
         """
-        if kind == 'Restmüll':
+        if kind == "Restmüll":
             return 0
-        elif kind == 'Biomüll':
+        elif kind == "Biomüll":
             return 1
-        elif kind == 'Papiermüll':
+        elif kind == "Papiermüll":
             return 2
-        elif kind == 'Gelbe Tonne':
+        elif kind == "Gelbe Tonne":
             return 4
         else:
             return None
@@ -353,30 +404,43 @@ class EditCalendarView(LoginRequiredMixin, TemplateView):
         schedule = get_object_or_404(Schedule, id=schedule_id)
         try:
             data = json.loads(request.body)
-            # -> Credit for update_or_create: https://docs.djangoproject.com/en/5.0/ref/models/querysets/#update-or-create
-            # -> Credit for dict.get(): https://www.w3schools.com/python/ref_dictionary_get.asp
+            # -> Credit for update_or_create: https://docs.djangoproject.com/en/5.0/ref/models/querysets/#update-or-create  # noqa
+            # -> Credit for dict.get(): https://www.w3schools.com/python/ref_dictionary_get.asp  # noqa
             for event_data in data:
-                kind = self._convert_kind_to_int(event_data['title'])
+                kind = self._convert_kind_to_int(event_data["title"])
                 event, created = Event.objects.update_or_create(
-                    js_event_id=event_data['id'],
+                    js_event_id=event_data["id"],
                     schedule_id=schedule,
                     defaults={
-                        'kind': kind,
-                        'date': event_data['start'],
-                        'recurring_type': event_data.get('rrule', {}).get('freq', None),
-                        'separation_count': event_data.get('rrule', {}).get('interval', None),
-                        'rrule_start': event_data.get('rrule', {}).get('dstart', None),
-                        'until': event_data.get('rrule', {}).get('until', None),
-                    }
+                        "kind": kind,
+                        "date": event_data["start"],
+                        "recurring_type": event_data.get(
+                            "rrule", {}).get("freq", None),
+                        "separation_count": event_data.get("rrule", {}).get(
+                            "interval", None
+                        ),
+                        "rrule_start": event_data.get("rrule", {}).get(
+                            "dstart", None),
+                        "until": event_data.get("rrule", {}).get(
+                            "until", None),
+                    },
                 )
-            # oh and also i need to find out how to add exceptions to the rrule data
-
-            messages.add_message(self.request, messages.SUCCESS,
-                                 "Your Schedule events were saved successfully.")
+            messages.add_message(
+                self.request,
+                messages.SUCCESS,
+                "Your Schedule events were saved " "successfully.",
+            )
             postcode = schedule.locations.all()[0]
-            return JsonResponse({'redirect_url': reverse('schedule_detail', kwargs={'postcode': postcode, 'slug': schedule.slug})})
+            return JsonResponse(
+                {
+                    "redirect_url": reverse(
+                        "schedule_detail",
+                        kwargs={"postcode": postcode, "slug": schedule.slug},
+                    )
+                }
+            )
         except json.JSONDecodeError:
-            return JsonResponse({'message': 'Invalid JSON'}, status=400)
+            return JsonResponse({"message": "Invalid JSON"}, status=400)
 
 
 def _event_to_json(events):
@@ -391,16 +455,22 @@ def _event_to_json(events):
     """
     event_list = []
     for event in events:
-        event_list.append({
-            'id': event.js_event_id,
-            # -> Credit for get_kind_display(): https://docs.djangoproject.com/en/3.2/ref/models/instances/#django.db.models.Model.get_FOO_display
-            'title': event.get_kind_display(),
-            'start': event.date.isoformat(),
-            'rrule': {
-                'freq': event.recurring_type,
-                'interval': event.separation_count,
-                'dtstart': event.rrule_start.isoformat(),
-                'until': event.until.isoformat(),
-            } if event.recurring_type else None
-        })
+        event_list.append(
+            {
+                "id": event.js_event_id,
+                # -> Credit for get_kind_display(): https://docs.djangoproject.com/en/3.2/ref/models/instances/#django.db.models.Model.get_FOO_display  # noqa
+                "title": event.get_kind_display(),
+                "start": event.date.isoformat(),
+                "rrule": (
+                    {
+                        "freq": event.recurring_type,
+                        "interval": event.separation_count,
+                        "dtstart": event.rrule_start.isoformat(),
+                        "until": event.until.isoformat(),
+                    }
+                    if event.recurring_type
+                    else None
+                ),
+            }
+        )
     return event_list
