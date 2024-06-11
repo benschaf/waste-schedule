@@ -1,4 +1,3 @@
-from time import strftime
 from django.db import models
 from wasteschedules.models import Schedule
 
