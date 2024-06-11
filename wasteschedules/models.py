@@ -27,7 +27,7 @@ class Schedule(models.Model):
     slug = models.SlugField(max_length=200, unique=True)
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='schedules')
-    description = models.TextField(blank=True)
+    description = models.TextField()
     locations = models.ManyToManyField('PostalCode', related_name='schedules')
     image = CloudinaryField(
         'image', null=True, blank=True, default='placeholder')
