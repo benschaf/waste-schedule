@@ -45,10 +45,12 @@
                         class="rounded-circle stretched-link text-decoration-none text-reset opacity-hover">
                         <h2>{{ schedule }}</h2>
                     </a>
-                    <p>by {{ schedule.author }}</p>
-                    {% if postcode == '0' %}
-                    <p>Postcode: {{ schedule.locations.first }}</p>
-                    {% endif %}
+                    <p>
+                        <span class="badge rounded-pill text-bg-secondary">by {{ schedule.author }}</span>
+                        {% if postcode == '0' %}
+                        <span class="badge rounded-pill text-bg-secondary">Postcode: {{ schedule.locations.first }}</span>
+                        {% endif %}
+                    </p>
                     <p>{{ schedule.description }}</p>
                 </div>
                 <div class="card-footer">
