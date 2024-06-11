@@ -53,16 +53,19 @@
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <!-- -> Credit for getting view name from template: https://stackoverflow.com/questions/2491605/how-to-get-the-current-url-namespace-using-django -->
-                        <a class="nav-link" href="{% url 'schedule_list' '0' %}"><i class="fa-{% if request.resolver_match.view_name == 'schedule_list' %}solid{% else %}regular{% endif %} fa-map"></i>
+                        <a class="nav-link" href="{% url 'schedule_list' '0' %}"><i
+                                class="fa-{% if request.resolver_match.view_name == 'schedule_list' %}solid{% else %}regular{% endif %} fa-map"></i>
                             Browse Schedules</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'pick_location' %}"><i class="fa-{% if request.resolver_match.view_name == 'pick_location' or request.resolver_match.view_name == 'create_schedule' or request.resolver_match.view_name == 'add_bins' %}solid{% else %}regular{% endif %} fa-square-plus"></i>
+                        <a class="nav-link" href="{% url 'pick_location' %}"><i
+                                class="fa-{% if request.resolver_match.view_name == 'pick_location' or request.resolver_match.view_name == 'create_schedule' or request.resolver_match.view_name == 'add_bins' %}solid{% else %}regular{% endif %} fa-square-plus"></i>
                             Make your own</a>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'dashboard' %}"><i class="fa-{% if request.resolver_match.view_name == 'dashboard' %}solid{% else %}regular{% endif %} fa-rectangle-list"></i>
+                        <a class="nav-link" href="{% url 'dashboard' %}"><i
+                                class="fa-{% if request.resolver_match.view_name == 'dashboard' %}solid{% else %}regular{% endif %} fa-rectangle-list"></i>
                             Dashboard</a>
                     </li>
                     <li class="nav-item dropdown">
@@ -120,25 +123,25 @@
                 <div class="d-flex flex-column align-items-center gap-2">
                     <div class="brighter-text">Follow us:</div>
                     <div class="navbar-background rounded-pill px-4 py-1 d-flex justify-content-center gap-3">
-                         <!-- Facebook -->
-                         <a style="color: #3b5998;" href="https://www.facebook.com" role="button"
-                             aria-label="Facebook profile, opens in new tab"
-                             rel="noopener noreferrer" target="_blank"><i class="fab fa-facebook-f fa-lg opacity-hover"></i></a>
+                        <!-- Facebook -->
+                        <a style="color: #3b5998;" href="https://www.facebook.com" role="button"
+                            aria-label="Facebook profile, opens in new tab" rel="noopener noreferrer" target="_blank"><i
+                                class="fab fa-facebook-f fa-lg opacity-hover"></i></a>
 
-                         <!-- Twitter -->
-                         <a style="color: #000;" href="https://www.twitter.com" role="button"
-                             aria-label="Twitter profile, opens in new tab"
-                             rel="noopener noreferrer" target="_blank"><i class="fab fa-x-twitter fa-lg opacity-hover"></i></a>
+                        <!-- Twitter -->
+                        <a style="color: #000;" href="https://www.twitter.com" role="button"
+                            aria-label="Twitter profile, opens in new tab" rel="noopener noreferrer" target="_blank"><i
+                                class="fab fa-x-twitter fa-lg opacity-hover"></i></a>
 
-                         <!-- GitHub -->
-                         <a style="color: #000;" href="https://www.github.com/benschaf" role="button"
-                             aria-label="GitHub profile, opens in new tab"
-                             rel="noopener noreferrer" target="_blank"><i class="fab fa-github fa-lg opacity-hover"></i></a>
+                        <!-- GitHub -->
+                        <a style="color: #000;" href="https://www.github.com/benschaf" role="button"
+                            aria-label="GitHub profile, opens in new tab" rel="noopener noreferrer" target="_blank"><i
+                                class="fab fa-github fa-lg opacity-hover"></i></a>
 
-                         <!-- Instagram -->
-                         <a style="color: #ac2bac;" href="https://www.instagram.com" role="button"
-                             aria-label="Instagram profile, opens in new tab"
-                             rel="noopener noreferrer" target="_blank"><i class="fab fa-instagram fa-lg opacity-hover"></i></a>
+                        <!-- Instagram -->
+                        <a style="color: #ac2bac;" href="https://www.instagram.com" role="button"
+                            aria-label="Instagram profile, opens in new tab" rel="noopener noreferrer"
+                            target="_blank"><i class="fab fa-instagram fa-lg opacity-hover"></i></a>
                     </div>
                 </div>
                 <div class="col text-center mt-4">
@@ -147,7 +150,9 @@
             </div>
             <div
                 class="col d-flex align-items-center justify-content-center justify-content-sm-start order-sm-first mt-4 mt-sm-0">
-                &copy; 2024 Benjamin Schäfer
+                <p>
+                    &copy; <span id="year"></span> Benjamin Schäfer
+                </p>
             </div>
         </div>
     </footer>

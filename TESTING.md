@@ -326,6 +326,13 @@ For more information, view my [notes directly in the testing file](static/js/tes
 ![screenshot](documentation/test-js-calendar-edit-notes.png)
 ⤴️ This is a screenshot of the notes I left in the test file.
 
+I added another [test suite](static/js/test/script.test.js) for the Copyright Notice in the footer. The function updates the year dynamically. See the results in the screenshot below:
+
+![screenshot](documentation/test-js-year.png)
+⤴️ This is a screenshot of the test results in the console.
+
+Note: I am aware that the Jest testing is not as extensive as it could be and should be in a real-world scenario.
+
 ### Python (Unit Testing)
 
 I have used Django's built-in unit testing framework to test the application functionality.
