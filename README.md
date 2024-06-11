@@ -689,6 +689,7 @@ Images for sample Waste Schedules were taken from the following websites and upl
 * [Landkreis Coburg](https://www.landkreis-coburg.de/73-0-Abfallwirtschaft.html)
 * [Öhningen Waste Calendar](https://www.oehningen.de/fileadmin/redakteur/Abfallkalender_NEU_%C3%96hningen_2024.pdf)
 * [Landkreis Schweinfurt](https://www.landkreis-schweinfurt.de/abfuhrkalender)
+* [Pfarrweisach](https://awhas.de/service/abfuhrtermine/pfarrweisach/jahreskalender.html#calendar)
 
 All images used in this project were generated using the [Copilot Designer](https://www.bing.com/images/create?cc=de)
 
