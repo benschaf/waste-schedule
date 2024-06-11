@@ -149,28 +149,29 @@ Besides the warnings mentioned above, there were no issues with the Lighthouse A
 
 ## Defensive Programming
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-START OF NOTES (to be deleted)
+
+Defensive programming was manually tested with the below user acceptance testing:
+
+The follwing criteria were tested:
 
 Forms:
 - Users cannot submit an empty form
 - Users must enter valid email addresses
 
-MS3 (Flask) | MS4/PP4/PP5 (Django):
+Authentication and CRUD Functionality:
 - Users cannot brute-force a URL to navigate to a restricted page
 - Users cannot perform CRUD functionality while logged-out
 - User-A should not be able to manipulate data belonging to User-B, or vice versa
 - Non-Authenticated users should not be able to access pages that require authentication
 - Standard users should not be able to access pages intended for superusers
 
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
-
-Defensive programming was manually tested with the below user acceptance testing:
-
 | Page | Expectation | Test | Result | Fix | Screenshot |
 | --- | --- | --- | --- | --- | --- |
 | **Landing** | | | | | |
 | | The Postcode field should only accept values made up of 5 digits | Tested the field by entering an empty form, a 6-digit value, a 5-non-digit value, and a 5-digit value | The field only accepted the 5-digit value | Test concluded and passed | ![screenshot](documentation/defensive-landing-postcode.png) |
+| | **Navigation Bar** | | | | |
+| | To logged out users, the navigation bar should display the following links: Brwose Schedules, Make your own, Register, Login | Tested the navigation bar while logged out | The navigation bar displayed the following links: Brwose Schedules, Make your own, Dashboard, Register, Login | Test concluded and passed | ![screenshot](documentation/defensive-navbar-logged-out.png) |
+| | To logged in users, the navigation bar should display the following links: Brwose Schedules, Make your own, Dashboard, Logout | Tested the navigation bar while logged in | The navigation bar displayed the following links: Brwose Schedules, Make your own, Dashboard, Logout | Test concluded and passed | ![screenshot](documentation/defensive-navbar-logged-in.png) |
 | **Schedule List** | | | | | |
 | | The Poscrode field should only accept values made up of 5 digits | Tested the field by entering an empty form, a 6-digit value, a 5-non-digit value, and a 5-digit value | The field only accepted the 5-digit value | Test concluded and passed | ![screenshot](documentation/defensive-schedule-list-postcode.png) |
 | | The Like Button should only perform a CRUD operation for a logged-in user | Tested the button while logged out and while logged in | The button only performed the CRUD operation while logged in | Test concluded and passed | ![screenshot](documentation/defensive-schedule-list-like.png) |
@@ -179,17 +180,46 @@ Defensive programming was manually tested with the below user acceptance testing
 | | The Like Button should only perform a CRUD operation for a logged-in user | Tested the button while logged out and while logged in | The button only performed the CRUD operation while logged in | Test concluded and passed | ![screenshot](documentation/defensive-schedule-detail-like.png) |
 | | The Subscribe Button should only perform a CRUD operation for a logged-in user | Tested the button while logged out and while logged in | The button only performed the CRUD operation while logged in | Test concluded and passed | ![screenshot](documentation/defensive-schedule-detail-subscribe.png) |
 | | The Edit Schedule and Delete Schedule Buttons should only be available to the user who created the schedule | Tested the buttons while logged in as the creator and as a different user | The buttons were only available to the creator | Test concluded and passed | ![screenshot](documentation/defensive-schedule-detail-edit-delete.png) |
-| | The Edit Schedule URL should not be accessible if brute forced by a user who is not the creator of the Schedule | Attempted to brute force the [URL](https://tonne-waste-reminders-a6836f2888b0.herokuapp.com/schedule-builder/edit-schedule/kleingarnstadt) | The user was redirected to the landing page and the message was displayed: "You are not the owner of this schedule" | Test concluded and passed | ![screenshot](documentation/defensive-schedule-detail-brute-force.png) |
-| | The Delete Schedule URL should not be accessible if brute forced by a user who is not the creator of the Schedule | Attempted to brute force the [URL](https://tonne-waste-reminders-a6836f2888b0.herokuapp.com/schedule-builder/delete-schedule/kleingarnstadt) | The user was redirected to the landing page and the message was displayed: "You are not the owner of this schedule" | Test concluded and passed | ![screenshot](documentation/defensive-schedule-detail-brute-force.png) |
+| | The Edit Schedule URL should not be accessible if brute forced by a user who is not the creator of the Schedule | Attempted to brute force the [URL](https://tonne-waste-reminders-a6836f2888b0.herokuapp.com/schedule-builder/edit-schedule/kleingarnstadt) | The user was redirected to the login page | Test concluded and passed | ![screenshot](documentation/defensive-schedule-detail-brute-force.png) |
+| | The Delete Schedule URL should not be accessible if brute forced by a user who is not the creator of the Schedule | Attempted to brute force the [URL](https://tonne-waste-reminders-a6836f2888b0.herokuapp.com/schedule-builder/delete-schedule/kleingarnstadt) | The user was redirected to the login page | Test concluded and passed | ![screenshot](documentation/defensive-schedule-detail-brute-force-delete.png) |
 | | The Comment field and button should only be available to a logged-in user | Tested the field and button while logged out and while logged in | The field and button were only available while logged in | Test concluded and passed | ![screenshot](documentation/defensive-schedule-detail-comment.png) |
 | | The Comment URL should not be accessible if brute forced by a user | Attempted to brute force the [URL](https://tonne-waste-reminders-a6836f2888b0.herokuapp.com/wasteschedules/schedule-comment/kleingarnstadt) | The user was redirected to the relevant schedule detail page | Test concluded and passed | ![screenshot](documentation/defensive-schedule-detail-brute-force.png) |
 | | The Comment field should only accept freeform text | Tested the field by entering an empty form, a form with only spaces, and a form with text | The field only accepted the form with text | Test concluded and passed | ![screenshot](documentation/defensive-schedule-detail-comment.png) |
-| | A valid Comment should only be submitted by a logged-in user | Tested the form by entering a comment while logged out and while logged in | The comment was only submitted while logged in | Test concluded and passed | ![screenshot](documentation/defensive-schedule-detail-comment.png) |
+| | A valid Comment should only be submitted by a logged-in user | Tested the form by entering a comment while logged out and while logged in | The comment was only submitted while logged in | Test concluded and passed | ![screenshot](documentation/defensive-schedule-detail-comment-submit.png) |
 | | The Edit and Delete Buttons for a Comment should only be available to the user who created the Comment | Tested the buttons while logged in as the creator and as a different user | The buttons were only available to the creator | Test concluded and passed | ![screenshot](documentation/defensive-schedule-detail-comment-edit-delete.png) |
 | | The Edit Comment URL should not be accessible if brute forced by a user who is not the creator of the Comment | Attempted to brute force the [URL](https://tonne-waste-reminders-a6836f2888b0.herokuapp.com/wasteschedules/schedule-comment-update/27/kleingarnstadt) | The user was redirected to the landing page and a message was displayed "please use the edit button to edit your comment." | Test concluded and passed | ![screenshot](documentation/defensive-schedule-detail-comment-brute-force.png) |
+| **Schedule Builder** | | | | | |
+| | The Location Form should only be displayed to a logged-in user | Tested the form while logged out and while logged in | The form was only displayed while logged in, when logged out I was redirected to the login page | Test concluded and passed | ![screenshot](documentation/defensive-schedule-builder-location.png) |
+| | The Location Form should only accept valid data | Tested the form by entering an empty form, a form with only spaces, a form with 5 letters an a form with 5 digits | The form only accepted the form with 5 digits | Test concluded and passed | ![screenshot](documentation/defensive-schedule-builder-location.png) |
+| | The Schedule Form should only be displayed to a logged-in user | Tested the form while logged out and while logged in | The form was only displayed while logged in, when logged out I was redirected to the login page | Test concluded and passed | ![screenshot](documentation/defensive-schedule-builder-schedule.gif) |
+| | The Schedule Form title field should only accept freeform text | Tested the field by entering an empty form, a form with only spaces, and a form with text | The field only accepted the form with text | Test concluded and passed | ![screenshot](documentation/defensive-schedule-builder-schedule.gif) |
+| | The Schedule Form description field should only accept freeform text | Tested the field by entering an empty form, a form with only spaces, and a form with text | The field only accepted the form with text | Test concluded and passed | ![screenshot](documentation/defensive-schedule-builder-schedule.gif) |
+| | The Schedule Form image field should only accept a valid image | Tested the field by uploading a non-image file and an image file | The field only accepted the image file | Test concluded and passed | ![screenshot](documentation/defensive-schedule-builder-schedule.gif) |
+| | The Schedule Form image field should not be mandatory | Tested the form by submitting it without an image | The form was submitted without an image | Test concluded and passed | ![screenshot](documentation/defensive-schedule-builder-schedule.gif) |
+| | The Calendar Form should only be displayed to the logged in owner of the schedule | Tested the form while logged in as the creator and as a different user | The form was only displayed to the creator | Test concluded and passed | ![screenshot](documentation/defensive-schedule-builder-calendar.gif) |
+| | Clicking on a date in the Calendar Form should open a modal to add an event | Tested the form by clicking on a date | A modal was opened to add an event | Test concluded and passed | ![screenshot](documentation/defensive-schedule-builder-calendar.gif) |
+| | The add event modal should create a singular or a recurring event. The recurrence should be weekly with the option to skip weeks | Tested the form by adding a singular event and a recurring event | The events were created as expected | Test concluded and passed | ![screenshot](documentation/defensive-schedule-builder-calendar.gif) |
+| | Clicking on a created event should open a modal to delete the event | Tested the form by clicking on a created event | A modal was opened to delete the event | Test concluded and passed | ![screenshot](documentation/defensive-schedule-builder-calendar.gif) |
+| | The delete event modal should only give the option to delete the whole series if the event is recurring | Tested the form by clicking on a recurring event | The modal only gave the option to delete the whole series, the other option is greyed out | Test concluded and passed | ![screenshot](documentation/defensive-schedule-builder-calendar.gif) |
+| | Submitting the delete event modal should delete the event | Tested the form by submitting the delete event modal | The event was deleted | Test concluded and passed | ![screenshot](documentation/defensive-schedule-builder-calendar.gif) |
+| | The Save button next to the Calendar Form should save the event and redirect to the Schedule Detail page | Tested the form by saving an event | The event was saved and the user was redirected to the Schedule Detail page where the created events were displayed | Test concluded and passed | ![screenshot](documentation/defensive-schedule-builder-calendar.gif) |
+| **Dashboard** | | | | | |
+| | The Dashboard should only be displayed to a logged-in user | Tested the dashboard while logged out and while logged in | The dashboard was only displayed while logged in, when logged out I was redirected to the login page | Test concluded and passed | ![screenshot](documentation/defensive-dashboard.gif) |
+| | The Dashboard should only display schedules that the user has subscribed to or owns | Tested the dashboard while logged in as the creator and as a different user | The dashboard only displayed the schedules that the user has subscribed to or owns | Test concluded and passed | ![screenshot](documentation/defensive-dashboard.gif) |
+| | The View Schedule button should redirect to the relevant Schedule Detail page | Tested the button by clicking on it | The user was redirected to the relevant Schedule Detail page | Test concluded and passed | ![screenshot](documentation/defensive-dashboard.gif) |
+| | The Edit and Delete buttons should only be available to the user who created the schedule | Tested the buttons while logged in as the creator and as a different user | The buttons were only available to the creator | Test concluded and passed | ![screenshot](documentation/defensive-dashboard.gif) |
+| | The Edit Schedule button should redirect to the relevant Schedule Builder page | Tested the button by clicking on it | The user was redirected to the relevant Schedule Builder page | Test concluded and passed | ![screenshot](documentation/defensive-dashboard.gif) |
+| | The Delete Schedule button should open a modal to confirm the deletion of the schedule | Tested the button by clicking on it | A modal was opened to confirm the deletion of the schedule | Test concluded and passed | ![screenshot](documentation/defensive-dashboard.gif) |
+| | The Download button should display a modal with instructions on how to use the ics file | Tested the button by clicking on it | A modal was opened with instructions on how to use the ics file | Test concluded and passed | ![screenshot](documentation/defensive-dashboard.gif) |
+| | The Download button should download the ics file | Tested the button by clicking on it | The ics file was downloaded | Test concluded and passed | ![screenshot](documentation/defensive-dashboard.gif) |
+| | **About** | | | | |
+| | The About page should be displayed to all users | Tested the page while logged out and while logged in | The page was displayed to all users | Test concluded and passed | ![screenshot](documentation/defensive-about.png) |
+| **Register** | | | | | |
+| | The Register page should allow the user to Register through their Google account as well as through the form | Tested the page by registering through the form and through the Google account | The user was able to register through both methods | Test concluded and passed | ![screenshot](documentation/defensive-register.png) |
+| | **Login** | | | | |
+| | The Login page should allow the user to Login through their Google account as well as through the form | Tested the page by logging in through the form and through the Google account | The user was able to log in through both methods | Test concluded and passed | ![screenshot](documentation/defensive-login.png) |
 
-!!! ADD THE REST OF THE TESTS FOR THE REMAINING PAGES !!!
-beofore refer to the question in issue  [#47](https://github.com/benschaf/waste-schedule/issues/47)
+The defensive programming tests were successful and any issues that arose were fixed (to see fixed issues please refer to Bug Fixes further down).
 
 ## User Story Testing
 
