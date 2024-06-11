@@ -248,6 +248,8 @@ I fully acknowledge and understand that, in a real-world scenario, an extensive 
 
 I have used the [Jest](https://jestjs.io) JavaScript testing framework to test the application functionality.
 
+I left the steps it took to set up Jest in the project below:
+
 In order to work with Jest, I first had to initialize NPM.
 
 - `npm init`
@@ -265,7 +267,7 @@ Without the following, Jest won't properly run the tests:
 
 - `npm install -D jest-environment-jsdom`
 
-Due to a change in Jest's default configuration, you'll need to add the following code to the top of the `.test.js` file:
+I also added the following code to test files:
 
 ```js
 /**
@@ -308,23 +310,21 @@ Once ready, to run the tests, use this command:
 
 - `npm test --coverage`
 
+#### Test Results
 Below are the results from the tests that I've written for this application:
 
-| Test Suites | Tests | Screenshot |
-| --- | --- | --- |
-| 1 passed | 16 passed | ![screenshot](documentation/tests/js-test-coverage.png) |
-| x | x | repeat for all remaining tests |
+I have one test suite that tests the Calendar editing functionality. See the results in the screenshot below:
 
-#### Jest Test Issues
+![screenshot](documentation/test-js-calendar-edit.png)
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-START OF NOTES (to be deleted)
+There are three tests in total, sadly one of them is failing.
 
-Use this section to list any known issues you ran into while writing your Jest tests.
-Remember to include screenshots (where possible), and a solution to the issue (if known).
+I left the failing test in the codebase to demonstrate that I am not able to test the FullCalendar library or any functions that are dependent on it because I would have to mock the library, which is beyond the scope of this project. Consequently, I have only written tests for the two helper functions that were not dependent on FullCalendar.
 
-This can be used for both "fixed" and "unresolved" issues.
+For more information, view my [notes directly in the testing file](static/js/test/edit_calendar.test.js) and have a look at [Issue #48](https://github.com/benschaf/waste-schedule/issues/48).
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
+![screenshot](documentation/test-js-calendar-edit-notes.png)
+⤴️ This is a screenshot of the notes I left in the test file.
 
 ### Python (Unit Testing)
 
