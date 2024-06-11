@@ -328,12 +328,6 @@ For more information, view my [notes directly in the testing file](static/js/tes
 
 ### Python (Unit Testing)
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-START OF NOTES (to be deleted)
-
-Adjust the code below (file names, etc.) to match your own project files/folders.
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
-
 I have used Django's built-in unit testing framework to test the application functionality.
 
 In order to run the tests, I ran the following command in the terminal each time:
@@ -344,6 +338,10 @@ To create the coverage report, I would then run the following commands:
 
 `coverage run --source=name-of-app manage.py test`
 
+In order to get accurate coverage reports, I would then run the following, more precise command:
+
+`coverage run --omit=/site-packages/,/migrations/,env.py,*/init.py manage.py test`
+
 `coverage report`
 
 To see the HTML version of the reports, and find out whether some pieces of code were missing, I ran the following commands:
@@ -352,42 +350,28 @@ To see the HTML version of the reports, and find out whether some pieces of code
 
 `python3 -m http.server`
 
+#### Test Results
+
+I have conducted a total of 61 tests across all of my apps in the project, all of which are passing.
+
+![screenshot](documentation/test-py-all.png)
+⤴️ This is a screenshot of the test results in the console.
+
 Below are the results from the various apps on my application that I've tested:
+
+![screenshot](documentation/test-py-coverage.png)
+⤴️ This is a screenshot of the coverage report in the console.
+
+The current tests reach a coverage of 94% across all apps.
+
+Below are screenshots of the files' reports that didn't reach 100% coverage:
 
 | App | File | Coverage | Screenshot |
 | --- | --- | --- | --- |
-| Bag | test_forms.py | 99% | ![screenshot](documentation/tests/py-test-bag-forms.png) |
-| Bag | test_models.py | 89% | ![screenshot](documentation/tests/py-test-bag-models.png) |
-| Bag | test_urls.py | 100% | ![screenshot](documentation/tests/py-test-bag-urls.png) |
-| Bag | test_views.py | 71% | ![screenshot](documentation/tests/py-test-bag-views.png) |
-| Checkout | test_forms.py | 99% | ![screenshot](documentation/tests/py-test-checkout-forms.png) |
-| Checkout | test_models.py | 89% | ![screenshot](documentation/tests/py-test-checkout-models.png) |
-| Checkout | test_urls.py | 100% | ![screenshot](documentation/tests/py-test-checkout-urls.png) |
-| Checkout | test_views.py | 71% | ![screenshot](documentation/tests/py-test-checkout-views.png) |
-| Home | test_forms.py | 99% | ![screenshot](documentation/tests/py-test-home-forms.png) |
-| Home | test_models.py | 89% | ![screenshot](documentation/tests/py-test-home-models.png) |
-| Home | test_urls.py | 100% | ![screenshot](documentation/tests/py-test-home-urls.png) |
-| Home | test_views.py | 71% | ![screenshot](documentation/tests/py-test-home-views.png) |
-| Products | test_forms.py | 99% | ![screenshot](documentation/tests/py-test-products-forms.png) |
-| Products | test_models.py | 89% | ![screenshot](documentation/tests/py-test-products-models.png) |
-| Products | test_urls.py | 100% | ![screenshot](documentation/tests/py-test-products-urls.png) |
-| Products | test_views.py | 71% | ![screenshot](documentation/tests/py-test-products-views.png) |
-| Profiles | test_forms.py | 99% | ![screenshot](documentation/tests/py-test-profiles-forms.png) |
-| Profiles | test_models.py | 89% | ![screenshot](documentation/tests/py-test-profiles-models.png) |
-| Profiles | test_urls.py | 100% | ![screenshot](documentation/tests/py-test-profiles-urls.png) |
-| Profiles | test_views.py | 71% | ![screenshot](documentation/tests/py-test-profiles-views.png) |
-| x | x | x | repeat for all remaining tested apps/files |
-
-#### Unit Test Issues
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-START OF NOTES (to be deleted)
-
-Use this section to list any known issues you ran into while writing your unit tests.
-Remember to include screenshots (where possible), and a solution to the issue (if known).
-
-This can be used for both "fixed" and "unresolved" issues.
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
+| schedulebuilder | models.py | 93% | ![screenshot](documentation/test-py-coverage-schedulebuilder-models.png) |
+| schedulebuilder | views.py | 86% | ![screenshot](documentation/test-py-coverage-schedulebuilder-views.png) |
+| wasteschedules | models.py | 93% | ![screenshot](documentation/test-py-coverage-wasteschedules-models.png) |
+| wasteschedules | views.py | 81% | ![screenshot](documentation/test-py-coverage-wasteschedules-views.png) |
 
 ## Bugs
 
