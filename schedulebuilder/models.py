@@ -69,7 +69,7 @@ class Event(models.Model):
         Returns:
             str: The string representation of the object.
         """
-        return strftime('%Y-%m-%d', self.date)
+        return self.date.strftime('%Y-%m-%d')
 
 
 class EventException(models.Model):
@@ -111,4 +111,4 @@ class EventException(models.Model):
         Returns:
             str: The string representation of the object.
         """
-        return strftime('%Y-%m-%d', self.old_date)
+        return self.old_date.strftime('%Y-%m-%d')
