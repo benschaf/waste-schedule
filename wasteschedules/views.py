@@ -1,3 +1,4 @@
+from time import strftime
 from ics import Calendar, Event as IcsEvent
 from ics.grammar.parse import ContentLine
 import json
@@ -437,6 +438,10 @@ def download_ics(request, id):
     c = Calendar()
 
     schedule_events = Event.objects.filter(schedule_id=id)
+    if not schedule_events:
+        messages.add_message(request, messages.ERROR,
+                             "No events found for this schedule.")
+        return redirect(request.META.get('HTTP_REFERER', 'landing_page'))
     for db_event in schedule_events:
         e = IcsEvent()
         e.name = db_event.get_kind_display()
@@ -446,14 +451,15 @@ def download_ics(request, id):
         e.created = db_event.created_on
         e.make_all_day()
 
-        separation_count = db_event.separation_count
-        # -> Credit for formatting a date object width strftime: https://strftime.org/  # noqa
-        until = db_event.until.strftime("%Y%m%dT%H%M%SZ")
-        rrule = ContentLine(
-            name="RRULE",
-            params={},
-            value=f"FREQ=WEEKLY;INTERVAL={separation_count};UNTIL={until}")
-        e.extra.append(rrule)
+        if db_event.until is not None:
+            separation_count = db_event.separation_count
+            # -> Credit for formatting a date object width strftime: https://strftime.org/  # noqa
+            until = strftime("%Y%m%dT%H%M%SZ", db_event.until.timetuple())
+            rrule = ContentLine(
+                name="RRULE",
+                params={},
+                value=f"FREQ=WEEKLY;INTERVAL={separation_count};UNTIL={until}")
+            e.extra.append(rrule)
         c.events.add(e)
 
     # -> Credit for creating a download response: https://docs.djangoproject.com/en/5.0/ref/request-response/#fileresponse-objects  # noqa
