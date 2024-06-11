@@ -52,16 +52,17 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'schedule_list' '0' %}"><i class="fa-regular fa-map"></i>
+                        <!-- -> Credit for getting view name from template: https://stackoverflow.com/questions/2491605/how-to-get-the-current-url-namespace-using-django -->
+                        <a class="nav-link" href="{% url 'schedule_list' '0' %}"><i class="fa-{% if request.resolver_match.view_name == 'schedule_list' %}solid{% else %}regular{% endif %} fa-map"></i>
                             Browse Schedules</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'pick_location' %}"><i class="fa-regular fa-square-plus"></i>
+                        <a class="nav-link" href="{% url 'pick_location' %}"><i class="fa-{% if request.resolver_match.view_name == 'pick_location' or request.resolver_match.view_name == 'create_schedule' or request.resolver_match.view_name == 'add_bins' %}solid{% else %}regular{% endif %} fa-square-plus"></i>
                             Make your own</a>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'dashboard' %}"><i class="fa fa-table-columns"></i>
+                        <a class="nav-link" href="{% url 'dashboard' %}"><i class="fa-{% if request.resolver_match.view_name == 'dashboard' %}solid{% else %}regular{% endif %} fa-rectangle-list"></i>
                             Dashboard</a>
                     </li>
                     <li class="nav-item dropdown">
