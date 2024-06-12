@@ -325,12 +325,12 @@ relevant project files: all template files and [style.css](static/css/style.css)
 
 ### Future Features
 
-All Ideas for Future Features are organized as user Stories by Epic and MoSCoW priority in the [User Story Map](https://github.com/users/benschaf/projects/9/views/2)
+All Ideas for Future Features are organized as user Stories by Epic and MoSCoW priority in the [User Story Map](https://github.com/users/benschaf/projects/9/views/2) - check it out, there are some good ideas in there!
 
 These are my three favorite ideas for future features:
-- **[Issue #8](https://github.com/benschaf/waste-schedule/issues/8): User Notifications**: A feature that sends users actual real time notifications to remind them of their waste collection days. Sadly, this feature is not in the scope of this project because it cant really be implemented when using a free Heroku account that isn't able to keep the server running all the time.
+- **[Issue #8](https://github.com/benschaf/waste-schedule/issues/8) User Notifications**: A feature that sends users actual real time notifications to remind them of their waste collection days. Sadly, this feature is not in the scope of this project because it cant really be implemented when using a free Heroku account that isn't able to keep the server running all the time.
 - **[Issue #40](https://github.com/benschaf/waste-schedule/issues/40) Gamification and Household sharing**: A feature that allows members of a household to share their schedules and compete / collaborate with each other. This feature would also include a leaderboard and achievements.
-- **[Issue #41](https://github.com/benschaf/waste-schedule/issues/41)Local Waste Collection Services**: A feature that allows users to find local waste collection services in their area, such as recycling centers, composting facilities, and hazardous waste disposal sites.
+- **[Issue #41](https://github.com/benschaf/waste-schedule/issues/41) Local Waste Collection Services**: A feature that allows users to find local waste collection services in their area, such as recycling centers, composting facilities, and hazardous waste disposal sites.
 
 
 ## Tools & Technologies Used
