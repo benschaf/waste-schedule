@@ -349,7 +349,6 @@ These are my three favorite ideas for future features:
 - [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-grey?logo=postgresql&logoColor=4169E1)](https://www.postgresql.org) used as the relational database management.
 - [![PostgreSQL by Code Institute](https://img.shields.io/badge/PostgreSQL_by_Code_Institute-grey?logo=okta&logoColor=F05223)](https://dbs.ci-dbs.net) used as the Postgres database from Code Institute.
 - [![Cloudinary](https://img.shields.io/badge/Cloudinary-grey?logo=cloudinary&logoColor=3448C5)](https://cloudinary.com) used for online static file storage of the schedule images.
-AM I USING THIS??
 - [![WhiteNoise](https://img.shields.io/badge/WhiteNoise-grey?logo=python&logoColor=FFFFFF)](https://whitenoise.readthedocs.io) used for serving static files with Heroku.
 - [![Font Awesome](https://img.shields.io/badge/Font_Awesome-grey?logo=fontawesome&logoColor=528DD7)](https://fontawesome.com) used for the icons.
 - [![Bing Copilot](https://img.shields.io/badge/Bing_Copilot-grey)](https://copilot.microsoft.com/) Used to explain and help debug things.
@@ -364,7 +363,7 @@ AM I USING THIS??
 A relational database was used for this project. The database schema was designed using [dbdiagram.io](https://dbdiagram.io) before development began. The schema was then implemented using Django's built-in ORM. Throughout the development process, the schema was adjusted and updated as needed. The initial and the final version of the schema can be found below.
 
 ### Initial ERD
-At the core of the database design is the `Schedule` model. This model represents a waste collection schedule and includes fields for the schedule title, description, and image. On the left side of the ERD view below are models that allow users to like, comment on, and subscribe to schedules. On the right side are models that handle individual collection events. They adhere to the [RRule standard](https://github.com/jkbrzt/rrule), which allows for complex recurring events to be defined.
+At the core of the database design is the `Schedule` model. This model represents a waste collection schedule and includes fields for the schedule title, description, and image. On the left side of the ERD view below are models that allow users to like, comment on, and subscribe to schedules. On the right side are models that handle individual collection events. They mostly adhere to the [RRule standard](https://github.com/jkbrzt/rrule), which allows for complex recurring events to be defined.
 
 ![screenshot](documentation/erd-initial.png)
 Link to the [ERD](https://dbdiagram.io/e/66178e7003593b6b61bbb163/6618fa1203593b6b61d512e4)
