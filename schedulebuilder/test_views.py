@@ -313,7 +313,8 @@ class EditCalendarViewTestCase(TestCase):
     def test_dispatch_user_not_owner(self):
         """
         Test case to verify that a user who is not the owner of the schedule
-        is redirected to the home page when trying to access the 'add_bins' view.
+        is redirected to the home page when trying to access the 'add_bins'
+        view.
         """
         self.user2 = User.objects.create_user(
             username='anotheruser', password='12345')
