@@ -6,9 +6,9 @@
 [![GitHub issues](https://img.shields.io/github/issues/benschaf/waste-schedule)](https://github.com/benschaf/waste-schedule/issues)
 [![GitHub closed issues](https://img.shields.io/github/issues-closed/benschaf/waste-schedule)](https://github.com/benschaf/waste-schedule/issues?q=is%3Aissue+is%3Aclosed)
 [![GitHub repo size](https://img.shields.io/github/repo-size/benschaf/waste-schedule)](https://github.com/benschaf/waste-schedule)
-[![Python version](https://img.shields.io/badge/python-3.12.2-blue)](https://www.python.org/downloads/release/python-3121/)
-[![npm version](https://img.shields.io/badge/npm-8.1.0-blue)](https://www.npmjs.com/package/npm)
-[![Heroku](https://img.shields.io/badge/heroku-eco-purple)](https://tonne-waste-reminders-a6836f2888b0.herokuapp.com/)
+[![Python version](https://img.shields.io/badge/python-3.12.2-blue?logo=python)](https://www.python.org/downloads/release/python-3121/)
+[![npm version](https://img.shields.io/badge/npm-8.1.0-blue?logo=npm)](https://www.npmjs.com/package/npm)
+[![Heroku](https://img.shields.io/badge/heroku-eco-purple?logo=heroku)](https://tonne-waste-reminders-a6836f2888b0.herokuapp.com/)
 
 Welcome to **tonne** (german for: Waste Bin) - the Waste Management site. It is your go-to solution in the quest for efficient and eco-friendly waste handling! 🚀
 
