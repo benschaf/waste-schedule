@@ -1,3 +1,7 @@
+"""
+This script generates a list of credits from the project files and updates
+the README file with the credit information.
+"""
 import os
 import urllib.parse
 
