@@ -42,7 +42,8 @@ describe("helper function tests", () => {
     });
 });
 
-// this doesnt work because FullCalendar elements need to be loaded in their library for anything within the calendar to load to the DOM ...
+// this doesnt work because FullCalendar elements need to be loaded in their
+// library for anything within the calendar to load to the DOM ...
 describe("displayEventCreationModal tests", () => {
     test("displayEventCreationModal displays the modal", () => {
         displayEventCreationModal();
@@ -53,4 +54,4 @@ describe("displayEventCreationModal tests", () => {
 
 // All functions working with fullCalendar might need to be tested in the browser ...
 // I don't know how to work with real full calendar event objects.
-// and making mock objects is too inaccurate i think.
+// and making FullCalendar mock objects is too inaccurate i think.

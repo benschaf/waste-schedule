@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
     const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
 
+    updateCopyrightNotice();
+
     // Event Listener for navbar background toggling on scroll
     window.addEventListener('scroll', (event) => {
         const navBar = document.getElementsByTagName('nav')[0];
@@ -40,3 +42,19 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }, 5000);
 });
+
+// -> Credit for the copyright notice update function goes to TravelTimN: https://github.com/TravelTimN
+function updateCopyrightNotice() {
+    let getYear = new Date().getFullYear();
+    let yearID = document.getElementById("year");
+    if (getYear == 2024) {
+        yearID.innerHTML = getYear;
+    } else {
+        yearID.innerHTML = `2024 - ${getYear}`;
+    }
+}
+
+// Export the functions for testing
+if (typeof module !== "undefined") module.exports = {
+    updateCopyrightNotice
+};
