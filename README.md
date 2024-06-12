@@ -348,12 +348,12 @@ These are my three favorite ideas for future features:
 - [![Django](https://img.shields.io/badge/Django-grey?logo=django&logoColor=092E20)](https://www.djangoproject.com) used as the Python framework for the site.
 - [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-grey?logo=postgresql&logoColor=4169E1)](https://www.postgresql.org) used as the relational database management.
 - [![PostgreSQL by Code Institute](https://img.shields.io/badge/PostgreSQL_by_Code_Institute-grey?logo=okta&logoColor=F05223)](https://dbs.ci-dbs.net) used as the Postgres database from Code Institute.
-- [![Cloudinary](https://img.shields.io/badge/Cloudinary-grey?logo=cloudinary&logoColor=3448C5)](https://cloudinary.com) used for online static file storage.
+- [![Cloudinary](https://img.shields.io/badge/Cloudinary-grey?logo=cloudinary&logoColor=3448C5)](https://cloudinary.com) used for online static file storage of the schedule images.
 AM I USING THIS??
 - [![WhiteNoise](https://img.shields.io/badge/WhiteNoise-grey?logo=python&logoColor=FFFFFF)](https://whitenoise.readthedocs.io) used for serving static files with Heroku.
 - [![Font Awesome](https://img.shields.io/badge/Font_Awesome-grey?logo=fontawesome&logoColor=528DD7)](https://fontawesome.com) used for the icons.
-- [![Bing Copilot](https://img.shields.io/badge/Bing_Copilot-grey)](https://copilot.microsoft.com/)
-- [![coolors](https://img.shields.io/badge/Coolors-grey)](https://coolors.co)
+- [![Bing Copilot](https://img.shields.io/badge/Bing_Copilot-grey)](https://copilot.microsoft.com/) Used to explain and help debug things.
+- [![coolors](https://img.shields.io/badge/Coolors-grey)](https://coolors.co) used to generate the colour palette.
 - [![draw.io](https://img.shields.io/badge/draw.io-grey?logo=diagrams.net&logoColor=F0A60A)](https://draw.io) used to design the wireframes.
 - [![pixlr](https://img.shields.io/badge/Pixlr-grey?logo=pixlr&logoColor=FF0000)](https://pixlr.com) used to edit images.
 - [![autoprefixer](https://img.shields.io/badge/Autoprefixer-grey?logo=autoprefixer&logoColor=000000)](https://autoprefixer.github.io) used to add vendor prefixes to CSS.
