@@ -3,8 +3,6 @@
 
 {% block content %}
 
-
-
 <!-- Postocde Form -->
 <div class="container mb-5 navbar-margin">
     <div class="row justify-content-center">
@@ -54,6 +52,7 @@
                     <p>{{ schedule.description }}</p>
                 </div>
                 <div class="card-footer">
+
                     <!-- Like button -->
                     {% if user.is_authenticated %}
                     <form action="{% url 'schedule_like' schedule.slug %}" method="POST" class="d-inline">
@@ -73,7 +72,6 @@
                         <div class="d-inline">{{ schedule.like__count }}</div>
                     </a>
                     {% endif %}
-
 
                     <!-- Subscribe Button -->
                     {% if user.is_authenticated %}
@@ -138,6 +136,8 @@
         </div>
     </div>
     {% endif %}
+
+    <!-- Bottom notice -->
     <div class="row mt-5">
         <div class="column">
             <h3>Havent found your Schedule?</h3>
@@ -148,6 +148,10 @@
         </div>
     </div>
 </div>
+
+{% endblock %}
+
+{% block extra_js %}
 
 <!-- Script for the Location search field -->
 <script src="{% static 'js/index.js' %}"></script>
