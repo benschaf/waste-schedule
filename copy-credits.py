@@ -24,15 +24,25 @@ base_url = "https://github.com/benschaf/waste-schedule/blob/main/"
 
 # Walk through all files in the project directory
 for root, dirs, files in os.walk("."):
+
+    # Exclude 'staticfiles' directory as it is a duplicate of the 'static'
+    # directory
+    if "staticfiles" in dirs:
+        dirs.remove("staticfiles")
+
     for file in files:
         # Get the file extension
         ext = os.path.splitext(file)[1]
         # If the file extension is in the comment symbols dictionary
         if ext in comment_symbols:
-            # Open the file
-            with open(os.path.join(root, file), "r") as f:
-                # Read the file line by line
-                lines = f.read().splitlines()
+            # Try to open the file
+            try:
+                with open(os.path.join(root, file), "r") as f:
+                    # Read the file line by line
+                    lines = f.read().splitlines()
+            except UnicodeDecodeError:
+                print(f"Skipping file {file} due to encoding issues.")
+                continue
             # Iterate over the lines with an index
             for i in range(len(lines)):
                 # If a line starts with "# -> Credit", add it to the list
