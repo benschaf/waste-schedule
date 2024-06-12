@@ -109,12 +109,21 @@ There were no issues with the Python files.
 
 ## Browser Compatibility
 
-I've tested my deployed project manually on multiple browsers to check for compatibility issues.
+I've tested my deployed project manually on multiple browsers to check for compatibility issues. I've tested the project on the latest versions of the following browsers:
+
+- Chrome
+- Firefox (Developer Edition)
+- Edge
+- Brave
+- Opera
+- Safari
+
+See the table below for the compatibility results:
 
 | Browser | Landing | Schedule List | Schedule Detail | Schedule Builder | Dashboard | About | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | Chrome | ![screenshot](documentation/browser-chrome-landing.png) | ![screenshot](documentation/browser-chrome-schedule-list.png) | ![screenshot](documentation/browser-chrome-schedule-detail.png) | ![screenshot](documentation/browser-chrome-schedule-builder.png) | ![screenshot](documentation/browser-chrome-dashboard.png) | ![screenshot](documentation/browser-chrome-about.png) | no issues |
-| Firefox | ![screenshot](documentation/browser-firefox-landing.png) | ![screenshot](documentation/browser-firefox-schedule-list.png) | ![screenshot](documentation/browser-firefox-schedule-detail.png) | ![screenshot](documentation/browser-firefox-schedule-builder.png) | ![screenshot](documentation/browser-firefox-dashboard.png) | ![screenshot](documentation/browser-firefox-about.png) | no issues |
+| Firefox (Developer Edition) | ![screenshot](documentation/browser-firefox-landing.png) | ![screenshot](documentation/browser-firefox-schedule-list.png) | ![screenshot](documentation/browser-firefox-schedule-detail.png) | ![screenshot](documentation/browser-firefox-schedule-builder.png) | ![screenshot](documentation/browser-firefox-dashboard.png) | ![screenshot](documentation/browser-firefox-about.png) | no issues |
 | Edge | ![screenshot](documentation/browser-edge-landing.png) | ![screenshot](documentation/browser-edge-schedule-list.png) | ![screenshot](documentation/browser-edge-schedule-detail.png) | ![screenshot](documentation/browser-edge-schedule-builder.png) | ![screenshot](documentation/browser-edge-dashboard.png) | ![screenshot](documentation/browser-edge-about.png) | no issues |
 | Brave | ![screenshot](documentation/browser-brave-landing.png) | ![screenshot](documentation/browser-brave-schedule-list.png) | ![screenshot](documentation/browser-brave-schedule-detail.png) | ![screenshot](documentation/browser-brave-schedule-builder.png) | ![screenshot](documentation/browser-brave-dashboard.png) | ![screenshot](documentation/browser-brave-about.png) | no issues |
 | Opera | ![screenshot](documentation/browser-opera-landing.png) | ![screenshot](documentation/browser-opera-schedule-list.png) | ![screenshot](documentation/browser-opera-schedule-detail.png) | ![screenshot](documentation/browser-opera-schedule-builder.png) | ![screenshot](documentation/browser-opera-dashboard.png) | ![screenshot](documentation/browser-opera-about.png) | no issues |
@@ -156,8 +165,7 @@ The "links aren't crawlable" warning is due to FullCalendar which puts some anch
 
 Besides the warnings mentioned above, there were no issues with the Lighthouse Audit.
 
-## Defensive Programming
-
+## Defensive Programming Testing
 
 Defensive programming was manually tested with the below user acceptance testing.
 
@@ -232,7 +240,7 @@ Any issues that were found were fixed and retested. To see a list of all bug iss
 
 ## User Story Testing
 
-All user stories labelled as "Must Have" have been tested and are working as expected.
+I tested the user stories labeled as "Must-Have" manually to ensure that the project met the user requirements. Screenshots of the tests can be found below:
 
 | User Story | Screenshot |
 | --- | --- |
@@ -248,6 +256,8 @@ All user stories labelled as "Must Have" have been tested and are working as exp
 | [#11](https://github.com/benschaf/waste-schedule/issues/11) As a user, I want to rate and provide feedback on uploaded schedules to help the community, so that we collectively improve waste management. | ![screenshot](documentation/feature-comments.png) |
 | [#18](https://github.com/benschaf/waste-schedule/issues/18) As a user who commented on a schedule I can edit or delete my comment so that I can refine or retract my feedback. | ![screenshot](documentation/feature-comments.png) |
 | [#19](https://github.com/benschaf/waste-schedule/issues/19) As a user I can like or express appreciation for a specific waste collection schedule so that I can acknowledge well-maintained schedules. | ![screenshot](documentation/feature-search.png) |
+
+All requirements were met and the user stories were successfully tested.
 
 ## Automated Testing
 
@@ -399,7 +409,7 @@ I fully acknowledge and understand that, in a real-world scenario, an extensive 
 
 ### Resulting Issues
 
-The python unittests were successful and any issues that arose were fixed (to see fixed issues [filter issues by the unittestbug label](https://github.com/benschaf/waste-schedule/issues?q=is%3Aissue+label%3Aunittestbug).)
+The python unittests were successful and any issues that arose were fixed. To see fixed issues [filter issues by the unittestbug label](https://github.com/benschaf/waste-schedule/issues?q=is%3Aissue+label%3Aunittestbug).
 
 ![screenshot](documentation/defensive-programming-issues.png)
 
@@ -417,6 +427,8 @@ Or see the list of fixed bugs below:
 
 ![screenshot](documentation/bugs.png)
 
+⤴️ This is a screenshot of the bugs that were fixed.
+
 Note: Many of the bugs were only tracked in github issues retroactively. For these bugs, the commit that fixed the bug is linked in a comment of the issue. That way, all of the bugs, fixes and the process of fixing them can be tracked from within Github issues.
 
 ### Unfixed Bugs
@@ -424,7 +436,10 @@ Note: Many of the bugs were only tracked in github issues retroactively. For the
 [Issue 32](https://github.com/benschaf/waste-schedule/issues/32): I can't delete singular events that are part of a rrule because the exdate property isn't recognized by Full Calendar.
 
 Bug history (more interactive when viewed using the Issue link above):
+
 ![alt text](documentation/bugs-issue-32.png)
+
+⤴️ This is a screenshot of the bug history for Issue 32.
 
 Because of the complexity due to the FullCalendar and RRule libraries this Bug was moved to be fixed in the future. For now Singular event deletion is not possible. The user will be notified that this is a feature in development when trying to delete a singular event that is part of a RRule.
 
