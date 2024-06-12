@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
+
 {% block content %}
 
-{% if "placeholder" not in schedule.image.url %}
 <!-- image Modal -->
+{% if "placeholder" not in schedule.image.url %}
 <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imgLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -92,6 +93,7 @@
                         <div class="d-inline">{{ like_count }}</div>
                     </a>
                     {% endif %}
+
                     <!-- Subscribe Button -->
                     {% if user.is_authenticated %}
                     <form action="{% url 'schedule_subscribe' schedule.slug %}" method="POST">
@@ -116,6 +118,7 @@
                     </form>
                 </div>
                 <div class="col d-flex gap-3">
+
                     <!-- Edit and Delete Buttons -->
                     {% if schedule.author == user %}
                     <a href="{% url 'edit_schedule' schedule.slug %}" class="btn btn-secondary text-nowrap">Edit
@@ -136,11 +139,10 @@
     </div>
 </div>
 
-
-
 <!-- Comments Section -->
 <div class="container mt-5">
     <h2>Comments</h2>
+
     <!-- Creating New Comments -->
     <!-- -> Credit for crispy forms: https://github.com/Code-Institute-Solutions/blog/tree/main/12_views_part_3/01_posting_to_database -->
     <div class="row row-cols-1 row-cols-md-2">
@@ -168,9 +170,11 @@
                     </p>
                     <p id="comment-field-{{ comment.id }}">{{ comment.body }}</p>
                     {% if comment.commented_by == user %}
+
                     <!-- -> Credit for modals: https://getbootstrap.com/docs/5.2/components/modal/ -->
                     <!-- -> Credit for passisng data attributes to js: https://blog.webdevsimplified.com/2020-10/javascript-data-attributes/ -->
                     <!-- -> Credit for passing the CSRF Token and using it in js: https://stackoverflow.com/questions/47527120/how-to-add-assign-csrf-token-in-the-html-submit-form -->
+
                     <!-- Button trigger modal -->
                     <div class="d-inline">
                         <a type="button" class="btn btn-link text-muted p-0 edit-button"
@@ -185,6 +189,7 @@
                             Delete
                         </a>
                     </div>
+
                     <!-- Modal to confirm deletion -->
                     <div class="modal fade" id="delete-modal-{{ comment.id }}" tabindex="-1"
                         aria-labelledby="#modal-label-{{ comment.id }}" aria-hidden="true">
@@ -215,13 +220,12 @@
             </ul>
         </div>
     </div>
-
 </div>
 
 {% endblock %}
 
-
 {% block extra_js %}
+
 <!-- -> Credit for sending JSON data to JavaScript: https://docs.djangoproject.com/en/5.0/ref/templates/builtins/#std-templatefilter-json_script -->
 {{ event_data|json_script:"event-data" }}
 
@@ -239,4 +243,5 @@
 
 <!-- handles the comments (especially editing) -->
 <script src="{% static 'js/comments.js' %}"></script>
+
 {% endblock %}

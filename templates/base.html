@@ -8,6 +8,7 @@
 <html class="h-100" lang="en">
 
 <head>
+
     <title>Tonne Schedules</title>
     <link rel="shortcut icon" type="image/png" href="{% static 'images/logo.ico' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -34,7 +35,6 @@
 </head>
 
 <body class="d-flex flex-column h-100 main-bg">
-
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-md navbar-background fixed-top bg-opacity bg-transparent">
@@ -95,6 +95,7 @@
         </div>
     </nav>
 
+    <!-- Django messages -->
     <!-- -> Credit for django messages framework: https://docs.djangoproject.com/en/5.0/ref/contrib/messages/ -->
     {% if messages %}
     <div class="container mt-5 position-fixed end-0 high-z-index message-class">
@@ -108,12 +109,11 @@
     </div>
     {% endif %}
 
+    <!-- Main section with content block -->
     <main>
-
-        {% block content %}
-        <!-- Content Goes here -->
-        {% endblock content %}
-
+    {% block content %}
+    <!-- Content Goes here -->
+    {% endblock content %}
     </main>
 
     <!-- Footer -->
@@ -127,17 +127,14 @@
                         <a style="color: #3b5998;" href="https://www.facebook.com" role="button"
                             aria-label="Facebook profile, opens in new tab" rel="noopener noreferrer" target="_blank"><i
                                 class="fab fa-facebook-f fa-lg opacity-hover"></i></a>
-
                         <!-- Twitter -->
                         <a style="color: #000;" href="https://www.twitter.com" role="button"
                             aria-label="Twitter profile, opens in new tab" rel="noopener noreferrer" target="_blank"><i
                                 class="fab fa-x-twitter fa-lg opacity-hover"></i></a>
-
                         <!-- GitHub -->
                         <a style="color: #000;" href="https://www.github.com/benschaf" role="button"
                             aria-label="GitHub profile, opens in new tab" rel="noopener noreferrer" target="_blank"><i
                                 class="fab fa-github fa-lg opacity-hover"></i></a>
-
                         <!-- Instagram -->
                         <a style="color: #ac2bac;" href="https://www.instagram.com" role="button"
                             aria-label="Instagram profile, opens in new tab" rel="noopener noreferrer"
@@ -168,6 +165,7 @@
     <!-- Custom JS -->
     <script src="{% static 'js/script.js' %}"></script>
 
+    <!-- Extra JS to be inserted by a child template -->
     {% block extra_js %}{% endblock %}
 
 </body>

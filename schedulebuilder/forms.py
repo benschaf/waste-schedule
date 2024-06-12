@@ -17,8 +17,18 @@ class PostalCodeForm(forms.ModelForm):
     """
 
     class Meta:
+        """
+        Attributes:
+            model (Model): The model class associated with the form.
+            fields (list): only the postal_code field is included in the form.
+        """
         model = PostalCode
         fields = ["postal_code"]
 
     def validate_unique(self):
+        """
+        unique validation is performed later on in the view as the postal code
+        should be unique in the database but the user can access an existing
+        postal code.
+        """
         pass

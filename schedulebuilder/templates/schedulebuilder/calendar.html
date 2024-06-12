@@ -2,8 +2,8 @@
 {% load static %}
 {% block content %}
 
-{% if "placeholder" not in schedule.image.url %}
 <!-- image Modal -->
+{% if "placeholder" not in schedule.image.url %}
 <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imgLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -87,6 +87,7 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-12 col-md-7">
+
                 <!-- Schedule calendar display -->
                 <div id="calendar"></div>
             </div>
@@ -169,7 +170,6 @@
         </div>
     </div>
 </div>
-
 
 {% endblock %}
 

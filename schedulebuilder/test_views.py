@@ -288,7 +288,13 @@ class DeleteScheduleTestCase(TestCase):
 
 
 class EditCalendarViewTestCase(TestCase):
+    """
+    Test case for the EditCalendarView view.
+    """
     def setUp(self):
+        """
+        Set up the necessary objects and data for the test case.
+        """
         self.user = User.objects.create_user(
             username="testuser", password="12345")
         self.postal_code = PostalCode.objects.create(postal_code='12345')
@@ -305,6 +311,10 @@ class EditCalendarViewTestCase(TestCase):
         )
 
     def test_dispatch_user_not_owner(self):
+        """
+        Test case to verify that a user who is not the owner of the schedule
+        is redirected to the home page when trying to access the 'add_bins' view.
+        """
         self.user2 = User.objects.create_user(
             username='anotheruser', password='12345')
         self.client.login(username='anotheruser', password='12345')
@@ -316,6 +326,9 @@ class EditCalendarViewTestCase(TestCase):
         self.assertRedirects(response, '/')
 
     def test_dispatch_user_owner(self):
+        """
+        Tests if the owner of the schedule can access the 'add_bins' view.
+        """
         self.client.login(username='testuser', password='12345')
         response = self.client.get(
             reverse("add_bins", kwargs={"schedule_id": self.schedule.id})
@@ -324,6 +337,9 @@ class EditCalendarViewTestCase(TestCase):
         self.assertTemplateUsed(response, 'schedulebuilder/calendar.html')
 
     def test_get_context_data(self):
+        """
+        Tests if the context data is correctly passed to the template.
+        """
         self.client.login(username="testuser", password="12345")
         response = self.client.get(
             reverse("add_bins", kwargs={"schedule_id": self.schedule.id})
@@ -335,10 +351,16 @@ class EditCalendarViewTestCase(TestCase):
         # i dont know how to test for the json data
 
     def test_post_valid_json(self):
+        """
+        Tests if the view can handle valid JSON data.
+        """
         self.client.login(username='testuser', password='12345')
         # dont know how to test for the json data
 
     def test_post_invalid_json(self):
+        """
+        Tests if the view can handle invalid JSON data.
+        """
         self.client.login(username='testuser', password='12345')
         data = 'invalid json'
         response = self.client.post(
@@ -353,6 +375,9 @@ class EditCalendarViewTestCase(TestCase):
         self.assertEqual(len(messages), 0)
 
     def test_convert_kind_to_int(self):
+        """
+        Tests if the _convert_kind_to_int method correctly converts the kind
+        """
         view = EditCalendarView()
         self.assertEqual(view._convert_kind_to_int('Restmüll'), 0)
         self.assertEqual(view._convert_kind_to_int('Biomüll'), 1)

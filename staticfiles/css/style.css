@@ -107,6 +107,7 @@ main {
 }
 
 /* bootstrap popovers */
+
 .custom-popover {
     --bs-popover-max-width: 200px;
     --bs-popover-border-color: var(--bs-primary);
@@ -132,6 +133,7 @@ main {
 }
 
 /* Footer */
+
 .dark-section {
     background: var(--dark-background);
     color: var(--light-background);
@@ -231,6 +233,7 @@ main {
 
 /* Timeline */
 /* -> Credit for timeline CSS & HTML: https://www.bootdey.com/snippets/view/timeline-events */
+
 .timeline {
     border-left: 3px solid var(--secondary-color);
     margin: 0 auto;
@@ -344,6 +347,7 @@ main {
 }
 
 /* Google button Styling */
+
 .gsi-material-button {
     -moz-user-select: none;
     -webkit-user-select: none;
@@ -388,6 +392,7 @@ main {
 
 /* -> Credit for progress bar: https://bbbootstrap.com/snippets/bootstrap-4-bootstrap-4-timeline-order-tracking-step-step-progress-bar-26897417 */
 /* Progress steps bar styles */
+
 .bs4-order-tracking {
     margin-bottom: 30px;
     overflow: hidden;
