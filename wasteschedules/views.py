@@ -323,7 +323,6 @@ class ScheduleLike(LoginRequiredMixin, View):
         schedule = get_object_or_404(Schedule, slug=slug)
         # -> Credit for creating an object: https://docs.djangoproject.com/en/5.0/topics/db/queries/#creating-objects  # noqa
         # -> Credit for deleting an object: https://docs.djangoproject.com/en/5.0/topics/db/queries/#deleting-objects  # noqa
-        # -> Credit for deleting an object: https://docs.djangoproject.com/en/5.0/topics/db/queries/#deleting-objects  # noqa
         if not Like.objects.filter(schedule_id=schedule.id,
                                    liked_by=request.user.id).exists():
             like = Like(schedule_id=schedule, liked_by=request.user)
