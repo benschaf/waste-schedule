@@ -366,7 +366,9 @@ A relational database was used for this project. The database schema was designe
 At the core of the database design is the `Schedule` model. This model represents a waste collection schedule and includes fields for the schedule title, description, and image. On the left side of the ERD view below are models that allow users to like, comment on, and subscribe to schedules. On the right side are models that handle individual collection events. They mostly adhere to the [RRule standard](https://github.com/jkbrzt/rrule), which allows for complex recurring events to be defined.
 
 ![screenshot](documentation/erd-initial.png)
-Link to the [ERD](https://dbdiagram.io/e/66178e7003593b6b61bbb163/6618fa1203593b6b61d512e4)
+⤴️ the initial ERD
+
+Link to the [initial ERD](https://dbdiagram.io/e/66178e7003593b6b61bbb163/6618fa1203593b6b61d512e4)
 
 ### Final ERD
 I have used `pygraphviz` and `django-extensions` to auto-generate an ERD.
@@ -390,10 +392,11 @@ INSTALLED_APPS = [
 - finally, in the terminal: `pip3 uninstall django-extensions pygraphviz -y`
 
 ![erd](documentation/erd.png)
+⤴️ the final ERD
+
 source for django ERD generation: [medium.com](https://medium.com/@yathomasi1/1-using-django-extensions-to-visualize-the-database-diagram-in-django-application-c5fa7e710e16)
 
-**Note about migration files:** While debugging the project, migration files were deleted and recreated which results in the `migrations` folders only containing one migration file each. The migration history can be recreated in older versions of the github repository. Thanks for John from the tutor team for the help with debugging my migrations! (see [the relevant commit](https://github.com/benschaf/waste-schedule/commit/ea26c6f6037916747e75c8918a234437f2f3ae20))
-
+**Note about migration files:** While debugging the project, migration files were deleted and recreated which results in the `migrations` folders only containing one migration file each. The migration history can be recreated in older versions of the github repository. Thanks for John from the tutor team for the help with debugging my migrations! (see [commit ea26c6f](https://github.com/benschaf/waste-schedule/commit/ea26c6f6037916747e75c8918a234437f2f3ae20))
 
 ## Agile Development Process
 
@@ -406,9 +409,10 @@ Through it, a user story map was created, and issues were managed in an Agile wa
 
 User stories are grouped by Epic and MoSCoW priority. The epics were determined before development began as part of the design process. In depth information about the conception of the idea for the site and the User Stories can be found under the Design Thinking Progress section at the bottom of this file.
 
-Throughout the development process, user stories were reevaluated after each iteration and adjusted accordingly. At this time, they are frozen at the beginning of the last iteration to give more insight in the development process.
+Throughout the development process, user stories were reevaluated after each iteration and adjusted accordingly. At this time, they are frozen at the beginning of the last iteration to give more insight into the development process.
 
 ![screenshot](documentation/user-story-map.png)
+⤴️ Screenshot of the User Story Map
 
 #### MoSCoW Prioritization
 
@@ -429,13 +433,12 @@ Github issues was mainly used to track bugs and smaller feature requests that we
 - [Open Issues](https://github.com/benschaf/waste-schedule/issues) [![GitHub issues](https://img.shields.io/github/issues/benschaf/waste-schedule)](https://github.com/benschaf/waste-schedule/issues)
 
     ![screenshot](documentation/gh-issues-open.png)
+    ⤴️ Screenshot of the open issues (this screenshot shows open issues of an earlier date to showcase the structure of the issues throughout development. The actual list of currently open issues can be found by following the link above.)
 
 - [Closed Issues](https://github.com/benschaf/waste-schedule/issues?q=is%3Aissue+is%3Aclosed) [![GitHub closed issues](https://img.shields.io/github/issues-closed/benschaf/waste-schedule)](https://github.com/benschaf/waste-schedule/issues?q=is%3Aissue+is%3Aclosed)
 
     ![screenshot](documentation/gh-issues-closed.png)
-
-**Note about the screenshots:** The screenshots do not show the complete list of issues as there would be too many. They are meant to give an impression of how the issues are structured and how they are used in the project. The actual list of issues can be found by following the links above.
-
+    ⤴️ Screenshot of the closed issues (the same note as above applies here as well.)
 
 ## Testing
 
@@ -456,7 +459,7 @@ To obtain my own Postgres Database from Code Institute, I followed these steps:
 
 > [!CAUTION]
 > - PostgreSQL databases by Code Institute are only available to CI Students.
-> - You must acquire your own PostgreSQL database through some other method if you plan to clone/> > fork this repository.
+> - You must acquire your own PostgreSQL database through some other method if you plan to clone/fork this repository.
 > - Code Institute students are allowed a maximum of 8 databases.
 > - Databases are subject to deletion after 18 months.
 
@@ -569,7 +572,7 @@ Once the project is cloned or forked, in order to run it locally, you'll need to
 - Make any necessary migrations: `python3 manage.py makemigrations`
 - Migrate the data to the database: `python3 manage.py migrate`
 - Create a superuser: `python3 manage.py createsuperuser`
-- Load fixtures: `python3 manage.py loaddata db2.json` (note that one of the users in the fixture is a superuser)
+- Load fixtures: `python3 manage.py loaddata db6.json`
 - Everything should be ready now, so run the Django app again: `python3 manage.py runserver`
 
 #### Cloning
@@ -675,7 +678,7 @@ Additionaly, [Chris Beams](https://chris.beams.io/posts/git-commit) article "How
 
 The tonne logo was drawn by me, adapting the design from a [vecteezy graphic](https://de.vecteezy.com/vektorkunst/571076-mulleimer-symbol).
 
-Images for sample Waste Schedules were taken from the following websites and uploaded to Cloudinary as an example usecase in the project:
+Images for sample Waste Schedules featured in the fixtures were taken from the following websites and uploaded to Cloudinary as an example usecase in the project:
 * [Landkreis Coburg](https://www.landkreis-coburg.de/73-0-Abfallwirtschaft.html)
 * [Öhningen Waste Calendar](https://www.oehningen.de/fileadmin/redakteur/Abfallkalender_NEU_%C3%96hningen_2024.pdf)
 * [Landkreis Schweinfurt](https://www.landkreis-schweinfurt.de/abfuhrkalender)
@@ -774,9 +777,6 @@ Considering all the user personas, I defined problem statements for each of them
 4. **Family-Focused Felix**:
     - **Statement**: “I am Family-Focused Felix trying to coordinate family waste routines, but the complexity due to managing a household makes me feel overwhelmed yet responsible.”
     - **Statement**: “I am Family-Focused Felix trying to involve kids in waste reduction, but the lack of guidance due to parenting challenges makes me feel determined and hopeful.”
-
-> [!IMPORTANT]
-> Overwork the problem statement
 
 **Overarching Problem Statement**: In a world grappling with stress and environmental challenges, our project aims to develop an integrated waste management solution that addresses the diverse needs of individuals — ranging from busy professionals and eco-conscious citizens to seniors and families. By providing a platform for community engagement, we strive to minimize the stress and confusion that accompany waste management, fostering a sense of responsibility and empowerment among communities. Our mission is to empower everyone, regardless of age or lifestyle, to actively participate in waste reduction, ultimately fostering a cleaner and greener planet.
 
