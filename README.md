@@ -322,15 +322,17 @@ The messages are designed to be unobtrusive and informative, providing users wit
 
 relevant project files: [base.html](templates/base.html)
 
-#### Custom 404 error page
+#### Custom 404 and 500 error pages
 
-A custom 404 error page is displayed when a user tries to access a page that does not exist. It provides a friendly message and a link back to the homepage.
+Custom 404 and 500 error pages are displayed when a user tries to access a page that does not exist or if there is an internal server error. The pages are designed to be informative and user-friendly, providing users with feedback on what went wrong and how to proceed.
 
-![screenshot](documentation/feature-404.png)
+| 404 Error Page | 500 Error Page |
+| --- | --- |
+| ![screenshot](documentation/feature-404.png) | ![screenshot](documentation/feature-500.png) |
 
-⤴️ Screenshot of the 404 error page
+⤴️ Screenshots of the error pages
 
-relevant project files: [404.html](templates/404.html)
+relevant project files: [404.html](templates/404.html), [500.html](templates/500.html)
 
 #### Responsive Design
 
