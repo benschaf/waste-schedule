@@ -33,6 +33,7 @@ Join us in building a community-driven resource that's making a real difference.
 I used a subtle green and white colour scheme to reflect the eco-friendly nature of the app. Coolors was used to generate the [colour palette](https://coolors.co/25a55f-2a2a2a-1c7b47-e6e6e6-57d992).
 
 ![screenshot](documentation/coolors-tonne.png)
+
 ⤴️ Screenshot of the colour palette from Coolors
 
 - `--pigment-green: #25a55f` - used for primary buttons and highlights
@@ -82,6 +83,7 @@ View the [original draw.io file](https://drive.google.com/file/d/1KmW3ppV6V6eGe1
 Check out the [User Story Map](https://github.com/users/benschaf/projects/9/views/2) created for this project using Github Projects. It includes all user stories and makes them easier to manage as they are grouped by Epic and MoSCoW priority. Meaningful accepance criteria were added to each user story in order to make development more goal focused.
 
 ![screenshot](documentation/user-story-map.png)
+
 ⤴️ Screenshot of the User Story Map
 
 ### MoSCoW Prioritization: Must Have
@@ -120,6 +122,7 @@ For all user stories and especially to see the acceptance criteria for each stor
 The following flowchart depicts possible user journeys in the waste management app. The app tries to let the user do as much as possible without having to sign up or log in. The user is only prompted to sign up when they want to subscribe to a schedule or create a new one. The flowchart also shows the user journey for the schedule builder and the dashboard.
 
 ![screenshot](documentation/flowchart.png)
+
 ⤴️ Flowchart of the user journey
 
 ## Features
@@ -133,6 +136,7 @@ When first visiting the site, users are greeted with a clean, modern and invitin
 The landing page is designed to be simple and user-friendly, providing a quick overview of the site's purpose and functionality. It encourages users to explore the site further and get started with their waste management journey.
 
 ![screenshot](documentation/feature-landing.png)
+
 ⤴️ Screenshot of the landing page
 
 relevant project files: [index.html](core/templates/core/index.html)
@@ -144,6 +148,7 @@ The navigation bar is fixed at the top of the page, ensuring easy access to the 
 The navigation bar is designed to be simple and intuitive, providing quick access to the site's main features. It is responsive and collapses into a hamburger menu on smaller screens using the Bootstrap CSS framework.
 
 ![screenshot](documentation/feature-navbar.png)
+
 ⤴️ Screenshot of the navigation bar
 
 Some custom Javascript code was used to change the navigation bar's opacity once scrolling down the page. This was done to make the hero section of the landing page cleaner and more focused.
@@ -157,6 +162,7 @@ The footer includes links to the site's social media profiles, such as Facebook,
 The footer is designed to be simple and unobtrusive, providing additional information and links for users who are interested.
 
 ![screenshot](documentation/feature-footer.png)
+
 ⤴️ Screenshot of the footer
 
 relevant project files: [base.html](templates/base.html)
@@ -168,6 +174,7 @@ The About page provides a brief overview of the site's purpose and the creator. 
 The About page is designed to be informative, providing users with background information. It helps to establish trust and credibility with users, ensuring they feel comfortable using the site.
 
 ![screenshot](documentation/feature-about.png)
+
 ⤴️ Screenshot of the about page
 
 relevant project files: [about.html](core/templates/core/about.html)
@@ -183,6 +190,7 @@ The schedule list has enabled pagination, so that the user can easily navigate t
 The search bar and list are designed to be simple and intuitive, providing users with a quick and easy way to find the information they need.
 
 ![screenshot](documentation/feature-search.png)
+
 ⤴️ Screenshot of the search bar and schedule list
 
 A custom form validator using a regex pattern was used to ensure that the user enters a valid postcode and gets appropriate feedback if they don't.
@@ -210,6 +218,7 @@ For the schedule as well as for each comment, the owner of the item can edit or 
 The schedule detail view is designed to be informative and engaging, providing users with all the information and possibilites to take action they need in one place.
 
 ![screenshot](documentation/feature-detail.png)
+
 ⤴️ Screenshot of a schedule detail view
 
 relevant project files: [schedule_detail.html](wasteschedules/templates/wasteschedules/schedule_detail.html), [comments.js](static/js/comments.js), [only_schedule.js](static/js/only_schedule.js)
@@ -229,6 +238,7 @@ Comments allow users to share their thoughts and experiences on a schedule. They
 The like, subscribe and comment features are designed to encourage user interaction and engagement, creating a sense of community and trust.
 
 ![screenshot](documentation/feature-comments.png)
+
 ⤴️ Screenshot of the comments section and the like and subscribe buttons
 
 relevant project files: [comments.js](static/js/comments.js), [schedule_detail.html](wasteschedules/templates/wasteschedules/schedule_detail.html), [schedule_list.html](wasteschedules/templates/wasteschedules/schedule_list.html), [dashboard.html](wasteschedules/templates/wasteschedules/dashboard.html)
@@ -267,6 +277,7 @@ From the dashboard, the user can edit or delete their schedules. It provides a q
 
 
 ![screenshot](documentation/feature-dashboard.png)
+
 ⤴️ Screenshot of the dashboard
 
 relevant project files: [dashboard.html](wasteschedules/templates/wasteschedules/dashboard.html)
@@ -278,6 +289,7 @@ Users can export their schedules to their calendar app via an ics file. This all
 The export feature is designed to provide users with a convenient way to receive reminders for their waste collection days. It ensures that users don't miss any important events and helps them stay organized.
 
 ![screenshot](documentation/feature-export.png)
+
 ⤴️ Screenshot of the export modal
 
 relevant project files: [dashboard.html](wasteschedules/templates/wasteschedules/dashboard.html), [dasboard.js](static/js/dashboard.js)
@@ -291,6 +303,7 @@ The site tries to prompt the user to register or log in only when it is necessar
 | | |
 | --- | --- |
 | ![screenshot](documentation/feature-register.png) | screenshot |
+
 ⤴️ Screenshot of the registration page
 
 relevant project files: find the adapted Allauth templates in the [templates/account](templates/account) folder.
@@ -304,6 +317,7 @@ The messages are designed to be unobtrusive and informative, providing users wit
 | | |
 | --- | --- |
 | ![screenshot](documentation/feature-messages.png) | screenshot |
+
 ⤴️ Screenshot of a success message
 
 relevant project files: [base.html](templates/base.html)
@@ -313,6 +327,7 @@ relevant project files: [base.html](templates/base.html)
 A custom 404 error page is displayed when a user tries to access a page that does not exist. It provides a friendly message and a link back to the homepage.
 
 ![screenshot](documentation/feature-404.png)
+
 ⤴️ Screenshot of the 404 error page
 
 relevant project files: [404.html](templates/404.html)
@@ -366,6 +381,7 @@ A relational database was used for this project. The database schema was designe
 At the core of the database design is the `Schedule` model. This model represents a waste collection schedule and includes fields for the schedule title, description, and image. On the left side of the ERD view below are models that allow users to like, comment on, and subscribe to schedules. On the right side are models that handle individual collection events. They mostly adhere to the [RRule standard](https://github.com/jkbrzt/rrule), which allows for complex recurring events to be defined.
 
 ![screenshot](documentation/erd-initial.png)
+
 ⤴️ the initial ERD
 
 Link to the [initial ERD](https://dbdiagram.io/e/66178e7003593b6b61bbb163/6618fa1203593b6b61d512e4)
@@ -392,6 +408,7 @@ INSTALLED_APPS = [
 - finally, in the terminal: `pip3 uninstall django-extensions pygraphviz -y`
 
 ![erd](documentation/erd.png)
+
 ⤴️ the final ERD
 
 source for django ERD generation: [medium.com](https://medium.com/@yathomasi1/1-using-django-extensions-to-visualize-the-database-diagram-in-django-application-c5fa7e710e16)
@@ -412,6 +429,7 @@ User stories are grouped by Epic and MoSCoW priority. The epics were determined 
 Throughout the development process, user stories were reevaluated after each iteration and adjusted accordingly. At this time, they are frozen at the beginning of the last iteration to give more insight into the development process.
 
 ![screenshot](documentation/user-story-map.png)
+
 ⤴️ Screenshot of the User Story Map
 
 #### MoSCoW Prioritization
@@ -433,11 +451,13 @@ Github issues was mainly used to track bugs and smaller feature requests that we
 - [Open Issues](https://github.com/benschaf/waste-schedule/issues) [![GitHub issues](https://img.shields.io/github/issues/benschaf/waste-schedule)](https://github.com/benschaf/waste-schedule/issues)
 
     ![screenshot](documentation/gh-issues-open.png)
+
     ⤴️ Screenshot of the open issues (this screenshot shows open issues of an earlier date to showcase the structure of the issues throughout development. The actual list of currently open issues can be found by following the link above.)
 
 - [Closed Issues](https://github.com/benschaf/waste-schedule/issues?q=is%3Aissue+is%3Aclosed) [![GitHub closed issues](https://img.shields.io/github/issues-closed/benschaf/waste-schedule)](https://github.com/benschaf/waste-schedule/issues?q=is%3Aissue+is%3Aclosed)
 
     ![screenshot](documentation/gh-issues-closed.png)
+
     ⤴️ Screenshot of the closed issues (the same note as above applies here as well.)
 
 ## Testing
