@@ -7,7 +7,7 @@
 
 ### HTML
 
-I have used the recommended [HTML W3C Validator](https://validator.w3.org) to validate all of my HTML deployed source code. In the table below, the results are by template file that would render the respective page.
+I have used the recommended [HTML W3C Validator](https://validator.w3.org) to validate all of my HTML deployed source code. In the table below, the results are labeled by template file that would render the respective page. The results are validated using the live deployed version of the project.
 
 | Directory | File | Screenshot | Notes |
 | --- | --- | --- | --- |
@@ -24,9 +24,11 @@ I have used the recommended [HTML W3C Validator](https://validator.w3.org) to va
 | wasteschedules | schedule_detail.html | ![screenshot](documentation/validation-schedule-detail.png) | no warnings or errors |
 | wasteschedules | schedule_list.html | ![screenshot](documentation/validation-schedule-list.png) | no warnings or errors |
 
+There were no issues with the HTML files.
+
 ### CSS
 
-I have used the recommended [CSS Jigsaw Validator](https://jigsaw.w3.org/css-validator) to validate all of my CSS files.
+I have used the recommended [CSS Jigsaw Validator](https://jigsaw.w3.org/css-validator) to validate the CSS file.
 
 ![jigsaw badge](http://jigsaw.w3.org/css-validator/images/vcss-blue)
 
@@ -38,9 +40,11 @@ The warnings are due to the vendor prefixes that are used in the CSS file. I add
 
 There is one other warning that is due to the background color and border of the calendar events having the same color value. This was necessary in order to override the default FullCalendar styling.
 
+There were no other issues with the CSS file.
+
 ### JavaScript
 
-I have used the recommended [JShint Validator](https://jshint.com) via its command-line interface to validate all of my JavaScript files. for this I installed the jshint package as a dev dependency using the command `npm install jshint --save-dev`. After this I created a `.jshintrc` file in the root of the project with the following content in order to enable ES6 syntax:
+I have used the recommended [JShint Validator](https://jshint.com) via its command-line interface to validate all of my JavaScript files. for this I installed the jshint package as a dev dependency using the command `npm install jshint --save-dev`. After this I created a `.jshintrc` file in the `static/js` directory of the project with the following content in order to enable ES6 syntax:
 
 ```json
 {
@@ -59,6 +63,9 @@ I then ran the following command to validate all of my JavaScript files: `npx js
 | static | only_schedule.js | ![screenshot](documentation/js-validation-only-schedule.png) | no warnings or errors |
 | static | script.js | ![screenshot](documentation/js-validation-script.png) | no warnings or errors |
 | static/test | edit_calendar.test.js | ![screenshot](documentation/js-validation-edit-calendar-test.png) | warning about document.write. This is save to ignore as it is used to load my own HTML template file for testing. |
+| static/test | script.test.js | ![screenshot](documentation/js-validation-script-test.png) | no warnings or errors |
+
+There were no additional issues with the JavaScript files.
 
 ### Python
 
@@ -68,7 +75,7 @@ Files that are unchanged from the Django template have been excluded from the va
 
 | Directory | File | CI URL | Screenshot | Notes |
 | --- | --- | --- | --- | --- |
-|  | copy-credits.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/copy-credits.py) | ![screenshot](documentation/python-validation-copy-credits.png) | no issues |
+| root | copy-credits.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/copy-credits.py) | ![screenshot](documentation/python-validation-copy-credits.png) | no issues |
 | core | urls.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/core/urls.py) | ![screenshot](documentation/python-validation-core-urls.png) | no issues |
 | core | views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/core/views.py) | ![screenshot](documentation/python-validation-core-views.png) | no issues |
 | schedulebuilder | admin.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/schedulebuilder/admin.py) | ![screenshot](documentation/python-validation-schedulebuilder-admin.png) | no issues |
@@ -95,6 +102,8 @@ Test Files were validated, too:
 | wasteschedules | test_views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/waste-schedule/main/wasteschedules/test_views.py) | ![screenshot](documentation/python-validation-wasteschedules-test-views.png) | no issues |
 
 Additionaly to the final testing, pycodestyle was used frequently to test python files locally.
+
+By running the command `pycodestyle --exclude=.vscode/*,*/migrations/* .` in the terminal, I was able to check for any PEP8 violations in all of my Python files. The `--exclude` flag was used to exclude the `.vscode` and `migrations` directories from the test as they are not written by me or automatically generated by Django.
 
 There were no issues with the Python files.
 
@@ -150,7 +159,7 @@ Besides the warnings mentioned above, there were no issues with the Lighthouse A
 ## Defensive Programming
 
 
-Defensive programming was manually tested with the below user acceptance testing:
+Defensive programming was manually tested with the below user acceptance testing.
 
 The follwing criteria were tested:
 
@@ -169,7 +178,7 @@ Authentication and CRUD Functionality:
 | --- | --- | --- | --- | --- | --- |
 | **Landing** | | | | | |
 | | The Postcode field should only accept values made up of 5 digits | Tested the field by entering an empty form, a 6-digit value, a 5-non-digit value, and a 5-digit value | The field only accepted the 5-digit value | Test concluded and passed | ![screenshot](documentation/defensive-landing-postcode.png) |
-| | **Navigation Bar** | | | | |
+| **Navigation Bar** | | | | | |
 | | To logged out users, the navigation bar should display the following links: Brwose Schedules, Make your own, Register, Login | Tested the navigation bar while logged out | The navigation bar displayed the following links: Brwose Schedules, Make your own, Dashboard, Register, Login | Test concluded and passed | ![screenshot](documentation/defensive-navbar-logged-out.png) |
 | | To logged in users, the navigation bar should display the following links: Brwose Schedules, Make your own, Dashboard, Logout | Tested the navigation bar while logged in | The navigation bar displayed the following links: Brwose Schedules, Make your own, Dashboard, Logout | Test concluded and passed | ![screenshot](documentation/defensive-navbar-logged-in.png) |
 | **Schedule List** | | | | | |
@@ -219,9 +228,11 @@ Authentication and CRUD Functionality:
 | | **Login** | | | | |
 | | The Login page should allow the user to Login through their Google account as well as through the form | Tested the page by logging in through the form and through the Google account | The user was able to log in through both methods | Test concluded and passed | ![screenshot](documentation/defensive-login.png) |
 
-The defensive programming tests were successful and any issues that arose were fixed (to see fixed issues please refer to Bug Fixes further down).
+Any issues that were found were fixed and retested. To see a list of all bug issues and fixes, please refer to the [Bugs](#bugs) section.
 
 ## User Story Testing
+
+All user stories labelled as "Must Have" have been tested and are working as expected.
 
 | User Story | Screenshot |
 | --- | --- |
@@ -317,6 +328,8 @@ I have one test suite that tests the Calendar editing functionality. See the res
 
 ![screenshot](documentation/test-js-calendar-edit.png)
 
+⤴️ This is a screenshot of the test results in the console.
+
 There are three tests in total, sadly one of them is failing.
 
 I left the failing test in the codebase to demonstrate that I am not able to test the FullCalendar library or any functions that are dependent on it because I would have to mock the library, which is beyond the scope of this project. Consequently, I have only written tests for the two helper functions that were not dependent on FullCalendar.
@@ -324,14 +337,14 @@ I left the failing test in the codebase to demonstrate that I am not able to tes
 For more information, view my [notes directly in the testing file](static/js/test/edit_calendar.test.js) and have a look at [Issue #48](https://github.com/benschaf/waste-schedule/issues/48).
 
 ![screenshot](documentation/test-js-calendar-edit-notes.png)
+
 ⤴️ This is a screenshot of the notes I left in the test file.
 
-I added another [test suite](static/js/test/script.test.js) for the Copyright Notice in the footer. The function updates the year dynamically. See the results in the screenshot below:
+I added **another [test suite](static/js/test/script.test.js)** for the Copyright Notice in the footer. The function updates the year dynamically. See the results in the screenshot below:
 
 ![screenshot](documentation/test-js-year.png)
-⤴️ This is a screenshot of the test results in the console.
 
-Note: I am aware that the Jest testing is not as extensive as it could be and should be in a real-world scenario.
+⤴️ Screenshot of the `script.test.js` test results in the console.
 
 ### Python (Unit Testing)
 
@@ -362,11 +375,13 @@ To see the HTML version of the reports, and find out whether some pieces of code
 I have conducted a total of 61 tests across all of my apps in the project, all of which are passing.
 
 ![screenshot](documentation/test-py-all.png)
+
 ⤴️ This is a screenshot of the test results in the console.
 
 Below are the results from the various apps on my application that I've tested:
 
 ![screenshot](documentation/test-py-coverage.png)
+
 ⤴️ This is a screenshot of the coverage report in the console.
 
 The current tests reach a coverage of 94% across all apps.
@@ -379,6 +394,16 @@ Below are screenshots of the files' reports that didn't reach 100% coverage:
 | schedulebuilder | views.py | 86% | ![screenshot](documentation/test-py-coverage-schedulebuilder-views.png) |
 | wasteschedules | models.py | 93% | ![screenshot](documentation/test-py-coverage-wasteschedules-models.png) |
 | wasteschedules | views.py | 81% | ![screenshot](documentation/test-py-coverage-wasteschedules-views.png) |
+
+I fully acknowledge and understand that, in a real-world scenario, an extensive set of additional tests and a higher coverage would be more comprehensive.
+
+### Resulting Issues
+
+The python unittests were successful and any issues that arose were fixed (to see fixed issues [filter issues by the unittestbug label](https://github.com/benschaf/waste-schedule/issues?q=is%3Aissue+label%3Aunittestbug).)
+
+![screenshot](documentation/defensive-programming-issues.png)
+
+⤴️ screenshot of the issues that were fixed as a result of the unittests.
 
 ## Bugs
 
