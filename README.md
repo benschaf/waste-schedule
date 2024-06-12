@@ -10,7 +10,7 @@
 [![npm version](https://img.shields.io/badge/npm-8.1.0-blue)](https://www.npmjs.com/package/npm)
 [![Heroku](https://img.shields.io/badge/heroku-eco-purple)](https://tonne-waste-reminders-a6836f2888b0.herokuapp.com/)
 
-Welcome to the **tonne** (german for: Waste Bin) - Waste Management site, your go-to solution in the quest for efficient and eco-friendly waste handling! 🚀
+Welcome to **tonne** (german for: Waste Bin) - the Waste Management site. It is your go-to solution in the quest for efficient and eco-friendly waste handling! 🚀
 
 ![screenshot](documentation/responsive-image.png)
 
