@@ -3,9 +3,31 @@ from django.contrib.auth.models import User
 from django.forms import ValidationError
 from django.urls import reverse
 from django.utils.text import slugify
+from django.core.validators import RegexValidator
 from cloudinary.models import CloudinaryField
 
 # Create your models here.
+# -> Credit for RegexValidator class: https://docs.djangoproject.com/en/5.0/ref/validators/#regexvalidator  # noqa
+
+
+class SlugifiableValidator(RegexValidator):
+    """
+    Checks if a given value can be converted to a slug.
+
+    The value is considered to be a valid slug if it contains at least one
+    letter. This prevents the creation of empty slugs or slugs that only
+    contain numbers which might mess with the URL routing.
+
+    Attributes:
+        regex (str): The regex pattern forcing at least one letter to be
+            present in the value.
+        message (str): The error message informing the user that they need to
+            provide a value containing at least one letter.
+    """
+
+    # -> Credit for slugifiable regex (generated using Bing AI): https://www.bing.com/chat  # noqa
+    regex = r'[a-zA-Z]'
+    message = "Your title must contain at least one letter."
 
 
 class Schedule(models.Model):
@@ -23,7 +45,8 @@ class Schedule(models.Model):
             last updated.
     """
 
-    title = models.CharField(max_length=100, unique=True)
+    title = models.CharField(
+        max_length=100, validators=[SlugifiableValidator()], unique=True)
     slug = models.SlugField(max_length=200, unique=True)
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='schedules')
