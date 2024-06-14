@@ -360,6 +360,8 @@ These are my three favorite ideas for future features:
 - [![Bootstrap](https://img.shields.io/badge/Bootstrap-grey?logo=bootstrap&logoColor=7952B3)](https://getbootstrap.com) used as the front-end CSS framework for modern responsiveness and pre-built components.
 - [![Jest](https://img.shields.io/badge/Jest-grey?logo=jest&logoColor=c21325)](https://jestjs.io) used for automated JavaScript testing.
 - [![Django](https://img.shields.io/badge/Django-grey?logo=django&logoColor=092E20)](https://www.djangoproject.com) used as the Python framework for the site.
+- [![Django Allauth](https://img.shields.io/badge/Django_Allauth-grey?logo=django&logoColor=092E20)](https://docs.allauth.org/en/latest/) used for user registration and login.
+- [![Django Crispy Forms](https://img.shields.io/badge/Django_Crispy_Forms-grey?logo=django&logoColor=092E20)](https://django-crispy-forms.readthedocs.io) used to style Django forms.
 - [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-grey?logo=postgresql&logoColor=4169E1)](https://www.postgresql.org) used as the relational database management.
 - [![PostgreSQL by Code Institute](https://img.shields.io/badge/PostgreSQL_by_Code_Institute-grey?logo=okta&logoColor=F05223)](https://dbs.ci-dbs.net) used as the Postgres database from Code Institute.
 - [![Cloudinary](https://img.shields.io/badge/Cloudinary-grey?logo=cloudinary&logoColor=3448C5)](https://cloudinary.com) used for online static file storage of the schedule images.
@@ -370,8 +372,10 @@ These are my three favorite ideas for future features:
 - [![draw.io](https://img.shields.io/badge/draw.io-grey?logo=diagrams.net&logoColor=F0A60A)](https://draw.io) used to design the wireframes.
 - [![pixlr](https://img.shields.io/badge/Pixlr-grey?logo=pixlr&logoColor=FF0000)](https://pixlr.com) used to edit images.
 - [![autoprefixer](https://img.shields.io/badge/Autoprefixer-grey?logo=autoprefixer&logoColor=000000)](https://autoprefixer.github.io) used to add vendor prefixes to CSS.
-- [![Markdown Link Check](https://img.shields.io/badge/Markdown_Link_Checker-grey?logo=markdown&logoColor=000000)](https://github.com/tcort/markdown-link-check) used to check for broken links in the documentation files.
-
+- [![Markdown Link Check](https://img.shields.io/badge/Markdown_Link_Check-grey?logo=markdown&logoColor=000000)](https://github.com/tcort/markdown-link-check) used to check for broken links in the documentation files.
+- [![FullCalendar](https://img.shields.io/badge/FullCalendar-grey?logo=fullcalendar&logoColor=000000)](https://fullcalendar.io) used for the calendar in the schedule builder.
+- [![ics.py](https://img.shields.io/badge/ics.py-grey?logo=python&logoColor=3776AB)](https://icspy.readthedocs.io) used to generate ics files for the schedule export.
+- [![rrule.js](https://img.shields.io/badge/rrule.js-grey?logo=rrule&logoColor=000000)](https://www.npmjs.com/package/rrule?activeTab=readmes) used to generate recurring events in the schedule builder and extend the FullCalendar library.
 
 ## Database Design
 A relational database was used for this project. The database schema was designed using [dbdiagram.io](https://dbdiagram.io) before development began. The schema was then implemented using Django's built-in ORM. Throughout the development process, the schema was adjusted and updated as needed. The initial and the final version of the schema can be found below.
