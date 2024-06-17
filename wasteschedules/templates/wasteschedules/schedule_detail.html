@@ -120,7 +120,7 @@
                 <div class="col d-flex gap-3">
 
                     <!-- Edit and Delete Buttons -->
-                    {% if schedule.author == user %}
+                    {% if schedule.author == user or user.is_superuser %}
                     <a href="{% url 'edit_schedule' schedule.slug %}" class="btn btn-secondary text-nowrap">Edit
                         Schedule</a>
                     <a href="{% url 'delete_schedule' schedule.slug %}" class="btn btn-danger text-nowrap">Delete

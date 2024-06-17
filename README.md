@@ -223,6 +223,14 @@ The schedule detail view is designed to be informative and engaging, providing u
 
 relevant project files: [schedule_detail.html](wasteschedules/templates/wasteschedules/schedule_detail.html), [comments.js](static/js/comments.js), [only_schedule.js](static/js/only_schedule.js)
 
+#### Basic superuser functionality
+
+Besides the regular built in Django superuser functionality, I have added a custom superuser functionality that allows the superuser to delete or edit any schedule. This can be done while viewing any schedule detail page as a superuser.
+
+This feature is very rudimentary and only allows the superuser to delete or edit schedules. It does not include any kind of moderation or approval process for schedules and there is no feedback to the owner of the schedule when a superuser deletes or edits a schedule.
+
+relevant project files: [schedule_detail.html](wasteschedules/templates/wasteschedules/schedule_detail.html)
+
 #### User Likes, Subscriptions, and Comments
 
 Users can like and subscribe to schedules, as well as leave comments. This allows them to interact with the site and the community, providing feedback and sharing their experiences.
@@ -318,6 +326,8 @@ The messages are designed to be unobtrusive and informative, providing users wit
 ⤴️ Screenshot of a success message
 
 relevant project files: [base.html](templates/base.html)
+
+#### Basic superuser functionality
 
 #### Custom 404 and 500 error pages
 

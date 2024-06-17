@@ -150,7 +150,7 @@ class UpdateSchedule(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
 
     def get(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
         """
-        Checks if the user is the owner of the schedule before
+        Checks if the user is the owner of the schedule or the superuser before
         displaying the update form.
 
         Args:
@@ -161,7 +161,8 @@ class UpdateSchedule(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
         Returns:
             HttpResponse: The HTTP response object.
         """
-        if self.get_object().author != request.user:
+        if (self.get_object().author != request.user and
+                not request.user.is_superuser):
             messages.add_message(
                 self.request, messages.ERROR,
                 "You are not the owner of this schedule."
@@ -196,7 +197,7 @@ class UpdateSchedule(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     def post(self, request, *args, **kwargs):
         """
         Handles the POST request.
-        Checks if the user is the author of the schedule.
+        Checks if the user is the author of the schedule or the superuser.
 
         Args:
             request: The HTTP request.
@@ -206,13 +207,14 @@ class UpdateSchedule(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
         Returns:
             The HTTP response.
         """
-        if self.get_object().author != request.user:
+        if (self.get_object().author != request.user and
+                not request.user.is_superuser):
             messages.add_message(
                 self.request, messages.ERROR,
                 "You are not the owner of this schedule."
             )
-            return redirect(
-                self.request.META.get("HTTP_REFERER", "landing_page"))
+            return redirect(self.request.META.get(
+                "HTTP_REFERER", "landing_page"))
         return super().post(request, *args, **kwargs)
 
 
@@ -224,7 +226,7 @@ class DeleteSchedule(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
 
     Methods:
         post(request, *args, **kwargs): Checks if the user is the owner of the
-            schedule before deleting it.
+            schedule or the superuser before deleting it.
         get_success_url(): Redirects to the schedule list page after the
             schedule is deleted.
     """
@@ -236,7 +238,7 @@ class DeleteSchedule(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     def get(self, request: HttpRequest, *args: str, **kwargs) -> HttpResponse:
         """
         Checks if the user is the owner of the schedule before displaying
-        the delete form.
+        the delete form (or the superuser).
 
         Args:
             request (HttpRequest): The HTTP request object.
@@ -246,7 +248,8 @@ class DeleteSchedule(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
         Returns:
             HttpResponse: The HTTP response object.
         """
-        if self.get_object().author != request.user:
+        if (self.get_object().author != request.user and
+                not request.user.is_superuser):
             messages.add_message(
                 self.request,
                 messages.ERROR,
@@ -259,7 +262,8 @@ class DeleteSchedule(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     def post(self, request, *args, **kwargs):
         """
         Handles the HTTP POST request for deleting the schedule.
-        Checks if the user is the owner of the schedule before deleting it.
+        Checks if the user is the owner of the schedule before deleting it (or
+        the superuser).
 
         If the user is not the owner of the schedule, an error message is
         added and the user is redirected to the previous page.
@@ -268,7 +272,8 @@ class DeleteSchedule(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
             HttpResponseRedirect: The redirect response.
 
         """
-        if self.get_object().author != request.user:
+        if (self.get_object().author != request.user and
+                not request.user.is_superuser):
             messages.add_message(
                 self.request, messages.ERROR,
                 "You are not the owner of this schedule."
@@ -304,7 +309,7 @@ class EditCalendarView(LoginRequiredMixin, TemplateView):
 
     Methods:
         dispatch(request, *args, **kwargs): Checks if the user is the owner of
-            the schedule before rendering the view.
+            the schedule before rendering the view (or the superuser).
         get_context_data(schedule_id, **kwargs): Returns the context data for
             rendering the template.
         _convert_kind_to_int(kind): Helper method to convert the kind of event
@@ -319,7 +324,7 @@ class EditCalendarView(LoginRequiredMixin, TemplateView):
         """
         Handles the HTTP request and returns the HTTP response.
         Checks if the user is the owner of the schedule before rendering
-        the view.
+        the view (or the superuser).
 
         Returns:
             HttpResponse: The HTTP response.
@@ -328,7 +333,7 @@ class EditCalendarView(LoginRequiredMixin, TemplateView):
             Http404: If the schedule with the given ID does not exist.
         """
         schedule = get_object_or_404(Schedule, id=kwargs["schedule_id"])
-        if schedule.author != request.user:
+        if schedule.author != request.user and not request.user.is_superuser:
             messages.add_message(
                 self.request, messages.ERROR,
                 "You are not the owner of this schedule."
